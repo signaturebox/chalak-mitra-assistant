@@ -4,90 +4,90 @@
 
 @layer base {
   :root {
-    --background: 210 20% 98%;
-    --foreground: 215 28% 17%;
+    --background: 220 16% 96%;
+    --foreground: 220 20% 14%;
 
     --card: 0 0% 100%;
-    --card-foreground: 215 28% 17%;
+    --card-foreground: 220 20% 14%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 215 28% 17%;
+    --popover-foreground: 220 20% 14%;
 
-    --primary: 213 56% 24%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 220 72% 50%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 29% 94%;
-    --secondary-foreground: 213 56% 24%;
+    --secondary: 220 14% 92%;
+    --secondary-foreground: 220 20% 30%;
 
-    --muted: 210 20% 96%;
-    --muted-foreground: 215 14% 46%;
+    --muted: 220 14% 94%;
+    --muted-foreground: 220 10% 50%;
 
-    --accent: 38 92% 50%;
+    --accent: 32 95% 52%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 72% 51%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214 20% 89%;
-    --input: 214 20% 89%;
-    --ring: 213 56% 24%;
+    --border: 220 14% 90%;
+    --input: 220 14% 90%;
+    --ring: 220 72% 50%;
 
-    --radius: 0.75rem;
+    --radius: 1rem;
 
-    --railway-blue: 213 56% 24%;
-    --railway-navy: 215 50% 15%;
-    --railway-orange: 38 92% 50%;
-    --railway-success: 142 71% 40%;
+    --railway-blue: 220 72% 50%;
+    --railway-navy: 220 45% 18%;
+    --railway-orange: 32 95% 52%;
+    --railway-success: 152 60% 42%;
     --railway-warning: 38 92% 50%;
-    --railway-info: 199 89% 48%;
+    --railway-info: 205 85% 50%;
 
-    --sidebar-background: 215 50% 15%;
-    --sidebar-foreground: 210 20% 90%;
-    --sidebar-primary: 38 92% 50%;
+    --sidebar-background: 220 45% 18%;
+    --sidebar-foreground: 220 14% 92%;
+    --sidebar-primary: 32 95% 52%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 215 40% 22%;
-    --sidebar-accent-foreground: 210 20% 90%;
-    --sidebar-border: 215 40% 22%;
-    --sidebar-ring: 38 92% 50%;
+    --sidebar-accent: 220 35% 26%;
+    --sidebar-accent-foreground: 220 14% 92%;
+    --sidebar-border: 220 35% 26%;
+    --sidebar-ring: 32 95% 52%;
   }
 
   .dark {
-    --background: 215 28% 10%;
-    --foreground: 210 20% 92%;
+    --background: 220 18% 8%;
+    --foreground: 220 14% 92%;
 
-    --card: 215 28% 14%;
-    --card-foreground: 210 20% 92%;
+    --card: 220 18% 12%;
+    --card-foreground: 220 14% 92%;
 
-    --popover: 215 28% 14%;
-    --popover-foreground: 210 20% 92%;
+    --popover: 220 18% 12%;
+    --popover-foreground: 220 14% 92%;
 
-    --primary: 210 40% 70%;
-    --primary-foreground: 215 28% 10%;
+    --primary: 220 72% 60%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 215 20% 20%;
-    --secondary-foreground: 210 20% 92%;
+    --secondary: 220 16% 18%;
+    --secondary-foreground: 220 14% 80%;
 
-    --muted: 215 20% 18%;
-    --muted-foreground: 215 14% 60%;
+    --muted: 220 16% 16%;
+    --muted-foreground: 220 10% 55%;
 
-    --accent: 38 92% 50%;
+    --accent: 32 95% 52%;
     --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 62% 30%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 62% 40%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 215 20% 22%;
-    --input: 215 20% 22%;
-    --ring: 210 40% 70%;
+    --border: 220 16% 18%;
+    --input: 220 16% 18%;
+    --ring: 220 72% 60%;
 
-    --sidebar-background: 215 28% 8%;
-    --sidebar-foreground: 210 20% 85%;
-    --sidebar-primary: 38 92% 50%;
+    --sidebar-background: 220 18% 6%;
+    --sidebar-foreground: 220 14% 85%;
+    --sidebar-primary: 32 95% 52%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 215 28% 16%;
-    --sidebar-accent-foreground: 210 20% 85%;
-    --sidebar-border: 215 28% 16%;
-    --sidebar-ring: 38 92% 50%;
+    --sidebar-accent: 220 18% 14%;
+    --sidebar-accent-foreground: 220 14% 85%;
+    --sidebar-border: 220 18% 14%;
+    --sidebar-ring: 32 95% 52%;
   }
 }
 
@@ -96,22 +96,59 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    @apply bg-background text-foreground antialiased;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+@layer utilities {
+  .safe-area-pb {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  .safe-area-pt {
+    padding-top: env(safe-area-inset-top, 0px);
   }
 }
 
 @layer components {
   .railway-gradient {
-    background: linear-gradient(135deg, hsl(var(--railway-navy)), hsl(var(--railway-blue)));
+    background: linear-gradient(145deg, hsl(220 45% 18%), hsl(220 72% 38%));
   }
   .railway-gradient-accent {
-    background: linear-gradient(135deg, hsl(var(--railway-blue)), hsl(var(--railway-orange)));
+    background: linear-gradient(145deg, hsl(220 72% 50%), hsl(32 95% 52%));
   }
   .glass-card {
-    @apply bg-card/80 backdrop-blur-sm border border-border/50 rounded-xl shadow-sm;
+    @apply bg-card/90 backdrop-blur-xl border border-border/40 shadow-sm;
+    border-radius: var(--radius);
   }
   .stat-card {
-    @apply bg-card rounded-xl p-4 border border-border/50 shadow-sm transition-all duration-200 hover:shadow-md;
+    @apply bg-card border border-border/40 shadow-sm transition-all duration-200;
+    border-radius: var(--radius);
+  }
+  .stat-card:active {
+    transform: scale(0.97);
+  }
+  .native-card {
+    @apply bg-card border border-border/30 shadow-sm overflow-hidden;
+    border-radius: calc(var(--radius) + 4px);
+  }
+  .native-section {
+    @apply bg-card border border-border/30 shadow-sm overflow-hidden divide-y divide-border/40;
+    border-radius: calc(var(--radius) + 4px);
+  }
+  .native-row {
+    @apply flex items-center gap-3 px-4 py-3.5 active:bg-muted/50 transition-colors;
+  }
+  .pill-btn {
+    @apply px-4 py-2 rounded-full text-xs font-semibold transition-all active:scale-95;
+  }
+  .pill-btn-active {
+    @apply bg-primary text-primary-foreground shadow-sm;
+  }
+  .pill-btn-inactive {
+    @apply bg-secondary text-secondary-foreground;
   }
 }
