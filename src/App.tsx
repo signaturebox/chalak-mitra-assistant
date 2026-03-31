@@ -48,6 +48,7 @@ const App = () => (
                 <Route path="/divisions" element={<DivisionsPage />} />
                 <Route path="/voice-ai" element={<VoiceAI />} />
                 <Route path="/quiz" element={<QuizPage />} />
+                <Route path="/gm-messages" element={<GMMessages />} />
                 <Route path="/admin" element={<Admin />} />
               </Route>
             </Route>
