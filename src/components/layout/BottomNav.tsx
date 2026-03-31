@@ -1,11 +1,11 @@
-import { Home, BookOpen, Wrench, User, Search } from "lucide-react";
+import { Home, BookOpen, Bot, Wrench, User } from "lucide-react";
 import { NavLink } from "react-router-dom";
 import { cn } from "@/lib/utils";
 
 const navItems = [
   { to: "/", icon: Home, label: "Home" },
   { to: "/knowledge", icon: BookOpen, label: "Knowledge" },
-  { to: "/search", icon: Search, label: "Search" },
+  { to: "/troubleshoot", icon: Bot, label: "AI Help" },
   { to: "/tools", icon: Wrench, label: "Tools" },
   { to: "/profile", icon: User, label: "Profile" },
 ];
