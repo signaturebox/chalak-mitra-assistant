@@ -1,4 +1,4 @@
-import { Mic, MicOff, Bot, Send } from "lucide-react";
+import { Mic, MicOff, Bot, Send, Sparkles } from "lucide-react";
 import { useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -15,48 +15,61 @@ export default function VoiceAI() {
   ];
 
   return (
-    <div className="flex flex-col items-center min-h-[65vh] justify-center animate-fade-in space-y-6">
-      <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-violet-500 to-blue-600 flex items-center justify-center shadow-lg">
-        <Bot className="h-8 w-8 text-white" />
-      </div>
-
-      <div className="text-center space-y-1">
-        <h1 className="text-xl font-bold text-foreground">
-          {lang === "hi" ? "वॉइस AI सहायक" : "Voice AI"}
+    <div className="flex flex-col items-center min-h-[65vh] justify-center animate-fade-in space-y-8">
+      {/* Header */}
+      <div className="text-center space-y-2">
+        <div className="w-16 h-16 rounded-3xl bg-gradient-to-br from-violet-500 to-blue-600 flex items-center justify-center shadow-lg shadow-violet-500/20 mx-auto animate-bounce-in">
+          <Bot className="h-8 w-8 text-white" />
+        </div>
+        <h1 className="text-2xl font-extrabold text-foreground tracking-tight">
+          {lang === "hi" ? "वॉइस AI" : "Voice AI"}
         </h1>
-        <p className="text-[13px] text-muted-foreground max-w-[260px]">
+        <p className="text-[13px] text-muted-foreground max-w-[280px] mx-auto leading-relaxed">
           {lang === "hi" ? "अपनी समस्या बताएं या फॉल्ट कोड बोलें" : "Describe your problem or speak a fault code"}
         </p>
       </div>
 
-      <button
-        onClick={() => setIsListening(!isListening)}
-        className={`w-20 h-20 rounded-full flex items-center justify-center transition-all shadow-xl active:scale-90 ${
-          isListening
-            ? "bg-destructive shadow-destructive/30 animate-pulse"
-            : "bg-gradient-to-br from-blue-500 to-blue-600 shadow-blue-500/20"
-        }`}
-      >
-        {isListening ? <MicOff className="h-8 w-8 text-white" /> : <Mic className="h-8 w-8 text-white" />}
-      </button>
+      {/* Mic Button with pulse ring */}
+      <div className="relative">
+        {isListening && (
+          <>
+            <div className="absolute inset-0 rounded-full bg-destructive/20 animate-pulse-ring" />
+            <div className="absolute inset-0 rounded-full bg-destructive/10 animate-pulse-ring" style={{ animationDelay: "0.5s" }} />
+          </>
+        )}
+        <button
+          onClick={() => setIsListening(!isListening)}
+          className={`relative w-24 h-24 rounded-full flex items-center justify-center transition-all shadow-2xl press-effect ${
+            isListening
+              ? "bg-destructive shadow-destructive/30"
+              : "bg-gradient-to-br from-primary to-blue-600 shadow-primary/25"
+          }`}
+        >
+          {isListening ? <MicOff className="h-9 w-9 text-white" /> : <Mic className="h-9 w-9 text-white" />}
+        </button>
+      </div>
 
-      <p className="text-[12px] text-muted-foreground">
-        {isListening ? (lang === "hi" ? "सुन रहा है..." : "Listening...") : (lang === "hi" ? "माइक टैप करें" : "Tap to speak")}
+      <p className="text-[13px] text-muted-foreground font-medium">
+        {isListening ? (lang === "hi" ? "🔴 सुन रहा है..." : "🔴 Listening...") : (lang === "hi" ? "माइक टैप करें" : "Tap to speak")}
       </p>
 
-      <div className="w-full max-w-sm flex gap-2">
+      {/* Text input */}
+      <div className="w-full max-w-sm flex gap-2.5">
         <input type="text" value={query} onChange={(e) => setQuery(e.target.value)}
           placeholder={lang === "hi" ? "या यहाँ टाइप करें..." : "Or type here..."}
-          className="flex-1 h-11 px-4 rounded-xl bg-muted text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30" />
-        <button className="h-11 w-11 rounded-xl bg-primary flex items-center justify-center text-primary-foreground shrink-0 active:scale-90 transition-transform">
+          className="m3-input flex-1" />
+        <button className="w-12 h-12 rounded-2xl bg-primary flex items-center justify-center text-primary-foreground shrink-0 m3-fab">
           <Send className="h-5 w-5" />
         </button>
       </div>
 
+      {/* Suggestion chips */}
       <div className="w-full max-w-sm flex flex-wrap gap-2 justify-center">
         {suggestions.map((s) => (
           <button key={s} onClick={() => setQuery(s)}
-            className="pill-btn pill-btn-inactive">{s}</button>
+            className="m3-chip m3-chip-outline text-[12px]">
+            <Sparkles className="h-3 w-3" />{s}
+          </button>
         ))}
       </div>
     </div>
