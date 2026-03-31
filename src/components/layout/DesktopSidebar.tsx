@@ -12,6 +12,7 @@ const mainNav: NavItem[] = [
   { to: "/troubleshoot", icon: Bot, labelKey: "nav.aiTroubleshoot" },
   { to: "/search", icon: Search, labelKey: "nav.search" },
   { to: "/tools", icon: Wrench, labelKey: "nav.crewTools" },
+  { to: "/rulebooks", icon: Gavel, labelKey: "nav.ruleBooks" },
   { to: "/notifications", icon: Bell, labelKey: "nav.alerts" },
 ];
 
