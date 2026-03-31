@@ -31,6 +31,7 @@ const en = {
   "dashboard.aiTroubleshoot": "AI Troubleshoot",
   "dashboard.crewTools": "Crew Tools",
   "dashboard.dutyCalculator": "Duty Calculator",
+  "dashboard.ruleBooks": "Rule Books",
   "dashboard.manuals": "Manuals",
   "dashboard.faultSolutions": "Fault Solutions",
   "dashboard.activeAlerts": "Active Alerts",

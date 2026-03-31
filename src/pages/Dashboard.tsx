@@ -49,6 +49,7 @@ export default function Dashboard() {
     { to: "/troubleshoot", icon: Bot, labelKey: "dashboard.aiTroubleshoot", color: "bg-railway-orange text-accent-foreground" },
     { to: "/tools", icon: Wrench, labelKey: "dashboard.crewTools", color: "bg-railway-success text-accent-foreground" },
     { to: "/tools", icon: Clock, labelKey: "dashboard.dutyCalculator", color: "bg-railway-info text-accent-foreground" },
+    { to: "/rulebooks", icon: Gavel, labelKey: "dashboard.ruleBooks", color: "bg-secondary text-secondary-foreground" },
   ];
 
   const stats: { labelKey: TranslationKey; value: string; icon: typeof FileText }[] = [
