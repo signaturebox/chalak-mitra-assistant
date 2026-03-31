@@ -1,56 +1,74 @@
-import { Search, Filter, FileText, Wrench, BookOpen, AlertTriangle } from "lucide-react";
+import { Search, FileText, Wrench, BookOpen, AlertTriangle } from "lucide-react";
 import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
 
-const resultTypes = ["All", "Manuals", "Faults", "Rules", "Circulars"] as const;
-
-const sampleResults = [
-  { id: 1, type: "fault", title: "WAP7 — Traction Motor Overheating (Code: TM-07)", desc: "Check cooling fan operation. Inspect motor bearings. Verify load conditions.", loco: "WAP7" },
-  { id: 2, type: "manual", title: "WAG9 Compressor Maintenance Manual", desc: "Complete guide for CP maintenance, troubleshooting and periodic inspection.", loco: "WAG9" },
-  { id: 3, type: "rule", title: "G&SR Rule 4.03 — Defective Loco Procedure", desc: "Procedure when loco becomes defective in mid-section. Action by LP and Controller.", loco: "" },
-  { id: 4, type: "circular", title: "Safety Circular 2024/03 — Fog Working", desc: "Instructions for working during foggy weather. Speed restrictions and precautions.", loco: "" },
-  { id: 5, type: "fault", title: "WDG4 — Engine Oil Pressure Low (Code: EOP-12)", desc: "Check oil level. Inspect oil pump. Verify pressure relief valve.", loco: "WDG4" },
-];
+const resultTypes = ["All", "Faults", "Manuals"] as const;
 
 export default function SearchPage() {
   const [query, setQuery] = useState("");
   const [activeFilter, setActiveFilter] = useState<string>("All");
 
-  const filtered = sampleResults.filter((r) => {
-    if (activeFilter !== "All") {
-      const typeMap: Record<string, string> = { Manuals: "manual", Faults: "fault", Rules: "rule", Circulars: "circular" };
-      if (r.type !== typeMap[activeFilter]) return false;
-    }
-    if (query) {
-      const q = query.toLowerCase();
-      return r.title.toLowerCase().includes(q) || r.desc.toLowerCase().includes(q);
-    }
-    return true;
+  const { data: faults } = useQuery({
+    queryKey: ["search-faults", query],
+    queryFn: async () => {
+      let q = supabase.from("faults").select("*, loco_types(name), system_categories(name)");
+      if (query) {
+        q = q.or(`title.ilike.%${query}%,fault_code.ilike.%${query}%,description.ilike.%${query}%`);
+      }
+      const { data } = await q.limit(10);
+      return data ?? [];
+    },
   });
 
-  const iconMap: Record<string, typeof FileText> = {
-    manual: FileText,
-    fault: Wrench,
-    rule: BookOpen,
-    circular: AlertTriangle,
-  };
+  const { data: manuals } = useQuery({
+    queryKey: ["search-manuals", query],
+    queryFn: async () => {
+      let q = supabase.from("manuals").select("*, loco_types(name), system_categories(name)");
+      if (query) {
+        q = q.or(`title.ilike.%${query}%,description.ilike.%${query}%`);
+      }
+      const { data } = await q.limit(10);
+      return data ?? [];
+    },
+  });
 
+  const results = [
+    ...(activeFilter === "All" || activeFilter === "Faults"
+      ? (faults ?? []).map((f) => ({
+          id: f.id,
+          type: "fault" as const,
+          title: `${f.loco_types?.name || ""} — ${f.title} (Code: ${f.fault_code})`,
+          desc: f.description || "",
+          loco: f.loco_types?.name || "",
+        }))
+      : []),
+    ...(activeFilter === "All" || activeFilter === "Manuals"
+      ? (manuals ?? []).map((m) => ({
+          id: m.id,
+          type: "manual" as const,
+          title: m.title,
+          desc: m.description || "",
+          loco: m.loco_types?.name || "",
+        }))
+      : []),
+  ];
+
+  const iconMap: Record<string, typeof FileText> = { manual: FileText, fault: Wrench };
   const colorMap: Record<string, string> = {
     manual: "bg-primary/10 text-primary",
     fault: "bg-destructive/10 text-destructive",
-    rule: "bg-railway-info/10 text-railway-info",
-    circular: "bg-railway-orange/10 text-railway-orange",
   };
 
   return (
     <div className="space-y-5 animate-fade-in">
       <div>
         <h2 className="text-lg font-bold text-foreground">Global Search</h2>
-        <p className="text-sm text-muted-foreground mt-0.5">Search across manuals, faults, rules & circulars</p>
+        <p className="text-sm text-muted-foreground mt-0.5">Search across faults, manuals & rules</p>
       </div>
 
-      {/* Search Input */}
       <div className="relative">
-        <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4.5 w-4.5 text-muted-foreground" />
+        <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
         <input
           type="text"
           value={query}
@@ -60,16 +78,13 @@ export default function SearchPage() {
         />
       </div>
 
-      {/* Filters */}
       <div className="flex gap-2 overflow-x-auto pb-1">
         {resultTypes.map((type) => (
           <button
             key={type}
             onClick={() => setActiveFilter(type)}
             className={`px-3.5 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-colors ${
-              activeFilter === type
-                ? "bg-primary text-primary-foreground"
-                : "bg-secondary text-secondary-foreground"
+              activeFilter === type ? "bg-primary text-primary-foreground" : "bg-secondary text-secondary-foreground"
             }`}
           >
             {type}
@@ -77,17 +92,16 @@ export default function SearchPage() {
         ))}
       </div>
 
-      {/* Results */}
       <div className="space-y-2">
-        {filtered.length === 0 ? (
+        {results.length === 0 ? (
           <div className="text-center py-12 text-muted-foreground text-sm">
-            No results found. Try a different search term.
+            {query ? "No results found." : "Start typing to search."}
           </div>
         ) : (
-          filtered.map((result) => {
+          results.map((result) => {
             const Icon = iconMap[result.type] || FileText;
             return (
-              <button key={result.id} className="stat-card w-full flex items-start gap-3 p-3.5 text-left">
+              <div key={result.id} className="stat-card flex items-start gap-3 p-3.5 text-left">
                 <div className={`w-9 h-9 rounded-lg flex items-center justify-center shrink-0 mt-0.5 ${colorMap[result.type]}`}>
                   <Icon className="h-4 w-4" />
                 </div>
@@ -100,7 +114,7 @@ export default function SearchPage() {
                     </span>
                   )}
                 </div>
-              </button>
+              </div>
             );
           })
         )}

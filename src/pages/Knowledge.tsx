@@ -1,52 +1,57 @@
-import { BookOpen, ChevronRight, Zap, Fuel, Train, FileText } from "lucide-react";
+import { BookOpen, ChevronRight, Zap, Fuel, FileText } from "lucide-react";
 import { useState } from "react";
-
-const locoCategories = [
-  {
-    id: "electric",
-    label: "Electric Locos",
-    icon: Zap,
-    color: "bg-railway-info/10 text-railway-info",
-    locos: ["WAP7", "WAP5", "WAG9", "WAG9H"],
-  },
-  {
-    id: "diesel",
-    label: "Diesel Locos",
-    icon: Fuel,
-    color: "bg-railway-orange/10 text-railway-orange",
-    locos: ["WDG4", "WDP4", "WDG4G", "WDP4D"],
-  },
-];
-
-const systemCategories = [
-  "Traction Motor", "Braking System", "Compressor", "Transformer",
-  "Control Electronics", "Bogie & Suspension", "Pantograph", "Battery & Charging",
-];
-
-const recentManuals = [
-  { id: 1, title: "WAP7 Traction Motor Maintenance", loco: "WAP7", pages: 45, category: "Traction Motor" },
-  { id: 2, title: "WDG4 Brake System Troubleshooting", loco: "WDG4", pages: 32, category: "Braking System" },
-  { id: 3, title: "WAG9 Compressor Fault Guide", loco: "WAG9", pages: 28, category: "Compressor" },
-  { id: 4, title: "WDP4 Control Electronics Manual", loco: "WDP4", pages: 56, category: "Control Electronics" },
-  { id: 5, title: "WAP7 Pantograph Procedures", loco: "WAP7", pages: 18, category: "Pantograph" },
-];
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
 
 export default function Knowledge() {
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [selectedLoco, setSelectedLoco] = useState<string | null>(null);
+  const [selectedSystem, setSelectedSystem] = useState<string | null>(null);
+
+  const { data: locoTypes } = useQuery({
+    queryKey: ["loco-types"],
+    queryFn: async () => {
+      const { data } = await supabase.from("loco_types").select("*").order("name");
+      return data ?? [];
+    },
+  });
+
+  const { data: systemCategories } = useQuery({
+    queryKey: ["system-categories"],
+    queryFn: async () => {
+      const { data } = await supabase.from("system_categories").select("*").order("name");
+      return data ?? [];
+    },
+  });
+
+  const { data: faults } = useQuery({
+    queryKey: ["faults-browse", selectedLoco, selectedSystem],
+    queryFn: async () => {
+      let q = supabase.from("faults").select("*, loco_types(name), system_categories(name)");
+      if (selectedLoco) q = q.eq("loco_type_id", selectedLoco);
+      if (selectedSystem) q = q.eq("system_category_id", selectedSystem);
+      const { data } = await q.order("created_at", { ascending: false }).limit(20);
+      return data ?? [];
+    },
+  });
+
+  const electric = (locoTypes ?? []).filter((l) => l.category === "electric");
+  const diesel = (locoTypes ?? []).filter((l) => l.category === "diesel");
 
   return (
     <div className="space-y-6 animate-fade-in">
       <div>
         <h2 className="text-lg font-bold text-foreground">Loco Knowledge Base</h2>
-        <p className="text-sm text-muted-foreground mt-0.5">Browse manuals, troubleshooting guides & technical documents</p>
+        <p className="text-sm text-muted-foreground mt-0.5">Browse troubleshooting guides & technical documents</p>
       </div>
 
-      {/* Loco Categories */}
       <section>
         <h3 className="text-sm font-semibold text-foreground mb-3">By Locomotive Type</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-          {locoCategories.map((cat) => (
-            <div key={cat.id} className="stat-card">
+          {[
+            { label: "Electric Locos", icon: Zap, color: "bg-railway-info/10 text-railway-info", items: electric },
+            { label: "Diesel Locos", icon: Fuel, color: "bg-railway-orange/10 text-railway-orange", items: diesel },
+          ].map((cat) => (
+            <div key={cat.label} className="stat-card">
               <div className="flex items-center gap-3 mb-3">
                 <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${cat.color}`}>
                   <cat.icon className="h-5 w-5" />
@@ -54,17 +59,15 @@ export default function Knowledge() {
                 <h4 className="font-semibold text-foreground">{cat.label}</h4>
               </div>
               <div className="flex flex-wrap gap-2">
-                {cat.locos.map((loco) => (
+                {cat.items.map((loco) => (
                   <button
-                    key={loco}
-                    onClick={() => setSelectedCategory(loco)}
+                    key={loco.id}
+                    onClick={() => { setSelectedLoco(selectedLoco === loco.id ? null : loco.id); setSelectedSystem(null); }}
                     className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
-                      selectedCategory === loco
-                        ? "bg-primary text-primary-foreground"
-                        : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
+                      selectedLoco === loco.id ? "bg-primary text-primary-foreground" : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
                     }`}
                   >
-                    {loco}
+                    {loco.name}
                   </button>
                 ))}
               </div>
@@ -73,53 +76,84 @@ export default function Knowledge() {
         </div>
       </section>
 
-      {/* System Categories */}
       <section>
         <h3 className="text-sm font-semibold text-foreground mb-3">By System</h3>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
-          {systemCategories.map((sys) => (
+          {(systemCategories ?? []).map((sys) => (
             <button
-              key={sys}
-              onClick={() => setSelectedCategory(sys)}
+              key={sys.id}
+              onClick={() => { setSelectedSystem(selectedSystem === sys.id ? null : sys.id); setSelectedLoco(null); }}
               className={`stat-card text-left p-3 text-xs font-medium ${
-                selectedCategory === sys
-                  ? "ring-2 ring-primary bg-primary/5"
-                  : ""
+                selectedSystem === sys.id ? "ring-2 ring-primary bg-primary/5" : ""
               }`}
             >
-              {sys}
+              {sys.name}
             </button>
           ))}
         </div>
       </section>
 
-      {/* Manuals List */}
       <section>
         <h3 className="text-sm font-semibold text-foreground mb-3">
-          {selectedCategory ? `Results: ${selectedCategory}` : "Recent Manuals"}
+          {selectedLoco || selectedSystem ? "Matching Faults" : "All Faults"}
         </h3>
         <div className="space-y-2">
-          {recentManuals
-            .filter((m) => !selectedCategory || m.loco === selectedCategory || m.category === selectedCategory)
-            .map((manual) => (
-              <button
-                key={manual.id}
-                className="stat-card w-full flex items-center gap-3 p-3.5 text-left group"
-              >
-                <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-                  <FileText className="h-4.5 w-4.5 text-primary" />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium text-foreground truncate">{manual.title}</p>
-                  <p className="text-[11px] text-muted-foreground mt-0.5">
-                    {manual.loco} · {manual.category} · {manual.pages} pages
-                  </p>
-                </div>
-                <ChevronRight className="h-4 w-4 text-muted-foreground group-hover:text-foreground transition-colors shrink-0" />
-              </button>
-            ))}
+          {(faults ?? []).length === 0 ? (
+            <div className="text-center py-8 text-muted-foreground text-sm">No faults found for this filter.</div>
+          ) : (
+            (faults ?? []).map((fault) => (
+              <FaultCard key={fault.id} fault={fault} />
+            ))
+          )}
         </div>
       </section>
+    </div>
+  );
+}
+
+function FaultCard({ fault }: { fault: any }) {
+  const [expanded, setExpanded] = useState(false);
+  const steps = Array.isArray(fault.solution_steps) ? fault.solution_steps : [];
+
+  return (
+    <div className="stat-card overflow-hidden">
+      <button onClick={() => setExpanded(!expanded)} className="w-full flex items-center gap-3 p-3.5 text-left">
+        <div className={`w-10 h-10 rounded-lg flex items-center justify-center shrink-0 ${
+          fault.severity === "critical" ? "bg-destructive/10 text-destructive" :
+          fault.severity === "high" ? "bg-railway-orange/10 text-railway-orange" :
+          "bg-primary/10 text-primary"
+        }`}>
+          <FileText className="h-4 w-4" />
+        </div>
+        <div className="flex-1 min-w-0">
+          <p className="text-sm font-medium text-foreground truncate">{fault.title}</p>
+          <p className="text-[11px] text-muted-foreground mt-0.5">
+            {fault.loco_types?.name} · {fault.fault_code} · {fault.severity}
+          </p>
+        </div>
+        <ChevronRight className={`h-4 w-4 text-muted-foreground shrink-0 transition-transform ${expanded ? "rotate-90" : ""}`} />
+      </button>
+      {expanded && (
+        <div className="px-3.5 pb-3.5 space-y-3 border-t border-border pt-3">
+          {fault.description && <p className="text-xs text-muted-foreground">{fault.description}</p>}
+          {steps.length > 0 && (
+            <div>
+              <p className="text-xs font-semibold text-foreground mb-1">Solution Steps:</p>
+              <ol className="text-xs text-muted-foreground space-y-1 list-decimal pl-4">
+                {steps.map((step: string, i: number) => <li key={i}>{step}</li>)}
+              </ol>
+            </div>
+          )}
+          {fault.safety_precautions?.length > 0 && (
+            <div>
+              <p className="text-xs font-semibold text-destructive mb-1">⚠️ Safety Precautions:</p>
+              <ul className="text-xs text-muted-foreground space-y-0.5 list-disc pl-4">
+                {fault.safety_precautions.map((p: string, i: number) => <li key={i}>{p}</li>)}
+              </ul>
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 }
