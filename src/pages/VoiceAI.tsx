@@ -1,4 +1,4 @@
-import { Mic, MicOff, Bot, Send, Sparkles } from "lucide-react";
+import { Mic, MicOff, Send, Sparkles } from "lucide-react";
 import { useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -16,12 +16,8 @@ export default function VoiceAI() {
 
   return (
     <div className="flex flex-col items-center min-h-[65vh] justify-center animate-fade-in space-y-8">
-      {/* Header */}
       <div className="text-center space-y-2">
-        <div className="w-16 h-16 rounded-3xl bg-gradient-to-br from-violet-500 to-blue-600 flex items-center justify-center shadow-lg shadow-violet-500/20 mx-auto animate-bounce-in">
-          <Bot className="h-8 w-8 text-white" />
-        </div>
-        <h1 className="text-2xl font-extrabold text-foreground tracking-tight">
+        <h1 className="text-2xl font-bold text-foreground tracking-tight">
           {lang === "hi" ? "वॉइस AI" : "Voice AI"}
         </h1>
         <p className="text-[13px] text-muted-foreground max-w-[280px] mx-auto leading-relaxed">
@@ -29,23 +25,23 @@ export default function VoiceAI() {
         </p>
       </div>
 
-      {/* Mic Button with pulse ring */}
+      {/* Mic Button */}
       <div className="relative">
         {isListening && (
           <>
-            <div className="absolute inset-0 rounded-full bg-destructive/20 animate-pulse-ring" />
-            <div className="absolute inset-0 rounded-full bg-destructive/10 animate-pulse-ring" style={{ animationDelay: "0.5s" }} />
+            <div className="absolute -inset-4 rounded-full bg-destructive/15 animate-pulse-ring" />
+            <div className="absolute -inset-4 rounded-full bg-destructive/10 animate-pulse-ring" style={{ animationDelay: "0.5s" }} />
           </>
         )}
         <button
           onClick={() => setIsListening(!isListening)}
-          className={`relative w-24 h-24 rounded-full flex items-center justify-center transition-all shadow-2xl press-effect ${
+          className={`relative w-28 h-28 rounded-full flex items-center justify-center transition-all press-effect ${
             isListening
-              ? "bg-destructive shadow-destructive/30"
-              : "bg-gradient-to-br from-primary to-blue-600 shadow-primary/25"
+              ? "gradient-rose shadow-2xl"
+              : "gradient-teal shadow-2xl glow-teal"
           }`}
         >
-          {isListening ? <MicOff className="h-9 w-9 text-white" /> : <Mic className="h-9 w-9 text-white" />}
+          {isListening ? <MicOff className="h-10 w-10 text-white" /> : <Mic className="h-10 w-10 text-white" />}
         </button>
       </div>
 
@@ -58,7 +54,7 @@ export default function VoiceAI() {
         <input type="text" value={query} onChange={(e) => setQuery(e.target.value)}
           placeholder={lang === "hi" ? "या यहाँ टाइप करें..." : "Or type here..."}
           className="m3-input flex-1" />
-        <button className="w-12 h-12 rounded-2xl bg-primary flex items-center justify-center text-primary-foreground shrink-0 m3-fab">
+        <button className="w-13 h-13 rounded-2xl gradient-teal flex items-center justify-center text-white shrink-0 shadow-lg glow-teal press-effect" style={{ width: 52, height: 52 }}>
           <Send className="h-5 w-5" />
         </button>
       </div>

@@ -1,4 +1,4 @@
-import { Search, BookOpen, Building2, Zap, Mic, Bot, Gavel, Bell, ChevronRight, Sparkles } from "lucide-react";
+import { Search, BookOpen, Building2, Zap, Mic, Bot, Gavel, Bell, ChevronRight, ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -6,9 +6,9 @@ import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 
 const quickActions = [
-  { to: "/search", icon: Zap, label: "Fault Search", labelHi: "फॉल्ट खोज", gradient: "from-orange-500 to-red-500", emoji: "⚡" },
-  { to: "/troubleshoot", icon: Bot, label: "AI Troubleshoot", labelHi: "AI समस्या निवारण", gradient: "from-violet-500 to-purple-600", emoji: "🤖" },
-  { to: "/voice-ai", icon: Mic, label: "Voice AI", labelHi: "वॉइस AI", gradient: "from-blue-500 to-cyan-500", emoji: "🎙️" },
+  { to: "/search", label: "Fault Search", labelHi: "फॉल्ट खोज", emoji: "⚡", gradient: "gradient-amber" },
+  { to: "/troubleshoot", label: "AI Troubleshoot", labelHi: "AI समस्या निवारण", emoji: "🤖", gradient: "gradient-indigo" },
+  { to: "/voice-ai", label: "Voice AI", labelHi: "वॉइस AI", emoji: "🎙️", gradient: "gradient-teal" },
 ];
 
 const modules = [
@@ -56,60 +56,55 @@ export default function HomePage() {
   };
 
   return (
-    <div className="space-y-6 animate-fade-in">
-      {/* Greeting */}
-      <div className="flex items-center justify-between">
-        <div>
-          <p className="text-[13px] text-muted-foreground font-medium">{greeting()} 👋</p>
-          <h1 className="text-[22px] font-extrabold text-foreground tracking-tight leading-tight">
-            {profile?.full_name || (lang === "hi" ? "चालक मित्र" : "Chalak Mitra")}
-          </h1>
-        </div>
-        <div className="w-11 h-11 rounded-full bg-primary/10 flex items-center justify-center">
-          <span className="text-xl">👤</span>
-        </div>
+    <div className="space-y-5 animate-fade-in">
+      {/* Greeting — Large display */}
+      <div className="pt-1">
+        <p className="text-[12px] text-muted-foreground font-medium tracking-wide uppercase">{greeting()}</p>
+        <h1 className="text-[26px] font-bold text-foreground tracking-tight leading-tight mt-0.5">
+          {profile?.full_name || (lang === "hi" ? "चालक मित्र" : "Chalak Mitra")} 👋
+        </h1>
       </div>
 
-      {/* Quick Actions — Horizontal scroll with gradient cards */}
-      <div className="flex gap-3 overflow-x-auto pb-1 -mx-4 px-4 snap-x snap-mandatory scrollbar-hide">
-        {quickActions.map((item, i) => (
+      {/* Quick Actions — Vertical stack with icons */}
+      <div className="space-y-2.5 stagger-in">
+        {quickActions.map((item) => (
           <Link
             key={item.label}
             to={item.to}
-            className={`snap-start shrink-0 w-[150px] rounded-3xl bg-gradient-to-br ${item.gradient} p-4 text-white press-effect`}
-            style={{ animationDelay: `${i * 60}ms` }}
+            className="glass-card flex items-center gap-4 p-4 press-effect group"
           >
-            <div className="w-11 h-11 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center mb-8">
+            <div className={`w-12 h-12 rounded-2xl ${item.gradient} flex items-center justify-center shrink-0 shadow-lg`}>
               <span className="text-xl">{item.emoji}</span>
             </div>
-            <p className="text-[14px] font-bold leading-tight">{lang === "hi" ? item.labelHi : item.label}</p>
-            <div className="flex items-center gap-1 mt-1.5 text-white/70">
-              <Sparkles className="h-3 w-3" />
-              <span className="text-[10px] font-medium">Quick Access</span>
+            <div className="flex-1">
+              <p className="text-[15px] font-bold text-foreground">{lang === "hi" ? item.labelHi : item.label}</p>
+              <p className="text-[11px] text-muted-foreground mt-0.5">
+                {item.to === "/search" ? (lang === "hi" ? "कोड खोजें और समाधान पाएं" : "Search codes & get solutions") :
+                 item.to === "/troubleshoot" ? (lang === "hi" ? "AI से समस्या हल करें" : "AI-powered diagnostics") :
+                 (lang === "hi" ? "बोलकर खोजें" : "Speak to search")}
+              </p>
             </div>
+            <ArrowUpRight className="h-4 w-4 text-muted-foreground/50 group-hover:text-primary transition-colors" />
           </Link>
         ))}
       </div>
 
-      {/* Shortcuts — Card list */}
-      <div className="m3-surface stagger-in">
+      {/* Shortcuts — 2x2 grid */}
+      <div className="grid grid-cols-2 gap-2.5 stagger-in">
         {shortcuts.map((item) => (
-          <Link key={item.label} to={item.to} className="m3-list-item py-3.5">
-            <div className="w-11 h-11 rounded-2xl bg-primary/8 flex items-center justify-center">
-              <item.icon className="h-[20px] w-[20px] text-primary" />
+          <Link key={item.label} to={item.to} className="glass-card p-4 press-effect">
+            <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center mb-3">
+              <item.icon className="h-[18px] w-[18px] text-primary" />
             </div>
-            <div className="flex-1 min-w-0">
-              <span className="text-[14px] font-semibold text-foreground block">{lang === "hi" ? item.labelHi : item.label}</span>
-              <span className="text-[11px] text-muted-foreground">{lang === "hi" ? item.descHi : item.desc}</span>
-            </div>
-            <ChevronRight className="h-4 w-4 text-muted-foreground/40" />
+            <p className="text-[13px] font-bold text-foreground">{lang === "hi" ? item.labelHi : item.label}</p>
+            <p className="text-[10px] text-muted-foreground mt-0.5 leading-snug">{lang === "hi" ? item.descHi : item.desc}</p>
           </Link>
         ))}
       </div>
 
-      {/* Module Grid */}
+      {/* All Modules */}
       <div>
-        <h2 className="text-[12px] font-bold text-muted-foreground uppercase tracking-widest mb-3 px-1">
+        <h2 className="text-[11px] font-bold text-muted-foreground uppercase tracking-[0.15em] mb-3 px-1">
           {lang === "hi" ? "सभी मॉड्यूल" : "All Modules"}
         </h2>
         <div className="grid grid-cols-3 gap-2 stagger-in">
@@ -117,10 +112,10 @@ export default function HomePage() {
             <Link
               key={mod.label}
               to={mod.to}
-              className="m3-card-elevated flex flex-col items-center justify-center gap-2 py-4 px-2 press-effect"
+              className="glass flex flex-col items-center justify-center gap-1.5 py-4 px-2 press-effect"
             >
-              <span className="text-[28px] leading-none">{mod.icon}</span>
-              <span className="text-[11px] font-semibold text-foreground text-center leading-tight">
+              <span className="text-[26px] leading-none">{mod.icon}</span>
+              <span className="text-[10px] font-semibold text-foreground text-center leading-tight">
                 {lang === "hi" ? mod.labelHi : mod.label}
               </span>
             </Link>
@@ -130,7 +125,7 @@ export default function HomePage() {
 
       {/* Footer */}
       <div className="text-center pt-2 pb-2">
-        <p className="text-[10px] text-muted-foreground/50 font-medium">
+        <p className="text-[9px] text-muted-foreground/40 font-medium tracking-wide">
           NWR Chalak Mitra v1.0 • North Western Railway
         </p>
       </div>
