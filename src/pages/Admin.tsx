@@ -1,24 +1,26 @@
-import { Shield, Users, Building, MapPin, FileText, TrendingUp, Settings } from "lucide-react";
+import { Shield } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { TranslationKey } from "@/i18n/translations";
+import { useAuth } from "@/contexts/AuthContext";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import AdminUsers from "@/components/admin/AdminUsers";
+import AdminZones from "@/components/admin/AdminZones";
+import AdminDivisions from "@/components/admin/AdminDivisions";
+import AdminLobbies from "@/components/admin/AdminLobbies";
+import AdminManuals from "@/components/admin/AdminManuals";
 
 export default function Admin() {
   const { t } = useLanguage();
+  const { isAdmin } = useAuth();
 
-  const adminModules: { icon: typeof Users; labelKey: TranslationKey; descKey: TranslationKey; count: string }[] = [
-    { icon: Users, labelKey: "admin.userMgmt", descKey: "admin.userMgmtDesc", count: "245 users" },
-    { icon: Building, labelKey: "admin.zoneMgmt", descKey: "admin.zoneMgmtDesc", count: "6 zones" },
-    { icon: MapPin, labelKey: "admin.lobbyMgmt", descKey: "admin.lobbyMgmtDesc", count: "28 lobbies" },
-    { icon: FileText, labelKey: "admin.contentMgmt", descKey: "admin.contentMgmtDesc", count: "124 docs" },
-    { icon: TrendingUp, labelKey: "admin.analytics", descKey: "admin.analyticsDesc", count: "View" },
-    { icon: Settings, labelKey: "admin.systemSettings", descKey: "admin.systemSettingsDesc", count: "" },
-  ];
-
-  const recentActivity = [
-    { action: "New user registered", detail: "ALP Suresh — Ajmer Division", time: "10 min ago" },
-    { action: "Manual uploaded", detail: "WAG9H Traction Guide — Zone Admin", time: "2h ago" },
-    { action: "Safety circular published", detail: "SC/2024/03 — Fog Working", time: "5h ago" },
-  ];
+  if (!isAdmin) {
+    return (
+      <div className="flex flex-col items-center justify-center py-20 text-center space-y-3">
+        <Shield className="h-12 w-12 text-muted-foreground" />
+        <h2 className="text-lg font-bold text-foreground">{t("admin.accessDenied")}</h2>
+        <p className="text-sm text-muted-foreground">{t("admin.accessDeniedDesc")}</p>
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-6 animate-fade-in">
@@ -32,33 +34,20 @@ export default function Admin() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-        {adminModules.map((mod) => (
-          <button key={mod.labelKey} className="stat-card flex items-center gap-3 p-4 text-left group">
-            <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors">
-              <mod.icon className="h-5 w-5 text-primary" />
-            </div>
-            <div className="flex-1 min-w-0">
-              <p className="text-sm font-semibold text-foreground">{t(mod.labelKey)}</p>
-              <p className="text-[11px] text-muted-foreground">{t(mod.descKey)}</p>
-            </div>
-            {mod.count && <span className="text-xs font-medium text-primary bg-primary/10 px-2 py-1 rounded-md">{mod.count}</span>}
-          </button>
-        ))}
-      </div>
-
-      <section>
-        <h3 className="text-sm font-semibold text-foreground mb-3">{t("admin.recentActivity")}</h3>
-        <div className="stat-card divide-y divide-border">
-          {recentActivity.map((item, i) => (
-            <div key={i} className="px-4 py-3">
-              <p className="text-sm font-medium text-foreground">{item.action}</p>
-              <p className="text-[11px] text-muted-foreground mt-0.5">{item.detail}</p>
-              <p className="text-[10px] text-muted-foreground mt-1">{item.time}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <Tabs defaultValue="users" className="w-full">
+        <TabsList className="w-full grid grid-cols-5">
+          <TabsTrigger value="users">{t("admin.tabUsers")}</TabsTrigger>
+          <TabsTrigger value="zones">{t("admin.tabZones")}</TabsTrigger>
+          <TabsTrigger value="divisions">{t("admin.tabDivisions")}</TabsTrigger>
+          <TabsTrigger value="lobbies">{t("admin.tabLobbies")}</TabsTrigger>
+          <TabsTrigger value="manuals">{t("admin.tabManuals")}</TabsTrigger>
+        </TabsList>
+        <TabsContent value="users"><AdminUsers /></TabsContent>
+        <TabsContent value="zones"><AdminZones /></TabsContent>
+        <TabsContent value="divisions"><AdminDivisions /></TabsContent>
+        <TabsContent value="lobbies"><AdminLobbies /></TabsContent>
+        <TabsContent value="manuals"><AdminManuals /></TabsContent>
+      </Tabs>
     </div>
   );
 }
