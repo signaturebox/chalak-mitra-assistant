@@ -167,45 +167,75 @@ export type Database = {
           causes: string[] | null
           created_at: string
           description: string | null
+          description_hi: string | null
           fault_code: string
+          fault_message: string | null
           id: string
+          impact: string | null
+          indicators: Json | null
+          isolation_message: string | null
+          isolation_required: boolean | null
+          isolation_steps: string[] | null
+          lamp_status: string | null
           loco_type_id: string | null
+          priority: string | null
           safety_precautions: string[] | null
           severity: string | null
           solution_steps: Json | null
           symptoms: string[] | null
           system_category_id: string | null
           title: string
+          title_hi: string | null
           updated_at: string
         }
         Insert: {
           causes?: string[] | null
           created_at?: string
           description?: string | null
+          description_hi?: string | null
           fault_code: string
+          fault_message?: string | null
           id?: string
+          impact?: string | null
+          indicators?: Json | null
+          isolation_message?: string | null
+          isolation_required?: boolean | null
+          isolation_steps?: string[] | null
+          lamp_status?: string | null
           loco_type_id?: string | null
+          priority?: string | null
           safety_precautions?: string[] | null
           severity?: string | null
           solution_steps?: Json | null
           symptoms?: string[] | null
           system_category_id?: string | null
           title: string
+          title_hi?: string | null
           updated_at?: string
         }
         Update: {
           causes?: string[] | null
           created_at?: string
           description?: string | null
+          description_hi?: string | null
           fault_code?: string
+          fault_message?: string | null
           id?: string
+          impact?: string | null
+          indicators?: Json | null
+          isolation_message?: string | null
+          isolation_required?: boolean | null
+          isolation_steps?: string[] | null
+          lamp_status?: string | null
           loco_type_id?: string | null
+          priority?: string | null
           safety_precautions?: string[] | null
           severity?: string | null
           solution_steps?: Json | null
           symptoms?: string[] | null
           system_category_id?: string | null
           title?: string
+          title_hi?: string | null
           updated_at?: string
         }
         Relationships: [
