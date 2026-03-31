@@ -1,4 +1,4 @@
-import { BookOpen, Wrench, Bot, Bell, Clock, FileText, TrendingUp } from "lucide-react";
+import { BookOpen, Wrench, Bot, Bell, Clock, FileText, TrendingUp, Gavel } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { useLanguage } from "@/contexts/LanguageContext";
