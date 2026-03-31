@@ -1,4 +1,4 @@
-import { Home, BookOpen, Wrench, User, Search, Bell, Shield, Train, Bot } from "lucide-react";
+import { Home, BookOpen, Wrench, User, Search, Bell, Shield, Train, Bot, Gavel } from "lucide-react";
 import { NavLink } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { useLanguage } from "@/contexts/LanguageContext";
