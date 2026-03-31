@@ -7,6 +7,7 @@ import AdminZones from "@/components/admin/AdminZones";
 import AdminDivisions from "@/components/admin/AdminDivisions";
 import AdminLobbies from "@/components/admin/AdminLobbies";
 import AdminManuals from "@/components/admin/AdminManuals";
+import AdminRuleBooks from "@/components/admin/AdminRuleBooks";
 
 export default function Admin() {
   const { t } = useLanguage();
@@ -35,18 +36,20 @@ export default function Admin() {
       </div>
 
       <Tabs defaultValue="users" className="w-full">
-        <TabsList className="w-full grid grid-cols-5">
+        <TabsList className="w-full grid grid-cols-3 md:grid-cols-6">
           <TabsTrigger value="users">{t("admin.tabUsers")}</TabsTrigger>
           <TabsTrigger value="zones">{t("admin.tabZones")}</TabsTrigger>
           <TabsTrigger value="divisions">{t("admin.tabDivisions")}</TabsTrigger>
           <TabsTrigger value="lobbies">{t("admin.tabLobbies")}</TabsTrigger>
           <TabsTrigger value="manuals">{t("admin.tabManuals")}</TabsTrigger>
+          <TabsTrigger value="rulebooks">{t("admin.tabRuleBooks")}</TabsTrigger>
         </TabsList>
         <TabsContent value="users"><AdminUsers /></TabsContent>
         <TabsContent value="zones"><AdminZones /></TabsContent>
         <TabsContent value="divisions"><AdminDivisions /></TabsContent>
         <TabsContent value="lobbies"><AdminLobbies /></TabsContent>
         <TabsContent value="manuals"><AdminManuals /></TabsContent>
+        <TabsContent value="rulebooks"><AdminRuleBooks /></TabsContent>
       </Tabs>
     </div>
   );
