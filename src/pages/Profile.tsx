@@ -1,4 +1,4 @@
-import { User, Moon, Sun, Globe, ChevronRight, LogOut } from "lucide-react";
+import { User, Moon, Sun, Globe, ChevronRight, LogOut, Shield, Star } from "lucide-react";
 import { useState } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -27,68 +27,82 @@ export default function Profile() {
   const handleSignOut = async () => { await signOut(); navigate("/auth"); };
   const roleLabel = roles.length > 0 ? roles.map(r => r.replace("_", " ").replace(/\b\w/g, c => c.toUpperCase())).join(", ") : "Crew User";
 
-  const stats = [
-    { value: bookmarkCount ?? 0, label: "Bookmarks", emoji: "📌" },
-    { value: downloadCount ?? 0, label: "Downloads", emoji: "📥" },
-  ];
-
   const features = [
-    { emoji: "📱", label: lang === "hi" ? "डिजिटल लॉगबुक" : "Digital Logbook", to: "/tools" },
-    { emoji: "🔧", label: lang === "hi" ? "टूल्स" : "Crew Tools", to: "/tools" },
+    { emoji: "📱", label: lang === "hi" ? "लॉगबुक" : "Logbook", to: "/tools" },
+    { emoji: "🔧", label: lang === "hi" ? "टूल्स" : "Tools", to: "/tools" },
     { emoji: "🎯", label: lang === "hi" ? "ट्रेनिंग" : "Training", to: "/quiz" },
     { emoji: "🎫", label: lang === "hi" ? "सहायता" : "Support", to: "/notifications" },
   ];
 
   return (
-    <div className="space-y-4 animate-fade-in">
-      {/* Profile Card */}
-      <div className="native-card overflow-hidden">
-        <div className="railway-gradient px-5 pt-8 pb-5 text-center">
-          <div className="w-20 h-20 rounded-full bg-white/15 border-[3px] border-white/25 flex items-center justify-center mx-auto mb-3">
-            <span className="text-3xl">👤</span>
-          </div>
-          <h2 className="text-lg font-bold text-white">{profile?.full_name || "User"}</h2>
-          <p className="text-white/60 text-[12px] mt-0.5">{profile?.cms_id || roleLabel}</p>
-        </div>
-        <div className="grid grid-cols-2 divide-x divide-border/40">
-          {stats.map((s) => (
-            <div key={s.label} className="py-3 text-center">
-              <p className="text-lg font-bold text-foreground">{s.value}</p>
-              <p className="text-[10px] text-muted-foreground uppercase tracking-wider">{s.label}</p>
+    <div className="space-y-5 animate-fade-in">
+      {/* Profile Hero */}
+      <div className="m3-card-elevated overflow-hidden">
+        <div className="railway-gradient px-6 pt-10 pb-6 text-center relative overflow-hidden">
+          {/* Decorative circles */}
+          <div className="absolute -top-10 -right-10 w-40 h-40 rounded-full bg-white/5" />
+          <div className="absolute -bottom-12 -left-8 w-32 h-32 rounded-full bg-white/5" />
+          
+          <div className="relative">
+            <div className="w-24 h-24 rounded-full bg-white/10 border-4 border-white/20 flex items-center justify-center mx-auto mb-4 animate-scale-in">
+              <span className="text-4xl">👤</span>
             </div>
-          ))}
+            <h2 className="text-xl font-bold text-white">{profile?.full_name || "User"}</h2>
+            <div className="flex items-center justify-center gap-2 mt-1.5">
+              <Shield className="h-3 w-3 text-white/50" />
+              <p className="text-white/60 text-[12px] font-medium">{profile?.cms_id || roleLabel}</p>
+            </div>
+          </div>
+        </div>
+        
+        {/* Stats */}
+        <div className="grid grid-cols-2 divide-x divide-border/30">
+          <div className="py-4 text-center">
+            <p className="text-xl font-bold text-foreground">{bookmarkCount ?? 0}</p>
+            <p className="text-[10px] text-muted-foreground uppercase tracking-widest font-semibold mt-0.5">Bookmarks</p>
+          </div>
+          <div className="py-4 text-center">
+            <p className="text-xl font-bold text-foreground">{downloadCount ?? 0}</p>
+            <p className="text-[10px] text-muted-foreground uppercase tracking-widest font-semibold mt-0.5">Downloads</p>
+          </div>
         </div>
       </div>
 
-      {/* Quick Access */}
-      <div className="grid grid-cols-4 gap-2">
+      {/* Quick Access Grid */}
+      <div className="grid grid-cols-4 gap-2.5 stagger-in">
         {features.map((f) => (
           <button key={f.label} onClick={() => navigate(f.to)}
-            className="native-card flex flex-col items-center gap-1.5 p-3 active:scale-95 transition-transform">
+            className="m3-card-elevated flex flex-col items-center gap-2 py-4 press-effect">
             <span className="text-2xl">{f.emoji}</span>
-            <span className="text-[10px] font-semibold text-foreground text-center leading-tight">{f.label}</span>
+            <span className="text-[10px] font-bold text-foreground text-center leading-tight">{f.label}</span>
           </button>
         ))}
       </div>
 
       {/* Settings */}
-      <div className="native-section">
-        <div className="native-row">
-          {darkMode ? <Moon className="h-[18px] w-[18px] text-muted-foreground" /> : <Sun className="h-[18px] w-[18px] text-muted-foreground" />}
-          <span className="flex-1 text-[14px] text-foreground">{t("profile.darkMode")}</span>
-          <button onClick={toggleDark} className={`w-[44px] h-[26px] rounded-full transition-colors relative ${darkMode ? "bg-primary" : "bg-muted-foreground/30"}`}>
-            <span className={`absolute top-[3px] w-5 h-5 rounded-full bg-white shadow-sm transition-transform ${darkMode ? "left-[21px]" : "left-[3px]"}`} />
+      <div className="m3-surface stagger-in">
+        <div className="m3-list-item py-4">
+          <div className="w-10 h-10 rounded-2xl bg-secondary flex items-center justify-center">
+            {darkMode ? <Moon className="h-[18px] w-[18px] text-muted-foreground" /> : <Sun className="h-[18px] w-[18px] text-muted-foreground" />}
+          </div>
+          <span className="flex-1 text-[14px] font-medium text-foreground">{t("profile.darkMode")}</span>
+          <button onClick={toggleDark} className={`w-[52px] h-[32px] rounded-full transition-all relative ${darkMode ? "bg-primary" : "bg-muted-foreground/25"}`}>
+            <span className={`absolute top-[4px] w-6 h-6 rounded-full bg-white shadow-md transition-all ${darkMode ? "left-[24px]" : "left-[3px]"}`} />
           </button>
         </div>
-        <div className="native-row">
-          <Globe className="h-[18px] w-[18px] text-muted-foreground" />
-          <span className="flex-1 text-[14px] text-foreground">{t("profile.language")}</span>
+        <div className="m3-list-item py-4">
+          <div className="w-10 h-10 rounded-2xl bg-secondary flex items-center justify-center">
+            <Globe className="h-[18px] w-[18px] text-muted-foreground" />
+          </div>
+          <span className="flex-1 text-[14px] font-medium text-foreground">{t("profile.language")}</span>
           <button onClick={() => setLang(lang === "en" ? "hi" : "en")}
-            className="pill-btn pill-btn-inactive text-[11px]">{lang === "en" ? "हिन्दी" : "English"}</button>
+            className="m3-chip m3-chip-tonal text-[12px]">{lang === "en" ? "हिन्दी" : "English"}</button>
         </div>
-        <button onClick={handleSignOut} className="native-row w-full">
-          <LogOut className="h-[18px] w-[18px] text-destructive" />
-          <span className="flex-1 text-[14px] text-destructive font-medium">{lang === "hi" ? "लॉगआउट" : "Sign Out"}</span>
+        <button onClick={handleSignOut} className="m3-list-item py-4 w-full">
+          <div className="w-10 h-10 rounded-2xl bg-destructive/10 flex items-center justify-center">
+            <LogOut className="h-[18px] w-[18px] text-destructive" />
+          </div>
+          <span className="flex-1 text-[14px] text-destructive font-semibold text-left">{lang === "hi" ? "लॉगआउट" : "Sign Out"}</span>
         </button>
       </div>
     </div>
