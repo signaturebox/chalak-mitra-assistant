@@ -192,6 +192,7 @@ const hi: Record<keyof typeof en, string> = {
   "nav.crewTools": "क्रू उपकरण",
   "nav.alerts": "सूचनाएं",
   "nav.admin": "प्रशासन",
+  "nav.ruleBooks": "नियम पुस्तिका",
   "nav.main": "मुख्य",
   "nav.account": "खाता",
 
