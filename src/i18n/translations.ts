@@ -16,6 +16,7 @@ const en = {
   "nav.crewTools": "Crew Tools",
   "nav.alerts": "Alerts",
   "nav.admin": "Admin",
+  "nav.ruleBooks": "Rule Books",
   "nav.main": "Main",
   "nav.account": "Account",
 
