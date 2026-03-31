@@ -138,6 +138,19 @@ const en = {
   "admin.systemSettingsDesc": "Configuration & backup",
   "admin.recentActivity": "Recent Activity",
 
+  // Rule Books
+  "rulebooks.title": "Rule Book & Document Center",
+  "rulebooks.subtitle": "ACTM, G&SR, Subsidiary Rules & Safety Circulars",
+  "rulebooks.searchPlaceholder": "Search rules, chapters, keywords...",
+  "rulebooks.all": "All Rules",
+  "rulebooks.gsr": "G&SR",
+  "rulebooks.actm": "ACTM",
+  "rulebooks.subsidiary": "Subsidiary Rules",
+  "rulebooks.safety": "Safety Circulars",
+  "rulebooks.noResults": "No rules found.",
+  "rulebooks.browseCategories": "Select a category or search to browse rules.",
+  "rulebooks.ruleBooks": "Rule Books",
+
   // Auth
   "auth.signIn": "Sign In",
   "auth.signUp": "Sign Up",
