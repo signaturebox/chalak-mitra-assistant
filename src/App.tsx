@@ -40,6 +40,7 @@ const App = () => (
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/notifications" element={<Notifications />} />
                 <Route path="/troubleshoot" element={<Troubleshoot />} />
+                <Route path="/rulebooks" element={<RuleBooks />} />
                 <Route path="/admin" element={<Admin />} />
               </Route>
             </Route>
