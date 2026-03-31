@@ -314,6 +314,19 @@ const hi: Record<keyof typeof en, string> = {
   "admin.systemSettingsDesc": "कॉन्फ़िगरेशन और बैकअप",
   "admin.recentActivity": "हालिया गतिविधि",
 
+  // Rule Books
+  "rulebooks.title": "नियम पुस्तिका और दस्तावेज़ केंद्र",
+  "rulebooks.subtitle": "ACTM, G&SR, सहायक नियम और सुरक्षा परिपत्र",
+  "rulebooks.searchPlaceholder": "नियम, अध्याय, कीवर्ड खोजें...",
+  "rulebooks.all": "सभी नियम",
+  "rulebooks.gsr": "G&SR",
+  "rulebooks.actm": "ACTM",
+  "rulebooks.subsidiary": "सहायक नियम",
+  "rulebooks.safety": "सुरक्षा परिपत्र",
+  "rulebooks.noResults": "कोई नियम नहीं मिला।",
+  "rulebooks.browseCategories": "नियम ब्राउज़ करने के लिए श्रेणी चुनें या खोजें।",
+  "rulebooks.ruleBooks": "नियम पुस्तिका",
+
   // Auth
   "auth.signIn": "साइन इन",
   "auth.signUp": "साइन अप",
