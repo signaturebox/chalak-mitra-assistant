@@ -20,6 +20,8 @@ import DivisionsPage from "@/pages/DivisionsPage";
 import VoiceAI from "@/pages/VoiceAI";
 import QuizPage from "@/pages/QuizPage";
 import GMMessages from "@/pages/GMMessages";
+import PCEEMessages from "@/pages/PCEEMessages";
+import NWRNotices from "@/pages/NWRNotices";
 import Auth from "@/pages/Auth";
 import NotFound from "@/pages/NotFound";
 
@@ -49,6 +51,8 @@ const App = () => (
                 <Route path="/voice-ai" element={<VoiceAI />} />
                 <Route path="/quiz" element={<QuizPage />} />
                 <Route path="/gm-messages" element={<GMMessages />} />
+                <Route path="/pcee-messages" element={<PCEEMessages />} />
+                <Route path="/nwr-notices" element={<NWRNotices />} />
                 <Route path="/admin" element={<Admin />} />
               </Route>
             </Route>

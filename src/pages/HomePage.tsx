@@ -13,8 +13,8 @@ const quickActions = [
 
 const modules = [
   { to: "/gm-messages", icon: "👤", label: "GM Message", labelHi: "GM संदेश" },
-  { to: "/notifications", icon: "📢", label: "PCEE Message", labelHi: "PCEE संदेश" },
-  { to: "/notifications", icon: "📋", label: "NWR Notices", labelHi: "NWR नोटिस" },
+  { to: "/pcee-messages", icon: "📢", label: "PCEE Message", labelHi: "PCEE संदेश" },
+  { to: "/nwr-notices", icon: "📋", label: "NWR Notices", labelHi: "NWR नोटिस" },
   { to: "/knowledge?type=electric", icon: "⚡", label: "Electric Loco", labelHi: "विद्युत लोको" },
   { to: "/knowledge?type=diesel", icon: "🚂", label: "Diesel Loco", labelHi: "डीज़ल लोको" },
   { to: "/knowledge?type=vande", icon: "🚄", label: "Vande Bharat", labelHi: "वंदे भारत" },
