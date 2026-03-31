@@ -41,24 +41,28 @@ export default function Auth() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background p-4">
-      <div className="w-full max-w-sm animate-fade-in">
-        {/* Logo + Branding */}
-        <div className="text-center mb-8">
-          <div className="mx-auto w-20 h-20 rounded-3xl railway-gradient flex items-center justify-center shadow-xl shadow-primary/15 mb-5 animate-bounce-in">
+    <div className="min-h-screen flex items-center justify-center bg-background relative overflow-hidden p-4">
+      {/* Ambient blobs */}
+      <div className="absolute -top-40 -right-40 w-96 h-96 rounded-full bg-primary/8 blur-[120px]" />
+      <div className="absolute -bottom-40 -left-40 w-80 h-80 rounded-full bg-accent/8 blur-[120px]" />
+
+      <div className="w-full max-w-sm relative z-10 animate-fade-in">
+        {/* Logo */}
+        <div className="text-center mb-10">
+          <div className="mx-auto w-20 h-20 rounded-3xl gradient-teal flex items-center justify-center shadow-2xl glow-teal mb-5 animate-float">
             <span className="text-4xl">🚂</span>
           </div>
-          <h1 className="text-2xl font-extrabold text-foreground tracking-tight">NWR Chalak Mitra</h1>
-          <p className="text-[13px] text-muted-foreground mt-1">
+          <h1 className="text-2xl font-bold text-foreground tracking-tight">NWR Chalak Mitra</h1>
+          <p className="text-[12px] text-muted-foreground mt-1.5 tracking-wide">
             North Western Railway • {lang === "hi" ? "लोको पायलट साथी" : "Crew Companion"}
           </p>
         </div>
 
-        {/* Login Type Tabs — Material segmented button */}
-        <div className="flex bg-secondary rounded-2xl p-1 mb-5">
+        {/* Login Type Toggle */}
+        <div className="glass-strong rounded-2xl p-1.5 flex mb-6">
           {(["crew", "admin"] as const).map((type) => (
             <button key={type} onClick={() => { setLoginType(type); setIsSignup(false); }}
-              className={`flex-1 py-3 rounded-xl text-[13px] font-bold transition-all ${loginType === type ? "bg-card text-foreground shadow-sm" : "text-muted-foreground"}`}>
+              className={`flex-1 py-3 rounded-xl text-[13px] font-bold transition-all ${loginType === type ? "gradient-teal text-white shadow-md" : "text-muted-foreground"}`}>
               {type === "crew" ? (lang === "hi" ? "👷 क्रू" : "👷 Crew") : (lang === "hi" ? "🔧 एडमिन" : "🔧 Admin")}
             </button>
           ))}
@@ -96,13 +100,13 @@ export default function Auth() {
           </div>
 
           <button type="submit" disabled={loading}
-            className="w-full h-14 rounded-2xl bg-primary text-primary-foreground text-[15px] font-bold disabled:opacity-50 press-effect shadow-lg shadow-primary/25 mt-2">
+            className="w-full h-14 rounded-2xl gradient-teal text-white text-[15px] font-bold disabled:opacity-50 press-effect shadow-xl glow-teal mt-2">
             {loading ? (lang === "hi" ? "प्रतीक्षा करें..." : "Please wait...") : isSignup ? (lang === "hi" ? "खाता बनाएं" : "Create Account") : "Login"}
           </button>
         </form>
 
         {/* Toggle signup */}
-        <div className="text-center mt-5 space-y-3">
+        <div className="text-center mt-6 space-y-3">
           {!isSignup && <button className="text-[12px] text-primary font-semibold">{lang === "hi" ? "पासवर्ड भूल गए?" : "Forgot password?"}</button>}
           <p className="text-[13px] text-muted-foreground">
             {isSignup ? (lang === "hi" ? "खाता है?" : "Have an account?") : loginType === "crew" ? (lang === "hi" ? "नया क्रू?" : "New Crew?") : ""}
