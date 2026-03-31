@@ -27,14 +27,16 @@ const App = () => (
         <AuthProvider>
           <Routes>
             <Route path="/auth" element={<Auth />} />
-            <Route element={<ProtectedRoute><AppLayout /></ProtectedRoute>}>
-              <Route path="/" element={<Dashboard />} />
-              <Route path="/knowledge" element={<Knowledge />} />
-              <Route path="/search" element={<SearchPage />} />
-              <Route path="/tools" element={<Tools />} />
-              <Route path="/profile" element={<Profile />} />
-              <Route path="/notifications" element={<Notifications />} />
-              <Route path="/admin" element={<Admin />} />
+            <Route element={<ProtectedRoute />}>
+              <Route element={<AppLayout />}>
+                <Route path="/" element={<Dashboard />} />
+                <Route path="/knowledge" element={<Knowledge />} />
+                <Route path="/search" element={<SearchPage />} />
+                <Route path="/tools" element={<Tools />} />
+                <Route path="/profile" element={<Profile />} />
+                <Route path="/notifications" element={<Notifications />} />
+                <Route path="/admin" element={<Admin />} />
+              </Route>
             </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>
