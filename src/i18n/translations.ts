@@ -208,6 +208,7 @@ const hi: Record<keyof typeof en, string> = {
   "dashboard.aiTroubleshoot": "AI समस्या निवारण",
   "dashboard.crewTools": "क्रू उपकरण",
   "dashboard.dutyCalculator": "ड्यूटी कैलकुलेटर",
+  "dashboard.ruleBooks": "नियम पुस्तिका",
   "dashboard.manuals": "मैनुअल",
   "dashboard.faultSolutions": "दोष समाधान",
   "dashboard.activeAlerts": "सक्रिय सूचनाएं",
