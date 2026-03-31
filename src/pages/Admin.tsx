@@ -38,8 +38,9 @@ export default function Admin() {
       </div>
 
       <Tabs defaultValue="users" className="w-full">
-        <TabsList className="w-full grid grid-cols-3 md:grid-cols-7">
+        <TabsList className="w-full grid grid-cols-4 md:grid-cols-8">
           <TabsTrigger value="users">{t("admin.tabUsers")}</TabsTrigger>
+          <TabsTrigger value="faults">Faults</TabsTrigger>
           <TabsTrigger value="zones">{t("admin.tabZones")}</TabsTrigger>
           <TabsTrigger value="divisions">{t("admin.tabDivisions")}</TabsTrigger>
           <TabsTrigger value="lobbies">{t("admin.tabLobbies")}</TabsTrigger>
@@ -48,6 +49,7 @@ export default function Admin() {
           <TabsTrigger value="divdocs">Div Docs</TabsTrigger>
         </TabsList>
         <TabsContent value="users"><AdminUsers /></TabsContent>
+        <TabsContent value="faults"><AdminFaults /></TabsContent>
         <TabsContent value="zones"><AdminZones /></TabsContent>
         <TabsContent value="divisions"><AdminDivisions /></TabsContent>
         <TabsContent value="lobbies"><AdminLobbies /></TabsContent>
