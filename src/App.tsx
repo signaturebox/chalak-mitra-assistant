@@ -7,7 +7,7 @@ import { AuthProvider } from "@/contexts/AuthContext";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import { ProtectedRoute } from "@/components/auth/ProtectedRoute";
 import { AppLayout } from "@/components/layout/AppLayout";
-import Dashboard from "@/pages/Dashboard";
+import HomePage from "@/pages/HomePage";
 import Knowledge from "@/pages/Knowledge";
 import SearchPage from "@/pages/SearchPage";
 import Tools from "@/pages/Tools";
@@ -16,6 +16,9 @@ import Notifications from "@/pages/Notifications";
 import Admin from "@/pages/Admin";
 import Troubleshoot from "@/pages/Troubleshoot";
 import RuleBooks from "@/pages/RuleBooks";
+import DivisionsPage from "@/pages/DivisionsPage";
+import VoiceAI from "@/pages/VoiceAI";
+import QuizPage from "@/pages/QuizPage";
 import Auth from "@/pages/Auth";
 import NotFound from "@/pages/NotFound";
 
@@ -33,7 +36,7 @@ const App = () => (
             <Route path="/auth" element={<Auth />} />
             <Route element={<ProtectedRoute />}>
               <Route element={<AppLayout />}>
-                <Route path="/" element={<Dashboard />} />
+                <Route path="/" element={<HomePage />} />
                 <Route path="/knowledge" element={<Knowledge />} />
                 <Route path="/search" element={<SearchPage />} />
                 <Route path="/tools" element={<Tools />} />
@@ -41,6 +44,9 @@ const App = () => (
                 <Route path="/notifications" element={<Notifications />} />
                 <Route path="/troubleshoot" element={<Troubleshoot />} />
                 <Route path="/rulebooks" element={<RuleBooks />} />
+                <Route path="/divisions" element={<DivisionsPage />} />
+                <Route path="/voice-ai" element={<VoiceAI />} />
+                <Route path="/quiz" element={<QuizPage />} />
                 <Route path="/admin" element={<Admin />} />
               </Route>
             </Route>
