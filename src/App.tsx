@@ -20,6 +20,8 @@ import DivisionsPage from "@/pages/DivisionsPage";
 import VoiceAI from "@/pages/VoiceAI";
 import QuizPage from "@/pages/QuizPage";
 import GMMessages from "@/pages/GMMessages";
+import PCEEMessages from "@/pages/PCEEMessages";
+import NWRNotices from "@/pages/NWRNotices";
 import Auth from "@/pages/Auth";
 import NotFound from "@/pages/NotFound";
 
