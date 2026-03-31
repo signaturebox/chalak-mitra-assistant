@@ -1,38 +1,41 @@
 import { Home, BookOpen, Wrench, User, Search, Bell, Shield, Train, Bot } from "lucide-react";
 import { NavLink } from "react-router-dom";
 import { cn } from "@/lib/utils";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { TranslationKey } from "@/i18n/translations";
 
-const mainNav = [
-  { to: "/", icon: Home, label: "Dashboard" },
-  { to: "/knowledge", icon: BookOpen, label: "Knowledge" },
-  { to: "/troubleshoot", icon: Bot, label: "AI Troubleshoot" },
-  { to: "/search", icon: Search, label: "Search" },
-  { to: "/tools", icon: Wrench, label: "Crew Tools" },
-  { to: "/notifications", icon: Bell, label: "Alerts" },
+type NavItem = { to: string; icon: typeof Home; labelKey: TranslationKey };
+
+const mainNav: NavItem[] = [
+  { to: "/", icon: Home, labelKey: "nav.dashboard" },
+  { to: "/knowledge", icon: BookOpen, labelKey: "nav.knowledge" },
+  { to: "/troubleshoot", icon: Bot, labelKey: "nav.aiTroubleshoot" },
+  { to: "/search", icon: Search, labelKey: "nav.search" },
+  { to: "/tools", icon: Wrench, labelKey: "nav.crewTools" },
+  { to: "/notifications", icon: Bell, labelKey: "nav.alerts" },
 ];
 
-const secondaryNav = [
-  { to: "/profile", icon: User, label: "Profile" },
-  { to: "/admin", icon: Shield, label: "Admin" },
+const secondaryNav: NavItem[] = [
+  { to: "/profile", icon: User, labelKey: "nav.profile" },
+  { to: "/admin", icon: Shield, labelKey: "nav.admin" },
 ];
 
 export function DesktopSidebar() {
+  const { t } = useLanguage();
   return (
     <aside className="hidden md:flex md:flex-col md:w-64 md:fixed md:inset-y-0 railway-gradient text-sidebar-foreground z-40">
-      {/* Brand */}
       <div className="flex items-center gap-3 px-6 py-5 border-b border-sidebar-border">
         <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-sidebar-primary">
           <Train className="h-5 w-5 text-sidebar-primary-foreground" />
         </div>
         <div>
-          <h1 className="text-base font-bold tracking-tight text-sidebar-foreground">NWR Chalak Mitra</h1>
-          <p className="text-[11px] text-sidebar-foreground/60">Digital Loco Assistant</p>
+          <h1 className="text-base font-bold tracking-tight text-sidebar-foreground">{t("app.name")}</h1>
+          <p className="text-[11px] text-sidebar-foreground/60">{t("app.tagline")}</p>
         </div>
       </div>
 
-      {/* Main Nav */}
       <nav className="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
-        <p className="px-3 text-[10px] font-semibold uppercase tracking-wider text-sidebar-foreground/40 mb-2">Main</p>
+        <p className="px-3 text-[10px] font-semibold uppercase tracking-wider text-sidebar-foreground/40 mb-2">{t("nav.main")}</p>
         {mainNav.map((item) => (
           <NavLink
             key={item.to}
@@ -48,11 +51,11 @@ export function DesktopSidebar() {
             }
           >
             <item.icon className="h-4.5 w-4.5" />
-            {item.label}
+            {t(item.labelKey)}
           </NavLink>
         ))}
 
-        <p className="px-3 pt-6 text-[10px] font-semibold uppercase tracking-wider text-sidebar-foreground/40 mb-2">Account</p>
+        <p className="px-3 pt-6 text-[10px] font-semibold uppercase tracking-wider text-sidebar-foreground/40 mb-2">{t("nav.account")}</p>
         {secondaryNav.map((item) => (
           <NavLink
             key={item.to}
@@ -68,14 +71,13 @@ export function DesktopSidebar() {
             }
           >
             <item.icon className="h-4.5 w-4.5" />
-            {item.label}
+            {t(item.labelKey)}
           </NavLink>
         ))}
       </nav>
 
-      {/* Footer */}
       <div className="px-4 py-3 border-t border-sidebar-border">
-        <p className="text-[10px] text-sidebar-foreground/40 text-center">NWR Chalak Mitra v1.0</p>
+        <p className="text-[10px] text-sidebar-foreground/40 text-center">{t("app.version")}</p>
       </div>
     </aside>
   );

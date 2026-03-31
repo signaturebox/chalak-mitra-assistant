@@ -1,28 +1,19 @@
 import { BookOpen, Wrench, Bot, Bell, Clock, FileText, TrendingUp } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
-
-const quickTools = [
-  { to: "/knowledge", icon: BookOpen, label: "Loco Manuals", color: "bg-primary text-primary-foreground" },
-  { to: "/troubleshoot", icon: Bot, label: "AI Troubleshoot", color: "bg-railway-orange text-accent-foreground" },
-  { to: "/tools", icon: Wrench, label: "Crew Tools", color: "bg-railway-success text-accent-foreground" },
-  { to: "/tools", icon: Clock, label: "Duty Calculator", color: "bg-railway-info text-accent-foreground" },
-];
+import { TranslationKey } from "@/i18n/translations";
 
 export default function Dashboard() {
   const { profile, user } = useAuth();
+  const { t } = useLanguage();
 
   const { data: notifications } = useQuery({
     queryKey: ["notifications-recent"],
     queryFn: async () => {
-      const { data } = await supabase
-        .from("notifications")
-        .select("*")
-        .eq("is_active", true)
-        .order("created_at", { ascending: false })
-        .limit(3);
+      const { data } = await supabase.from("notifications").select("*").eq("is_active", true).order("created_at", { ascending: false }).limit(3);
       return data ?? [];
     },
   });
@@ -53,11 +44,18 @@ export default function Dashboard() {
     enabled: !!user,
   });
 
-  const stats = [
-    { label: "Manuals", value: String(manualCount ?? 0), icon: FileText },
-    { label: "Fault Solutions", value: String(faultCount ?? 0), icon: TrendingUp },
-    { label: "Active Alerts", value: String(notifications?.length ?? 0), icon: Bell },
-    { label: "Bookmarks", value: String(bookmarkCount ?? 0), icon: BookOpen },
+  const quickTools: { to: string; icon: typeof BookOpen; labelKey: TranslationKey; color: string }[] = [
+    { to: "/knowledge", icon: BookOpen, labelKey: "dashboard.locoManuals", color: "bg-primary text-primary-foreground" },
+    { to: "/troubleshoot", icon: Bot, labelKey: "dashboard.aiTroubleshoot", color: "bg-railway-orange text-accent-foreground" },
+    { to: "/tools", icon: Wrench, labelKey: "dashboard.crewTools", color: "bg-railway-success text-accent-foreground" },
+    { to: "/tools", icon: Clock, labelKey: "dashboard.dutyCalculator", color: "bg-railway-info text-accent-foreground" },
+  ];
+
+  const stats: { labelKey: TranslationKey; value: string; icon: typeof FileText }[] = [
+    { labelKey: "dashboard.manuals", value: String(manualCount ?? 0), icon: FileText },
+    { labelKey: "dashboard.faultSolutions", value: String(faultCount ?? 0), icon: TrendingUp },
+    { labelKey: "dashboard.activeAlerts", value: String(notifications?.length ?? 0), icon: Bell },
+    { labelKey: "dashboard.bookmarks", value: String(bookmarkCount ?? 0), icon: BookOpen },
   ];
 
   const typeIcon: Record<string, string> = {
@@ -71,35 +69,33 @@ export default function Dashboard() {
     <div className="space-y-6 animate-fade-in">
       <div className="railway-gradient rounded-2xl p-5 md:p-8">
         <h2 className="text-lg md:text-2xl font-bold text-primary-foreground">
-          Welcome{profile?.full_name ? `, ${profile.full_name}` : ""} 👋
+          {t("dashboard.welcome")}{profile?.full_name ? `, ${profile.full_name}` : ""} 👋
         </h2>
-        <p className="text-primary-foreground/70 text-sm mt-1">
-          Your digital assistant for safe & efficient railway operations
-        </p>
+        <p className="text-primary-foreground/70 text-sm mt-1">{t("dashboard.subtitle")}</p>
       </div>
 
       <section>
-        <h3 className="text-sm font-semibold text-foreground mb-3">Quick Access</h3>
+        <h3 className="text-sm font-semibold text-foreground mb-3">{t("dashboard.quickAccess")}</h3>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
           {quickTools.map((tool) => (
-            <Link key={tool.label} to={tool.to} className="stat-card flex flex-col items-center gap-2 py-5 text-center group">
+            <Link key={tool.labelKey} to={tool.to} className="stat-card flex flex-col items-center gap-2 py-5 text-center group">
               <div className={`w-11 h-11 rounded-xl flex items-center justify-center ${tool.color} transition-transform group-hover:scale-110`}>
                 <tool.icon className="h-5 w-5" />
               </div>
-              <span className="text-xs font-medium text-foreground">{tool.label}</span>
+              <span className="text-xs font-medium text-foreground">{t(tool.labelKey)}</span>
             </Link>
           ))}
         </div>
       </section>
 
       <section>
-        <h3 className="text-sm font-semibold text-foreground mb-3">Overview</h3>
+        <h3 className="text-sm font-semibold text-foreground mb-3">{t("dashboard.overview")}</h3>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
           {stats.map((stat) => (
-            <div key={stat.label} className="stat-card">
+            <div key={stat.labelKey} className="stat-card">
               <div className="flex items-center gap-2 mb-2">
                 <stat.icon className="h-4 w-4 text-muted-foreground" />
-                <span className="text-[11px] text-muted-foreground">{stat.label}</span>
+                <span className="text-[11px] text-muted-foreground">{t(stat.labelKey)}</span>
               </div>
               <p className="text-2xl font-bold text-foreground">{stat.value}</p>
             </div>
@@ -109,8 +105,8 @@ export default function Dashboard() {
 
       <section>
         <div className="flex items-center justify-between mb-3">
-          <h3 className="text-sm font-semibold text-foreground">Recent Alerts</h3>
-          <Link to="/notifications" className="text-xs text-primary font-medium">View All</Link>
+          <h3 className="text-sm font-semibold text-foreground">{t("dashboard.recentAlerts")}</h3>
+          <Link to="/notifications" className="text-xs text-primary font-medium">{t("dashboard.viewAll")}</Link>
         </div>
         <div className="space-y-2">
           {(notifications ?? []).map((alert) => (
@@ -120,9 +116,7 @@ export default function Dashboard() {
               </div>
               <div className="min-w-0">
                 <p className="text-sm font-medium text-foreground leading-snug">{alert.title}</p>
-                <p className="text-[11px] text-muted-foreground mt-0.5">
-                  {new Date(alert.created_at).toLocaleDateString()}
-                </p>
+                <p className="text-[11px] text-muted-foreground mt-0.5">{new Date(alert.created_at).toLocaleDateString()}</p>
               </div>
             </div>
           ))}
