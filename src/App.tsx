@@ -19,6 +19,7 @@ import RuleBooks from "@/pages/RuleBooks";
 import DivisionsPage from "@/pages/DivisionsPage";
 import VoiceAI from "@/pages/VoiceAI";
 import QuizPage from "@/pages/QuizPage";
+import GMMessages from "@/pages/GMMessages";
 import Auth from "@/pages/Auth";
 import NotFound from "@/pages/NotFound";
 
