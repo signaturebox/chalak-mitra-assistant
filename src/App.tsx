@@ -13,6 +13,7 @@ import Tools from "@/pages/Tools";
 import Profile from "@/pages/Profile";
 import Notifications from "@/pages/Notifications";
 import Admin from "@/pages/Admin";
+import Troubleshoot from "@/pages/Troubleshoot";
 import Auth from "@/pages/Auth";
 import NotFound from "@/pages/NotFound";
 
