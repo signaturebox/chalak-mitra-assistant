@@ -2,54 +2,52 @@ import { Bell, AlertTriangle, FileText, Shield } from "lucide-react";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { TranslationKey } from "@/i18n/translations";
 
-const typeConfig: Record<string, { icon: typeof Bell; color: string; label: string }> = {
-  urgent: { icon: AlertTriangle, color: "bg-destructive/10 text-destructive", label: "Urgent" },
-  safety: { icon: Shield, color: "bg-railway-orange/10 text-railway-orange", label: "Safety" },
-  notice: { icon: FileText, color: "bg-railway-info/10 text-railway-info", label: "Notice" },
-  info: { icon: Bell, color: "bg-primary/10 text-primary", label: "Info" },
+const typeConfig: Record<string, { icon: typeof Bell; color: string; labelKey: TranslationKey }> = {
+  urgent: { icon: AlertTriangle, color: "bg-destructive/10 text-destructive", labelKey: "notifications.urgent" },
+  safety: { icon: Shield, color: "bg-railway-orange/10 text-railway-orange", labelKey: "notifications.safety" },
+  notice: { icon: FileText, color: "bg-railway-info/10 text-railway-info", labelKey: "notifications.notice" },
+  info: { icon: Bell, color: "bg-primary/10 text-primary", labelKey: "notifications.info" },
 };
+
+const filterKeys: { key: string; labelKey: TranslationKey }[] = [
+  { key: "all", labelKey: "notifications.all" },
+  { key: "urgent", labelKey: "notifications.urgent" },
+  { key: "safety", labelKey: "notifications.safety" },
+  { key: "notice", labelKey: "notifications.notice" },
+  { key: "info", labelKey: "notifications.info" },
+];
 
 export default function Notifications() {
   const [filter, setFilter] = useState("all");
+  const { t } = useLanguage();
 
   const { data: notifications } = useQuery({
     queryKey: ["notifications-all"],
     queryFn: async () => {
-      const { data } = await supabase
-        .from("notifications")
-        .select("*")
-        .eq("is_active", true)
-        .order("created_at", { ascending: false });
+      const { data } = await supabase.from("notifications").select("*").eq("is_active", true).order("created_at", { ascending: false });
       return data ?? [];
     },
   });
 
-  const filtered = filter === "all"
-    ? (notifications ?? [])
-    : (notifications ?? []).filter((n) => n.type === filter);
+  const filtered = filter === "all" ? (notifications ?? []) : (notifications ?? []).filter((n) => n.type === filter);
 
   return (
     <div className="space-y-5 animate-fade-in">
       <div>
-        <h2 className="text-lg font-bold text-foreground">Alerts & Notifications</h2>
-        <p className="text-sm text-muted-foreground mt-0.5">Stay updated with safety circulars and notices</p>
+        <h2 className="text-lg font-bold text-foreground">{t("notifications.title")}</h2>
+        <p className="text-sm text-muted-foreground mt-0.5">{t("notifications.subtitle")}</p>
       </div>
-
       <div className="flex gap-2 overflow-x-auto pb-1">
-        {["all", "urgent", "safety", "notice", "info"].map((f) => (
-          <button
-            key={f}
-            onClick={() => setFilter(f)}
-            className={`px-3.5 py-1.5 rounded-full text-xs font-medium whitespace-nowrap capitalize transition-colors ${
-              filter === f ? "bg-primary text-primary-foreground" : "bg-secondary text-secondary-foreground"
-            }`}
-          >
-            {f === "all" ? "All" : f}
+        {filterKeys.map((f) => (
+          <button key={f.key} onClick={() => setFilter(f.key)}
+            className={`px-3.5 py-1.5 rounded-full text-xs font-medium whitespace-nowrap capitalize transition-colors ${filter === f.key ? "bg-primary text-primary-foreground" : "bg-secondary text-secondary-foreground"}`}>
+            {t(f.labelKey)}
           </button>
         ))}
       </div>
-
       <div className="space-y-2">
         {filtered.map((n) => {
           const config = typeConfig[n.type] || typeConfig.info;
@@ -61,7 +59,7 @@ export default function Notifications() {
               </div>
               <div className="min-w-0 flex-1">
                 <div className="flex items-center gap-2">
-                  <span className={`text-[10px] font-medium px-1.5 py-0.5 rounded ${config.color}`}>{config.label}</span>
+                  <span className={`text-[10px] font-medium px-1.5 py-0.5 rounded ${config.color}`}>{t(config.labelKey)}</span>
                 </div>
                 <p className="text-sm font-medium text-foreground leading-snug mt-1">{n.title}</p>
                 <p className="text-[11px] text-muted-foreground mt-0.5 line-clamp-2">{n.description}</p>
