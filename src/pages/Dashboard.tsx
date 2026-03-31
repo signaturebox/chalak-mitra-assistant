@@ -1,4 +1,4 @@
-import { BookOpen, Wrench, Search, Bell, Clock, FileText, TrendingUp } from "lucide-react";
+import { BookOpen, Wrench, Bot, Bell, Clock, FileText, TrendingUp } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { useQuery } from "@tanstack/react-query";
@@ -6,9 +6,9 @@ import { supabase } from "@/integrations/supabase/client";
 
 const quickTools = [
   { to: "/knowledge", icon: BookOpen, label: "Loco Manuals", color: "bg-primary text-primary-foreground" },
-  { to: "/search", icon: Search, label: "Fault Search", color: "bg-railway-info text-accent-foreground" },
+  { to: "/troubleshoot", icon: Bot, label: "AI Troubleshoot", color: "bg-railway-orange text-accent-foreground" },
   { to: "/tools", icon: Wrench, label: "Crew Tools", color: "bg-railway-success text-accent-foreground" },
-  { to: "/tools", icon: Clock, label: "Duty Calculator", color: "bg-railway-orange text-accent-foreground" },
+  { to: "/tools", icon: Clock, label: "Duty Calculator", color: "bg-railway-info text-accent-foreground" },
 ];
 
 export default function Dashboard() {

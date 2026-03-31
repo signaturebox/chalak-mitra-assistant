@@ -1,10 +1,11 @@
-import { Home, BookOpen, Wrench, User, Search, Bell, Shield, Train } from "lucide-react";
+import { Home, BookOpen, Wrench, User, Search, Bell, Shield, Train, Bot } from "lucide-react";
 import { NavLink } from "react-router-dom";
 import { cn } from "@/lib/utils";
 
 const mainNav = [
   { to: "/", icon: Home, label: "Dashboard" },
   { to: "/knowledge", icon: BookOpen, label: "Knowledge" },
+  { to: "/troubleshoot", icon: Bot, label: "AI Troubleshoot" },
   { to: "/search", icon: Search, label: "Search" },
   { to: "/tools", icon: Wrench, label: "Crew Tools" },
   { to: "/notifications", icon: Bell, label: "Alerts" },
