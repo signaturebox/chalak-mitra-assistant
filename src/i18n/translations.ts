@@ -16,6 +16,7 @@ const en = {
   "nav.crewTools": "Crew Tools",
   "nav.alerts": "Alerts",
   "nav.admin": "Admin",
+  "nav.ruleBooks": "Rule Books",
   "nav.main": "Main",
   "nav.account": "Account",
 
@@ -30,6 +31,7 @@ const en = {
   "dashboard.aiTroubleshoot": "AI Troubleshoot",
   "dashboard.crewTools": "Crew Tools",
   "dashboard.dutyCalculator": "Duty Calculator",
+  "dashboard.ruleBooks": "Rule Books",
   "dashboard.manuals": "Manuals",
   "dashboard.faultSolutions": "Fault Solutions",
   "dashboard.activeAlerts": "Active Alerts",
@@ -137,6 +139,19 @@ const en = {
   "admin.systemSettingsDesc": "Configuration & backup",
   "admin.recentActivity": "Recent Activity",
 
+  // Rule Books
+  "rulebooks.title": "Rule Book & Document Center",
+  "rulebooks.subtitle": "ACTM, G&SR, Subsidiary Rules & Safety Circulars",
+  "rulebooks.searchPlaceholder": "Search rules, chapters, keywords...",
+  "rulebooks.all": "All Rules",
+  "rulebooks.gsr": "G&SR",
+  "rulebooks.actm": "ACTM",
+  "rulebooks.subsidiary": "Subsidiary Rules",
+  "rulebooks.safety": "Safety Circulars",
+  "rulebooks.noResults": "No rules found.",
+  "rulebooks.browseCategories": "Select a category or search to browse rules.",
+  "rulebooks.ruleBooks": "Rule Books",
+
   // Auth
   "auth.signIn": "Sign In",
   "auth.signUp": "Sign Up",
@@ -178,6 +193,7 @@ const hi: Record<keyof typeof en, string> = {
   "nav.crewTools": "क्रू उपकरण",
   "nav.alerts": "सूचनाएं",
   "nav.admin": "प्रशासन",
+  "nav.ruleBooks": "नियम पुस्तिका",
   "nav.main": "मुख्य",
   "nav.account": "खाता",
 
@@ -192,6 +208,7 @@ const hi: Record<keyof typeof en, string> = {
   "dashboard.aiTroubleshoot": "AI समस्या निवारण",
   "dashboard.crewTools": "क्रू उपकरण",
   "dashboard.dutyCalculator": "ड्यूटी कैलकुलेटर",
+  "dashboard.ruleBooks": "नियम पुस्तिका",
   "dashboard.manuals": "मैनुअल",
   "dashboard.faultSolutions": "दोष समाधान",
   "dashboard.activeAlerts": "सक्रिय सूचनाएं",
@@ -298,6 +315,19 @@ const hi: Record<keyof typeof en, string> = {
   "admin.systemSettings": "सिस्टम सेटिंग्स",
   "admin.systemSettingsDesc": "कॉन्फ़िगरेशन और बैकअप",
   "admin.recentActivity": "हालिया गतिविधि",
+
+  // Rule Books
+  "rulebooks.title": "नियम पुस्तिका और दस्तावेज़ केंद्र",
+  "rulebooks.subtitle": "ACTM, G&SR, सहायक नियम और सुरक्षा परिपत्र",
+  "rulebooks.searchPlaceholder": "नियम, अध्याय, कीवर्ड खोजें...",
+  "rulebooks.all": "सभी नियम",
+  "rulebooks.gsr": "G&SR",
+  "rulebooks.actm": "ACTM",
+  "rulebooks.subsidiary": "सहायक नियम",
+  "rulebooks.safety": "सुरक्षा परिपत्र",
+  "rulebooks.noResults": "कोई नियम नहीं मिला।",
+  "rulebooks.browseCategories": "नियम ब्राउज़ करने के लिए श्रेणी चुनें या खोजें।",
+  "rulebooks.ruleBooks": "नियम पुस्तिका",
 
   // Auth
   "auth.signIn": "साइन इन",

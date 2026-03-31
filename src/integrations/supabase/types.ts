@@ -421,6 +421,57 @@ export type Database = {
           },
         ]
       }
+      rule_books: {
+        Row: {
+          category: string
+          chapter_number: string | null
+          content: string | null
+          content_hi: string | null
+          created_at: string
+          description: string | null
+          description_hi: string | null
+          id: string
+          is_important: boolean | null
+          section: string | null
+          tags: string[] | null
+          title: string
+          title_hi: string | null
+          updated_at: string
+        }
+        Insert: {
+          category: string
+          chapter_number?: string | null
+          content?: string | null
+          content_hi?: string | null
+          created_at?: string
+          description?: string | null
+          description_hi?: string | null
+          id?: string
+          is_important?: boolean | null
+          section?: string | null
+          tags?: string[] | null
+          title: string
+          title_hi?: string | null
+          updated_at?: string
+        }
+        Update: {
+          category?: string
+          chapter_number?: string | null
+          content?: string | null
+          content_hi?: string | null
+          created_at?: string
+          description?: string | null
+          description_hi?: string | null
+          id?: string
+          is_important?: boolean | null
+          section?: string | null
+          tags?: string[] | null
+          title?: string
+          title_hi?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       system_categories: {
         Row: {
           created_at: string

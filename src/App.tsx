@@ -15,6 +15,7 @@ import Profile from "@/pages/Profile";
 import Notifications from "@/pages/Notifications";
 import Admin from "@/pages/Admin";
 import Troubleshoot from "@/pages/Troubleshoot";
+import RuleBooks from "@/pages/RuleBooks";
 import Auth from "@/pages/Auth";
 import NotFound from "@/pages/NotFound";
 
@@ -39,6 +40,7 @@ const App = () => (
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/notifications" element={<Notifications />} />
                 <Route path="/troubleshoot" element={<Troubleshoot />} />
+                <Route path="/rulebooks" element={<RuleBooks />} />
                 <Route path="/admin" element={<Admin />} />
               </Route>
             </Route>

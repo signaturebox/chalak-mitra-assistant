@@ -1,4 +1,4 @@
-import { Home, BookOpen, Wrench, User, Search, Bell, Shield, Train, Bot } from "lucide-react";
+import { Home, BookOpen, Wrench, User, Search, Bell, Shield, Train, Bot, Gavel } from "lucide-react";
 import { NavLink } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -12,6 +12,7 @@ const mainNav: NavItem[] = [
   { to: "/troubleshoot", icon: Bot, labelKey: "nav.aiTroubleshoot" },
   { to: "/search", icon: Search, labelKey: "nav.search" },
   { to: "/tools", icon: Wrench, labelKey: "nav.crewTools" },
+  { to: "/rulebooks", icon: Gavel, labelKey: "nav.ruleBooks" },
   { to: "/notifications", icon: Bell, labelKey: "nav.alerts" },
 ];
 
