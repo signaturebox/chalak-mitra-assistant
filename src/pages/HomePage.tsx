@@ -13,7 +13,7 @@ const quickActions = [
 ];
 
 const categories = [
-  { to: "/notifications", icon: "👤", label: "GM Message", labelHi: "GM संदेश", color: "border-blue-400" },
+  { to: "/gm-messages", icon: "👤", label: "GM Message", labelHi: "GM संदेश", color: "border-blue-400" },
   { to: "/notifications", icon: "⚡", label: "PCEE Message", labelHi: "PCEE संदेश", color: "border-green-400" },
   { to: "/notifications", icon: "📋", label: "NWR Notices", labelHi: "NWR नोटिस", color: "border-orange-400" },
   { to: "/knowledge?type=electric", icon: "🚃⚡", label: "Electric Loco", labelHi: "विद्युत लोको", color: "border-yellow-400" },
