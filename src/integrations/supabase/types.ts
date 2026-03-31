@@ -53,6 +53,54 @@ export type Database = {
           },
         ]
       }
+      division_documents: {
+        Row: {
+          category: string
+          created_at: string
+          division_id: string
+          file_type: string | null
+          file_url: string | null
+          id: string
+          lobby_id: string | null
+          title: string
+        }
+        Insert: {
+          category: string
+          created_at?: string
+          division_id: string
+          file_type?: string | null
+          file_url?: string | null
+          id?: string
+          lobby_id?: string | null
+          title: string
+        }
+        Update: {
+          category?: string
+          created_at?: string
+          division_id?: string
+          file_type?: string | null
+          file_url?: string | null
+          id?: string
+          lobby_id?: string | null
+          title?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "division_documents_division_id_fkey"
+            columns: ["division_id"]
+            isOneToOne: false
+            referencedRelation: "divisions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "division_documents_lobby_id_fkey"
+            columns: ["lobby_id"]
+            isOneToOne: false
+            referencedRelation: "lobbies"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       divisions: {
         Row: {
           code: string
