@@ -9,6 +9,7 @@ import AdminLobbies from "@/components/admin/AdminLobbies";
 import AdminManuals from "@/components/admin/AdminManuals";
 import AdminRuleBooks from "@/components/admin/AdminRuleBooks";
 import AdminDivisionDocs from "@/components/admin/AdminDivisionDocs";
+import AdminFaults from "@/components/admin/AdminFaults";
 
 export default function Admin() {
   const { t } = useLanguage();
