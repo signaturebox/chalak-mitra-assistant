@@ -1,4 +1,0 @@
-project_id = "jtcghhqwthurmhrmidnd"
-
-[functions.troubleshoot]
-verify_jwt = false
