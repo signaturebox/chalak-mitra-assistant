@@ -1,0 +1,118 @@
+[
+  {
+    "subsystemCode": "SS15",
+    "subsystemNameHI": "फायर डिटेक्शन यूनिट",
+    "subsystemNameEN": "FIRE DETECTION UNIT",
+    "faults": [
+      {
+        "faultCode": "F1501P1",
+        "titleHI": "मशीन रूम में आग",
+        "titleEN": "FIRE IN MACHINE ROOM",
+        "messageHI": "आग बुझाएँ और फायर डिटेक्शन यूनिट reset करें",
+        "messageEN": "Extinguish the fire and reset the fire detection unit",
+        "lamps": ["LSFI ब्लिंकिंग करेगी", "BPFA प्रकाशित होगा", "बजर बजेगा"],
+        "effectHI": "TE/BE '0' हो जाएगी",
+        "effectEN": "TE/BE will become '0'",
+        "actionHI": [
+          "थ्रॉटल को '0' पर रखें और गाड़ी तुरंत खड़ी करें",
+          "VCB ओपन करें, पैंटो लोअर करें तथा Control Electronics OFF करें",
+          "सावधानीपूर्वक मशीन रूम की जाँच करें",
+          "यदि आग/धुआँ हो तो SB-2 में MCB 112.1 को ट्रिप करें और छोटे अग्निशामक यंत्र से आग बुझाएँ",
+          "यदि आग ज्यादा हो (विशेषकर ट्रैक्शन कन्वर्टर में) तो प्रत्येक कैब में सहायक लोको पायलट के पीछे लगे CO₂ टाइप अग्निशामक यंत्र के रेगुलेटर को ऑपरेट करें, कॉक खोलें और मशीन रूम का दरवाजा बंद रखें",
+          "इसके बाद SB-2 पैनल पर फायर डिटेक्शन यूनिट पर लगे reset push button को प्रेस करें, फिर BPFA द्वारा फॉल्ट ACK करें",
+          "यदि सब कुछ सामान्य मिले तो सावधानी से ट्रैक्शन चालू करें",
+          "TLC को सूचित करें और लॉग बुक में दर्ज करें"
+        ],
+        "actionEN": [
+          "Keep throttle at '0' and stop the train immediately",
+          "Open VCB, lower pantograph and switch OFF Control Electronics",
+          "Carefully inspect the machine room",
+          "If fire/smoke present, trip MCB 112.1 in SB-2 and extinguish using small fire extinguisher",
+          "If fire is severe (especially in traction converter), operate CO₂ type fire extinguisher regulator kept behind assistant loco pilot seat in each cab, open cock and keep machine room door closed",
+          "After that press reset push button on fire detection unit in SB-2 panel and ACK fault using BPFA",
+          "If everything is normal, cautiously resume traction",
+          "Inform TLC and make logbook entry"
+        ],
+        "isolation": {
+          "required": false,
+          "titleHI": "",
+          "titleEN": "",
+          "effectHI": "",
+          "effectEN": "",
+          "stepsHI": [],
+          "stepsEN": []
+        }
+      },
+
+      {
+        "faultCode": "F1501P2",
+        "titleHI": "फायर डिटेक्शन यूनिट में फॉल्ट",
+        "titleEN": "FAULT IN FIRE DETECTION UNIT",
+        "messageHI": "आग नहीं है, सामान्य ऑपरेशन जारी रखा जा सकता है",
+        "messageEN": "No fire detection, possible normal operation can continue",
+        "lamps": ["BPFA प्रकाशित होगा"],
+        "effectHI": "फायर डिटेक्शन यूनिट में खराबी, लेकिन आग नहीं",
+        "effectEN": "Fault in fire detection unit, but no fire",
+        "actionHI": [
+          "थ्रॉटल को '0' पर रखें और BPFA दबाकर फॉल्ट ACK करें",
+          "मशीन रूम की सावधानीपूर्वक जाँच करें",
+          "यदि आग/धुआँ नहीं है तो सामान्य ऑपरेशन जारी रखें",
+          "TLC को सूचित करें और लॉग बुक में दर्ज करें"
+        ],
+        "actionEN": [
+          "Keep throttle at '0' and ACK fault using BPFA",
+          "Carefully inspect the machine room",
+          "If no fire/smoke found, continue normal operation",
+          "Inform TLC and make logbook entry"
+        ],
+        "isolation": {
+          "required": false,
+          "titleHI": "",
+          "titleEN": "",
+          "effectHI": "",
+          "effectEN": "",
+          "stepsHI": [],
+          "stepsEN": []
+        }
+      },
+
+      {
+        "faultCode": "F1502P2",
+        "titleHI": "मशीन रूम में धुआँ (चेतावनी)",
+        "titleEN": "WARNING SMOKE IN MACHINE ROOM",
+        "messageHI": "मशीन रूम की जाँच करें",
+        "messageEN": "Inspect machine room",
+        "lamps": ["BPFA प्रकाशित होगा"],
+        "effectHI": "संभावित धुआँ, आग की जाँच आवश्यक",
+        "effectEN": "Possible smoke, fire inspection required",
+        "actionHI": [
+          "थ्रॉटल को '0' पर रखें और गाड़ी तुरंत खड़ी करें",
+          "VCB ओपन करें, पैंटो लोअर करें तथा Control Electronics OFF करें",
+          "सावधानीपूर्वक मशीन रूम की जाँच करें",
+          "यदि आग/धुआँ हो तो SB-2 में MCB 112.1 को ट्रिप करें और छोटे अग्निशामक यंत्र से आग बुझाएँ",
+          "यदि आग ज्यादा हो तो CO₂ टाइप अग्निशामक यंत्र का प्रयोग करें और मशीन रूम का दरवाजा बंद रखें",
+          "यदि सब कुछ सामान्य मिले तो BPFA दबाकर ACK करें और सावधानी से ऑपरेशन जारी रखें",
+          "TLC को सूचित करें और लॉग बुक में दर्ज करें"
+        ],
+        "actionEN": [
+          "Keep throttle at '0' and stop the train immediately",
+          "Open VCB, lower pantograph and switch OFF Control Electronics",
+          "Carefully inspect the machine room",
+          "If fire/smoke present, trip MCB 112.1 in SB-2 and extinguish using fire extinguisher",
+          "If fire is severe, use CO₂ type fire extinguisher and keep machine room door closed",
+          "If everything normal, ACK using BPFA and cautiously continue operation",
+          "Inform TLC and make logbook entry"
+        ],
+        "isolation": {
+          "required": false,
+          "titleHI": "",
+          "titleEN": "",
+          "effectHI": "",
+          "effectEN": "",
+          "stepsHI": [],
+          "stepsEN": []
+        }
+      }
+    ]
+  }
+]

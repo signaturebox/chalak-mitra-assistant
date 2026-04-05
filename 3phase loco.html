@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NWR Chalak Mitra - Loco Manuals</title>
+    <style>
+        :root {
+            --primary-blue: #1e3c72;
+            --accent-blue: #2a5298;
+            --bg-light: #f0f2f5;
+            --card-bg: #ffffff;
+            --text-main: #2c3e50;
+            --highlight-red: #d9534f;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            margin: 0;
+            padding-bottom: 10px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 20px 15px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        /* Tabs Styling */
+        .tab-container {
+            display: flex;
+            justify-content: center;
+            background: #fff;
+            padding: 10px;
+            gap: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .tab-btn {
+            padding: 12px 25px;
+            border: none;
+            background: #e2e8f0;
+            color: #4a5568;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+            flex: 1;
+            max-width: 200px;
+        }
+
+        .tab-btn.active {
+            background: var(--primary-blue);
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+            max-width: 700px;
+            margin: 10px auto;
+            padding: 0 12px;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Accordion Styling */
+        .accordion-item {
+            background: var(--card-bg);
+            margin-bottom: 12px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            border-left: 5px solid var(--accent-blue);
+        }
+
+        .accordion-header {
+            padding: 18px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            color: var(--primary-blue);
+            user-select: none;
+        }
+
+        .accordion-header::after {
+            content: '▼';
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-item.active .accordion-header::after {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            display: none;
+            overflow: hidden;
+            background: #fff;
+        }
+
+        .accordion-item.active .accordion-content {
+            display: block;
+        }
+
+        .inner-padding {
+            padding: 20px;
+            border-top: 1px solid #f1f1f1;
+        }
+
+        /* Typography & Highlighting */
+        .note {
+            background: #fff3cd;
+            padding: 15px;
+            border-left: 5px solid #ffecb5;
+            margin-top: 15px;
+            font-style: italic;
+            border-radius: 4px;
+        }
+
+        .red-text {
+            color: #d63031;
+            font-weight: bold;
+        }
+
+        .blue-text {
+            color: #0984e3;
+            font-weight: bold;
+        }
+
+        ul,
+        ol {
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        /* h2 { color: #c0392b; font-size: 1.2rem; margin-top: 0; } */
+
+
+        /* General Typography */
+        ol {
+            padding-left: 22px;
+            margin: 0;
+        }
+
+        li {
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+
+        .red-text {
+            color: var(--highlight-red);
+            font-weight: bold;
+        }
+
+        .note-box {
+            background: #fff3f3;
+            border: 1px solid #ffcccc;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.9rem;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f7fafc;
+        }
+		    /* ---------- DESKTOP ENHANCEMENTS ---------- */
+    @media (min-width: 768px) {
+
+        body {
+            padding: 0 20px;
+        }
+
+        .accordion-item {
+            border-left-width: 6px;
+        }
+
+        .accordion-header {
+            padding: 18px 22px;
+        }
+
+        .inner-padding {
+            padding: 22px;
+        }
+    }
+
+    @media (min-width: 1200px) {
+
+        .tab-content {
+            max-width: 1300px;
+        }
+
+        .accordion-item {
+            margin-bottom: 18px;
+        }
+    }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h2 style="margin:0;">🚂 3-Phase Loco</h2>
+        <p style="margin:5px 0 0; opacity:0.9;">Complete Operational Procedures</p>
+    </header>
+
+    <div class="tab-container">
+        <button class="tab-btn active" onclick="openTab('e70')">E-70 Loco</button>
+        <button class="tab-btn" onclick="openTab('ccb')">CCB Loco</button>
+    </div>
+
+    <div id="e70" class="tab-content active">
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <span>⚡ (E-70) Loco Energise करना</span>
+                <span class="icon"></span>
+            </div>
+            <div class="accordion-content">
+                <div class="inner-padding">
+                    <p>लोको प्रारम्भ करने से पूर्व, लोको तथा मशीन रूम की जाँच करें।</p>
+                    <ol>
+                        <li>सुनिश्चित करें कि मशीन रूम में स्थित <span class="red-text">HB-1/2</span> तथा <span
+                                class="red-text">SB-1/2</span> में स्थित सभी सर्किट ब्रेकर, सभी स्विचोज, <span
+                                class="red-text">रिले 78</span> नॉर्मल अवस्था में हैं तथा न्यूमेटिक पैनल पर स्थित सभी
+                            न्यूमेटिक कॉक सामान्य अवस्था में हैं। <span class="red-text">IG-38 key</span> ऑन
+                            (horizontal) अवस्था में है तथा <span class="red-text">पैंटो सेलेक्टर स्विच</span> AUTO
+                            अवस्था में है।</li>
+                        <li>SB-2 में स्थित बैटरी की MCB 112.1 तथा चार्जर की MCB 110 ऑन में रखें।</li>
+                        <li>वर्किंग कैब में जाइए।</li>
+                        <li>A-9 हैंडल को न्यूट्रल पोजीशन में डालकर लॉकिंग नॉब को उठाएं व हैंडल को घुमाकर RUN अवस्था में
+                            रखें।</li>
+                        <li><span class="red-text">BL key</span> को पैनल-A पर स्थित सॉकेट की 'OFF' अवस्था में लगाकर उसे
+                            'D' अवस्था की तरफ घुमाइए।
+                            <ul>
+                                <li>a) पैनल-C पर स्थित <span class="red-text">Display Screen</span> तथा <span
+                                        class="red-text">SPM</span> ऑन हो जायेंगे।</li>
+                                <li>b) यदि प्रेशर कम है तो <span class="red-text">MCPA</span> अपने आप चलना शुरू हो
+                                    जायेगा।</li>
+                                <li>c) बैटरी वोल्टमीटर <span class="red-text">UBA 110V</span> सप्लाई दर्शाएगी।</li>
+                                <li>d) LSDJ का लैंप जलेगा।</li>
+                                <li>e) उपरोक्त सभी संकेत <span class="red-text">कन्ट्रोल इलेक्ट्रॉनिक्स</span> का ऑन
+                                    होना दर्शाते हैं।</li>
+                            </ul>
+                        </li>
+                        <li><strong>'Configuration running please wait'</strong> का मैसेज स्क्रीन पर आएगा तथा 20 सेकंड
+                            तक self testing होती रहेगी।</li>
+                        <li>टेस्टिंग के दौरान सभी पायलट लैंप जलेंगे बुझेंगे, TE/BE मीटर निडिल ऊपर नीचे होकर '0'
+                            दर्शाएंगे तथा फ्लैशर लाइट।</li>
+                        <li>टेस्टिंग के उपरान्त स्क्रीन पर <span class="red-text">नोड न० FLG- 504</span> दर्शाएगा। अब
+                            <span class="red-text">ZPT</span> बटन को नीचे दबाकर छोड़ दें। यदि प्रेशर कम है तो MCPA अपने
+                            आप चालू हो जायेगा व प्रेशर बनने के बाद पिछला पैंटो अपने आप उठेगा। जिससे OHE मीटर की सुई ऊपर
+                            उठेगी जो पैंटो का उठना व OHE सप्लाई उपलब्ध होना दर्शाती है। फिर भी पैंटो का OHE से स्पर्श
+                            करना व पैंटो की स्थिति स्वयं चेक करें।</li>
+                        <li>स्क्रीन पर <span class="red-text">नोड न० FLG-550</span> दर्शाएगा। अब VCB बन्द करने हेतु
+                            स्विच <span class="red-text">BLDJ</span> को नीचे दबाकर छोड़ दें, VCB बन्द होगा तथा <span
+                                class="red-text">LSDJ</span> का लैंप बुझ जायेगा। लोको इनर्नाइज हो जायेगा तथा ऑक्जिलरी
+                            अपने आप शुरू हो जायेंगी।</li>
+                        <li>स्विच <span class="red-text">BLCP</span> का Auto अवस्था में होना सुनिश्चित करें।</li>
+                        <li>स्क्रीन पर <span class="red-text">नोड न० FLG – 570</span> दर्शाएगा।</li>
+                        <li>MR प्रेशर 6.4 Kg/cm2 से ज्यादा बनने के बाद रिवर्सर को चलने की दिशा में रखें। स्क्रीन पर
+                            <span class="red-text">नोड न० FLG – 590</span> दर्शाएगा।
+                            <div class="note">नोट – यदि MR प्रेशर 6.4 Kg/cm2 बनने से पहले ही MPJ को ऑपरेट किया तो
+                                F1002P1 का मैसेज आएगा।</div>
+                        </li>
+                        <li>लोको ब्रेक लगायें।
+                            <ul>
+                                <li>a) अब पार्किंग ब्रेक रिलीज करें।</li>
+                                <li>b) BP प्रेशर 5.0 Kg/cm2 होना चेक करें।</li>
+                                <li>c) AFI का '0' पर होना सुनिश्चित करें।</li>
+                            </ul>
+                        </li>
+                        <li>थ्रोटल को TE की तरफ ऑपरेट करें।</li>
+                        <li>स्क्रीन पर <span class="red-text">नोड न० FLG – 596</span> आने के बाद TE/BE मीटर की निडिल TE
+                            की तरफ आगे बढ़ेगी।</li>
+                        <li>लोको ब्रेक पॉवर चेक करें।</li>
+                        <li>अब लोको ब्रेक रिलीज करके लोको चलायें।</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <span>🔄 E-70 Loco में कैब बदलना</span>
+                <span class="icon"></span>
+            </div>
+            <div class="accordion-content">
+                <div class="inner-padding">
+                    <ol>
+                        <li>गाड़ी खड़ी करें तथा SA-9 से लोको ब्रेक लगायें। सुनिश्चित करें की लोको के ब्रेक सिलिन्डर में
+                            प्रेशर विद्यमान है।</li>
+                        <li>थ्रोटल तथा रिवर्सर को '0' पर करें।</li>
+                        <li>VCB खोलें तथा पैंटो झुकायें।</li>
+                        <li>A-9 को न्यूट्रल पोजीशन पर ले जाकर निकाल लें।</li>
+                        <li>अब <span class="red-text">BL-key</span> को 'D' से 'OFF' में करके निकाल लें।</li>
+                        <li>दूसरे कैब में जाकर सुनिश्चित करें कि उस कैब का SA-9 एप्लीकेशन पोजीशन में है, यदि नहीं है तो
+                            इसे एप्लीकेशन पोजीशन में करें।</li>
+                        <li>अब BL-key लगायें तथा इसे 'OFF' पोजीशन से 'D' पर करें।</li>
+                        <li>पैंटो उठायें तथा VCB बन्द करें।</li>
+                        <li>A-9 को न्यूट्रल पोजीशन पर लगाकर उसे रिलीज में ले आयें।</li>
+                        <li>BP प्रेशर पूरा होने तथा AFI के '0' आने पर गाड़ी चलायें।</li>
+                    </ol>
+                    <div class="note">
+                        <span class="note-title">नोट –</span>
+                        <ul>
+                            <li>a) यदि पैंटो या VCB को ऑफ किये बगैर BL-key को ऑपरेट किया तो लोको <span
+                                    class="red-text">Emergency Shut down</span> हो जायेगा।</li>
+                            <li>b) गाड़ी चलाने के दौरान भी यदि BL-key को ऑपरेट किया तो लोको <span
+                                    class="red-text">Emergency Shut down</span> हो जायेगा।</li>
+                            <li>c) <span class="red-text">Self Hold Mode :</span> BL-key को 'D' से 'OFF' में करने से 10
+                                मिनट तक Control Electronics ऑन रहेगा। इसी 10 मिनट में ही कैब बदल लेना चाहिए नहीं तो 10
+                                मिनट से ज्यादा समय लगा तो MCE ऑफ हो जायेगा।</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <span>🔌 (E-70 Loco) MCE को ऑफ करना</span>
+                <span class="icon"></span>
+            </div>
+            <div class="accordion-content">
+                <div class="inner-padding">
+                    <ol>
+                        <li>गाड़ी खड़ी करें तथा SA-9 से लोको ब्रेक लगायें। सुनिश्चित करें की लोको के ब्रेक सिलिन्डर में
+                            प्रेशर विद्यमान है।</li>
+                        <li>थ्रोटल तथा रिवर्सर को '0' पर करें।</li>
+                        <li>VCB खोलें तथा पैंटो झुकायें।</li>
+                        <li>अब <span class="red-text">BL-key</span> को 'D' से 'OFF' में करें।</li>
+                        <li>फिर BL-key को 'OFF' से 'C' पर तथा पुन: 'OFF' पर करें।</li>
+                        <li>अब 5-10 सेकंड इंतजार करें, कन्ट्रोल इलेक्ट्रॉनिक्स ऑफ हो जायेगा।</li>
+                        <li>लोको पायलट डेस्क पर UBA का '0' बताना, स्क्रीन व मेमोटल का ऑफ होना, LSDJ का बुझना सुनिश्चित
+                            करें।</li>
+                        <li>यदि पुन: ऑन करना हो तो BL-key को 'OFF' से 'D' पर करें।</li>
+                    </ol>
+                    <div class="note">
+                        <span class="note-title">नोट –</span>
+                        <ul>
+                            <li>a) यदि पैंटो या VCB को ऑफ किये बगैर BL-key को ऑपरेट किया तो लोको <span
+                                    class="red-text">Emergency Shut down</span> हो जायेगा।</li>
+                            <li>b) यदि ड्राइविंग मोड में पैंटो <span class="red-text">10 मिनट से ज्यादा समय</span> तक
+                                डाउन रहा तो Control Electronics अपने आप ऑफ हो जायेगा।</li>
+                            <li>c) यदि BL-key को 'D' से 'OFF' किया तो <span class="red-text">10 मिनट बाद</span> Control
+                                Electronics अपने आप ऑफ हो जायेगा।</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <span>🛠️ Bogie आइसोलेट करना</span>
+                <span class="icon"></span>
+            </div>
+            <div class="accordion-content">
+                <div class="inner-padding">
+                    <h3 style="color:var(--accent-blue);">यदि लोको रनिंग में हो –</h3>
+                    <ol>
+                        <li>थ्रोटल को '0' पर करें।</li>
+                        <li>VCB खोलें तथा स्क्रीन पर <span class="red-text">नोड न० - FLG550</span> देखें।</li>
+                        <li>वांछित बोगी को <span class="red-text">स्विच 154</span> के माध्यम से आइसोलेट करें।</li>
+                        <li>10 सेकंड प्रतीक्षा करें क्योंकि कन्ट्रोल इलेक्ट्रॉनिक्स द्वारा 10 सेकंड बाद ही बोगी आइसोलेट
+                            होगी।</li>
+                    </ol>
+                    <h3 style="color:var(--accent-blue);">यदि लोको खड़ा हो –</h3>
+                    <ol>
+                        <li>थ्रोटल को '0' पर करें, स्क्रीन पर <span class="red-text">नोड न० - FLG590</span> देखें।</li>
+                        <li>वांछित बोगी को <span class="red-text">स्विच 154</span> के माध्यम से आइसोलेट करें।</li>
+                        <li>10 सेकंड प्रतीक्षा करें क्योंकि कन्ट्रोल इलेक्ट्रॉनिक्स द्वारा 10 सेकंड बाद ही बोगी आइसोलेट
+                            होगी।</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <span>⚠️ फेल्योर मोड में गाड़ी चलाना</span>
+                <span class="icon"></span>
+            </div>
+            <div class="accordion-content">
+                <div class="inner-padding">
+                    <p>थ्रोटल ख़राब होने के कारण यदि ऑक्जिलरी कॉन्टेक्ट व एंगल ट्रांसमीटर की समग्र मात्रा में पूरे रेंज
+                        के 25% का अंतर आता है तो गाड़ी को फेल्योर मोड में चलाना जरूरी है। 2 scorched बाद निम्न क्रियाएं
+                        होंगी -</p>
+                    <ol>
+                        <li>कन्ट्रोल इलेक्ट्रॉनिक्स द्वारा ट्रैक्शन '0' हो जाएगा।</li>
+                        <li>स्क्रीन पर Priority-1 का फॉल्ट मैसेज <span class="red-text">F1703P1 या F1803P1</span> 'Fault
+                            in angle transmeter of throttle' आएगा।</li>
+                        <li>लोको पायलट को थ्रोटल को '0' पर लाना चाहिए।</li>
+                        <li>अब <span class="red-text">SB-1</span> में लगे <span class="red-text">स्विच 152</span> को '0'
+                            से '1' पर करें (गाड़ी खड़ी करने की आवश्यकता नहीं है) जिससे एंगल ट्रांसमीटर डीएक्टिवेट हो
+                            जायेगा।</li>
+                        <li>BPFA दबाकर फॉल्ट को एक्नालेज करें।</li>
+                        <li>अब थ्रोटल तीन स्टेप <span class="red-text">33%, 67% तथा 100%</span> में काम करेगा।</li>
+                    </ol>
+                    <div class="note">
+                        <span class="note-title">नोट –</span>
+                        स्विच 152 को '0' पर रखने पर एंगल ट्रांसमीटर पूरी सीमा में फाइन कन्ट्रोल रहेगा तथा स्विच 152 को
+                        '1' पर रखने से एंगल ट्रांसमीटर ऑक्जिलरी कॉन्टेक्ट के माध्यम से स्टेप में फाइन कन्ट्रोल रहेगा।
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <span>🔔 (E-70 Loco) VCD रिसेट करना</span>
+                <span class="icon"></span>
+            </div>
+            <div class="accordion-content">
+                <div class="inner-padding">
+                    <ol>
+                        <li>यदि ऑटो फ्लैशर लाइट जल रही है तो <span class="red-text">BPFA</span> दबाकर बुझायें, तथा
+                            थ्रोटल को '0' पर करें।</li>
+                        <li><span class="red-text">120 सेकंड</span> तक इंतजार करें, इस दौरान कन्ट्रोल इलेक्ट्रॉनिक्स को
+                            ऑन-ऑफ न करें।</li>
+                        <li>'पैनल A' पर लगे <span class="red-text">BPVR</span> बटन को दबाकर VCD को रिसेट करें, <span
+                                class="red-text">LSVW</span> बुझ जायेगा तथा बजर बन्द हो जायेगा।</li>
+                        <li>VCD फुट स्विच को दबाकर छोड़ दें।</li>
+                        <li>BPFA को दबाकर फाल्ट एक्नालेज करें।</li>
+                        <li>MR तथा BP प्रेशर पूरा होने तथा AFI की सुई वापस अपनी जगह आने का इंतजार करें।</li>
+                        <li>नार्मल ट्रैक्शन चालू करें।</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <span>⛰️ (E-70) Banker Loco (बैंकिंग मोड)</span>
+                <span class="icon"></span>
+            </div>
+            <div class="accordion-content">
+                <div class="inner-padding">
+                    <p>जब हमें लोको को बैंकर के रूप में उपयोग में लेना होता है अर्थात् BP को चार्ज किये बिना TE/BE का
+                        उपयोग करना होता है उस समय लोको को बैंकिंग मोड में चलाना होता है।</p>
+                    <h3 style="color:var(--accent-blue);">प्रक्रिया –</h3>
+                    <ol>
+                        <li>थ्रोटल को '0' पर करें और VCB खोलें।</li>
+                        <li>'पैनल A' पर स्थित <span class="red-text">'ZBAN'</span> स्विच को 'ON' में करें।</li>
+                        <li>न्यूमेटिक पैनल पर स्थित <span class="red-text">कॉक न० 70 व 136</span> को बन्द करें।</li>
+                        <li>लोको को सामान्य तरीके से इनर्रजाइज करें।</li>
+                        <li>BP प्रेशर '0' हो जायेगा लेकिन जब दूसरे मास्टर लोको से जोड़ा जायेगा तो उसका BP प्रेशर इस लोको
+                            में दर्शाएगा।</li>
+                        <li>इस दौरान स्क्रीन पर Priority-2 का फाल्ट मैसेज 'Loco is in Banking Mode' आएगा।</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <span>🚜 (E-70) Dead Loco लोको का संचालन</span>
+                <span class="icon"></span>
+            </div>
+            <div class="accordion-content">
+                <div class="inner-padding">
+                    <p>E-70 ब्रेक सिस्टम युक्त 3-फेज लोको को लाइव लोको के पीछे लगाकर डेड लोको के रूप में क्लियर करना –
+                    </p>
+                    <ol>
+                        <li>VCB खोलें, पैंटो झुकाएं तथा न्यूमेटिक पैनल पर स्थित कॉक के द्वारा पैंटो आइसोलेट करें।</li>
+                        <li>BL-key को 'D' से 'OFF', 'OFF' से 'C' तथा 'C' से पुन: 'OFF' पर करके कन्ट्रोल इलेक्ट्रॉनिक्स
+                            को ऑफ करें तथा SB-2 में स्थित MCB 110 और 112.1 को ट्रिप करें।</li>
+                        <li>डेड लोको को लाइव लोको के पीछे जोड़ें।</li>
+                        <li>डेड लोको के दोनों कैब में A-9 हैण्डल को न्यूट्रल में रखें।</li>
+                        <li>डेड लोको के दोनों कैब में SA-9 हैण्डल को रिलीज में रखें।</li>
+                        <li>डेड लोको के MR तथा AR को पूर्णत: खाली करके उनके ड्रेन कॉक को बन्द कर दें।</li>
+                        <li>यदि डेड लोको के ब्रेक रिलीज नहीं होते है तो निम्न कार्यवाही करें-
+                            <ul>
+                                <li>a) डिस्ट्रीब्यूटर वाल्व के रिलीजर को खींचें।</li>
+                                <li>b) आवश्यकता हो तो दोनों बोगी कट आउट कॉक को बन्द करके ब्रेक रिलीज करें और बोगी कट आउट
+                                    कॉक को पुन: खोल दें।</li>
+                            </ul>
+                        </li>
+                        <li>डेड लोको में कॉक पोजीशन निम्नानुसार होना चाहिए –
+                            <table>
+                                <tr>
+                                    <th>कॉक</th>
+                                    <td>70</td>
+                                    <td>74</td>
+                                    <td>136</td>
+                                    <td>47</td>
+                                </tr>
+                                <tr>
+                                    <th>पोजीशन</th>
+                                    <td>बन्द</td>
+                                    <td>बन्द</td>
+                                    <td>बन्द</td>
+                                    <td>खुला</td>
+                                </tr>
+                            </table>
+                        </li>
+                        <li>डेड लोको तथा लाइव लोको के बीच का BP पाइप आपस में जोड़ें तथा दोनों के एंगल कॉक खोलें। लाइव
+                            लोको के BP द्वारा डेड लोको का AR चार्ज हो जायेगा। डेड लोको के BP गेज में प्रेशर सुनिश्चित
+                            करें, यह लाइव लोको के समान होना चाहिए।</li>
+                        <li>डेड लोको के पार्किंग ब्रेक को न्यूमेटिक पैनल पर स्थित सोलोनाइड वाल्व के अप्लाई पुश बटन
+                            द्वारा लॉक करें। अब पार्किंग ब्रेक को मैनुअली रिलीज करें।</li>
+                        <li>डेड लोको पार्किंग ब्रेक गेज को चेक करें, 0.0 Kg/cm2 प्रेशर दर्शाना चाहिए।</li>
+                        <li>पार्किंग ब्रेक युक्त ब्रेक ब्लॉक को फिर से हिलाकर उनका रिलीज होना सुनिश्चित करें।</li>
+                        <li>A9 को अप्लाई करें, दोनों लोको में लोको ब्रेक का लगना सुनिश्चित करें तथा A9 को रिलीज करके
+                            दोनों लोको में लोको ब्रेक का रिलीज होना सुनिश्चित करें। पिछले डेड लोको में लोको ब्रेक रिलीज
+                            होने में करीब एक मिनट का समय लगता है।</li>
+                        <li>अंतिम निरीक्षण के रूप में कपल्ड लोको को 500 मी० तक चलायें तथा चक्कों का तापमान चेक करें, साथ
+                            ही प्रत्येक हाल्ट पर भी चेक करें।</li>
+                        <li>ध्यान रहे कि डेड लोकोमोटिव में लोको ब्रेक रिलीज होने के लिए 30 सेकंड लगते हैं। इसलिए दोबारा
+                            ट्रैक्शन लेने के पूर्व पर्याप्त समय तक (30 सेकंड) इंतजार करें।</li>
+                        <li>डेड लोको में तैनात कर्मचारी BL-key को 'D' पर नहीं रखेगा तथा इंजन को इनर्रजाइज करने की कोशिश
+                            नहीं करेगा।</li>
+                        <li>गंतव्य स्थान पर पहुँच कर डेड लोको में रिलीज पुश बटन को अनलॉक करने के बाद अप्लाई पुश बटन
+                            द्वारा पार्किंग ब्रेक लगाएं।</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="ccb" class="tab-content">
+
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                (CCB Loco) MCE को ऑफ़ करना <span class="icon"></span>
+            </div>
+            <div class="accordion-content">
+                <div class="inner-padding">
+                    <ol>
+                        <li>गाड़ी खड़ी करें तथा SA-9 से लोको ब्रेक लगायें। सुनिश्चित करें की लोको के ब्रेक सिलिन्डर में
+                            प्रेशर विद्यमान है।</li>
+                        <li>थ्रोटल तथा रिवर्सर को ‘0’ पर करें।</li>
+                        <li>VCB खोलें तथा पैंटो झुकायें।</li>
+                        <li>A-9 को <span class="blue-text">‘FS’</span> पोजीशन पर लॉक करें।</li>
+                        <li>अब <span class="red-text">BL-key</span> को <span class="blue-text">‘D’</span> से <span
+                                class="blue-text">‘OFF’</span> में करें।</li>
+                        <li>फिर BL-key को <span class="blue-text">‘OFF’</span> से <span class="blue-text">‘C’</span> पर
+                            तथा पुनः <span class="blue-text">‘OFF’</span> पर करें।</li>
+                        <li>अब 5-10 सेकंड इंतजार करें, कन्ट्रोल इलेक्ट्रॉनिक्स ऑफ़ हो जायेगा।</li>
+                        <li>लोको पायलट डेस्क पर UBA का ‘0’ बताना, स्क्रीन व मेमोटल का ऑफ़ होना, LSDJ का बुझना सुनिश्चित
+                            करें।</li>
+                    </ol>
+                    <div class="note">
+                        <strong>नोट:</strong>
+                        <ul>
+                            <li>a) यदि पैंटो या VCB को ऑफ़ किये बगैर BL-key को ऑपरेट किया तो लोको <span
+                                    class="red-text">Emergency Shut down</span> हो जायेगा।</li>
+                            <li>b) यदि ड्राइविंग मोड में पैंटो <span class="red-text">10 मिनट</span> से ज्यादा समय तक
+                                डाउन रहा तो Control Electronics अपने आप ऑफ़ हो जायेगा।</li>
+                            <li>c) यदि BL-key को <span class="blue-text">‘D’</span> से <span
+                                    class="blue-text">‘OFF’</span> किया तो <span class="red-text">10 मिनट</span> बाद
+                                Control Electronics अपने आप ऑफ़ हो जायेगा।</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                (CCB Loco) VCD रिसेट करना <span class="icon"></span>
+            </div>
+            <div class="accordion-content">
+                <div class="inner-padding">
+                    <ol>
+                        <li>यदि ऑटो फ्लैशर लाइट जल रही है तो <span class="red-text">BPFA</span> दबाकर बुझायें, तथा
+                            थ्रोटल को ‘0’ पर करें।</li>
+                        <li>A-9 को Emergency पर रखकर BP के कारण MR को गिरने से रोकें।</li>
+                        <li><span class="red-text">32 सेकंड</span> तक इंतजार करें, इस दौरान कन्ट्रोल इलेक्ट्रॉनिक्स को
+                            ऑन-ऑफ़ न करें।</li>
+                        <li>‘पैनल A’ पर लगे <span class="red-text">BPVR</span> बटन को दबाकर VCD को रिसेट करें, LSVW बुझ
+                            जायेगा तथा बजर बन्द हो जायेगा।</li>
+                        <li>VCD फुट स्विच को दबाकर छोड़ दें।</li>
+                        <li>BPFA को दबाकर फाल्ट एक्नालेज करें।</li>
+                        <li>A-9 हैंडल को <span class="blue-text">‘Run’</span> पर करें।</li>
+                        <li>MR तथा BP प्रेशर पूरा होने तथा AFI की सुई वापस अपनी जगह आने का इंतजार करें।</li>
+                        <li>नॉर्मल ट्रैक्शन चालू करें।</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                CCB Loco में कैब बदलना <span class="icon"></span>
+            </div>
+            <div class="accordion-content">
+                <div class="inner-padding">
+                    <ol>
+                        <li>गाड़ी खड़ी करें तथा SA-9 से लोको ब्रेक लगायें। सुनिश्चित करें की लोको के ब्रेक सिलिन्डर में
+                            प्रेशर विद्यमान है।</li>
+                        <li>थ्रोटल तथा रिवर्सर को ‘0’ पर करें।</li>
+                        <li>VCB खोलें तथा पैंटो झुकायें।</li>
+                        <li><strong>कार्यरत कैब में</strong> A-9 हैंडल को <span class="blue-text">‘FS’</span> पर लॉक
+                            करें। <span class="red-text">मोड स्विच</span> को <span class="blue-text">‘Lead’</span> से
+                            <span class="blue-text">‘Trail’</span> पोजीशन पर करें।</li>
+                        <li>अब <span class="red-text">BL-key</span> को <span class="blue-text">‘D’</span> से <span
+                                class="blue-text">‘OFF’</span> में करके निकाल लें।</li>
+                        <li>दूसरे कैब में जाकर सुनिश्चित करें कि उस कैब का SA-9 एप्लीकेशन पोजीशन में है, यदि नहीं है तो
+                            इसे एप्लीकेशन पोजीशन में करें।</li>
+                        <li>अब BL-key लगायें तथा इसे <span class="blue-text">‘OFF’</span> पोजीशन से <span
+                                class="blue-text">‘D’</span> पर करें।</li>
+                        <li>पैंटो उठायें तथा VCB बन्द करें।</li>
+                        <li><span class="red-text">मोड स्विच</span> को <span class="blue-text">‘Trail’</span> से <span
+                                class="blue-text">‘Lead’</span> पोजीशन पर करें।</li>
+                        <li>A-9 हैंडल को अनलॉक करके <span class="blue-text">‘FS’</span> से <span
+                                class="blue-text">‘Run’</span> पोजीशन पर करें।</li>
+                        <li>BP प्रेशर पूरा होने तथा AFI के ‘0’ आने पर गाड़ी चलायें।</li>
+                    </ol>
+                    <div class="note">
+                        <strong>नोट:</strong>
+                        <ul>
+                            <li>a) यदि पैंटो या VCB को ऑफ़ किये बगैर BL-key को ऑपरेट किया तो लोको <span
+                                    class="red-text">Emergency Shut down</span> हो जायेगा।</li>
+                            <li>b) गाड़ी चलाने के दौरान भी यदि BL-key को ऑपरेट किया तो लोको <span
+                                    class="red-text">Emergency Shut down</span> हो जायेगा।</li>
+                            <li>c) <span class="red-text">Self Hold Mode :</span> BL-key को ‘D’ से ‘OFF’ में करने से
+                                <span class="red-text">10 मिनट</span> तक Control Electronics ऑन रहेगा। इसी 10 मिनट में
+                                ही कैब बदल लेना चाहिए नहीं तो 10 मिनट से ज्यादा समय लगा तो MCE ऑफ़ हो जायेगा।</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                (CCB) Loco Energize करना <span class="icon"></span>
+            </div>
+            <div class="accordion-content">
+                <div class="inner-padding">
+                    <p>लोको प्रारम्भ करने से पूर्व, लोको तथा मशीन रूम की जाँच करें।</p>
+                    <ol>
+                        <li>सुनिश्चित करें कि मशीन रूम में स्थित <span class="red-text">HB-1/2</span> तथा <span
+                                class="red-text">SB-1/2</span> में स्थित सभी सर्किट ब्रेकर, सभी स्विचेज, <span
+                                class="red-text">रिले 78</span> नॉर्मल अवस्था में हैं तथा न्यूमेटिक पैनल पर स्थित सभी
+                            न्यूमेटिक कॉक सामान्य अवस्था में हैं। <span class="red-text">IG-38 key</span> ऑन अवस्था में
+                            है तथा <span class="red-text">पैंटो सेलेक्टर स्विच</span> AUTO अवस्था में है।</li>
+                        <li>SB-2 में स्थित बैटरी की MCB 112.1 तथा चार्जर की MCB 110 ऑन में रखें।</li>
+                        <li><strong>पिछली कैब</strong> में A-9 हैंडल को <span class="blue-text">‘FS’</span> पर लॉक करें।
+                            SA-9 को रिलीज पोजीशन पर करें। <span class="red-text">मोड स्विच</span> को <span
+                                class="blue-text">‘Trail’</span> पोजीशन पर करें।</li>
+                        <li><strong>वर्किंग कैब</strong> में A-9 हैंडल को <span class="blue-text">‘FS’</span> पर करें
+                            तथा लॉक न करें। SA-9 को अप्लाई पोजीशन पर करें। <span class="red-text">मोड स्विच</span> को
+                            <span class="blue-text">‘Lead’</span> पोजीशन पर करें।</li>
+                        <li><span class="red-text">BL key</span> को पैनल-A पर स्थित सॉकेट की <span
+                                class="red-text">‘OFF’</span> अवस्था में लगाकर उसे <span class="red-text">‘D’</span>
+                            अवस्था की तरफ घुमाइए।
+                            <ul>
+                                <li>a) पैनल-C पर स्थित <span class="red-text">Display Screen</span> तथा <span
+                                        class="red-text">SPM</span> ऑन हो जायेंगे।</li>
+                                <li>b) यदि प्रेशर कम है तो <span class="red-text">MCPA</span> अपने आप चलना शुरू हो
+                                    जायेगा।</li>
+                                <li>c) बैटरी वोल्टमीटर <span class="red-text">UBA 110V</span> सप्लाई दर्शाएगी।</li>
+                                <li>d) LSDJ का लैंप जलेगा।</li>
+                                <li>e) उपरोक्त सभी संकेत <strong>कन्ट्रोल इलेक्ट्रॉनिक्स</strong> का ऑन होना दर्शाते
+                                    हैं।</li>
+                            </ul>
+                        </li>
+                        <li><strong>‘Configuration running please wait’</strong> का मैसेज स्क्रीन पर आएगा तथा 20 सेकंड
+                            तक self testing होती रहेगी।</li>
+                        <li>टेस्टिंग के दौरान सभी पायलट लैंप जलेंगे बुझेंगे, TE/BE मीटर नीडिल ऊपर निचे होकर ‘0’
+                            दर्शाएंगे तथा फ्लैशर लाइट जलकर बुझ जायेगा।</li>
+                        <li>टेस्टिंग के बाद स्क्रीन पर नोड न० <span class="red-text">FLG- 504</span> दर्शाएगा। अब <span
+                                class="red-text">ZPT</span> बटन को नीचे दबाकर छोड़ दें। यदि प्रेशर कम है तो MCPA अपने आप
+                            चालू हो जायेगा व प्रेशर बनने के बाद पिछला पैंटो अपने आप उठेगा।</li>
+                        <li>स्क्रीन पर नोड न० <span class="red-text">FLG-550</span> दर्शाएगा। अब VCB बन्द करने हेतु
+                            स्विच <span class="red-text">BLDJ</span> को नीचे दबाकर छोड़ दें, VCB बन्द होगा तथा LSDJ का
+                            लैंप बुझ जायेगा।</li>
+                        <li>स्विच <span class="red-text">BLCP</span> का Auto अवस्था में होना सुनिश्चित करें।</li>
+                        <li>स्क्रीन पर नोड न० <span class="red-text">FLG – 570</span> दर्शाएगा।</li>
+                        <li>MR प्रेशर 6.4 Kg/cm2 से ज्यादा बनने के बाद रिवर्सर को चलने की दिशा में रखें। स्क्रीन पर नोड
+                            न० <span class="red-text">FLG – 590</span> दर्शाएगा। <strong>नोट</strong> – यदि MR प्रेशर
+                            6.4 Kg/cm2 बनने से पहले ही MPJ को ऑपरेट किया तो F1002P1 का मैसेज आएगा।</li>
+                        <li>LCD पर ‘Okey to run’ का मैसेज आने पर A-9 हैंडल को ‘FS’ से ‘Run’ पर ले जायें। BP 5.0 Kg/cm2
+                            तक चार्ज हो जायेगा।</li>
+                        <li>थ्रोटल को TE की तरफ ऑपरेट करें।</li>
+                        <li>स्क्रीन पर नोड न० <span class="red-text">FLG – 596</span> आने के बाद TE/BE मीटर की नीडिल TE
+                            की तरफ आगे बढ़ेगी।</li>
+                        <li>लोको ब्रेक पॉवर चेक करें।</li>
+                        <li>अब लोको ब्रेक रिलीज करके लोको चलायें।</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                फेल्योर मोड में गाड़ी चलाना <span class="icon"></span>
+            </div>
+            <div class="accordion-content">
+                <div class="inner-padding">
+                    <p>थ्रोटल ख़राब होने के कारण यदि ऑक्जिलरी कॉन्टेक्ट व एंगल ट्रांसमीटर की समग्र मात्रा में पूरे रेंज
+                        के 25% का अंतर आता है तो गाड़ी को फेल्योर मोड में चलाना जरूरी है। 2 सेकंड बाद निम्न क्रियाएं
+                        होंगी -</p>
+                    <ol>
+                        <li>कन्ट्रोल इलेक्ट्रॉनिक्स द्वारा ट्रैक्शन ‘0’ हो जाएगा।</li>
+                        <li>स्क्रीन पर Priority-1 का फ़ॉल्ट मैसेज <span class="red-text">F1703P1</span> या <span
+                                class="red-text">F1803P1 ‘Fault in angle transmeter of throttle’</span> आएगा।</li>
+                        <li>लोको पायलट को थ्रोटल को ‘0’ पर लाना चाहिए।</li>
+                        <li>अब <span class="red-text">SB-1</span> में लगे <span class="red-text">स्विच 152</span> को ‘0’
+                            से ‘1’ पर करें (गाड़ी खड़ी करने की आवश्यकता नहीं है) जिससे एंगल ट्रांसमीटर डीएक्टिवेट हो
+                            जायेगा।</li>
+                        <li>BPFA दबाकर फ़ॉल्ट को एक्नालेज करें।</li>
+                        <li>अब थ्रोटल तीन स्टेप <strong>33%, 67% तथा 100%</strong> में काम करेगा।</li>
+                    </ol>
+                    <div class="note">
+                        <strong>नोट:</strong> स्विच 152 को ‘0’ पर रखने पर एंगल ट्रांसमीटर <strong>पूरी सीमा में फाइन
+                            कन्ट्रोल</strong> रहेगा तथा स्विच 152 को ‘1’ पर रखने से एंगल ट्रांसमीटर ऑक्जिलरी कॉन्टेक्ट
+                        के माध्यम से <strong>स्टेप में फाइन कन्ट्रोल</strong> रहेगा।
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                PTDC Mode (Pneumatic Time Dependent Controller) <span class="icon"></span>
+            </div>
+            <div class="accordion-content">
+                <div class="inner-padding">
+                    <ol>
+                        <li>SB-2 में लगे <span class="red-text">MCB 127.7</span> को ट्रिप करायें। एक बार <strong>‘Brake
+                                Electronics Failed’</strong> का मैसेज आएगा।</li>
+                        <li>न्यूमेटिक पैनल पर लगे कॉक <span class="red-text">PER-COS (Pneumatic Equalizing Reservoir Cut
+                                Out Switch)</span> को वर्टिकल पोजीशन में करें।</li>
+                        <li>BPFA को दबाकर फाल्ट एक्नालेज करें, अब <strong>‘Brake Electronics Failed’</strong> का मैसेज
+                            नहीं आएगा।</li>
+                        <li>कार्यरत कैब में A-9 हैंडल अनलॉक पोजीशन में तथा पिछली कैब में लॉक पोजीशन में होना सुनिश्चित
+                            करें।</li>
+                        <li>कार्यरत कैब में <span class="red-text">PTDC हैंडल</span> को पोजीशन – II (Release) पर लायें
+                            और कुछ देर रोकें। BP प्रेशर 5.0 Kg/cm2 हो जाएगा और लोको ब्रेक रिलीज हो जायेगा।</li>
+                        <li>यदि लोको ब्रेक रिलीज नहीं होता है तो डिस्ट्रीब्यूटर वाल्व के रिलीज स्पिंडल को खींचकर लोको
+                            ब्रेक को रिलीज करें। यदि अब भी लोको ब्रेक रिलीज नहीं होता है तो न्यूमेटिक पैनल पर लगे <span
+                                class="red-text">20CP और 16CP</span> के पास Test Point Nipple को दबायें, लोको ब्रेक
+                            रिलीज हो जायेगा।</li>
+                        <li>अब आवश्यकतानुसार BP गेज पर ध्यान रखते हुए <span class="red-text">PTDC हैंडल</span> को पोजीशन
+                            – II (Release) तथा पोजीशन – V(Apply) पर करके ऑटो ब्रेक रिलीज करें और लगायें।</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                Dead Loco लोको का संचालन <span class="icon"></span>
+            </div>
+            <div class="accordion-content">
+                <div class="inner-padding">
+                    <h2 style="font-size: 1rem;">CCB ब्रेक सिस्टम युक्त 3-फेज लोको को लाइव लोको के पीछे लगाकर डेड लोको
+                        के रूप में क्लियर करना –</h2>
+                    <ol>
+                        <li>VCB खोलें, पैंटो झुकाएं तथा न्यूमेटिक पैनल पर स्थित कॉक के द्वारा पैंटो आइसोलेट करें।</li>
+                        <li>दोनों कैब में A-9 हैण्डल को <span class="blue-text">‘FS’</span> पर लॉक करें तथा <span
+                                class="red-text">मोड स्विच</span> को <span class="blue-text">‘Trail’</span> पर करें।
+                        </li>
+                        <li>दोनों कैब में SA-9 हैण्डल को रिलीज पर करें।</li>
+                        <li>BL-key को ‘D’ से ‘OFF’, ‘OFF’ से ‘C’ तथा ‘C’ से पुनः ‘OFF’ पर करके कन्ट्रोल इलेक्ट्रॉनिक्स
+                            को ऑफ़ करें तथा SB-2 में स्थित MCB 110 और 112.1 को ट्रिप करें।</li>
+                        <li>न्यूमेटिक पैनल पर लगे डेड लोको <span class="red-text">कॉक न० 47</span> को खोल दें।</li>
+                        <li><span class="red-text">कॉक - 136 को बन्द</span> (वर्टिकल में) तथा विजिलेंस <span
+                                class="red-text">कॉक – 74 को बन्द</span> (होरिजॉन्टल में) कर दें।</li>
+                        <li>डेड लोको को लाइव लोको के पीछे जोड़ें।</li>
+                        <li>डेड लोको के MR तथा AR को पूर्णतः खाली करके उनके ड्रेन कॉक को बन्द कर दें।</li>
+                        <li>यदि डेड लोको के ब्रेक रिलीज न हो तो निम्न कार्यवाही करें-
+                            <ul>
+                                <li>a) डिस्ट्रीब्यूटर वाल्व के रिलीजर को खींचें।</li>
+                                <li>b) आवश्यकता हो तो दोनों बोगी कट आउट कॉक को बन्द करके ब्रेक रिलीज करें और बोगी कट आउट
+                                    कॉक को पुनः खोल दें।</li>
+                            </ul>
+                        </li>
+                        <li>डेड लोको तथा लाइव लोको के बीच का BP पाइप आपस में जोड़ें तथा दोनों के एंगल कॉक खोलें। लाइव
+                            लोको के BP द्वारा डेड लोको का AR चार्ज हो जायेगा। डेड लोको के BP गेज में प्रेशर सुनिश्चित
+                            करें, यह लाइव लोको के समान होना चाहिए।</li>
+                        <li>A9 को अप्लाई करें, दोनों लोको में लोको ब्रेक का लगना सुनिश्चित करें तथा A9 को रिलीज करके
+                            दोनों लोको में लोको ब्रेक का रिलीज होना सुनिश्चित करें। पिछले डेड लोको में लोको ब्रेक रिलीज
+                            होने में करीब एक मिनट का समय लगता है।</li>
+                        <li>अंतिम निरीक्षण के रूप में कपल्ड लोको को 500 मी० तक चलायें तथा चक्कों का तापमान चेक करें, साथ
+                            ही प्रत्येक हाल्ट पर भी चेक करें।</li>
+                        <li>ध्यान रहे कि डेड लोकोमोटिव में लोको ब्रेक रिलीज होने के लिए 30 सेकंड लगते हैं। इसलिए दोबारा
+                            ट्रैक्शन लेने के पूर्व पर्याप्त समय तक (30 सेकंड) इंतजार करें।</li>
+                        <li>डेड लोको में तैनात कर्मचारी BL-key को ‘D’ पर नहीं रखेगा तथा इंजन को इनर जाइज करने की कोशिश
+                            नहीं करेगा।</li>
+                        <li>गंतव्य स्थान पर पहुँच कर डेड लोको में रिलीज पुश बटन को अनलॉक करने के बाद अप्लाई पुश बटन
+                            द्वारा पार्किंग ब्रेक लगाएं।</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                Bogie आइसोलेट करना <span class="icon"></span>
+            </div>
+            <div class="accordion-content">
+                <div class="inner-padding">
+                    <h2>यदि लोको रनिंग में हो -</h2>
+                    <ol>
+                        <li>थ्रोटल को ‘0’ पर करें।</li>
+                        <li>VCB खोलें तथा स्क्रीन पर <span class="blue-text">नोड न० - FLG550</span> देखें।</li>
+                        <li>वांछित बोगी को <span class="red-text">स्विच 154</span> के माध्यम से आइसोलेट करें।</li>
+                        <li>10 सेकंड प्रतीक्षा करें क्योंकि कन्ट्रोल इलेक्ट्रॉनिक्स द्वारा 10 सेकंड बाद ही बोगी आइसोलेट
+                            होगी।</li>
+                    </ol>
+                    <h2>यदि लोको खड़ा हो -</h2>
+                    <ol>
+                        <li>थ्रोटल को ‘0’ पर करें, स्क्रीन पर <span class="blue-text">नोड न० - FLG590</span> देखें।</li>
+                        <li>वांछित बोगी को <span class="red-text">स्विच 154</span> के माध्यम से आइसोलेट करें।</li>
+                        <li>10 सेकंड प्रतीक्षा करें क्योंकि कन्ट्रोल इलेक्ट्रॉनिक्स द्वारा 10 सेकंड बाद ही बोगी आइसोलेट
+                            होगी।</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                (CCB) Banker Loco (बैंकिंग मोड) <span class="icon"></span>
+            </div>
+            <div class="accordion-content">
+                <div class="inner-padding">
+                    <p>जब हमें लोको को बैंकर के रूप में उपयोग में लेना होता है अर्थात BP को चार्ज किये बिना TE/BE का
+                        उपयोग करना होता है उस समय लोको को बैंकिंग मोड में चलाना होता है।</p>
+                    <h2>प्रक्रिया –</h2>
+                    <ol>
+                        <li>थ्रोटल को ‘0’ पर करें और VCB खोलें।</li>
+                        <li>‘पैनल A’ पर स्थित <span class="red-text">‘ZBAN’</span> स्विच को <span
+                                class="blue-text">‘ON’</span> में करें।</li>
+                        <li>मोड स्विच को <span class="red-text">‘HLPR’</span> पर करें।</li>
+                        <li>लोको को सामान्य तरीके से इनर जाइज करें।</li>
+                        <li>BP प्रेशर ‘0’ हो जायेगा लेकिन जब दूसरे मास्टर लोको से जोड़ा जायेगा तो उसका BP प्रेशर इस लोको
+                            में दर्शाएगा।</li>
+                        <li>इस दौरान स्क्रीन पर Priority-2 का फाल्ट मैसेज <span class="blue-text">‘Loco is in Banking
+                                Mode’</span> आएगा।</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function openTab(tabId) {
+                document.querySelectorAll('.tab-content').forEach(content => {
+                    content.classList.remove('active');
+                });
+                document.querySelectorAll('.tab-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                document.getElementById(tabId).classList.add('active');
+                event.currentTarget.classList.add('active');
+            }
+
+            // Toggle Accordion function (for onclick)
+            function toggleAccordion(element) {
+                const item = element.parentElement;
+                item.classList.toggle('active');
+            }
+
+            // Also handle via event listeners for robustness
+            document.querySelectorAll('.accordion-header').forEach(header => {
+                if (!header.getAttribute('onclick')) {
+                    header.addEventListener('click', () => {
+                        const item = header.parentElement;
+                        item.classList.toggle('active');
+                    });
+                }
+            });
+        </script>
+
+</body>
+
+</html>

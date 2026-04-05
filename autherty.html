@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indian Railway Authority Forms (Responsive)</title>
+    <style>
+        /* --- Base Styling --- */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #004d99;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        /* --- Tab Styling --- */
+        .tabs {
+            overflow: hidden;
+            border-bottom: 2px solid #ccc;
+            margin-bottom: 20px;
+        }
+        .tab-button {
+            background-color: #f1f1f1;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+            font-size: 16px;
+            font-weight: bold;
+            margin-right: 2px;
+            color: #004d99;
+            flex-grow: 1; /* Allows buttons to share space */
+            text-align: center;
+        }
+        .tab-button:hover {
+            background-color: #ddd;
+        }
+        .tab-button.active {
+            background-color: #004d99;
+            color: white;
+            border-bottom: 2px solid #004d99;
+        }
+        .tab-content {
+            display: none;
+            padding: 15px 0; /* Adjusted padding for better fit */
+            border: 1px solid #ccc;
+            border-top: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .tab-content h3 {
+             text-align: center;
+             color: #004d99;
+             margin-top: 5px;
+             margin-bottom: 15px;
+        }
+
+        /* --- Table Styling --- */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #e6f0ff;
+            color: #004d99;
+            font-weight: bold;
+        }
+        
+        .dfcr-table td:last-child {
+        color: #004d99;
+       font-weight: bold;
+        }
+
+        
+        /* Specific column alignment for clarity */
+        .authority-table td:nth-child(1),
+        .authority-table td:nth-child(3),
+        .authority-table td:nth-child(4) {
+            text-align: center;
+        }
+        .dfcr-table td:nth-child(1),
+        .dfcr-table td:nth-child(2),
+        .dfcr-table td:last-child {
+            text-align: center;
+        }
+
+        /* --- Color Coding (Same as before) --- */
+        .color-red td:last-child { color: red; font-weight: bold; }
+        .color-green td:last-child { color: green; font-weight: bold; }
+        .color-blue td:last-child { color: blue; font-weight: bold; }
+        .color-black td:last-child { color: black; font-weight: bold; }
+
+        .page-number {
+            text-align: center;
+            font-style: italic;
+            margin-top: 10px;
+            color: #666;
+            font-size: 0.8em;
+        }
+        .note {
+            background-color: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 15px;
+            margin-top: 20px;
+            font-weight: bold;
+            color: #664d03;
+        }
+
+        /* ======================================================= */
+        /* --- Mobile Responsiveness (Small Screens < 600px) --- */
+        /* ======================================================= */
+        @media screen and (max-width: 600px) {
+            
+            .container {
+                padding: 10px;
+            }
+
+            /* Responsive Tabs: Stack buttons on small screens */
+            .tabs {
+                border-bottom: none;
+            }
+            .tab-button {
+                float: none;
+                display: block;
+                margin-bottom: 2px;
+                width: 100%;
+            }
+            .tab-button.active {
+                border-bottom: 1px solid #004d99;
+            }
+            .tab-content {
+                border-top: 1px solid #ccc;
+            }
+
+            /* Responsive Tables: Transform table into cards/blocks */
+            table, thead, tbody, th, td, tr {
+                display: block;
+            }
+            
+            /* Hide table headers (but not display: none, so they are available for screen readers) */
+            thead tr {
+                position: absolute;
+                top: -9999px;
+                left: -9999px;
+            }
+            
+            tr {
+                border: 1px solid #ccc;
+                margin-bottom: 10px;
+            }
+            
+            td {
+                /* Behave like a row */
+                border: none;
+                border-bottom: 1px solid #eee;
+                position: relative;
+                padding-left: 50%; /* Space for the data label */
+                text-align: right;
+            }
+            
+            td:before {
+                /* Now like a table header */
+                position: absolute;
+                /* Top/left values mimic padding */
+                top: 6px;
+                left: 6px;
+                width: 45%;
+                padding-right: 10px;
+                white-space: nowrap;
+                text-align: left;
+                font-weight: bold;
+                color: #555;
+            }
+            
+            /* Data Labels: Use the 'data-label' attribute to display column header as label */
+            /* Table 1: Automatic Block */
+            #AutomaticBlock td:nth-of-type(1):before { content: "फार्म सं."; }
+            #AutomaticBlock td:nth-of-type(2):before { content: "परिस्थिति"; }
+            #AutomaticBlock td:nth-of-type(3):before { content: "प्रतियाँ"; }
+            #AutomaticBlock td:nth-of-type(4):before { content: "गति"; }
+            
+            /* Table 2: Absolute Block */
+            #AbsoluteBlock td:nth-of-type(1):before { content: "क्र. सं."; }
+            #AbsoluteBlock td:nth-of-type(2):before { content: "विवरण"; }
+            #AbsoluteBlock td:nth-of-type(3):before { content: "फार्म संख्या"; }
+            #AbsoluteBlock td:nth-of-type(4):before { content: "फार्म का रंग"; }
+
+            /* Table 3: DFCR Authorities */
+            #DFCR td:nth-of-type(1):before { content: "DFC Form No."; }
+            #DFCR td:nth-of-type(2):before { content: "Rule Number"; }
+            #DFCR td:nth-of-type(3):before { content: "Description"; }
+            #DFCR td:nth-of-type(4):before { content: "IR Forms No."; }
+
+            /* Adjust text alignment for mobile "cards" */
+            td { text-align: right; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>भारतीय रेलवे प्राधिकरण पत्रक और DFCR फॉर्म</h2>
+
+        <div class="tabs">
+            <button class="tab-button active" onclick="openTab(event, 'AutomaticBlock')">ऑटोमैटिक सिग्नलिंग </button>
+            <button class="tab-button" onclick="openTab(event, 'AbsoluteBlock')">पूर्ण ब्लॉक पद्धति </button>
+            <button class="tab-button" onclick="openTab(event, 'DFCR')">DFCC प्राधिकरण </button>
+        </div>
+
+        <div id="AutomaticBlock" class="tab-content active">
+            <h3>ऑटोमैटिक सिग्नलिंग पद्धति में प्रयोग किए जाने वाले महत्वपूर्ण प्राधिकरण पत्र</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>फार्म सं.</th>
+                        <th>परिस्थिति</th>
+                        <th>प्रतियाँ</th>
+                        <th>गति</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><h3>T/A-912</h3></td><td>ऑटोमैटिक / सेमी-ऑटोमैटिक / मैन्युअल / मेटरॉक सिगनलों को पार करने का अधिकार पत्र। (नोट - यह प्राधिकार हमेशा किसी एक फॉर्म के साथ जारी किया जाएगा। T/B-602, T-511, T/F-602 या क्षेत्रीय रेलवे के सहायक नियमानुसार जारी किया जाएगा)</td><td>LP/TM/रिकॉर्ड</td><td>25/10 KMPH फेंसिंग पॉइंट पर 15 KMPH (जब T/A 912 को अन्य फॉर्मों के साथ जारी किया जाता है तो दिए गए फॉर्मों में उल्लिखित अधिकतम प्रतिबन्धात्मक गति पर पालन किया जाएगा।)</td></tr>
+                    <tr><td><h3>T/B-912</h3></td><td>ऑटोमैटिक ब्लॉक सेक्शन में पूर्ण संचार भंग होने/लाइन पर अवरोध होने की स्थिति में गाड़ियों के संचालन के लिए प्राधिकार</td><td>LP/TM/रिकॉर्ड</td><td>15/10 KMPH फेंसिंग पॉइंट पर 15 KMPH</td></tr>
+                    <tr><td><h3>T/C-912</h3></td><td>रिलीफ इंजन/गाड़ी आदि को सेक्शन में बिना लाइन क्लीयर के भेजने का प्राधिकार पत्र।</td><td>LP/TM/रिकॉर्ड</td><td>15/10 KMPH</td></tr>
+                    <tr><td><h3>T/D-912</h3></td><td>ऑटोमैटिक ब्लॉक पद्धति पर सिगनलों की दीर्घ कालीन खराबी के दौरान गाड़ियों के संचालन हेतु प्राधिकार पत्र</td><td>LP/TM/रिकॉर्ड</td><td>पहली गाड़ी 25 / 10 KMPH उसके बाद सभी गाड़ियों के लिए – सेक्शन/लाइन पर और फेंसिंग पॉइंट पर 15 KMPH</td></tr>
+                    <tr><td><h3>T/E-912</h3></td><td>डबल लाइन पर अस्थाई रूप से सिंगल लाइन वर्किंग के दौरान सही/गलत लाइन पर ब्लॉक गाड़ी को दिए जाने वाला प्राधिकार पत्र।</td><td>LP/TM/रिकॉर्ड</td><td>गलत और सही दोनों लाइनों पर जाने वाली पहली गाड़ी के लिए 25 KMPH उसके बाद उसके पीछे जाने वाली सभी गाड़ियों के लिए - सेक्शनल गति</td></tr>
+                    <tr><td><h3>T/B-602</h3></td><td>इकहरी खराब सेक्शन में पूर्ण संचार भंग के दौरान संचार चालू करने के लिए प्राधिकार</td><td>LP/TM/रिकॉर्ड</td><td>15/10 KMPH</td></tr>
+                    <tr><td><h3>T/369(3b)</h3></td><td>ऑन या खराब स्थिति में सिगनलों को पास करने के लिए प्राधिकार</td><td>LP/रिकॉर्ड</td><td>15 KMPH</td></tr>
+                    <tr><td><h3>T/510</h3></td><td>सिगनल रहित लाइन पर गाड़ी को लेने के लिए प्राधिकार पत्र।</td><td>रिकॉर्ड/LP</td><td>15 KMPH</td></tr>
+                    <tr><td><h3>T/511</h3></td><td>सिगनल रहित लाइन से गाड़ी को प्रस्थान करने के लिए प्राधिकार</td><td>रिकॉर्ड/LP</td><td>15 KMPH</td></tr>
+                    <tr><td><h3>T/409</h3></td><td>सतर्कता आदेश</td><td>रिकॉर्ड/LP/TM</td><td></td></tr>
+                </tbody>
+            </table>
+            <div class="page-number"></div>
+        </div>
+
+        <div id="AbsoluteBlock" class="tab-content">
+            <h3>पूर्ण ब्लॉक पद्धति में प्रयोग किए जाने वाले महत्वपूर्ण प्राधिकार पत्र</h3>
+            <table class="authority-table">
+                <thead>
+                    <tr>
+                        <th>क्र. सं.</th>
+                        <th>विवरण</th>
+                        <th>फार्म की संख्या</th>
+                        <th>फार्म पर छपाई का रंग</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="color-blue"><td>01</td><td>त्रुटिपूर्ण सिगनलों को ऑन स्थिति में पार करने के लिए अग्रिम प्राधिकार</td><td><h3>T-369(1)</h3></td><td>नीला</td></tr>
+                    <tr class="color-blue"><td>02</td><td>ऑन अथवा खराब स्थिति में सिगनलों को पार करने के लिए प्राधिकार</td><td><h3>T-369(3b)</h3></td><td>नीला</td></tr>
+                    <tr class="color-green"><td>03</td><td>सतर्कता आदेश</td><td><h3>T-409</h3></td><td>हरा</td></tr>
+                    <tr class="color-green"><td>04</td><td>'कुछ नहीं' सतर्कता आदेश</td><td><h3>T/A-409</h3></td><td>हरा</td></tr>
+                    <tr class="color-blue"><td>05</td><td>अवरुद्ध लाइन पर गाड़ी लेने के लिए प्राधिकार</td><td><h3>T-509</h3></td><td>नीला</td></tr>
+                    <tr class="color-blue"><td>06</td><td>सिगनल रहित लाइन पर गाड़ी लेने के लिए प्राधिकार</td><td><h3>T-510</h3></td><td>नीला</td></tr>
+                    <tr class="color-blue"><td>07</td><td>सिगनल रहित लाइन से गाड़ी के प्रस्थान के लिए प्राधिकार</td><td><h3>T-511</h3></td><td>नीला</td></tr>
+                    <tr class="color-blue"><td>08</td><td>कॉमन स्टार्ट सिगनल वाली लाइन से गाड़ी के प्रस्थान के लिए प्राधिकार</td><td><h3>T-512</h3></td><td>नीला</td></tr>
+                    <tr class="color-red"><td>09</td><td>किसी अवरोधित ब्लॉक सेक्शन में राहत इंजन/गाड़ी भेजने के लिए प्राधिकार</td><td><h3>T/A-602</h3></td><td>लाल</td></tr>
+                    <tr class="color-red"><td>10</td><td>सिंगल लाइन सेक्शन में पूर्ण संचार व्यवस्था भंग के दौरान संचार चालू करने के लिए जाने वाले वाहन का प्राधिकार</td><td><h3>T/B-602</h3></td><td>लाल</td></tr>
+                    <tr class="color-red"><td>11</td><td>डबल लाइन सेक्शन में पूर्ण संचार व्यवस्था भंग के दौरान जाने वाली गाड़ी का प्राधिकार</td><td><h3>T/C-602</h3></td><td>लाल</td></tr>
+                    <tr class="color-red"><td>12</td><td>डबल लाइन पर सिगनल लाइन आइसोलेगी के दौरान गाड़ी संचालन का प्राधिकार</td><td><h3>T/D-602</h3></td><td>लाल</td></tr>
+                    <tr class="color-red"><td>13</td><td>सिंगल लाइन पूर्ण संचार व्यवस्था भंग के दौरान गाड़ियों के लाइन क्लीयर हेतु लाइन क्लीयर इन्क्वायरी मेसेज</td><td><h3>T/E-602</h3></td><td>लाल</td></tr>
+                    <tr class="color-red"><td>14</td><td>कंडीशनल लाइन क्लीयर मेसेज</td><td><h3>T/F-602</h3></td><td>लाल</td></tr>
+                    <tr class="color-red"><td>15</td><td>कंडीशनल लाइन क्लीयर टिकट (अप)</td><td><h3>T/G-602</h3></td><td>लाल</td></tr>
+                    <tr class="color-red"><td>16</td><td>कंडीशनल लाइन क्लीयर टिकट (डाउन)</td><td><h3>T/H-602</h3></td><td>लाल</td></tr>
+                    <tr class="color-black"><td>17</td><td>संचार के किसी भी साधन पुनःस्थापन के संबंध में स्टेशन मैनेजर का सन्देश</td><td><h3>T/I-602</h3></td><td>काला</td></tr>
+                    <tr class="color-blue"><td>18</td><td>इंजन अथवा गाड़ी के हिस्से को मध्य स्टेशन से अगले स्टेशन पर से जाने की अनुमति दिए जाने पर गार्ड द्वारा पायलट को दी जाने वाली लिखित अनुमति</td><td><h3>T-609</h3></td><td>नीला</td></tr>
+                    <tr class="color-blue"><td>19</td><td>शंटिंग आदेश</td><td><h3>T-806</h3></td><td>नीला</td></tr>
+                    <tr class="color-blue"><td>20</td><td>लाइन क्लीयर पूछताछ सन्देश रजिस्टर</td><td><h3>T/A-1425</h3></td><td>नीला</td></tr>
+                    <tr class="color-blue"><td>21</td><td>लाइन क्लीयर जवाब सन्देश रजिस्टर</td><td><h3>T/B-1425</h3></td><td>नीला</td></tr>
+                    <tr class="color-blue"><td>22</td><td>पेपर लाइन क्लीयर टिकट (अप)</td><td><h3>T/C-1425</h3></td><td>नीला</td></tr>
+                    <tr class="color-blue"><td>23</td><td>पेपर लाइन क्लीयर टिकट (डाउन)</td><td><h3>T/D-1425</h3></td><td>नीला</td></tr>
+                    <tr class="color-black"><td>24</td><td>ट्रॉली/लॉरी/ओ.एच.ई. हैडर ट्रॉली नोटिस</td><td><h3>T-1518</h3></td><td>काला</td></tr>
+                    <tr class="color-black"><td>25</td><td>सिगनल एवं इंटरलॉक डिस्कनेक्शन/री-कनेक्शन नोटिस</td><td><h3>S&T (T-351)</h3></td><td>काला</td></tr>
+                    <tr class="color-black"><td>26</td><td>गाड़ी परीक्षक सूचना रिपोर्ट</td><td><h3>T-431</h3></td><td>काला</td></tr>
+                    <tr class="color-black"><td>27</td><td>गाड़ी का सिगनल आगमन रजिस्टर</td><td><h3>T-1410</h3></td><td>काला</td></tr>
+                </tbody>
+            </table>
+            <div class="page-number"></div>
+        </div>
+
+        <div id="DFCR" class="tab-content">
+            <h3>Mentioning Indian Railway Authority/Form No DFCR Authorities</h3>
+            <table class="dfcr-table">
+                <thead>
+                    <tr>
+                        <th>DFC Form No.</th>
+                        <th>Rule Number</th>
+                        <th>Description of Authority to be used in DFCR</th>
+                        <th>IR Forms No.</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>1</td><td><h3>65(a)</h3></td><td>Disconnection or Reconnection Notice</td><td>T(351)</td></tr>
+                    <tr><td>2</td><td><h3>97(2)(a)</h3></td><td>Paper Line Clear Ticket</td><td>T/C1425(UP)<br>T/D1425(DN)</td></tr>
+                    <tr><td>3</td><td><h3>103(2)(b)</h3></td><td>Shunting Order</td><td>T/806</td></tr>
+                    <tr><td>4</td><td><h3>117(6)</h3></td><td>Authority to Proceed during prolonged failure of signals on Double line section in Automatic Block System.</td><td>T/D 912</td></tr>
+                    <tr><td>5</td><td><h3>136(2)(b)</h3></td><td>Authority to receive a train on an Obstructed Line</td><td>T/509</td></tr>
+                    <tr><td>6</td><td><h3>137(1)(d)</h3></td><td>Authority to receive a train on a Non-signalled line.</td><td>T/510</td></tr>
+                    <tr><td>7</td><td><h3>138(1)(b)</h3></td><td>Authority to start from a Non-signalled line or a line provided by common departure signal.</td><td>T/511&T/512</td></tr>
+                    <tr><td>8</td><td><h3>155(1)</h3></td><td>Caution Order</td><td>T/409</td></tr>
+                    <tr><td>9</td><td><h3>155(6)</h3></td><td>Nil-Caution Order</td><td>T/A 409</td></tr>
+                    <tr><td>10</td><td><h3>211(3)(a)</h3></td><td>Advance Authority to pass defective approach signals at "ON" position.</td><td>T/369(1)</td></tr>
+                    <tr><td>11</td><td><h3>211(3)(b)</h3></td><td>Authority to pass defective approach signals at "ON" position.</td><td>T/369(3b)</td></tr>
+                    <tr><td>12</td><td><h3>212(1)(c)</h3></td><td>Message to be exchanged between Station Mangers for introduction of Temporary Single Line Working on a double line section.</td><td>T/369(3b)</td></tr>
+                    <tr><td>13</td><td><h3>218(2)</h3></td><td>Authority for Temporary Single Line Working on a double line.</td><td>T/D 602</td></tr>
+                    <tr><td>14</td><td><h3>218(4)(e)</h3></td><td>Authority for Temporary Single Line Working on a double line.</td><td>T/D 602</td></tr>
+                    <tr><td>15</td><td><h3>218(5)(b)</h3></td><td>The Following Train System Authority to Proceed</td><td>T/A 602</td></tr>
+                    <tr><td>16</td><td><h3>218(10)</h3></td><td>Authority to receive a train during Temporary Single Line Working on a double line approaching on wrong line.</td><td>T/510</td></tr>
+                    <tr><td>17</td><td><h3>218(11)(C)</h3></td><td>Message to be exchanged between Station Mangers for restoration of normal working after Temporary Single Line Working.</td><td>T/D 602</td></tr>
+                    <tr><td>18</td><td><h3>227(6)</h3></td><td>Authority to Proceed Without Line Clear and Proceed into an occupied block section.</td><td>T/A 602</td></tr>
+                    <tr><td>19</td><td><h3>257(d)</h3></td><td>Motor Trolley Following Permit.</td><td>T/1525</td></tr>
+                    <tr><td>20</td><td><h3>259(1)</h3></td><td>Working of a Motor Trolley or Lorry or Rail Dolly on full block.</td><td>T/1518</td></tr>
+                </tbody>
+            </table>
+            <div class="note">
+                नोट - IR में सिग्नलिंग सेक्शन एक किलोमीटर का होता है जबकि DFCR में सिग्नलिंग सेक्शन दो किलोमीटर का होता है।
+            </div>
+            <div class="page-number"></div>
+        </div>
+
+    </div>
+
+    <script>
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+
+            // Get all elements with class="tab-content" and hide them
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+                tabcontent[i].classList.remove("active"); 
+            }
+
+            // Get all elements with class="tab-button" and remove the class "active"
+            tablinks = document.getElementsByClassName("tab-button");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active");
+            }
+
+            // Show the current tab, and add an "active" class to the button that opened the tab
+            document.getElementById(tabName).style.display = "block";
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+
+        // Initialize: Ensure the first tab is shown and active on load
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const initialTab = document.getElementById('AutomaticBlock');
+            const initialButton = document.querySelector('.tab-button');
+            if (initialTab && initialButton) {
+                initialTab.style.display = 'block';
+                initialTab.classList.add('active');
+                initialButton.classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>

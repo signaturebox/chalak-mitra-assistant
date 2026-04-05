@@ -1,0 +1,126 @@
+[
+  {
+    "subsystemCode": "SS12",
+    "subsystemNameHI": "ऑक्सिलरीज HB-2",
+    "subsystemNameEN": "AUXILIARIES HB 2",
+    "faults": [
+      {
+        "faultCode": "F1201P2",
+        "titleHI": "ऑक्स क्यूबिकल-2 में MCB ट्रिप",
+        "titleEN": "MCB(S) TRIPPED IN AUX. CUBICLE 2",
+        "messageHI": "यदि तापमान बढ़े तो ट्रैक्शन पावर कम हो सकती है",
+        "messageEN": "Traction power may get reduced, if temperature exceed",
+        "lamps": ["BPFA प्रकाशित होगा"],
+        "effectHI": "ऑक्स क्यूबिकल HB-2 के MCB ट्रिप होने से संबंधित उपकरण प्रभावित हो सकते हैं",
+        "effectEN": "Auxiliary equipment may be affected due to MCB trip in HB-2",
+        "actionHI": [
+          "HB-2 में लगे MCBs को चेक करें, यदि कोई MCB ट्रिप मिले तो VCB ओपन करके एक बार reset करें",
+          "BPFA दबाकर फॉल्ट ACK करें और सामान्य ऑपरेशन जारी रखें",
+          "यदि कोई भी MCB ट्रिप नहीं है फिर भी संदेश आ रहा है तो यह संबंधित MCB के कंट्रोल कॉन्टैक्टर खराब होने के कारण हो सकता है",
+          "यदि MCB (59.1/2 या 62.1/2 या 63.1/2 या 53.1/2) reset करने के बाद बार-बार ट्रिप हो रहे हैं तो लोको पायलट बार-बार reset करने की कोशिश न करें और SS08 के अंत में दिए निर्देशानुसार troubleshooting करें",
+          "TLC को सूचित करें तथा लॉगबुक में दर्ज करें",
+          "यदि अपने आप Bogie-2 isolate हो जाती है तो एक बोगी के साथ ट्रैक्शन चालू रखें",
+          "यदि ऊपर दिए गए MCB के अलावा कोई अन्य MCB reset करने के बाद फिर ट्रिप हो रहा है तो जहाँ तक संभव हो सामान्य ऑपरेशन जारी रखें तथा TLC को सूचित करें",
+          "MCB नं. 54.1/2 को चेक करें, यदि ट्रिप हो तो एक बार reset करें; यदि फिर ट्रिप हो तो सेक्शन साफ करके TLC को सूचित करें और सहायता मांगे"
+        ],
+        "actionEN": [
+          "Check MCBs in HB-2; if any MCB is tripped, open VCB and reset once",
+          "ACK fault by BPFA and continue normal operation",
+          "If no MCB is tripped but message appears, related MCB control contactor may be faulty",
+          "If MCBs (59.1/2 or 62.1/2 or 63.1/2 or 53.1/2) trip repeatedly after reset, do not reset again; follow troubleshooting as per SS08 end instructions",
+          "Inform TLC and make logbook entry",
+          "If Bogie-2 gets isolated automatically, continue operation with one bogie",
+          "If any other MCB trips repeatedly, continue operation as far as possible and inform TLC",
+          "Check MCB 54.1/2; reset once if tripped, if trips again then clear section, inform TLC and ask for assistance"
+        ],
+        "isolation": {
+          "required": false,
+          "titleHI": "",
+          "titleEN": "",
+          "effectHI": "",
+          "effectEN": "",
+          "stepsHI": [],
+          "stepsEN": []
+        }
+      },
+
+      {
+        "faultCode": "F1202P2",
+        "titleHI": "मेन कम्प्रेसर-2 MCB OFF / ओपन",
+        "titleEN": "MCB OFF MAIN COMPRESSOR OPEN",
+        "messageHI": "कम्प्रेसर-2 उपलब्ध नहीं",
+        "messageEN": "Compressor 2 not available",
+        "lamps": ["BPFA प्रकाशित होगा"],
+        "effectHI": "एक कम्प्रेसर उपलब्ध नहीं रहेगा, सामान्यतः दूसरे कम्प्रेसर से कार्य होगा",
+        "effectEN": "One compressor will not be available, operation will continue with remaining compressor",
+        "actionHI": [
+          "HB-2 ऑक्स क्यूबिकल में लगे MCB नं. 47.1/2 को चेक करें, यदि ट्रिप मिले तो VCB ओपन करके एक बार reset करें",
+          "BPFA दबाकर फॉल्ट ACK करें",
+          "सामान्य ट्रैक्शन चालू रखें",
+          "यदि वही संदेश दोबारा आता है तो एक कम्प्रेसर के साथ गाड़ी चलाएँ",
+          "TLC को सूचित करें और लॉगबुक में दर्ज करें",
+          "नोट: यदि MCB नं. 47.1/1 और 47.1/2 बार-बार ट्रिप हो रहे हों तो VCB ओपन करके reset करें और BUR-3 को isolate करें"
+        ],
+        "actionEN": [
+          "Check MCB No. 47.1/2 in HB-2 auxiliary cubicle; if tripped open VCB and reset once",
+          "ACK fault using BPFA",
+          "Continue normal traction",
+          "If message repeats, run with one compressor",
+          "Inform TLC and make logbook entry",
+          "Note: If MCB 47.1/1 and 47.1/2 trip repeatedly, open VCB, reset and isolate BUR-3"
+        ],
+        "isolation": {
+          "required": false,
+          "titleHI": "",
+          "titleEN": "",
+          "effectHI": "",
+          "effectEN": "",
+          "stepsHI": [],
+          "stepsEN": []
+        }
+      },
+
+      {
+        "faultCode": "F1203P2",
+        "titleHI": "OCB-2 पर ओवरलोड",
+        "titleEN": "OVERLOAD ON OCB-2",
+        "messageHI": "OCB को isolate करें",
+        "messageEN": "Isolate OCB",
+        "lamps": ["BPFA प्रकाशित होगा"],
+        "effectHI": "OCB-2 overload होने पर Bogie-2 isolate करना पड़ेगा और एक बोगी के साथ ऑपरेशन होगा",
+        "effectEN": "Due to OCB-2 overload, Bogie-2 needs isolation and operation will continue with one bogie",
+        "actionHI": [
+          "थ्रॉटल को '0' पर रखें और BPFA दबाकर फॉल्ट ACK करें",
+          "HB-2 में लगे ऑयल कूलिंग ब्लोअर के MCB 59.1/2 को ट्रिप करें",
+          "Bogie-2 को स्विच 154 द्वारा isolate करें",
+          "एक बोगी के साथ सामान्य ऑपरेशन कर सकते हैं",
+          "TLC को सूचित करें और लॉगबुक में दर्ज करें"
+        ],
+        "actionEN": [
+          "Bring throttle to '0' and ACK fault using BPFA",
+          "Trip MCB 59.1/2 of oil cooling blower in HB-2",
+          "Isolate Bogie-2 using switch 154",
+          "Continue normal operation with one bogie",
+          "Inform TLC and make logbook entry"
+        ],
+        "isolation": {
+          "required": true,
+          "titleHI": "BOGIE-2 ISOLATED (Switch 154)",
+          "titleEN": "BOGIE-2 ISOLATED (Switch 154)",
+          "effectHI": "Half TE/BE उपलब्ध (एक बोगी के साथ संचालन)",
+          "effectEN": "Half TE/BE available (operation with one bogie)",
+          "stepsHI": [
+            "Switch 154 से Bogie-2 isolate करें",
+            "BPFA से ACK करें",
+            "TLC को सूचित करें"
+          ],
+          "stepsEN": [
+            "Isolate Bogie-2 using switch 154",
+            "ACK with BPFA",
+            "Inform TLC"
+          ]
+        }
+      }
+    ]
+  }
+]

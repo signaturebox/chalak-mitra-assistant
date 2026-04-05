@@ -1,0 +1,180 @@
+[
+  {
+    "subsystemCode": "SS07",
+    "subsystemNameHI": "ऑक्स कन्वर्टर 2",
+    "subsystemNameEN": "AUX CONVERTER 2",
+    "faults": [
+      {
+        "faultCode": "F0701P1",
+        "titleHI": "प्रोसेसर BUR-2 में डिस्टर्बेंस",
+        "titleEN": "DISTURBANCE IN PROCESSOR BUR 2",
+        "messageHI": "VCB पुनः बंद करने का प्रयास करें",
+        "messageEN": "Try to close VCB again",
+        "lamps": ["LSDJ जलेगी", "BPFA जलेगी", "LSFI ब्लिंकिंग करेगी"],
+        "effectHI": "VCB ओपन होगा, AUX कन्वर्टर-2 isolate हो सकता है",
+        "effectEN": "VCB will open, AUX Converter-2 may isolate",
+        "actionHI": [
+          "थ्रॉटल 0 पर रखें और BPFA दबाकर ACK करें",
+          "BUR-2 अपने आप isolate हो सकता है, DDS पर ENTER दबाएँ",
+          "VCB क्लोज करने हेतु BLDJ दबाएँ",
+          "सामान्य ट्रैक्शन के साथ गाड़ी चलाएँ"
+        ],
+        "actionEN": [
+          "Keep throttle at 0 and ACK with BPFA",
+          "BUR-2 may auto isolate, press ENTER on DDS",
+          "Press BLDJ to close VCB",
+          "Run train with normal traction"
+        ],
+        "isolation": {
+          "required": true,
+          "titleHI": "AUX CONVERTER 2 ISOLATED",
+          "titleEN": "AUX CONVERTER 2 ISOLATED",
+          "effectHI": "ड्राइविंग संभव, लेकिन अधिकतम वेंटिलेशन लेवल कम रहेगा",
+          "effectEN": "Driving possible, but maximum ventilation level reduced",
+          "stepsHI": [
+            "DDS पर isolation message आने पर ENTER दबाएँ",
+            "TLC को सूचित करें और लॉगबुक में दर्ज करें"
+          ],
+          "stepsEN": [
+            "Press ENTER on isolation message",
+            "Inform TLC and make logbook entry"
+          ]
+        }
+      },
+
+      {
+        "faultCode": "F0702P1",
+        "titleHI": "ऑक्सिलरी कन्वर्टर-2 में फॉल्ट",
+        "titleEN": "FAULT IN AUXILIARY CONVERTER 2",
+        "messageHI": "VCB पुनः बंद करने का प्रयास करें",
+        "messageEN": "Try to close VCB again",
+        "lamps": ["LSDJ जलेगी", "BPFA जलेगी", "LSFI ब्लिंकिंग करेगी"],
+        "effectHI": "VCB ओपन होगा, AUX-2 isolate हो सकता है",
+        "effectEN": "VCB will open, AUX-2 may isolate",
+        "actionHI": [
+          "थ्रॉटल 0 पर रखें और BPFA ACK करें",
+          "BLDJ दबाकर VCB क्लोज करें",
+          "यदि fault repeat हो तो BUR-2 auto isolate होगा, ENTER दबाएँ",
+          "HB-2 में MCB 54.1/2 चेक करें, ट्रिप हो तो reset करें"
+        ],
+        "actionEN": [
+          "Keep throttle at 0 and ACK with BPFA",
+          "Press BLDJ to close VCB",
+          "If fault repeats, BUR-2 auto isolates, press ENTER",
+          "Check MCB 54.1/2 in HB-2, reset if tripped"
+        ],
+        "isolation": {
+          "required": true,
+          "titleHI": "AUX CONVERTER 2 ISOLATED",
+          "titleEN": "AUX CONVERTER 2 ISOLATED",
+          "effectHI": "वेंटिलेशन लेवल कम रहेगा, ड्राइविंग संभव",
+          "effectEN": "Ventilation level reduced, driving possible",
+          "stepsHI": [
+            "ENTER दबाकर isolation स्वीकार करें",
+            "TLC को सूचित करें"
+          ],
+          "stepsEN": [
+            "Press ENTER to accept isolation",
+            "Inform TLC"
+          ]
+        }
+      },
+
+      {
+        "faultCode": "F0703P1",
+        "titleHI": "AUX CONV-2 / HB-2 में कॉन्टैक्टर फॉल्ट",
+        "titleEN": "CONTACTOR FAULT IN AUX CONV-2 / HB-2",
+        "messageHI": "कॉन्टैक्टर STUCK OFF/ON हो सकता है",
+        "messageEN": "Contactor may be stuck OFF/ON",
+        "lamps": ["LSDJ जलेगी", "BPFA जलेगी", "LSFI ब्लिंकिंग करेगी"],
+        "effectHI": "AUX-2 isolate हो सकता है",
+        "effectEN": "AUX-2 may get isolated",
+        "actionHI": [
+          "थ्रॉटल 0 रखें और BPFA ACK करें",
+          "VCB क्लोज करने हेतु BLDJ दबाएँ",
+          "यदि फॉल्ट बना रहे तो BUR-2 isolate रखकर गाड़ी चलाएँ",
+          "TLC को सूचित करें"
+        ],
+        "actionEN": [
+          "Keep throttle at 0 and ACK with BPFA",
+          "Press BLDJ to close VCB",
+          "If fault persists keep BUR-2 isolated and proceed",
+          "Inform TLC"
+        ],
+        "isolation": {
+          "required": true,
+          "titleHI": "AUX CONVERTER 2 ISOLATED",
+          "titleEN": "AUX CONVERTER 2 ISOLATED",
+          "effectHI": "वेंटिलेशन सीमित, ड्राइविंग संभव",
+          "effectEN": "Ventilation limited, driving possible",
+          "stepsHI": [
+            "Isolation message पर ENTER दबाएँ",
+            "लॉग बुक में दर्ज करें"
+          ],
+          "stepsEN": [
+            "Press ENTER on isolation message",
+            "Make logbook entry"
+          ]
+        }
+      },
+
+      {
+        "faultCode": "F0704P1",
+        "titleHI": "BUR-2 वेंटिलेशन डिस्टर्ब",
+        "titleEN": "VENTILATION BUR 2 DISTURBED",
+        "messageHI": "BUR-1 पर रीकॉन्फ़िगर करें",
+        "messageEN": "Reconfigure to BUR-1",
+        "lamps": ["LSFI ब्लिंकिंग करेगी", "BPFA जलेगी"],
+        "effectHI": "AUX-2 isolate होगा, वेंटिलेशन कम रहेगा",
+        "effectEN": "AUX-2 will isolate, ventilation level reduced",
+        "actionHI": [
+          "BPFA दबाकर ACK करें",
+          "कंट्रोल इलेक्ट्रॉनिक्स OFF/ON करें",
+          "यदि फॉल्ट बना रहे तो BUR-2 isolate रखकर सामान्य ऑपरेशन जारी रखें",
+          "TLC को सूचित करें"
+        ],
+        "actionEN": [
+          "ACK with BPFA",
+          "Switch control electronics OFF/ON",
+          "If fault persists keep BUR-2 isolated and continue",
+          "Inform TLC"
+        ],
+        "isolation": {
+          "required": true,
+          "titleHI": "AUX CONVERTER 2 ISOLATED",
+          "titleEN": "AUX CONVERTER 2 ISOLATED",
+          "effectHI": "ड्राइविंग संभव, वेंटिलेशन लेवल कम",
+          "effectEN": "Driving possible, ventilation level reduced",
+          "stepsHI": [
+            "ENTER दबाकर isolation स्वीकार करें",
+            "लॉगबुक में दर्ज करें"
+          ],
+          "stepsEN": [
+            "Press ENTER to accept isolation",
+            "Make logbook entry"
+          ]
+        }
+      },
+        "isolation": {
+          "required": true,
+          "titleHI": "AUX CONVERTER-2 ISOLATION CONFIRMED",
+          "titleEN": "AUX CONVERTER-2 ISOLATION CONFIRMED",
+          "effectHI": "Ventilation level reduce रहेगा (Driving possible)",
+          "effectEN": "Ventilation level reduced (Driving possible)",
+          "stepsHI": [
+            "DDS पर 'AUX CONVERTER 2 ISOLATED' आने पर ENTER दबाकर ACK करें",
+            "Bogie / Traction operation जारी रखें",
+            "यदि overheating indication हो तो speed/traction कम रखें",
+            "TLC को सूचित करें"
+          ],
+          "stepsEN": [
+            "When DDS shows 'AUX CONVERTER 2 ISOLATED', press ENTER to ACK",
+            "Continue traction/bogie operation",
+            "If overheating indication occurs, reduce speed/traction",
+            "Inform TLC"
+          ]
+        }
+      }
+    ]
+  }
+]

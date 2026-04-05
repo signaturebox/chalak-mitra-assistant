@@ -1,0 +1,288 @@
+[
+  {
+    "subsystemCode": "SS05",
+    "subsystemNameHI": "होटल लोड",
+    "subsystemNameEN": "HOTEL LOAD",
+    "faults": [
+      {
+        "faultCode": "F0503P1",
+        "titleHI": "होटल लोड सर्किट में अर्थ फॉल्ट",
+        "titleEN": "EARTH FAULT IN HOTEL LOAD CIRCUIT",
+        "messageHI": "होटल लोड आइसोलेट हो जाएगा",
+        "messageEN": "Hotel load will be isolated",
+        "lamps": ["LSDJ जलेगी", "BPFA जलेगी", "LSFI ब्लिंकिंग करेगी (सीमित समय)"],
+        "effectHI": "Hotel Load isolate हो जाएगा",
+        "effectEN": "Hotel Load will be isolated",
+        "actionHI": [
+          "होटल लोड कॉन्टैक्टर खोलने हेतु BLHO का प्रयोग करें",
+          "BPFA द्वारा फॉल्ट ACK करें",
+          "मेंटेनेंस स्टाफ को सूचित करें"
+        ],
+        "actionEN": [
+          "Use BLHO to open hotel load contactor",
+          "Acknowledge fault by BPFA",
+          "Inform maintenance staff"
+        ],
+        "isolation": {
+          "required": true,
+          "titleHI": "HOTEL LOAD ISOLATED",
+          "titleEN": "HOTEL LOAD ISOLATED",
+          "effectHI": "होटल लोड सप्लाई बंद रहेगी",
+          "effectEN": "Hotel load supply will remain OFF",
+          "stepsHI": [
+            "BLHO से होटल लोड कॉन्टैक्टर खोलें",
+            "BPFA से ACK करें",
+            "मेंटेनेंस को सूचित करें"
+          ],
+          "stepsEN": [
+            "Open hotel load contactor using BLHO",
+            "ACK with BPFA",
+            "Inform maintenance"
+          ]
+        }
+      },
+
+      {
+        "faultCode": "F0504P1",
+        "titleHI": "होटल लोड सर्किट में ओवर करंट",
+        "titleEN": "OVER CURRENT IN HOTEL LOAD CIRCUIT",
+        "messageHI": "VCB पुनः बंद करने का प्रयास करें",
+        "messageEN": "Try to close VCB again",
+        "lamps": ["LSDJ जलेगी", "BPFA जलेगी", "LSFI ब्लिंकिंग करेगी (सीमित समय)"],
+        "effectHI": "VCB ओपन हो जाएगा (1st बार), 2nd बार में होटल लोड आइसोलेट हो जाएगा",
+        "effectEN": "VCB will open (1st time), on 2nd time hotel load will be isolated",
+        "actionHI": [
+          "BPFA द्वारा फॉल्ट ACK करें",
+          "VCB क्लोज करने हेतु BLDJ दबाएँ",
+          "यदि दोबारा फॉल्ट आए तो होटल लोड isolate हो जाएगा",
+          "मेंटेनेंस स्टाफ को सूचित करें"
+        ],
+        "actionEN": [
+          "ACK fault by BPFA",
+          "Press BLDJ to close VCB",
+          "If fault repeats hotel load will be isolated",
+          "Inform maintenance staff"
+        ],
+        "isolation": {
+          "required": true,
+          "titleHI": "HOTEL LOAD ISOLATED (on repeat fault)",
+          "titleEN": "HOTEL LOAD ISOLATED (on repeat fault)",
+          "effectHI": "होटल लोड सप्लाई बंद रहेगी",
+          "effectEN": "Hotel load supply will remain OFF",
+          "stepsHI": [
+            "BPFA ACK करें",
+            "मेंटेनेंस को सूचित करें"
+          ],
+          "stepsEN": [
+            "ACK with BPFA",
+            "Inform maintenance"
+          ]
+        }
+      },
+
+      {
+        "faultCode": "F0501P2",
+        "titleHI": "होटल लोड कॉन्टैक्टर STUCK OFF",
+        "titleEN": "HOTEL LOAD CONTACTOR STUCK OFF",
+        "messageHI": "होटल लोड उपलब्ध नहीं होगा",
+        "messageEN": "Hotel load not available",
+        "lamps": ["BPFA जलेगी"],
+        "effectHI": "Hotel Load ON नहीं होगा",
+        "effectEN": "Hotel load will not be available",
+        "actionHI": [
+          "BPFA द्वारा फॉल्ट ACK करें",
+          "मेंटेनेंस स्टाफ को सूचित करें"
+        ],
+        "actionEN": [
+          "ACK fault by BPFA",
+          "Inform maintenance staff"
+        ],
+        "isolation": {
+          "required": false,
+          "titleHI": "",
+          "titleEN": "",
+          "effectHI": "",
+          "effectEN": "",
+          "stepsHI": [],
+          "stepsEN": []
+        }
+      },
+
+      {
+        "faultCode": "F0502P2",
+        "titleHI": "होटल लोड कॉन्टैक्टर STUCK ON",
+        "titleEN": "HOTEL LOAD CONTACTOR STUCK ON",
+        "messageHI": "Hotel load के uncoupling के लिए VCB trip हो सकता है",
+        "messageEN": "For uncoupling hotel load, VCB may trip",
+        "lamps": ["BPFA जलेगी"],
+        "effectHI": "VCB trip हो सकता है, BLDJ से close नहीं होगा",
+        "effectEN": "VCB may trip, VCB may not close by BLDJ",
+        "actionHI": [
+          "BPFA द्वारा फॉल्ट ACK करें",
+          "TLC को सूचित करें और TLC के निर्देशानुसार कार्य करें",
+          "यदि VCB trip हो जाता है तो BLDJ से close नहीं होगा"
+        ],
+        "actionEN": [
+          "ACK fault using BPFA",
+          "Inform TLC and follow TLC instructions",
+          "If VCB trips, it may not close by BLDJ"
+        ],
+        "isolation": {
+          "required": true,
+          "titleHI": "HOTEL LOAD CUT-OUT (Required as per TLC)",
+          "titleEN": "HOTEL LOAD CUT-OUT (Required as per TLC)",
+          "effectHI": "होटल लोड अलग (uncouple) किया जाएगा",
+          "effectEN": "Hotel load will be uncoupled",
+          "stepsHI": [
+            "TLC निर्देश अनुसार होटल लोड कट-आउट करें",
+            "BPFA से ACK करें"
+          ],
+          "stepsEN": [
+            "Cut-out hotel load as per TLC instructions",
+            "ACK with BPFA"
+          ]
+        }
+      },
+
+      {
+        "faultCode": "F0503P2",
+        "titleHI": "TM1 बोगी-2 आइसोलेट",
+        "titleEN": "TM 1 BOGIE 2 ISOLATED",
+        "messageHI": "केवल 5/6th traction/electrical braking power उपलब्ध",
+        "messageEN": "Only 5/6th traction/electrical braking power available",
+        "lamps": ["LSFI ब्लिंकिंग करेगी", "BPFA जलेगी"],
+        "effectHI": "बोगी-2 की TM-1 (TM-4) isolate, 1/6th TE/BE कम होगी",
+        "effectEN": "Bogie-2 TM-1 (TM-4) isolated, 1/6th TE/BE reduced",
+        "actionHI": [
+          "BPFA द्वारा फॉल्ट ACK करें और सामान्य ऑपरेशन जारी रखें",
+          "TLC को सूचित करें और logbook में दर्ज करें"
+        ],
+        "actionEN": [
+          "ACK fault using BPFA and continue normal operation",
+          "Inform TLC and make logbook entry"
+        ],
+        "isolation": {
+          "required": false,
+          "titleHI": "",
+          "titleEN": "",
+          "effectHI": "",
+          "effectEN": "",
+          "stepsHI": [],
+          "stepsEN": []
+        }
+      },
+
+      {
+        "faultCode": "F0504P2",
+        "titleHI": "TM2 बोगी-2 आइसोलेट",
+        "titleEN": "TM 2 BOGIE 2 ISOLATED",
+        "messageHI": "केवल 5/6th traction/electrical braking power उपलब्ध",
+        "messageEN": "Only 5/6th traction/electrical braking power available",
+        "lamps": ["LSFI ब्लिंकिंग करेगी", "BPFA जलेगी"],
+        "effectHI": "TM-2 (TM-5) isolate, 1/6th TE/BE कम होगी",
+        "effectEN": "TM-2 (TM-5) isolated, 1/6th TE/BE reduced",
+        "actionHI": [
+          "BPFA ACK करें और normal operation जारी रखें",
+          "TLC को सूचित करें और logbook में दर्ज करें"
+        ],
+        "actionEN": [
+          "ACK with BPFA and continue normal operation",
+          "Inform TLC and make logbook entry"
+        ],
+        "isolation": {
+          "required": false,
+          "titleHI": "",
+          "titleEN": "",
+          "effectHI": "",
+          "effectEN": "",
+          "stepsHI": [],
+          "stepsEN": []
+        }
+      },
+
+      {
+        "faultCode": "F0505P2",
+        "titleHI": "TM3 बोगी-2 आइसोलेट",
+        "titleEN": "TM 3 BOGIE 2 ISOLATED",
+        "messageHI": "केवल 5/6th traction/electrical braking power उपलब्ध",
+        "messageEN": "Only 5/6th traction/electrical braking power available",
+        "lamps": ["LSFI ब्लिंकिंग करेगी", "BPFA जलेगी"],
+        "effectHI": "TM-3 (TM-6) isolate, 1/6th TE/BE कम होगी",
+        "effectEN": "TM-3 (TM-6) isolated, 1/6th TE/BE reduced",
+        "actionHI": [
+          "BPFA ACK करें और normal operation जारी रखें",
+          "TLC को सूचित करें और logbook में दर्ज करें"
+        ],
+        "actionEN": [
+          "ACK with BPFA and continue normal operation",
+          "Inform TLC and make logbook entry"
+        ],
+        "isolation": {
+          "required": false,
+          "titleHI": "",
+          "titleEN": "",
+          "effectHI": "",
+          "effectEN": "",
+          "stepsHI": [],
+          "stepsEN": []
+        }
+      },
+
+      {
+        "faultCode": "F0506P2",
+        "titleHI": "लाइन कन्वर्टर-1 बोगी-2 आइसोलेट",
+        "titleEN": "LINE CONVERTER 1 BOGIE 2 ISOLATED",
+        "messageHI": "केवल 3/4th traction/electrical braking power उपलब्ध",
+        "messageEN": "Only 3/4th traction/electrical braking power available",
+        "lamps": ["LSFI ब्लिंकिंग करेगी", "BPFA जलेगी"],
+        "effectHI": "LC-1 isolate, 1/4th TE/BE कम होगी",
+        "effectEN": "LC-1 isolated, 1/4th TE/BE reduced",
+        "actionHI": [
+          "BPFA ACK करें और normal operation जारी रखें",
+          "TLC को सूचित करें और logbook में दर्ज करें"
+        ],
+        "actionEN": [
+          "ACK with BPFA and continue normal operation",
+          "Inform TLC and make logbook entry"
+        ],
+        "isolation": {
+          "required": false,
+          "titleHI": "",
+          "titleEN": "",
+          "effectHI": "",
+          "effectEN": "",
+          "stepsHI": [],
+          "stepsEN": []
+        }
+      },
+
+      {
+        "faultCode": "F0507P2",
+        "titleHI": "लाइन कन्वर्टर-2 बोगी-2 आइसोलेट",
+        "titleEN": "LINE CONVERTER 2 BOGIE 2 ISOLATED",
+        "messageHI": "केवल 3/4th traction/electrical braking power उपलब्ध",
+        "messageEN": "Only 3/4th traction/electrical braking power available",
+        "lamps": ["LSFI ब्लिंकिंग करेगी", "BPFA जलेगी"],
+        "effectHI": "LC-2 isolate, 1/4th TE/BE कम होगी",
+        "effectEN": "LC-2 isolated, 1/4th TE/BE reduced",
+        "actionHI": [
+          "BPFA ACK करें और normal operation जारी रखें",
+          "TLC को सूचित करें और logbook में दर्ज करें"
+        ],
+        "actionEN": [
+          "ACK with BPFA and continue normal operation",
+          "Inform TLC and make logbook entry"
+        ],
+        "isolation": {
+          "required": false,
+          "titleHI": "",
+          "titleEN": "",
+          "effectHI": "",
+          "effectEN": "",
+          "stepsHI": [],
+          "stepsEN": []
+        }
+      }
+    ]
+  }
+]

@@ -1,0 +1,268 @@
+[
+  {
+    "subsystemCode": "SS09",
+    "subsystemNameHI": "बैटरी सिस्टम",
+    "subsystemNameEN": "BATTERY SYSTEM",
+    "faults": [
+      {
+        "faultCode": "F0901P1",
+        "titleHI": "बैटरी वोल्टेज बहुत कम",
+        "titleEN": "BATTERY VOLTAGE TOO LOW",
+        "messageHI": "Electronics switch off हो जाएगी",
+        "messageEN": "Electronics will switch off",
+        "lamps": ["LSFI ब्लिंकिंग करेगी", "BPFA प्रकाशित होगा"],
+        "effectHI": "Control Electronics OFF हो जाएगी",
+        "effectEN": "Control electronics will switch off",
+        "actionHI": [
+          "थ्रॉटल को '0' पर रखें और BPFA दबाकर फॉल्ट ACK करें",
+          "SB-2 पैनल से MCB 112.1 एवं 110 चेक करें; ट्रिप हो तो Control Electronics OFF करके MCB reset करें",
+          "यदि बैटरी वोल्टेज 82V से ऊपर है तो BUR-3 को Control Electronics OFF करके MCB 127.22/3 (SB-2) द्वारा isolate करें और लोको को इनरजाइज रखें, सामान्यतः ट्रेन चालू करें",
+          "यदि UBA बैटरी वोल्टेज 82V से कम दिख रहा है तो तुरंत सहायता इंजन की मांग करें"
+        ],
+        "actionEN": [
+          "Keep throttle at '0' and ACK fault using BPFA",
+          "Check MCB 112.1 and 110 in SB-2 panel; if tripped reset with Control Electronics OFF",
+          "If battery voltage is above 82V then isolate BUR-3 by switching Control Electronics OFF and using MCB 127.22/3 (SB-2); keep loco energized and continue normally",
+          "If UBA battery voltage is below 82V then ask for assistance engine immediately"
+        ],
+        "isolation": {
+          "required": false,
+          "titleHI": "",
+          "titleEN": "",
+          "effectHI": "",
+          "effectEN": "",
+          "stepsHI": [],
+          "stepsEN": []
+        }
+      },
+
+      {
+        "faultCode": "F0902P1",
+        "titleHI": "बैटरी वोल्टेज कम",
+        "titleEN": "BATTERY VOLTAGE LOW",
+        "messageHI": "Converters switch off होंगे, VCB open होगी, पैंटो नीचे करें",
+        "messageEN": "Converters being switched off, open VCB, lower panto",
+        "lamps": ["LSFI ब्लिंकिंग करेगी", "BPFA प्रकाशित होगा"],
+        "effectHI": "Converters OFF होंगे, VCB open होगी",
+        "effectEN": "Converters OFF, VCB opens",
+        "actionHI": [
+          "थ्रॉटल को '0' पर रखें और BPFA दबाकर ACK करें",
+          "SB-2 पैनल में MCB 112.1 एवं 110 चेक करें; ट्रिप हो तो Control Electronics OFF करके reset करें (इलेक्ट्रॉनिक्स कार्ड को फेल होने से बचाने हेतु MCB-110 reset करने से पहले Control Electronics OFF करें)",
+          "Control Electronics को ON करें",
+          "UBA बैटरी वोल्टेज चेक करें; यदि 82V से ऊपर है और HB-2 में बैटरी चार्जर input MCB 100 ट्रिप है तो VCB ओपन करके MCB reset करें",
+          "लोको को बैटरी चार्जिंग के लिए इनरजाइज रखें"
+        ],
+        "actionEN": [
+          "Keep throttle at '0' and ACK using BPFA",
+          "Check MCB 112.1 and 110 in SB-2; if tripped reset with Control Electronics OFF (switch OFF before resetting MCB-110 to avoid electronics card failure)",
+          "Switch ON Control Electronics",
+          "Check UBA voltage; if above 82V and battery charger input MCB 100 in HB-2 is tripped then open VCB and reset MCB",
+          "Keep loco energized for battery charging"
+        ],
+        "isolation": {
+          "required": true,
+          "titleHI": "MAIN POWER ISOLATED",
+          "titleEN": "MAIN POWER ISOLATED",
+          "effectHI": "VCB close नहीं होगी, VCB inhibited, लोको dead हो सकती है",
+          "effectEN": "VCB cannot be closed, VCB inhibited, loco may become dead",
+          "stepsHI": [
+            "यदि बैटरी ON नहीं हो सकती है तो सहायता इंजन की मांग करें"
+          ],
+          "stepsEN": [
+            "If battery cannot be switched ON, ask for assistance engine"
+          ]
+        }
+      },
+
+      {
+        "faultCode": "F0903P1",
+        "titleHI": "पैंटो 10 मिनट से अधिक समय तक नीचे रहा",
+        "titleEN": "PAN LOWERED LONGER THAN 10 MINUTES",
+        "messageHI": "Control Electronics switch off हो जाएगी",
+        "messageEN": "Control electronics will switch off",
+        "lamps": ["LSFI ब्लिंकिंग करेगी (टिमटिमाना)", "LSDJ और BPFA प्रकाशित होगा"],
+        "effectHI": "Control Electronics OFF हो जाएगी",
+        "effectEN": "Control electronics will switch off",
+        "actionHI": [
+          "यदि BL key पोजीशन 'D' पर हो तथा पैंटो 10 मिनट से ज्यादा समय तक नीचे रहे तो यह संदेश screen पर आता है",
+          "थ्रॉटल को '0' पर रखें और BPFA दबाकर फॉल्ट ACK करें",
+          "यदि आवश्यक हो तो BL key द्वारा एक बार Control Electronics ON करें (पैंटो द्वारा 10 मिनट के अंदर उठाकर संदेश हट सकता है)",
+          "यदि पैंटो raise नहीं हो रहा और संदेश screen पर आता है तो F0103P1 के अनुसार कार्य करें"
+        ],
+        "actionEN": [
+          "If BL key is in 'D' position and panto is lowered for more than 10 minutes, this message appears",
+          "Keep throttle at '0' and ACK using BPFA",
+          "If required, switch ON Control Electronics once using BL key (message can clear if panto is raised within 10 minutes)",
+          "If panto cannot be raised and message appears, follow procedure of F0103P1"
+        ],
+        "isolation": {
+          "required": false,
+          "titleHI": "",
+          "titleEN": "",
+          "effectHI": "",
+          "effectEN": "",
+          "stepsHI": [],
+          "stepsEN": []
+        }
+      },
+
+      {
+        "faultCode": "F0901P2",
+        "titleHI": "चेतावनी: बैटरी वोल्टेज कम",
+        "titleEN": "WARNING: LOW BATTERY VOLTAGE",
+        "messageHI": "30 मिनट से कम ड्राइविंग उपलब्ध, बैटरी चार्जर MCB चेक करें",
+        "messageEN": "Driving available for less than 30 min, check battery charger MCB",
+        "lamps": ["BPFA प्रकाशित होगा"],
+        "effectHI": "लोको 30 मिनट तक इनरजाइज रह सकता है, ड्राइविंग उपलब्ध रहेगी",
+        "effectEN": "Loco can remain energized up to 30 minutes, driving available",
+        "actionHI": [
+          "SB-2 पैनल में MCB 110 चेक करें; ट्रिप हो तो Control Electronics OFF करके reset करें (Electronics card को फेल होने से बचाने हेतु)",
+          "HB-2 में बैटरी चार्जर input MCB 100 चेक करें; यदि ट्रिप है तो VCB ओपन करके reset करें",
+          "BPFA दबाकर फॉल्ट ACK करें",
+          "यदि MCBs सामान्य हैं और मैसेज बना रहता है तो सेक्शन क्लियर करके सहायता इंजन की मांग करें"
+        ],
+        "actionEN": [
+          "Check MCB 110 in SB-2; if tripped reset with Control Electronics OFF (to avoid electronics card failure)",
+          "Check battery charger input MCB 100 in HB-2; if tripped open VCB and reset",
+          "ACK fault using BPFA",
+          "If MCBs are normal and message persists, clear section and ask for assistance engine"
+        ],
+        "isolation": {
+          "required": false,
+          "titleHI": "",
+          "titleEN": "",
+          "effectHI": "",
+          "effectEN": "",
+          "stepsHI": [],
+          "stepsEN": []
+        }
+      },
+
+      {
+        "faultCode": "F0902P2",
+        "titleHI": "बैटरी चार्जर MCB OFF",
+        "titleEN": "BATTERY CHARGER MCB OFF",
+        "messageHI": "MCB बंद है, MCB बंद करने का प्रयास करें",
+        "messageEN": "Try to close the MCB",
+        "lamps": ["BPFA प्रकाशित होगा"],
+        "effectHI": "बैटरी चार्ज नहीं होगी",
+        "effectEN": "Battery will not be charged",
+        "actionHI": [
+          "HB-2 में BUR-2 या उसके पीछे (नीचे की ओर) लगे बैटरी चार्जर input MCB 100 चेक करें; ट्रिप हो तो VCB open करके reset करें",
+          "BPFA दबाकर फॉल्ट ACK करें",
+          "सामान्यतः ट्रेन चलाएँ",
+          "यदि MCB 100 बार-बार ट्रिप हो रहा है तो BUR-3 को isolate करके बैटरी चार्जिंग का लोड BUR-2 पर लेकर कार्य करें",
+          "यदि MCB 100 सामान्य है और UBA, VCB open स्थिति की तुलना में close स्थिति में ज्यादा वोल्टेज बताता है तो यह बैटरी चार्जिंग का संकेत है; संदेश पर ध्यान न दें और सामान्य रूप से चलाएँ",
+          "यदि बैटरी चार्ज नहीं हो रही है तो सेक्शन क्लियर करके TLC को सूचित करें और उनके आदेशानुसार कार्य करें"
+        ],
+        "actionEN": [
+          "Check battery charger input MCB 100 in HB-2 (near/behind BUR-2); if tripped open VCB and reset",
+          "ACK fault using BPFA",
+          "Proceed normally",
+          "If MCB 100 trips repeatedly, isolate BUR-3 and shift battery charging load to BUR-2",
+          "If MCB 100 is normal and UBA voltage is higher in VCB close condition than open, it indicates battery charging; ignore message and proceed normally",
+          "If battery not charging, clear section, inform TLC and act as per instructions"
+        ],
+        "isolation": {
+          "required": false,
+          "titleHI": "",
+          "titleEN": "",
+          "effectHI": "",
+          "effectEN": "",
+          "stepsHI": [],
+          "stepsEN": []
+        }
+      },
+
+      {
+        "faultCode": "F0903P2",
+        "titleHI": "बैटरी चार्जर करंट कम",
+        "titleEN": "LOW BATTERY CHARGER CURRENT",
+        "messageHI": "बैटरी चार्जर MCB ट्रिप हो सकता है, बैटरी चार्ज नहीं हो रही",
+        "messageEN": "Battery charger MCB may have tripped, battery not being charged",
+        "lamps": ["BPFA प्रकाशित होगा"],
+        "effectHI": "बैटरी चार्ज नहीं होगी / कम चार्जिंग",
+        "effectEN": "Battery not charging / low charging",
+        "actionHI": [
+          "SB-2 में बैटरी चार्जर output MCB 110 तथा HB-2 में बैटरी चार्जर input MCB 100 चेक करें; ट्रिप हो तो VCB ओपन करके reset करें",
+          "BPFA दबाकर फॉल्ट ACK करें",
+          "यदि MCB सामान्य है और UBA, VCB open स्थिति की तुलना में close स्थिति में ज्यादा वोल्टेज बताता है तो यह बैटरी चार्जिंग का संकेत है; संदेश पर ध्यान न दें और सामान्य रूप से चलाएँ",
+          "यदि बैटरी चार्ज नहीं हो रही है तो सेक्शन क्लियर करके TLC को सूचित करें और उनके आदेशानुसार कार्य करें",
+          "यदि सब कुछ सामान्य है तो सामान्य रूप से ट्रेन चलाएँ"
+        ],
+        "actionEN": [
+          "Check battery charger output MCB 110 in SB-2 and input MCB 100 in HB-2; if tripped open VCB and reset",
+          "ACK fault using BPFA",
+          "If MCB normal and UBA voltage is higher in VCB close condition than open, it indicates charging; ignore message and proceed normally",
+          "If battery not charging, clear section, inform TLC and follow instructions",
+          "If all normal, proceed normally"
+        ],
+        "isolation": {
+          "required": false,
+          "titleHI": "",
+          "titleEN": "",
+          "effectHI": "",
+          "effectEN": "",
+          "stepsHI": [],
+          "stepsEN": []
+        }
+      },
+
+      {
+        "faultCode": "F0904P2",
+        "titleHI": "डायग्नोसिस मेमोरी बैटरी खाली",
+        "titleEN": "DIAGNOSIS MEMORY BATTERY EMPTY",
+        "messageHI": "अगले स्टॉप पर TLC को सूचित करें",
+        "messageEN": "Inform TLC during next stop",
+        "lamps": ["BPFA प्रकाशित होगा"],
+        "effectHI": "DDS में कोई दोष स्टोर नहीं होगा / डिस्प्ले पर लोको नंबर नहीं आएगा / ऊर्जा मीटर की रीडिंग आगे नहीं बढ़ेगी",
+        "effectEN": "No faults will be stored in DDS / loco number not displayed / energy meter reading will not increase",
+        "actionHI": [
+          "BPFA दबाकर फॉल्ट ACK करें और सामान्य ऑपरेशन चलाएँ",
+          "TLC को सूचित करें और लॉगबुक में दर्ज करें"
+        ],
+        "actionEN": [
+          "ACK with BPFA and continue normal operation",
+          "Inform TLC and make logbook entry"
+        ],
+        "isolation": {
+          "required": false,
+          "titleHI": "",
+          "titleEN": "",
+          "effectHI": "",
+          "effectEN": "",
+          "stepsHI": [],
+          "stepsEN": []
+        }
+      },
+
+      {
+        "faultCode": "F0905P2",
+        "titleHI": "बैटरी सर्किट में अर्थ फॉल्ट",
+        "titleEN": "EARTH FAULT BATTERY CIRCUIT",
+        "messageHI": "सामान्य ऑपरेशन जारी रख सकते हैं (मेंटेनेंस में जांच)",
+        "messageEN": "Normal operation can continue (to be checked during maintenance)",
+        "lamps": ["BPFA प्रकाशित होगा"],
+        "effectHI": "मेंटेनेंस में जांच आवश्यक",
+        "effectEN": "Check required during maintenance",
+        "actionHI": [
+          "BPFA दबाकर फॉल्ट ACK करें और सामान्य ऑपरेशन जारी रखें",
+          "TLC को सूचित करें और लॉगबुक में दर्ज करें"
+        ],
+        "actionEN": [
+          "ACK with BPFA and continue normal operation",
+          "Inform TLC and make logbook entry"
+        ],
+        "isolation": {
+          "required": false,
+          "titleHI": "",
+          "titleEN": "",
+          "effectHI": "",
+          "effectEN": "",
+          "stepsHI": [],
+          "stepsEN": []
+        }
+      }
+    ]
+  }
+]

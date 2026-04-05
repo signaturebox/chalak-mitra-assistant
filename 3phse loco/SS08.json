@@ -1,0 +1,136 @@
+[
+  {
+    "subsystemCode": "SS08",
+    "subsystemNameHI": "ऑक्स कन्वर्टर 3",
+    "subsystemNameEN": "AUX CONVERTER 3",
+    "faults": [
+      {
+        "faultCode": "F0801P1",
+        "titleHI": "प्रोसेसर BUR-3 में डिस्टर्बेंस",
+        "titleEN": "DISTURBANCE IN PROCESSOR BUR 3",
+        "messageHI": "VCB पुनः बंद करने का प्रयास करें",
+        "messageEN": "Try to close VCB again",
+        "lamps": ["LSDJ जलेगी", "BPFA जलेगी", "LSFI ब्लिंकिंग करेगी"],
+        "effectHI": "VCB ओपन होगी, AUX कन्वर्टर-3 isolate हो सकता है",
+        "effectEN": "VCB will open, AUX converter-3 may get isolated",
+        "actionHI": [
+          "थ्रॉटल 0 पर रखें और BPFA दबाकर फॉल्ट ACK करें",
+          "VCB बंद करने हेतु BLDJ दबाएँ",
+          "यदि fault repeat हो तो Control Electronics OFF करके 5 मिनट बाद ON करें",
+          "पैंटो उठाएँ और VCB बंद करके traction लें",
+          "TLC को सूचित करें और logbook में दर्ज करें"
+        ],
+        "actionEN": [
+          "Bring throttle to 0 and ACK with BPFA",
+          "Press BLDJ to close VCB",
+          "If fault repeats, switch control electronics OFF then ON after 5 minutes",
+          "Raise pantograph and close VCB to take traction",
+          "Inform TLC and make logbook entry"
+        ],
+        "isolation": {
+          "required": true,
+          "titleHI": "AUX कन्वर्टर-3 आइसोलेट",
+          "titleEN": "AUX CONVERTER 3 ISOLATED",
+          "effectHI": "ड्राइविंग संभव है लेकिन अधिकतम वेंटिलेशन लेवल कम रहेगा",
+          "effectEN": "Driving possible but maximum ventilation level will be reduced",
+          "stepsHI": [
+            "DDS पर 'AUX CONVERTER 3 ISOLATED' आने पर ENTER दबाकर ACK करें",
+            "SB-2 में लगे MCB 127.22/3 चेक करें, ट्रिप हो तो Control Electronics OFF करके Reset करें",
+            "यदि MCB ट्रिप नहीं है तो Control Electronics OFF/ON करें, पैंटो उठाएँ, VCB बंद करें",
+            "यदि मैसेज फिर आता है तो BUR-3 isolate रखते हुए ऑपरेशन जारी रखें",
+            "TLC को सूचित करें और लॉगबुक में दर्ज करें"
+          ],
+          "stepsEN": [
+            "When DDS shows 'AUX CONVERTER 3 ISOLATED', press ENTER to ACK",
+            "Check MCB 127.22/3 in SB-2; if tripped, switch control electronics OFF and reset",
+            "If MCB not tripped, switch control electronics OFF/ON, raise pantograph and close VCB",
+            "If message repeats, keep BUR-3 isolated and continue operation",
+            "Inform TLC and make logbook entry"
+          ]
+        }
+      },
+
+      {
+        "faultCode": "F0802P1",
+        "titleHI": "ऑक्स कन्वर्टर-3 में फॉल्ट",
+        "titleEN": "FAULT IN AUXILIARY CONVERTER 3",
+        "messageHI": "VCB पुनः बंद करने का प्रयास करें",
+        "messageEN": "Try to close VCB again",
+        "lamps": ["LSDJ जलेगी", "BPFA जलेगी", "LSFI ब्लिंकिंग करेगी"],
+        "effectHI": "VCB ओपन होगी, AUX कन्वर्टर-3 isolate हो सकता है",
+        "effectEN": "VCB will open, AUX converter-3 may get isolated",
+        "actionHI": [
+          "थ्रॉटल 0 पर रखें और BPFA दबाकर फॉल्ट ACK करें",
+          "VCB बंद करने हेतु BLDJ दबाएँ",
+          "HB-2 में MCB 54.1/2 चेक करें, ट्रिप हो तो VCB ओपन करके Reset करें",
+          "यदि MCB बार-बार ट्रिप हो तो बार-बार reset न करें",
+          "TLC को सूचित करें और logbook में दर्ज करें"
+        ],
+        "actionEN": [
+          "Bring throttle to 0 and ACK with BPFA",
+          "Press BLDJ to close VCB",
+          "Check MCB 54.1/2 in HB-2; if tripped, open VCB and reset",
+          "If MCB trips repeatedly, do not reset repeatedly",
+          "Inform TLC and make logbook entry"
+        ],
+        "isolation": {
+          "required": true,
+          "titleHI": "AUX कन्वर्टर-3 आइसोलेट",
+          "titleEN": "AUX CONVERTER 3 ISOLATED",
+          "effectHI": "ड्राइविंग संभव है लेकिन अधिकतम वेंटिलेशन लेवल कम रहेगा",
+          "effectEN": "Driving possible but maximum ventilation level will be reduced",
+          "stepsHI": [
+            "DDS पर isolation message आने पर ENTER दबाकर ACK करें",
+            "BUR-3 isolate रखते हुए train चलाएँ",
+            "TLC को सूचित करें"
+          ],
+          "stepsEN": [
+            "Press ENTER to ACK isolation message on DDS",
+            "Run train keeping BUR-3 isolated",
+            "Inform TLC"
+          ]
+        }
+      },
+
+      {
+        "faultCode": "F0803P1",
+        "titleHI": "ऑक्स कन्वर्टर-3 में कॉन्टैक्टर फॉल्ट",
+        "titleEN": "CONTACTOR FAULT IN AUX CONVERTER 3",
+        "messageHI": "AUX कन्वर्टर कॉन्टैक्टर STUCK OFF/ON",
+        "messageEN": "AUX converter contactor stuck OFF/ON",
+        "lamps": ["LSDJ जलेगी", "BPFA जलेगी", "LSFI ब्लिंकिंग करेगी"],
+        "effectHI": "AUX कन्वर्टर-3 isolate हो सकता है",
+        "effectEN": "AUX converter-3 may get isolated",
+        "actionHI": [
+          "थ्रॉटल 0 पर रखें और BPFA दबाकर ACK करें",
+          "VCB बंद करने हेतु BLDJ दबाएँ",
+          "यदि fault बना रहे तो BUR-3 isolate रखते हुए operation जारी रखें",
+          "TLC को सूचित करें"
+        ],
+        "actionEN": [
+          "Bring throttle to 0 and ACK with BPFA",
+          "Press BLDJ to close VCB",
+          "If fault persists, continue operation keeping BUR-3 isolated",
+          "Inform TLC"
+        ],
+        "isolation": {
+          "required": true,
+          "titleHI": "AUX कन्वर्टर-3 आइसोलेट",
+          "titleEN": "AUX CONVERTER 3 ISOLATED",
+          "effectHI": "ड्राइविंग संभव है लेकिन वेंटिलेशन लेवल कम रहेगा",
+          "effectEN": "Driving possible but ventilation level reduced",
+          "stepsHI": [
+            "DDS पर isolation message आने पर ENTER दबाकर ACK करें",
+            "Reduced ventilation के साथ train चलाएँ",
+            "TLC को सूचित करें और logbook में दर्ज करें"
+          ],
+          "stepsEN": [
+            "Press ENTER to ACK isolation message",
+            "Run train with reduced ventilation",
+            "Inform TLC and make logbook entry"
+          ]
+        }
+      }
+    ]
+  }
+]

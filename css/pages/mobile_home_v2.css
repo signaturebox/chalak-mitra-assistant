@@ -1,0 +1,325 @@
+/* Mobile Home V2 Styles - Matching Request Image */
+
+.mobile-home-container {
+    background-color: #f8fafc;
+    min-height: 100vh;
+    padding-bottom: 0px;
+    /* Extra space for bottom nav */
+}
+
+/* Hero Section */
+.mobile-hero {
+    position: relative;
+    height: 280px;
+    width: 100%;
+    margin-bottom: -35px;
+    /* Deeper overlap with quick cards */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+@media (min-width: 1024px) {
+    .mobile-hero {
+        height: 400px;
+        padding: 40px;
+        border-radius: 24px;
+    }
+
+    .hero-title {
+        font-size: 42px;
+    }
+
+    .hero-subtitle {
+        font-size: 20px;
+    }
+}
+
+.mobile-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('../../assets/images/hero-railway-6IDKbvPP.jpg');
+    /* High quality train at sunset */
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+}
+
+.mobile-hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.7) 100%);
+    z-index: 2;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding-bottom: 20px;
+}
+
+.hero-logo {
+    width: 52px;
+    height: 52px;
+    background: #ffffff00;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    font-size: 30px;
+}
+
+.hero-title-group {
+    color: white;
+}
+
+.hero-title {
+    font-size: 26px;
+    font-weight: 800;
+    margin: 0;
+    letter-spacing: -0.5px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.hero-subtitle {
+    font-size: 14px;
+    font-weight: 500;
+    margin: 2px 0 0;
+    opacity: 0.95;
+    letter-spacing: 0.2px;
+    text-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+}
+
+/* Quick Cards Overlay */
+.quick-cards {
+    position: relative;
+    z-index: 4;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    padding: 0 16px;
+}
+
+.quick-card {
+    background: white;
+    border-radius: 20px;
+    padding: 24px 10px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    border: 1px solid rgba(0, 0, 0, 0.02);
+}
+
+.quick-card:active {
+    transform: scale(0.92) translateY(3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.quick-card-icon {
+    font-size: 26px;
+    margin-bottom: 10px;
+    display: block;
+}
+
+/* Specific colors for quick icons from image */
+.quick-card:nth-child(1) .quick-card-icon {
+    color: #1565c0;
+}
+
+.quick-card:nth-child(2) .quick-card-icon {
+    color: #2e7d32;
+}
+
+.quick-card:nth-child(3) .quick-card-icon {
+    color: #ef6c00;
+}
+
+.quick-card-label {
+    font-size: 12px;
+    font-weight: 700;
+    color: #455a64;
+    line-height: 1.2;
+}
+
+/* Section Header */
+.section-header {
+    margin: 40px 20px 15px;
+    font-size: 13px;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: 1.2px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+/* All Sections Grid */
+.mobile-sections-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    padding: 0 16px 20px;
+}
+
+.section-card {
+    background: white;
+    border-radius: 18px;
+    padding: 22px 8px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.04);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    animation: fadeInUp 0.5s ease backwards;
+}
+
+.section-card:active {
+    transform: scale(0.94) translateY(2px);
+    background: #fcfcfc;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Staggered animation */
+.section-card:nth-child(1) {
+    animation-delay: 0.05s;
+}
+
+.section-card:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.section-card:nth-child(3) {
+    animation-delay: 0.15s;
+}
+
+.section-card:nth-child(4) {
+    animation-delay: 0.2s;
+}
+
+.section-card:nth-child(5) {
+    animation-delay: 0.25s;
+}
+
+.section-card:nth-child(6) {
+    animation-delay: 0.3s;
+}
+
+.section-card:nth-child(7) {
+    animation-delay: 0.35s;
+}
+
+.section-card:nth-child(8) {
+    animation-delay: 0.4s;
+}
+
+.section-card:nth-child(9) {
+    animation-delay: 0.45s;
+}
+
+.section-card:nth-child(10) {
+    animation-delay: 0.5s;
+}
+
+.section-card:nth-child(11) {
+    animation-delay: 0.55s;
+}
+
+.section-card:nth-child(12) {
+    animation-delay: 0.6s;
+}
+
+/* Colorful borders matching the image */
+.section-card.border-blue {
+    border-top: 4px solid #42a5f5;
+}
+
+.section-card.border-green {
+    border-top: 4px solid #66bb6a;
+}
+
+.section-card.border-orange {
+    border-top: 4px solid #ffa726;
+}
+
+.section-card.border-pink {
+    border-top: 4px solid #f06292;
+}
+
+.section-card.border-purple {
+    border-top: 4px solid #ba68c8;
+}
+
+.section-card.border-red {
+    border-top: 4px solid #ef5350;
+}
+
+.section-card.border-yellow {
+    border-top: 4px solid #fdd835;
+}
+
+.section-icon {
+    font-size: 32px;
+    margin-bottom: 12px;
+}
+
+.section-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: #455a64;
+    margin-bottom: 4px;
+    line-height: 1.2;
+}
+
+.section-status {
+    font-size: 9px;
+    color: #b0bec5;
+    font-weight: 600;
+}
+
+/* Footer info */
+.mobile-footer-info {
+    text-align: center;
+    padding: 0px 0px;
+    color: #90a4ae;
+    font-size: 12px;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    margin-top: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    line-height: 1.5;
+}

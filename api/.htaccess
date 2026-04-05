@@ -1,0 +1,45 @@
+RewriteEngine On
+Options -MultiViews
+
+# Route to specific PHP files if they exist and don't already have .php extension
+RewriteCond %{REQUEST_URI} !\.php$
+RewriteRule ^auth/(.*)$ auth/$1.php [QSA,L]
+
+RewriteCond %{REQUEST_URI} !\.php$
+RewriteRule ^users/(.*)$ users/$1.php [QSA,L]
+
+RewriteCond %{REQUEST_URI} !\.php$
+RewriteRule ^search/(.*)$ search/$1.php [QSA,L]
+
+RewriteCond %{REQUEST_URI} !\.php$
+RewriteRule ^quiz/(.*)$ quiz/$1.php [QSA,L]
+
+RewriteCond %{REQUEST_URI} !\.php$
+RewriteRule ^files/(.*)$ file_api/$1.php [QSA,L]
+
+RewriteCond %{REQUEST_URI} !\.php$
+RewriteRule ^file_api/(.*)$ file_api/$1.php [QSA,L]
+
+RewriteCond %{REQUEST_URI} !\.php$
+RewriteRule ^notifications/(.*)$ notifications/$1.php [QSA,L]
+
+RewriteCond %{REQUEST_URI} !\.php$
+RewriteRule ^system/(.*)$ system/$1.php [QSA,L]
+
+# Fallback to index.php for API info
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php [QSA,L]
+
+# Security headers
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options nosniff
+    Header always set X-Frame-Options DENY
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
+</IfModule>
+
+# Prevent access to sensitive files
+<Files ~ "^.*\.([Hh][Tt][Aa])">
+    Require all denied
+</Files>

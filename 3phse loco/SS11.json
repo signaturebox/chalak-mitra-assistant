@@ -1,0 +1,208 @@
+[
+  {
+    "subsystemCode": "SS11",
+    "subsystemNameHI": "ऑक्सिलरीज HB-1",
+    "subsystemNameEN": "AUXILIARIES HB 1",
+    "faults": [
+      {
+        "faultCode": "F1101P2",
+        "titleHI": "ऑक्स क्यूबिकल-1 में MCB ट्रिप",
+        "titleEN": "MCB(S) TRIPPED IN AUX. CUBICLE 1",
+        "messageHI": "Traction power कम हो सकती है (यदि तापमान बढ़े)",
+        "messageEN": "Traction power may get reduced, if temperature exceed",
+        "lamps": ["BPFA प्रकाशित होगा"],
+        "effectHI": "ऑक्सिलरी MCB ट्रिप होने से संबंधित equipment प्रभावित हो सकता है",
+        "effectEN": "Related auxiliary equipment may be affected due to MCB trip",
+        "actionHI": [
+          "HB-1 में लगे MCB को चेक करें, यदि कोई MCB ट्रिप मिले तो VCB ओपन करके एक बार reset करें",
+          "BPFA द्वारा फॉल्ट ACK करें और सामान्य ऑपरेशन जारी रखें",
+          "यदि कोई भी MCB ट्रिप नहीं है फिर भी संदेश आ रहा है तो संबंधित MCB का control contactor खराब होने से ऐसा हो सकता है",
+          "यदि अनु.क्र.1 के अनुसार MCB (59.1/1 या 62.1/1 या 63.1/1 या 53.1/1) reset करने के बाद बार-बार ट्रिप हो रहे हैं तो उन्हें बार-बार reset न करें, SS08 के दिए गए पेज के अनुसार troubleshooting करें",
+          "TLC को सूचित करें तथा लॉगबुक में नोट करें",
+          "यदि MCB 54.1/1 ट्रिप हो तो एक बार reset करें, यदि फिर ट्रिप हो और अगर ऑक्सिलरी कन्वर्टर-1 isolate हो जाता है तो गाड़ी चलाएँ और TLC को सूचित करें"
+        ],
+        "actionEN": [
+          "Check MCBs in HB-1; if any MCB is tripped, open VCB and reset once",
+          "ACK fault using BPFA and continue normal operation",
+          "If no MCB is tripped but message still appears, related MCB control contactor may be faulty",
+          "If MCBs (59.1/1 or 62.1/1 or 63.1/1 or 53.1/1) trip repeatedly after reset, do not reset again; follow troubleshooting as per SS08 pages",
+          "Inform TLC and make logbook entry",
+          "If MCB 54.1/1 trips, reset once; if it trips again and AUX converter-1 gets isolated, continue running and inform TLC"
+        ],
+        "isolation": {
+          "required": false,
+          "titleHI": "",
+          "titleEN": "",
+          "effectHI": "",
+          "effectEN": "",
+          "stepsHI": [],
+          "stepsEN": []
+        }
+      },
+
+      {
+        "faultCode": "F1102P2",
+        "titleHI": "415/110V सर्किट में अर्थ फॉल्ट",
+        "titleEN": "EARTH FAULT 415/110V CIRCUIT",
+        "messageHI": "सामान्य ऑपरेशन जारी रख सकते हैं (मेंटेनेंस में जांच)",
+        "messageEN": "Normal operation can continue (To be checked during maintenance)",
+        "lamps": ["BPFA प्रकाशित होगा"],
+        "effectHI": "मेंटेनेंस में जांच आवश्यक",
+        "effectEN": "To be checked during maintenance",
+        "actionHI": [
+          "BPFA दबाकर फॉल्ट ACK करें और सामान्य ऑपरेशन जारी रखें",
+          "TLC को सूचित करें और लॉगबुक में दर्ज करें"
+        ],
+        "actionEN": [
+          "ACK fault using BPFA and continue normal operation",
+          "Inform TLC and make logbook entry"
+        ],
+        "isolation": {
+          "required": false,
+          "titleHI": "",
+          "titleEN": "",
+          "effectHI": "",
+          "effectEN": "",
+          "stepsHI": [],
+          "stepsEN": []
+        }
+      },
+
+      {
+        "faultCode": "F1103P2",
+        "titleHI": "मेन कम्प्रेसर MCB OFF / ओपन",
+        "titleEN": "MCB OFF MAIN COMPRESSOR OPEN",
+        "messageHI": "Compressor-1 उपलब्ध नहीं",
+        "messageEN": "Compressor 1 not available",
+        "lamps": ["BPFA प्रकाशित होगा"],
+        "effectHI": "एक कम्प्रेसर उपलब्ध नहीं रहेगा",
+        "effectEN": "One compressor will not be available",
+        "actionHI": [
+          "ऑक्सिलरी क्यूबिकल HB-1 में लगे MCB नं. 47.1/1 चेक करें, ट्रिप मिले तो VCB ओपन करके एक बार reset करें",
+          "BPFA दबाकर फॉल्ट ACK करें",
+          "सामान्य ट्रैक्शन चालू रखें, यदि मैसेज दोबारा आता है तो एक कम्प्रेसर के साथ गाड़ी चलाएँ",
+          "TLC को सूचित करें और लॉगबुक में दर्ज करें",
+          "नोट: यदि MCB नं. 47.1/1 और 47.1/2 बार-बार ट्रिप होते हैं तो VCB ओपन करके MCBs reset करें और BUR-3 को isolate करें"
+        ],
+        "actionEN": [
+          "Check MCB No. 47.1/1 in auxiliary cubicle HB-1; if tripped open VCB and reset once",
+          "ACK fault using BPFA",
+          "Continue normal traction; if message repeats operate with one compressor",
+          "Inform TLC and make logbook entry",
+          "Note: If MCB 47.1/1 and 47.1/2 trip repeatedly, open VCB, reset MCBs and isolate BUR-3"
+        ],
+        "isolation": {
+          "required": false,
+          "titleHI": "",
+          "titleEN": "",
+          "effectHI": "",
+          "effectEN": "",
+          "stepsHI": [],
+          "stepsEN": []
+        }
+      },
+
+      {
+        "faultCode": "F1104P2",
+        "titleHI": "OCB-1 पर ओवरलोड",
+        "titleEN": "OVERLOAD ON OCB-1",
+        "messageHI": "OCB को isolate करें",
+        "messageEN": "Isolate OCB",
+        "lamps": ["BPFA प्रकाशित होगा"],
+        "effectHI": "OCB-1 isolate होगा",
+        "effectEN": "OCB-1 will be isolated",
+        "actionHI": [
+          "थ्रॉटल 0 पर रखें और BPFA दबाकर फॉल्ट ACK करें",
+          "HB-1 में लगे ऑयल कूलिंग ब्लोअर के MCB 59.1/1 को ट्रिप करें",
+          "स्विच 154 द्वारा Bogie-1 को isolate करें",
+          "एक बोगी के साथ सामान्य ऑपरेशन कर सकते हैं"
+        ],
+        "actionEN": [
+          "Bring throttle to 0 and ACK fault using BPFA",
+          "Trip MCB 59.1/1 of oil cooling blower in HB-1",
+          "Isolate Bogie-1 using switch 154",
+          "Continue normal operation with one bogie"
+        ],
+        "isolation": {
+          "required": true,
+          "titleHI": "BOGIE-1 ISOLATED (Switch 154)",
+          "titleEN": "BOGIE-1 ISOLATED (Switch 154)",
+          "effectHI": "Half TE/BE उपलब्ध (एक बोगी के साथ ऑपरेशन)",
+          "effectEN": "Half TE/BE available (operation with one bogie)",
+          "stepsHI": [
+            "Switch 154 से Bogie-1 isolate करें",
+            "BPFA से ACK करें",
+            "TLC को सूचित करें"
+          ],
+          "stepsEN": [
+            "Isolate bogie-1 using switch 154",
+            "ACK with BPFA",
+            "Inform TLC"
+          ]
+        }
+      },
+
+      {
+        "faultCode": "F1105P2",
+        "titleHI": "Rotary Switch vigilance OFF / ON पोजीशन",
+        "titleEN": "ROTARY SWITCH VIGILANCE OFF / ON POSITION",
+        "messageHI": "Normal operation",
+        "messageEN": "Normal operation",
+        "lamps": ["BPFA प्रकाशित होगा"],
+        "effectHI": "विजिलेंस स्विच पोजीशन गलत हो सकती है",
+        "effectEN": "Vigilance rotary switch may be in wrong position",
+        "actionHI": [
+          "BPFA दबाकर फॉल्ट ACK करें",
+          "सामान्य रूप से ट्रेन चलाएँ",
+          "TLC को सूचित करें और लॉगबुक में दर्ज करें",
+          "नोट: VCD को 237.1 (SB-1) द्वारा केवल F0103P1 / माल-फंक्शन के दौरान ही isolate करें"
+        ],
+        "actionEN": [
+          "ACK fault using BPFA",
+          "Run train normally",
+          "Inform TLC and make logbook entry",
+          "Note: Isolate VCD using 237.1 (SB-1) only during F0103P1 / goods function"
+        ],
+        "isolation": {
+          "required": false,
+          "titleHI": "",
+          "titleEN": "",
+          "effectHI": "",
+          "effectEN": "",
+          "stepsHI": [],
+          "stepsEN": []
+        }
+      },
+
+      {
+        "faultCode": "F1106P2",
+        "titleHI": "Rotary Switch 160 (Shunting mode) – स्पीड 15 kmph से अधिक नहीं",
+        "titleEN": "ROTARY SWITCH 160 (SHUNTING MODE) – SPEED LIMIT 15 KMPH",
+        "messageHI": "Loco shunting mode में है, 15 kmph से ज्यादा नहीं जा सकती",
+        "messageEN": "Loco in shunting mode, cannot be more than 15 KMPH",
+        "lamps": ["BPFA प्रकाशित होगा"],
+        "effectHI": "लोको की गति 15 kmph से अधिक नहीं होगी",
+        "effectEN": "Loco speed will be limited to 15 kmph",
+        "actionHI": [
+          "SB-1 पर लगे स्विच नंबर 160 की पोजीशन चेक करें",
+          "यदि स्विच '0' पर है तो थ्रॉटल '0' पर रखें, reverse handle '0' पर रखें और switch 160 को '1' पर लगाकर normal गति प्राप्त करें",
+          "BPFA दबाकर फॉल्ट ACK करें और सामान्य रूप से गाड़ी चलाएँ"
+        ],
+        "actionEN": [
+          "Check position of switch No. 160 on SB-1",
+          "If switch is at '0', keep throttle at '0', keep reverse handle at '0' and set switch 160 to '1' to get normal speed",
+          "ACK fault using BPFA and continue normal operation"
+        ],
+        "isolation": {
+          "required": false,
+          "titleHI": "",
+          "titleEN": "",
+          "effectHI": "",
+          "effectEN": "",
+          "stepsHI": [],
+          "stepsEN": []
+        }
+      }
+    ]
+  }
+]

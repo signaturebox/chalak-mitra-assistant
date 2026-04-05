@@ -1,0 +1,630 @@
+[
+  {
+    "subsystemCode": "SS01",
+    "subsystemNameHI": "मुख्य पावर",
+    "subsystemNameEN": "MAIN POWER",
+    "faults": [
+      {
+        "faultCode": "F0101P1",
+        "titleHI": "VCB ON स्थिति में फँसा हुआ",
+        "titleEN": "VCB STUCK IN ON POSITION",
+        "messageHI": "लोको शट डाउन हो जाएगी",
+        "messageEN": "Loco will be shut down",
+        "lamps": ["LSDJ जलेगी", "LSFI जलेगी", "BPFA जलेगी"],
+        "effectHI": "SR कॉन्टैक्टर खुल जाएगा और पैन्टोग्राफ नीचे हो जाएगा",
+        "effectEN": "SR Contactor opens and pantograph lowers",
+        "actionHI": [
+          "थ्रॉटल 0 पर रखें",
+          "BPFA दबाकर Fault ACK करें",
+          "Coasting करते हुए Block Section क्लियर करें",
+          "लोको को खड़ी करें",
+          "Control Electronics OFF करके फिर ON करें",
+          "Pantograph उठाकर VCB Close करें और Traction लें",
+          "सफलता नहीं मिले तो दूसरी कैब से प्रयास करें"
+        ],
+        "actionEN": [
+          "Bring throttle to 0",
+          "Press BPFA and acknowledge fault",
+          "Clear block section while coasting",
+          "Stop the loco",
+          "Switch OFF and ON Control Electronics",
+          "Raise pantograph, close VCB and take traction",
+          "If not successful, try from other cab"
+        ],
+        "isolation": {
+          "required": true,
+          "titleHI": "MAIN POWER ISOLATED (VCB Inhibited)",
+          "titleEN": "MAIN POWER ISOLATED (VCB Inhibited)",
+          "effectHI": "VCB Close नहीं होगा, लोको डेड हो सकती है",
+          "effectEN": "VCB will not close, loco may become dead",
+          "stepsHI": [
+            "Control Electronics OFF/ON करें और दुबारा प्रयास करें",
+            "सफलता नहीं मिले तो 20 मिनट के अंदर सहायता इंजन मांगें"
+          ],
+          "stepsEN": [
+            "Switch OFF/ON control electronics and retry",
+            "If not successful, ask for assistance engine within 20 minutes"
+          ]
+        }
+      },
+
+      {
+        "faultCode": "F0102P1",
+        "titleHI": "VCB OFF स्थिति में फँसा हुआ",
+        "titleEN": "VCB STUCK IN OFF POSITION",
+        "messageHI": "VCB Close करने का पुनः प्रयास करें",
+        "messageEN": "Try to close VCB again",
+        "lamps": ["LSDJ जलेगी", "LSFI जलेगी", "BPFA जलेगी"],
+        "effectHI": "VCB नियंत्रण Redundant Processor पर बदल जाएगा",
+        "effectEN": "VCB control changes to redundant processor",
+        "actionHI": [
+          "थ्रॉटल 0 पर रखें",
+          "BPFA दबाकर ACK करें",
+          "VCB COC खुला होना सुनिश्चित करें",
+          "BLDJ दबाकर VCB Close करें",
+          "VCB Close हो जाए तो Traction लें",
+          "यदि संभव हो तो coasting में Block Section क्लियर करें",
+          "Control Electronics OFF करके फिर ON करें",
+          "Pantograph Raise करें, VCB Close करें और Traction लें",
+          "सफलता नहीं मिले तो दूसरी कैब से प्रयास करें"
+        ],
+        "actionEN": [
+          "Bring throttle to 0",
+          "Press BPFA to ACK",
+          "Ensure VCB COC is open",
+          "Press BLDJ to close VCB",
+          "If VCB closes take traction",
+          "If possible clear block section while coasting",
+          "Switch OFF and ON control electronics",
+          "Raise pantograph, close VCB and take traction",
+          "If not successful, try from other cab"
+        ],
+        "isolation": {
+          "required": true,
+          "titleHI": "MAIN POWER ISOLATED",
+          "titleEN": "MAIN POWER ISOLATED",
+          "effectHI": "VCB Close नहीं होगा",
+          "effectEN": "VCB will not close",
+          "stepsHI": [
+            "Control Electronics OFF/ON करके पुनः प्रयास करें",
+            "सफलता नहीं मिले तो 20 मिनट के अंदर सहायता इंजन मांगें"
+          ],
+          "stepsEN": [
+            "Switch OFF/ON control electronics and retry",
+            "If not successful, ask for assistance engine within 20 minutes"
+          ]
+        }
+      },
+
+      {
+        "faultCode": "F0103P1",
+        "titleHI": "पैन्टोग्राफ प्रेशर कम / पैन्टोग्राफ खराब",
+        "titleEN": "LOW PRESSURE PANTO / FAULTY PANTO",
+        "messageHI": "Isolating Cock और Aux Reservoir Pressure चेक करें",
+        "messageEN": "Check isolating cock and auxiliary reservoir pressure",
+        "lamps": ["LSDJ जलेगी", "LSFI जलेगी", "BPFA जलेगी"],
+        "effectHI": "पैन्टोग्राफ Raise नहीं होगा और VCB Close नहीं होगा",
+        "effectEN": "Pantograph will not raise and VCB will not close",
+        "actionHI": [
+          "थ्रॉटल 0 पर रखें और BPFA ACK करें",
+          "MCPA चल रही है या नहीं जांचें",
+          "MCPA MCB check करें, ट्रिप हो तो Reset करें",
+          "Aux Reservoir Pressure पर्याप्त है या नहीं देखें",
+          "Pantograph selector switch बदलकर दूसरे pantograph से प्रयास करें",
+          "यदि फिर भी नहीं हो तो cab change / control electronics OFF-ON करें"
+        ],
+        "actionEN": [
+          "Bring throttle to 0 and ACK with BPFA",
+          "Check whether MCPA is running",
+          "Check MCPA MCB and reset if tripped",
+          "Check auxiliary reservoir pressure is sufficient",
+          "Change pantograph selector switch and try other pantograph",
+          "If still not successful, try cab change / control electronics OFF-ON"
+        ],
+        "isolation": {
+          "required": false,
+          "titleHI": "",
+          "titleEN": "",
+          "effectHI": "",
+          "effectEN": "",
+          "stepsHI": [],
+          "stepsEN": []
+        }
+      },
+
+      {
+        "faultCode": "F0104P1",
+        "titleHI": "कैटेनरी वोल्टेज लिमिट से बाहर",
+        "titleEN": "CATENARY VOLTAGE OUT OF LIMIT",
+        "messageHI": "OHE वोल्टेज normal होने पर VCB Close करें",
+        "messageEN": "Close VCB when OHE voltage becomes normal",
+        "lamps": ["LSDJ जलेगी", "LSFI जलेगी", "BPFA जलेगी"],
+        "effectHI": "OHE वोल्टेज सीमा से बाहर होने पर VCB Close नहीं होगा / ट्रिप होगा",
+        "effectEN": "If OHE voltage out of limit, VCB will not close / will trip",
+        "actionHI": [
+          "थ्रॉटल 0 रखें, BPFA ACK करें",
+          "U-meter (कैटेनरी वोल्टमीटर) देखें",
+          "Pantograph OHE से contact में है या नहीं जांचें",
+          "Pantograph change करके प्रयास करें",
+          "OHE वोल्टेज normal होने पर VCB Close करें",
+          "यदि बार-बार fault आए तो TLC/TPC को सूचित करें"
+        ],
+        "actionEN": [
+          "Bring throttle to 0 and ACK with BPFA",
+          "Observe U-meter (catenary voltmeter)",
+          "Check pantograph contact with OHE",
+          "Try pantograph change",
+          "Close VCB when voltage normal",
+          "If fault repeats, inform TLC/TPC"
+        ],
+        "isolation": {
+          "required": true,
+          "titleHI": "Traction Converter Isolation (DDS Based)",
+          "titleEN": "Traction Converter Isolation (DDS Based)",
+          "effectHI": "संबंधित TC isolate करने पर लोको सीमित ट्रैक्शन के साथ चलेगी",
+          "effectEN": "After isolating concerned TC, loco will run with limited traction",
+          "stepsHI": [
+            "DDS पर SLG-1:0020 आए तो Traction Converter-1 isolate करें",
+            "DDS पर SLG-2:0020 आए तो Traction Converter-2 isolate करें"
+          ],
+          "stepsEN": [
+            "If DDS shows SLG-1:0020 isolate Traction Converter-1",
+            "If DDS shows SLG-2:0020 isolate Traction Converter-2"
+          ]
+        }
+      },
+
+      {
+        "faultCode": "F0105P1",
+        "titleHI": "ट्रांसफॉर्मर ऑयल तापमान / प्रेशर समस्या",
+        "titleEN": "TRANSFORMER OIL TEMP / PRESSURE FAULT",
+        "messageHI": "ऑयल पंप/ब्लोअर चेक करें",
+        "messageEN": "Check oil pump/blower",
+        "lamps": ["LSFI ब्लिंकिंग", "BPFA जलेगी"],
+        "effectHI": "ट्रैक्शन कम हो सकती है या VCB ट्रिप हो सकता है",
+        "effectEN": "Traction may reduce or VCB may trip",
+        "actionHI": [
+          "यदि TE उपलब्ध है तो coasting में Block Section क्लियर करें",
+          "थ्रॉटल 0 रखें, BPFA ACK करें",
+          "Transformer Oil Pump running check करें",
+          "HB panel पर संबंधित MCB reset करें (VCB open करके)",
+          "Oil level gauge देखें (MIN-MAX के बीच होना चाहिए)",
+          "Oil cooling blower running check करें",
+          "Traction retry करें"
+        ],
+        "actionEN": [
+          "If TE available, clear block section while coasting",
+          "Bring throttle to 0, ACK with BPFA",
+          "Check transformer oil pump running",
+          "Reset related HB panel MCB (after opening VCB)",
+          "Check oil level gauge is between MIN and MAX",
+          "Check oil cooling blower is running",
+          "Retry traction"
+        ],
+        "isolation": {
+          "required": true,
+          "titleHI": "MAIN POWER ISOLATED Risk",
+          "titleEN": "MAIN POWER ISOLATED Risk",
+          "effectHI": "बार-बार fault आने पर main power isolate हो सकता है",
+          "effectEN": "Repeated faults may lead to main power isolation",
+          "stepsHI": [
+            "DDS संदेश के अनुसार संबंधित converter isolate करें",
+            "सफलता न मिले तो सहायता इंजन मांगें"
+          ],
+          "stepsEN": [
+            "Isolate concerned converter as per DDS message",
+            "If not successful ask for assistance engine"
+          ]
+        }
+      },
+
+      {
+        "faultCode": "F0106P1",
+        "titleHI": "Filter ON/OFF कॉन्टैक्टर stuck ON",
+        "titleEN": "FILTER ON/OFF CONTACTOR STUCK ON",
+        "messageHI": "VCB दोबारा Close नहीं होगा",
+        "messageEN": "VCB will not close again",
+        "lamps": ["LSDJ जलेगी", "LSFI जलेगी", "BPFA जलेगी"],
+        "effectHI": "Harmonic filter auto isolate हो सकता है और स्पीड सीमित हो सकती है",
+        "effectEN": "Harmonic filter may auto isolate and speed may be limited",
+        "actionHI": [
+          "थ्रॉटल 0 रखें और BPFA ACK करें",
+          "Control Electronics OFF/ON करें",
+          "Pantograph Raise करें, VCB Close करें",
+          "यदि लोको normal हो जाए तो traction लें",
+          "TLC को सूचित करें और log book entry करें"
+        ],
+        "actionEN": [
+          "Bring throttle to 0 and ACK with BPFA",
+          "Switch OFF/ON Control Electronics",
+          "Raise pantograph and close VCB",
+          "If loco becomes normal take traction",
+          "Inform TLC and make logbook entry"
+        ],
+        "isolation": {
+          "required": true,
+          "titleHI": "DDS Based Converter Isolation",
+          "titleEN": "DDS Based Converter Isolation",
+          "effectHI": "Converter isolate होने पर लोको limited ट्रैक्शन में चलेगी",
+          "effectEN": "After isolating converter, loco runs with limited traction",
+          "stepsHI": [
+            "DDS SLG-1:0059 आने पर TC-1 isolate करें",
+            "सफलता नहीं मिले तो सहायता इंजन मांगें"
+          ],
+          "stepsEN": [
+            "If DDS shows SLG-1:0059 isolate TC-1",
+            "If not successful ask for assistance engine"
+          ]
+        }
+      },
+
+      {
+        "faultCode": "F0107P1",
+        "titleHI": "Precharge / Main Contactor stuck ON",
+        "titleEN": "PRECHARGE / MAIN CONTACTOR STUCK ON",
+        "messageHI": "Main converter blocked",
+        "messageEN": "Main converter blocked",
+        "lamps": ["LSDJ जलेगी", "LSFI जलेगी", "BPFA जलेगी"],
+        "effectHI": "VCB ट्रिप हो सकता है और traction blocked हो जाएगी",
+        "effectEN": "VCB may trip and traction will be blocked",
+        "actionHI": [
+          "थ्रॉटल 0 रखें",
+          "Coasting में block section clear करें",
+          "BPFA ACK करें",
+          "Control Electronics OFF/ON करें",
+          "Pantograph Raise करें, VCB Close करें और traction लें",
+          "यदि fault repeat हो तो DDS अनुसार converter isolate करें"
+        ],
+        "actionEN": [
+          "Bring throttle to 0",
+          "Clear block section while coasting",
+          "ACK with BPFA",
+          "Switch OFF/ON Control Electronics",
+          "Raise pantograph, close VCB and take traction",
+          "If fault repeats isolate converter as per DDS"
+        ],
+        "isolation": {
+          "required": true,
+          "titleHI": "Traction Converter Isolation",
+          "titleEN": "Traction Converter Isolation",
+          "effectHI": "एक converter isolate होने पर traction कम हो जाएगी",
+          "effectEN": "After isolating one converter traction will reduce",
+          "stepsHI": [
+            "DDS SLG-1:0037/0039 होने पर TC-1 isolate करें",
+            "DDS SLG-2:0037/0039 होने पर TC-2 isolate करें",
+            "सफलता न मिले तो सहायता इंजन मांगें"
+          ],
+          "stepsEN": [
+            "If DDS SLG-1:0037/0039 isolate TC-1",
+            "If DDS SLG-2:0037/0039 isolate TC-2",
+            "If not successful ask for assistance engine"
+          ]
+        }
+      },
+
+      {
+        "faultCode": "F0108P1",
+        "titleHI": "प्राइमरी ओवर करंट",
+        "titleEN": "PRIMARY OVER CURRENT",
+        "messageHI": "Relay flag reset करके VCB Close करें",
+        "messageEN": "Reset relay flag and close VCB",
+        "lamps": ["LSDJ जलेगी", "LSFI जलेगी", "BPFA जलेगी"],
+        "effectHI": "Power supply कट होगी, VCB ट्रिप हो सकता है",
+        "effectEN": "Power supply cut, VCB may trip",
+        "actionHI": [
+          "Machine room में smoke/fire check करें",
+          "Coasting में block section clear करें",
+          "BPFA ACK करें",
+          "SB-1 पर OCR relay flag check करें",
+          "Relay reset करके VCB Close करें",
+          "TLC को सूचित करें"
+        ],
+        "actionEN": [
+          "Check for smoke/fire in machine room",
+          "Clear block section while coasting",
+          "ACK with BPFA",
+          "Check OCR relay flag on SB-1",
+          "Reset relay and close VCB",
+          "Inform TLC"
+        ],
+        "isolation": {
+          "required": true,
+          "titleHI": "MAIN POWER ISOLATED Possible",
+          "titleEN": "MAIN POWER ISOLATED Possible",
+          "effectHI": "अगर समस्या बनी रहे तो main power isolate हो सकती है",
+          "effectEN": "If issue persists, main power may isolate",
+          "stepsHI": [
+            "Repeated fault होने पर TLC से निर्देश लें",
+            "सहायता इंजन मांगें"
+          ],
+          "stepsEN": [
+            "If repeated fault, take TLC instructions",
+            "Ask for assistance engine"
+          ]
+        }
+      },
+
+      {
+        "faultCode": "F0109P1",
+        "titleHI": "Aux. Winding Over Current",
+        "titleEN": "AUX. WINDING OVER CURRENT",
+        "messageHI": "VCB फिर से Close करें",
+        "messageEN": "Close VCB again",
+        "lamps": ["LSDJ जलेगी", "LSFI जलेगी", "BPFA जलेगी"],
+        "effectHI": "VCB ट्रिप होगा",
+        "effectEN": "VCB trips",
+        "actionHI": [
+          "BPFA ACK करें",
+          "BLDJ से VCB Close करें",
+          "Coasting में block section clear करें",
+          "यदि isolation message आए तो ENTER दबाकर ACK करें"
+        ],
+        "actionEN": [
+          "ACK with BPFA",
+          "Close VCB using BLDJ",
+          "Clear block section while coasting",
+          "If isolation message comes press ENTER to ACK"
+        ],
+        "isolation": {
+          "required": true,
+          "titleHI": "BUR Isolation (DDS Based)",
+          "titleEN": "BUR Isolation (DDS Based)",
+          "effectHI": "BUR isolate होने पर कुछ auxiliary load cut हो सकते हैं",
+          "effectEN": "After BUR isolation, some auxiliary loads may be cut",
+          "stepsHI": [
+            "DDS message अनुसार BUR-1/BUR-2/BUR-3 isolate करें",
+            "Control Electronics OFF/ON करके retry करें",
+            "सफलता न मिले तो सहायता इंजन मांगें"
+          ],
+          "stepsEN": [
+            "As per DDS message isolate BUR-1/BUR-2/BUR-3",
+            "Switch OFF/ON Control Electronics and retry",
+            "If not successful ask for assistance engine"
+          ]
+        }
+      },
+
+      {
+        "faultCode": "F0110P1",
+        "titleHI": "Main Circuit Fatal Error",
+        "titleEN": "FATAL ERROR IN MAIN CIRCUIT",
+        "messageHI": "लोको OFF करें",
+        "messageEN": "Turn OFF the loco",
+        "lamps": ["LSDJ जलेगी", "LSFI जलेगी", "BPFA जलेगी"],
+        "effectHI": "VCB ट्रिप होगा और pantograph नीचे हो जाएगा",
+        "effectEN": "VCB trips and pantograph lowers",
+        "actionHI": [
+          "थ्रॉटल 0 रखें",
+          "BPFA ACK करें",
+          "HB/SB panel सभी MCB check करें",
+          "Control Electronics OFF/ON करें",
+          "Pantograph Raise करें, VCB Close करें, traction लें"
+        ],
+        "actionEN": [
+          "Bring throttle to 0",
+          "ACK with BPFA",
+          "Check all HB/SB panel MCBs",
+          "Switch OFF/ON Control Electronics",
+          "Raise pantograph, close VCB and take traction"
+        ],
+        "isolation": {
+          "required": true,
+          "titleHI": "MAIN POWER ISOLATED",
+          "titleEN": "MAIN POWER ISOLATED",
+          "effectHI": "VCB close नहीं होगा, loco dead हो सकती है",
+          "effectEN": "VCB will not close, loco may become dead",
+          "stepsHI": [
+            "यदि VCB close नहीं हो रहा तो loco shutdown करें",
+            "20 मिनट के अंदर सहायता इंजन मांगें"
+          ],
+          "stepsEN": [
+            "If VCB not closing, shut down loco",
+            "Ask for assistance engine within 20 minutes"
+          ]
+        }
+      },
+
+      {
+        "faultCode": "F0101P2",
+        "titleHI": "Control Electronics Over Temperature",
+        "titleEN": "OVER TEMPERATURE CONTROL ELECTRONICS",
+        "messageHI": "Cooling mode चलाएँ",
+        "messageEN": "Run cooling mode",
+        "lamps": ["LSCE जलेगी", "BPFA जलेगी"],
+        "effectHI": "Control electronics contactor close नहीं होगा",
+        "effectEN": "Control electronics contactor will not close",
+        "actionHI": [
+          "BPFA ACK करें",
+          "Train को 10-15 मिनट रोकने की सूचना दें",
+          "BL key को 'C' position में रखें",
+          "Pantograph Raise करें, VCB Close करें",
+          "Cooling के बाद VCB Open करें, Pantograph Lower करें",
+          "BL key 'D' करके normal run करें"
+        ],
+        "actionEN": [
+          "ACK with BPFA",
+          "Inform to stop train for 10-15 minutes",
+          "Keep BL key in 'C' position",
+          "Raise pantograph and close VCB",
+          "After cooling open VCB and lower pantograph",
+          "Keep BL key to 'D' and resume normal run"
+        ],
+        "isolation": {
+          "required": false,
+          "titleHI": "",
+          "titleEN": "",
+          "effectHI": "",
+          "effectEN": "",
+          "stepsHI": [],
+          "stepsEN": []
+        }
+      },
+
+      {
+        "faultCode": "F0102P2",
+        "titleHI": "Transformer Oil Pressure Not OK",
+        "titleEN": "TRANSFORMER OIL PRESSURE NOT OK",
+        "messageHI": "Oil pump circuit check करें",
+        "messageEN": "Check oil pump circuit",
+        "lamps": ["BPFA जलेगी"],
+        "effectHI": "VCB ट्रिप हो सकता है / TE कम हो सकती है",
+        "effectEN": "VCB may trip / TE may reduce",
+        "actionHI": [
+          "BPFA ACK करें",
+          "Oil pump running check करें",
+          "HB panel MCB reset करें (VCB open करके)",
+          "VCB Close करें और run करें"
+        ],
+        "actionEN": [
+          "ACK with BPFA",
+          "Check oil pump running",
+          "Reset HB panel MCB (after opening VCB)",
+          "Close VCB and run"
+        ],
+        "isolation": {
+          "required": false,
+          "titleHI": "",
+          "titleEN": "",
+          "effectHI": "",
+          "effectEN": "",
+          "stepsHI": [],
+          "stepsEN": []
+        }
+      },
+
+      {
+        "faultCode": "F0103P2",
+        "titleHI": "Aux. Winding Earth Fault",
+        "titleEN": "EARTH FAULT AUX. WINDING CIRCUIT",
+        "messageHI": "नॉर्मल ऑपरेशन जारी रखें, मेंटेनेंस में जांच करें",
+        "messageEN": "Continue normal operation, check in maintenance",
+        "lamps": ["BPFA जलेगी"],
+        "effectHI": "Repeated होने पर converter isolate हो सकता है",
+        "effectEN": "May lead to converter isolation if repeated",
+        "actionHI": [
+          "BPFA ACK करें",
+          "Machine room में smoke/fire check करें",
+          "TLC को सूचना दें और log book entry करें"
+        ],
+        "actionEN": [
+          "ACK with BPFA",
+          "Check smoke/fire in machine room",
+          "Inform TLC and make logbook entry"
+        ],
+        "isolation": {
+          "required": false,
+          "titleHI": "",
+          "titleEN": "",
+          "effectHI": "",
+          "effectEN": "",
+          "stepsHI": [],
+          "stepsEN": []
+        }
+      },
+
+      {
+        "faultCode": "F0104P2",
+        "titleHI": "Low Frequency Catenary Voltage",
+        "titleEN": "LOW FREQUENCY CATENARY VOLTAGE",
+        "messageHI": "1 मिनट बाद फिर प्रयास करें",
+        "messageEN": "Retry after 1 minute",
+        "lamps": ["BPFA जलेगी"],
+        "effectHI": "Traction temporarily blocked",
+        "effectEN": "Traction temporarily blocked",
+        "actionHI": ["BPFA ACK करें", "1 मिनट बाद traction retry करें"],
+        "actionEN": ["ACK with BPFA", "Retry traction after 1 minute"],
+        "isolation": {
+          "required": false,
+          "titleHI": "",
+          "titleEN": "",
+          "effectHI": "",
+          "effectEN": "",
+          "stepsHI": [],
+          "stepsEN": []
+        }
+      },
+
+      {
+        "faultCode": "F0105P2",
+        "titleHI": "Catenary Frequency High",
+        "titleEN": "CATENARY FREQUENCY IS HIGH",
+        "messageHI": "थ्रॉटल 0 करें और wait करें",
+        "messageEN": "Keep throttle 0 and wait",
+        "lamps": ["BPFA जलेगी"],
+        "effectHI": "55Hz से नीचे आने तक traction blocked",
+        "effectEN": "Traction blocked until it drops below 55Hz",
+        "actionHI": ["BPFA ACK करें", "Frequency normal होने पर run करें"],
+        "actionEN": ["ACK with BPFA", "Proceed when frequency becomes normal"],
+        "isolation": {
+          "required": false,
+          "titleHI": "",
+          "titleEN": "",
+          "effectHI": "",
+          "effectEN": "",
+          "stepsHI": [],
+          "stepsEN": []
+        }
+      },
+
+      {
+        "faultCode": "F0106P2",
+        "titleHI": "Machine Room Blower Not OFF",
+        "titleEN": "MACHINE ROOM BLOWER NOT OFF",
+        "messageHI": "Normal operation जारी रखें",
+        "messageEN": "Continue normal operation",
+        "lamps": ["BPFA जलेगी"],
+        "effectHI": "Blower लगातार चल सकता है",
+        "effectEN": "Blower may run continuously",
+        "actionHI": ["BPFA ACK करें", "TLC को सूचित करें"],
+        "actionEN": ["ACK with BPFA", "Inform TLC"],
+        "isolation": {
+          "required": false,
+          "titleHI": "",
+          "titleEN": "",
+          "effectHI": "",
+          "effectEN": "",
+          "stepsHI": [],
+          "stepsEN": []
+        }
+      },
+
+      {
+        "faultCode": "F0107P2",
+        "titleHI": "Demanded Speed Achieved नहीं हो रही",
+        "titleEN": "DEMANDED SPEED CAN NOT BE ACHIEVED",
+        "messageHI": "Speed limit / jerk issue",
+        "messageEN": "Speed limit / jerk issue",
+        "lamps": ["BPFA जलेगी"],
+        "effectHI": "स्पीड 1 kmph से ऊपर नहीं जाएगी / 50% TE के बाद झटका",
+        "effectEN": "Speed not beyond 1 kmph / jerks above 50% TE",
+        "actionHI": [
+          "BPFA ACK करें",
+          "DDS message अनुसार TC isolate / speed sensor bypass करें",
+          "TLC को सूचित करें"
+        ],
+        "actionEN": [
+          "ACK with BPFA",
+          "As per DDS message isolate TC / bypass speed sensor",
+          "Inform TLC"
+        ],
+        "isolation": {
+          "required": true,
+          "titleHI": "ASC Error – TC Isolation",
+          "titleEN": "ASC Error – TC Isolation",
+          "effectHI": "एक bogie traction पर लोको चलेगी",
+          "effectEN": "Loco runs with one bogie traction",
+          "stepsHI": [
+            "ASC1 error हो तो TC-1 isolate करें",
+            "ASC2 error हो तो TC-2 isolate करें",
+            "Control Electronics OFF करके ही isolation करें"
+          ],
+          "stepsEN": [
+            "If ASC1 error isolate TC-1",
+            "If ASC2 error isolate TC-2",
+            "Perform isolation only with control electronics OFF"
+          ]
+        }
+      }
+    ]
+  }
+]

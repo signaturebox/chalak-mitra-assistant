@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NWR Chalak Mitra - v2.0</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Poppins', sans-serif; background-color: #f0f4f8; }
+        .railway-blue { background: linear-gradient(135deg, #001f3f 0%, #003366 100%); }
+        .fault-header-bg { background: linear-gradient(90deg, #b91c1c 0%, #991b1b 100%); }
+        .glass { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.2); }
+        [x-cloak] { display: none !important; }
+    </style>
+</head>
+<body x-data="tsdApp()" class="antialiased select-none">
+
+    <header class="railway-blue text-white p-6 shadow-xl sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-4">
+                <div class="w-12 h-12 bg-white/10 rounded-lg flex items-center justify-center border border-white/20">🚂</div>
+                <div>
+                    <p class="text-[10px] tracking-widest uppercase font-bold text-blue-300">North Western Railway</p>
+                    <h1 class="text-2xl font-black">NWR Chalak Mitra</h1>
+                </div>
+            </div>
+            <div class="flex items-center gap-4">
+                <div class="bg-black/30 p-1 rounded-xl flex border border-white/10">
+                    <button @click="lang = 'HI'" class="px-4 py-1.5 rounded-lg text-sm font-bold transition-all" :class="lang === 'HI' ? 'bg-white text-blue-900 shadow-md' : 'text-white/70'">हिन्दी</button>
+                    <button @click="lang = 'EN'" class="px-4 py-1.5 rounded-lg text-sm font-bold transition-all" :class="lang === 'EN' ? 'bg-white text-blue-900 shadow-md' : 'text-white/70'">English</button>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto mt-2 flex justify-between items-center opacity-60 text-[10px]">
+            <p>Developed by: Pradeep Kr Meena (Sr. ALP/HMH)</p>
+            <div class="flex gap-2">
+                <span class="bg-green-500 px-2 rounded text-white font-bold">ONLINE</span>
+                <span class="bg-white/20 px-2 rounded font-bold">V2.0</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 py-8">
+        
+        <div x-show="currentPage === 'sub-systems'" class="space-y-8">
+            <div class="flex flex-col gap-2">
+                <h2 class="text-xl font-bold text-slate-800" x-text="lang === 'HI' ? 'फॉल्ट सर्च (फॉल्ट कोड खोजें)' : 'Fault Search'"></h2>
+                <div class="flex gap-2 glass p-2 rounded-2xl shadow-lg">
+                    <input type="text" x-model="searchQuery" :placeholder="lang === 'HI' ? 'Example: F0101P1 / F0102P2...' : 'Search Code...'" class="flex-1 p-3 bg-transparent outline-none font-medium">
+                    <button class="bg-blue-900 text-white px-8 py-3 rounded-xl font-bold">Search</button>
+                </div>
+            </div>
+
+            <h2 class="text-xl font-bold text-slate-700" x-text="lang === 'HI' ? 'Sub-Systems (SS Wise Faults)' : 'Sub-Systems'"></h2>
+            <div class="grid grid-cols-3 md:grid-cols-5 gap-4">
+                <template x-for="ss in subsystems" :key="ss.subsystemCode">
+                    <div @click="openSS(ss)" class="bg-white p-6 rounded-3xl shadow-sm border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all cursor-pointer flex flex-col items-center text-center group">
+                        <div class="text-blue-900 font-black text-lg mb-2 group-hover:scale-110 transition-transform" x-text="ss.subsystemCode"></div>
+                        <p class="text-xs font-bold text-slate-500 uppercase tracking-tight h-8" x-text="lang === 'HI' ? ss.subsystemNameHI : ss.subsystemNameEN"></p>
+                        <button class="mt-4 w-full py-2 bg-blue-50 text-blue-600 rounded-xl text-xs font-bold">Show</button>
+                    </div>
+                </template>
+            </div>
+        </div>
+
+        <div x-show="currentPage === 'fault-list'" x-cloak class="space-y-6">
+            <div class="flex justify-between items-center">
+                <h2 class="text-2xl font-black text-slate-800" x-text="selectedSS?.subsystemCode + ' - ' + (lang === 'HI' ? selectedSS?.subsystemNameHI : selectedSS?.subsystemNameEN)"></h2>
+                <button @click="currentPage = 'sub-systems'" class="bg-white border border-slate-200 px-6 py-2 rounded-xl text-sm font-bold flex items-center gap-2 hover:bg-slate-50 transition-colors">← Back to Sub-Systems</button>
+            </div>
+            <div class="grid grid-cols-3 md:grid-cols-5 gap-4">
+                <template x-for="fault in (selectedSS?.faults || [])" :key="fault.faultCode">
+                    <div @click="openFault(fault)" class="bg-white p-5 rounded-3xl shadow-sm border border-slate-100 hover:shadow-xl transition-all cursor-pointer group">
+                        <span class="text-red-600 font-black text-sm block mb-2" x-text="fault.faultCode"></span>
+                        <p class="text-slate-700 font-bold text-xs leading-snug h-10 overflow-hidden" x-text="lang === 'HI' ? fault.titleHI : fault.titleEN"></p>
+                        <button class="mt-4 w-full py-2 bg-red-50 text-red-600 rounded-xl text-[10px] font-black uppercase group-hover:bg-red-600 group-hover:text-white transition-colors">Check</button>
+                    </div>
+                </template>
+            </div>
+        </div>
+
+        <div x-show="currentPage === 'fault-detail'" x-cloak class="max-w-5xl mx-auto space-y-6">
+            <div class="flex justify-between items-center">
+                <button @click="currentPage = 'fault-list'" class="bg-white border border-slate-200 px-6 py-2 rounded-xl text-sm font-bold flex items-center gap-2">← लिस्ट पर वापस</button>
+                <div class="flex items-center gap-2 text-xs font-bold text-red-600">
+                    <span class="w-2 h-2 bg-red-600 rounded-full animate-pulse"></span>
+                    <span x-text="selectedFault?.faultCode"></span>
+                </div>
+            </div>
+
+            <div class="fault-header-bg rounded-[40px] shadow-2xl overflow-hidden text-white relative p-8">
+                <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                    <div class="flex flex-col items-center md:items-start">
+                        <div class="bg-white text-slate-900 px-6 py-1 rounded-full font-black text-2xl shadow-lg mb-3" x-text="selectedFault?.faultCode"></div>
+                        <p class="text-[10px] font-bold tracking-[0.2em] opacity-80 uppercase" x-text="selectedSS?.subsystemCode + ': ' + (lang === 'HI' ? selectedSS?.subsystemNameHI : selectedSS?.subsystemNameEN)"></p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <p class="text-[10px] font-bold tracking-[0.3em] uppercase opacity-70 mb-1">Detailed Troubleshooting</p>
+                        <h2 class="text-3xl font-black leading-tight" x-text="lang === 'HI' ? selectedFault?.titleHI : selectedFault?.titleEN"></h2>
+                    </div>
+
+                    <div class="flex items-center gap-2 bg-yellow-400 text-black px-4 py-2 rounded-2xl font-black text-sm shadow-xl">
+                        <span>⚠️</span>
+                        <span>PRIORITY 1</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="space-y-6">
+                    <div class="bg-orange-50/50 p-6 rounded-[32px] border border-orange-100">
+                        <h4 class="text-orange-800 font-bold mb-3 flex items-center gap-2 text-sm">🗨️ फॉल्ट मैसेज</h4>
+                        <p class="text-slate-800 font-black text-xl" x-text="lang === 'HI' ? selectedFault?.messageHI : selectedFault?.messageEN"></p>
+                    </div>
+                    <div class="bg-blue-50/50 p-6 rounded-[32px] border border-blue-100">
+                        <h4 class="text-blue-800 font-bold mb-3 flex items-center gap-2 text-sm">⚡ प्रभाव</h4>
+                        <p class="text-slate-700 font-medium text-sm" x-text="lang === 'HI' ? selectedFault?.effectHI : selectedFault?.effectEN"></p>
+                    </div>
+                </div>
+
+                <div class="bg-[#0f172a] rounded-[32px] p-8 text-white shadow-2xl">
+                    <h4 class="text-white/40 text-[10px] font-black uppercase tracking-widest mb-6">Indicator Status</h4>
+                    <div class="space-y-3">
+                        <template x-for="lamp in (selectedFault?.lamps || [])">
+                            <div class="flex items-center gap-4 bg-white/5 p-4 rounded-2xl border border-white/10 hover:bg-white/10 transition-colors">
+                                <div class="w-4 h-4 rounded-full shadow-[0_0_15px_rgba(239,68,68,0.5)]" 
+                                     :class="lamp.includes('LSDJ') ? 'bg-red-500' : (lamp.includes('LSFI') ? 'bg-yellow-400' : 'bg-blue-400')"></div>
+                                <span class="font-bold text-sm" x-text="lamp"></span>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-[40px] p-8 border border-slate-100 shadow-xl">
+                <h4 class="text-slate-900 font-black text-2xl mb-8 flex items-center gap-4">
+                    <span class="bg-indigo-600 text-white w-10 h-10 rounded-xl flex items-center justify-center text-lg">⚙️</span>
+                    <span x-text="lang === 'HI' ? 'कार्यवाही' : 'Action Steps'"></span>
+                </h4>
+                <div class="space-y-3">
+                    <template x-for="(step, index) in (lang === 'HI' ? selectedFault?.actionHI : selectedFault?.actionEN)">
+                        <div class="flex gap-4 items-start p-5 bg-slate-50 rounded-3xl border border-slate-100">
+                            <span class="w-8 h-8 rounded-full bg-white text-indigo-600 font-black flex items-center justify-center flex-shrink-0 shadow-sm" x-text="index+1"></span>
+                            <p class="text-slate-700 font-bold" x-text="step"></p>
+                        </div>
+                    </template>
+                </div>
+            </div>
+
+            <template x-if="selectedFault?.isolation?.required">
+                <div class="bg-red-900 rounded-[40px] p-8 text-white shadow-2xl">
+                    <div class="bg-white/10 p-3 rounded-2xl inline-flex items-center gap-2 font-black text-xs uppercase mb-6">⚠️ Isolation Required</div>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <p class="text-red-300 text-[10px] font-black uppercase mb-2">Isolation Message</p>
+                            <h3 class="text-xl font-black" x-text="lang === 'HI' ? selectedFault?.isolation?.titleHI : selectedFault?.isolation?.titleEN"></h3>
+                            <p class="mt-4 text-sm font-medium text-red-100" x-text="lang === 'HI' ? selectedFault?.isolation?.effectHI : selectedFault?.isolation?.effectEN"></p>
+                        </div>
+                        <div class="space-y-3">
+                            <p class="text-red-300 text-[10px] font-black uppercase mb-2">Steps to follow</p>
+                            <template x-for="step in (lang === 'HI' ? selectedFault?.isolation?.stepsHI : selectedFault?.isolation?.stepsEN)">
+                                <div class="bg-white/10 p-4 rounded-2xl flex gap-3 text-sm font-bold">
+                                    <span>•</span>
+                                    <span x-text="step"></span>
+                                </div>
+								<div class="fault-header-bg rounded-[40px] shadow-2xl overflow-hidden text-white relative p-8">
+                <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                    <div class="flex flex-col items-center md:items-start">
+                        <div class="bg-white text-slate-900 px-6 py-1 rounded-full font-black text-2xl shadow-lg mb-3" x-text="selectedFault?.faultCode"></div>
+                        <p class="text-[10px] font-bold tracking-[0.2em] opacity-80 uppercase" x-text="selectedSS?.subsystemCode + ': ' + (lang === 'HI' ? selectedSS?.subsystemNameHI : selectedSS?.subsystemNameEN)"></p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <p class="text-[10px] font-bold tracking-[0.3em] uppercase opacity-70 mb-1">Detailed Troubleshooting</p>
+                        <h2 class="text-3xl font-black leading-tight" x-text="lang === 'HI' ? selectedFault?.titleHI : selectedFault?.titleEN"></h2>
+                    </div>
+
+                    <div class="flex items-center gap-2 bg-yellow-400 text-black px-4 py-2 rounded-2xl font-black text-sm shadow-xl">
+                        <span>⚠️</span>
+                        <span>PRIORITY 1</span>
+                    </div>
+                </div>
+                            </template>
+                        </div>
+                    </div>
+                </div>
+            </template>
+        </div>
+    </main>
+
+    <script>
+        function tsdApp() {
+            return {
+                lang: 'HI',
+                currentPage: 'sub-systems',
+                searchQuery: '',
+                selectedSS: null,
+                selectedFault: null,
+                subsystems: [],
+
+                async init() {
+                    // This function would ideally fetch your local JSON file
+                    // For now, I've mapped your provided data structure
+                    this.subsystems = [
+                        {
+                            "subsystemCode": "SS01",
+                            "subsystemNameHI": "मुख्य पावर",
+                            "subsystemNameEN": "MAIN POWER",
+                            "faults": [
+                                {
+                                    "faultCode": "F0101P1",
+                                    "titleHI": "VCB ON स्थिति में फँसा हुआ",
+                                    "titleEN": "VCB STUCK IN ON POSITION",
+                                    "messageHI": "लोको शट डाउन हो जाएगी",
+                                    "messageEN": "Loco will be shut down",
+                                    "lamps": ["LSDJ जलेगी", "LSFI जलेगी", "BPFA जलेगी"],
+                                    "effectHI": "SR कॉन्टैक्टर खुल जाएगा और पैन्टोग्राफ नीचे हो जाएगा",
+                                    "effectEN": "SR Contactor opens and pantograph lowers",
+                                    "actionHI": ["थ्रॉटल 0 पर रखें", "BPFA दबाकर Fault ACK करें", "Coasting करते हुए Block Section क्लियर करें", "लोको को खड़ी करें", "Control Electronics OFF करके फिर ON करें", "Pantograph उठाकर VCB Close करें और Traction लें", "सफलता नहीं मिले तो दूसरी कैब से प्रयास करें"],
+                                    "actionEN": ["Bring throttle to 0", "Press BPFA and acknowledge fault", "Clear block section while coasting", "Stop the loco", "Switch OFF and ON Control Electronics", "Raise pantograph, close VCB and take traction", "If not successful, try from other cab"],
+                                    "isolation": {
+                                        "required": true,
+                                        "titleHI": "MAIN POWER ISOLATED (VCB Inhibited)",
+                                        "titleEN": "MAIN POWER ISOLATED (VCB Inhibited)",
+                                        "effectHI": "VCB Close नहीं होगा, लोको डेड हो सकती है",
+                                        "effectEN": "VCB will not close, loco may become dead",
+                                        "stepsHI": ["Control Electronics OFF/ON करें और दुबारा प्रयास करें", "सफलता नहीं मिले तो 20 मिनट के अंदर सहायता इंजन मांगें"],
+                                        "stepsEN": ["Switch OFF/ON control electronics and retry", "If not successful, ask for assistance engine within 20 minutes"]
+                                    }
+                                },
+                                {
+                                    "faultCode": "F0102P1",
+                                    "titleHI": "VCB OFF स्थिति में फँसा हुआ",
+                                    "titleEN": "VCB STUCK IN OFF POSITION",
+                                    "messageHI": "VCB Close करने का पुनः प्रयास करें",
+                                    "messageEN": "Try to close VCB again",
+                                    "lamps": ["LSDJ जलेगी", "LSFI जलेगी", "BPFA जलेगी"],
+                                    "effectHI": "VCB नियंत्रण Redundant Processor पर बदल जाएगा",
+                                    "effectEN": "VCB control changes to redundant processor",
+                                    "actionHI": ["थ्रॉटल 0 पर रखें", "BPFA दबाकर ACK करें", "VCB COC खुला होना सुनिश्चित करें", "BLDJ दबाकर VCB Close करें", "VCB Close हो जाए तो Traction लें", "यदि संभव हो तो coasting में Block Section क्लियर करें", "Control Electronics OFF करके फिर ON करें", "Pantograph Raise करें, VCB Close करें और Traction लें", "सफलता नहीं मिले तो दूसरी कैब से प्रयास करें"],
+                                    "actionEN": ["Bring throttle to 0", "Press BPFA to ACK", "Ensure VCB COC is open", "Press BLDJ to close VCB", "If VCB closes take traction", "If possible clear block section while coasting", "Switch OFF and ON control electronics", "Raise pantograph, close VCB and take traction", "If not successful, try from other cab"],
+                                    "isolation": {
+                                        "required": true,
+                                        "titleHI": "MAIN POWER ISOLATED",
+                                        "titleEN": "MAIN POWER ISOLATED",
+                                        "effectHI": "VCB Close नहीं होगा",
+                                        "effectEN": "VCB will not close",
+                                        "stepsHI": ["Control Electronics OFF/ON करके पुनः प्रयास करें", "सफलता नहीं मिले तो 20 मिनट के अंदर सहायता इंजन मांगें"],
+                                        "stepsEN": ["Switch OFF/ON control electronics and retry", "If not successful, ask for assistance engine within 20 minutes"]
+                                    }
+                                }
+                                // Add remaining SS01 faults from JSON here...
+                            ]
+                        },
+                        { "subsystemCode": "SS02", "subsystemNameHI": "ट्रेक्शन बोगी-1", "subsystemNameEN": "TRACTION BOGIE 1", "faults": [] },
+                        { "subsystemCode": "SS03", "subsystemNameHI": "ट्रेक्शन बोगी-2", "subsystemNameEN": "TRACTION BOGIE 2", "faults": [] },
+                        { "subsystemCode": "SS04", "subsystemNameHI": "हार्मोनिक फ़िल्टर", "subsystemNameEN": "HARMONIC FILTER", "faults": [] },
+                        { "subsystemCode": "SS05", "subsystemNameHI": "होटल लोड", "subsystemNameEN": "HOTEL LOAD", "faults": [] },
+                        { "subsystemCode": "SS06", "subsystemNameHI": "ऑक्स कन्वर्टर 1", "subsystemNameEN": "AUX CONVERTER 1", "faults": [] },
+                        { "subsystemCode": "SS07", "subsystemNameHI": "ऑक्स कन्वर्टर 2", "subsystemNameEN": "AUX CONVERTER 2", "faults": [] },
+                        { "subsystemCode": "SS08", "subsystemNameHI": "ऑक्स कन्वर्टर 3", "subsystemNameEN": "AUX CONVERTER 3", "faults": [] },
+                        { "subsystemCode": "SS09", "subsystemNameHI": "बैटरी सिस्टम", "subsystemNameEN": "BATTERY SYSTEM", "faults": [] },
+                        { "subsystemCode": "SS11", "subsystemNameHI": "ऑक्सिलरीज HB-1", "subsystemNameEN": "AUXILIARIES HB 1", "faults": [] },
+                        { "subsystemCode": "SS12", "subsystemNameHI": "ऑक्सिलरीज HB-2", "subsystemNameEN": "AUXILIARIES HB 2", "faults": [] },
+                        { "subsystemCode": "SS13", "subsystemNameHI": "कैब-1", "subsystemNameEN": "CAB 1", "faults": [] },
+                        { "subsystemCode": "SS14", "subsystemNameHI": "कैब-2", "subsystemNameEN": "CAB 2", "faults": [] },
+                        { "subsystemCode": "SS15", "subsystemNameHI": "फायर डिटेक्शन यूनिट", "subsystemNameEN": "FIRE DETECTION UNIT", "faults": [] },
+                        { "subsystemCode": "SS16", "subsystemNameHI": "स्पीडोमीटर", "subsystemNameEN": "SPEEDOMETER", "faults": [] },
+                        { "subsystemCode": "SS17", "subsystemNameHI": "FLG1 / ICP1", "subsystemNameEN": "FLG1 / ICP1", "faults": [] },
+                        { "subsystemCode": "SS18", "subsystemNameHI": "FLG2 / ICP2", "subsystemNameEN": "FLG2 / ICP2", "faults": [] },
+                        { "subsystemCode": "SS19", "subsystemNameHI": "ट्रेन बस", "subsystemNameEN": "TRAIN BUS", "faults": [] }
+                    ];
+                },
+
+                openSS(ss) {
+                    this.selectedSS = ss;
+                    this.currentPage = 'fault-list';
+                    window.scrollTo(0,0);
+                },
+
+                openFault(fault) {
+                    this.selectedFault = fault;
+                    this.currentPage = 'fault-detail';
+                    window.scrollTo(0,0);
+                }
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NWR Chalak Mitra - All Faults (Hindi + English)</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Tiro+Devanagari+Hindi:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --primary:#005A9C;
+      --secondary:#ff9933;
+      --bg:#f3f7fb;
+      --card:#ffffff;
+      --text:#1c1c1c;
+
+      --green:#28a745;
+      --red:#dc3545;
+      --redLight:#ffe5e7;
+      --yellowBg:#fff3cd;
+
+      --purple:#efeaff;
+      --purpleDark:#6f42c1;
+
+      --lampRedOff:#8b2b2b;
+      --lampYellow:#ffeb3b;
+      --lampOrange:#ff6f00;
+    }
+
+    *{box-sizing:border-box; margin:0; padding:0;}
+    body{
+      font-family:'Poppins','Tiro Devanagari Hindi',sans-serif;
+      background:var(--bg);
+      color:var(--text);
+    }
+
+    /* ✅ Animations */
+    @keyframes floaty{
+      0%{transform:translateY(0);}
+      50%{transform:translateY(-6px);}
+      100%{transform:translateY(0);}
+    }
+    @keyframes pulse{
+      0%{transform:scale(1); opacity:1;}
+      50%{transform:scale(1.15); opacity:0.85;}
+      100%{transform:scale(1); opacity:1;}
+    }
+    @keyframes blink{
+      0%{opacity:0.4; transform:scale(0.95);}
+      100%{opacity:1; transform:scale(1.05); box-shadow:0 0 18px var(--lampYellow);}
+    }
+
+    .icon-pulse{ animation:pulse 2s infinite; }
+    .blink-anim{ animation: blink 0.55s infinite alternate; }
+    .soft-float{ animation: floaty 3.5s ease-in-out infinite; }
+
+    /* ✅ Header */
+    header{
+      position:relative;
+      padding:22px 0;
+      background: linear-gradient(135deg, var(--primary), #003d6b);
+      color:white;
+      overflow:hidden;
+      box-shadow:0 6px 20px rgba(0,0,0,0.25);
+    }
+    header::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: radial-gradient(circle, rgba(255,255,255,0.12) 10%, transparent 10%);
+      background-size: 22px 22px;
+      opacity:0.35;
+      animation: floaty 4s infinite;
+    }
+
+    .header-wrap{
+      position:relative;
+      z-index:2;
+      max-width:1200px;
+      margin:0 auto;
+      padding:0 16px;
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:14px;
+      flex-wrap:wrap;
+    }
+
+    .brand-row{
+      display:flex;
+      gap:14px;
+      align-items:center;
+    }
+    .rail-badge{
+      width:60px; height:60px;
+      border-radius:18px;
+      background: rgba(255,255,255,0.14);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:26px;
+      box-shadow:0 10px 22px rgba(0,0,0,0.2);
+    }
+    .top-title{
+      font-size:12px;
+      letter-spacing:2px;
+      opacity:0.92;
+      text-transform:uppercase;
+    }
+    h1{
+      font-size:30px;
+      margin-top:6px;
+      font-weight:800;
+    }
+    .badge{
+      margin-top:10px;
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      padding:7px 14px;
+      border-radius:999px;
+      background: var(--secondary);
+      font-weight:800;
+      box-shadow:0 8px 16px rgba(0,0,0,0.22);
+    }
+    .dev{
+      margin-top:10px;
+      font-size:13px;
+      opacity:0.9;
+      display:flex;
+      gap:8px;
+      align-items:center;
+    }
+
+    /* ✅ Language toggle */
+    .lang-box{
+      background: rgba(255,255,255,0.14);
+      padding:10px;
+      border-radius:16px;
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      min-width: 220px;
+      box-shadow:0 8px 18px rgba(0,0,0,0.18);
+    }
+    .lang-title{
+      font-weight:800;
+      font-size:13px;
+      opacity:0.95;
+      display:flex;
+      gap:8px;
+      align-items:center;
+    }
+    .lang-toggle{
+      display:flex;
+      gap:8px;
+    }
+    .lang-btn{
+      flex:1;
+      border:none;
+      padding:10px 12px;
+      border-radius:14px;
+      cursor:pointer;
+      font-weight:900;
+      transition:.2s;
+      background: rgba(255,255,255,0.16);
+      color:white;
+    }
+    .lang-btn.active{
+      background: white;
+      color: var(--primary);
+    }
+
+    /* ✅ Layout */
+    .container{
+      max-width:1200px;
+      margin:18px auto;
+      padding:0 16px;
+    }
+    .grid{
+      display:grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap:16px;
+    }
+    @media(max-width:950px){
+      .grid{ grid-template-columns:1fr; }
+    }
+
+    .card{
+      background:var(--card);
+      border-radius:18px;
+      padding:16px;
+      box-shadow:0 10px 22px rgba(0,0,0,0.07);
+      border:1px solid rgba(0,0,0,0.06);
+    }
+    .title{
+      font-weight:900;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin-bottom:12px;
+      font-size:18px;
+    }
+
+    /* ✅ Search */
+    .search-row{
+      display:flex;
+      gap:10px;
+    }
+    .search-row input{
+      flex:1;
+      padding:12px 14px;
+      border-radius:14px;
+      border:1px solid #ddd;
+      outline:none;
+      font-size:15px;
+    }
+    .search-row input:focus{
+      border-color: var(--primary);
+      box-shadow:0 0 0 4px rgba(0,90,156,0.12);
+    }
+
+    .btn{
+      border:none;
+      padding:12px 16px;
+      border-radius:14px;
+      background: var(--primary);
+      color:white;
+      font-weight:900;
+      cursor:pointer;
+      transition:0.25s;
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      justify-content:center;
+    }
+    .btn:hover{
+      transform:translateY(-2px);
+      box-shadow:0 10px 18px rgba(0,90,156,0.25);
+    }
+    .btn.gray{
+      background: rgba(0,0,0,0.08);
+      color:#333;
+      box-shadow:none;
+    }
+
+    .results{
+      margin-top:12px;
+      display:grid;
+      gap:10px;
+    }
+    .result-item{
+      background:#f7fbff;
+      padding:12px;
+      border-radius:14px;
+      border:1px solid rgba(0,0,0,0.06);
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+    }
+    .result-code{ font-weight:900; color:var(--primary); }
+    .result-sub{ font-size:13px; opacity:0.82; }
+
+
+
+    /* ✅ Details Panel */
+    .panel{
+      position:sticky;
+      top:14px;
+      height: fit-content;
+    }
+    .hint{
+      opacity:0.82;
+      font-size:13px;
+      line-height:1.5;
+    }
+
+    
+    }
+    .highlight-red{ color: var(--red); font-weight:900; }
+
+    /* ✅ Lamps */
+    .lamp-list{ list-style:none; }
+    .lamp-item{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      padding:10px;
+      border-radius:999px;
+      background: rgba(255,255,255,0.65);
+      margin-bottom:10px;
+    }
+    
+    /* ✅ Steps */
+    .action{
+      margin-top:14px;
+      background: linear-gradient(to bottom, var(--purple), #ffffff);
+      border-left:6px solid var(--purpleDark);
+      border-radius:18px;
+      padding:16px;
+      box-shadow:0 10px 20px rgba(111,66,193,0.12);
+    }
+    .action-title{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      font-weight:900;
+      font-size:18px;
+      margin-bottom:10px;
+      color:var(--purpleDark);
+    }
+    .step{
+      position:relative;
+      background:white;
+      border-radius:16px;
+      padding:12px 12px 12px 55px;
+      margin-bottom:10px;
+      box-shadow:0 6px 14px rgba(0,0,0,0.06);
+      transition:0.25s;
+    }
+    .step:hover{ transform:translateX(6px); }
+    .num{
+      position:absolute;
+      left:12px;
+      top:50%;
+      transform:translateY(-50%);
+      width:30px;
+      height:30px;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background: var(--purpleDark);
+      color:white;
+      font-weight:900;
+    }
+
+    .empty{
+      padding:16px;
+      border-radius:18px;
+      background:#f7fbff;
+      border:1px dashed rgba(0,0,0,0.25);
+      opacity:0.95;
+    }
+
+    footer{
+      text-align:center;
+      padding:26px 12px;
+      color:#555;
+      opacity:0.9;
+      margin-top:28px;
+      border-top:1px solid rgba(0,0,0,0.1);
+    }
+    .small{ font-size:12px; opacity:0.85; }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="header-wrap">
+    <div>
+      <div class="brand-row">
+        <div class="rail-badge soft-float">
+          <i class="fa-solid fa-train"></i>
+        </div>
+        <div>
+          <div class="top-title">NORTH WESTERN RAILWAY</div>
+          <h1>NWR Chalak Mitra</h1>
+          <div class="badge">
+            <i class="fa-solid fa-shield-halved"></i>
+            Fault Troubleshooting (Hindi + English)
+          </div>
+        </div>
+      </div>
+
+      <div class="dev">
+        <i class="fa-solid fa-user-gear icon-pulse"></i>
+        Design & Developed by: <b>Pradeep Kr Meena (Sr. ALP/HMH)</b>
+      </div>
+    </div>
+
+    <div class="lang-box">
+      <div class="lang-title">
+        <i class="fa-solid fa-language"></i> Language (Default Hindi)
+      </div>
+
+      <div class="lang-toggle">
+        <button class="lang-btn active" id="btnHI">हिन्दी</button>
+        <button class="lang-btn" id="btnEN">English</button>
+      </div>
+
+      <div style="font-size:12px;opacity:0.9;">
+        ✅ Hindi default रहेगा<br/>
+        ✅ English toggle से change होगा
+      </div>
+    </div>
+  </div>
+</header>
+<style>
+        :root { --primary-color: #005A9C; --secondary-color: #ff9933; --bg-color: #f0f4f8; --fault-green: #28a745; --fault-yellow-bg: #fff3cd; --fault-red: #dc3545; --fault-red-light: #f8d7da; --action-purple: #e2d9f3; --action-purple-dark: #6f42c1; --lamp-red-on: #ff0000; --lamp-yellow-bright: #ffeb3b; --lamp-orange-bright: #ff6f00; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Poppins', 'Tiro Devanagari Hindi', sans-serif; background-color: var(--bg-color); color: #333; line-height: 1.6; }
+        header { background: linear-gradient(135deg, var(--primary-color), #003d6b); color: white; padding: 20px 0; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+        .container { max-width: 900px; margin: 30px auto; padding: 0 20px; }
+        .alert-header { padding: 15px; border-radius: 10px 10px 0 0; text-align: center; color: white; font-weight: 700; font-size: 1.5rem; letter-spacing: 1px; }
+        .alert-header.fault-green { background: linear-gradient(to right, var(--fault-green), #218838); }
+        .alert-header.isolation-red { background: linear-gradient(to right, var(--fault-red), #c82333); margin-top: 40px; }
+        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; background: white; padding: 20px; border-radius: 0 0 10px 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border: 2px solid transparent; }
+        .fault-section .info-grid { border-color: var(--fault-green); }
+        .isolation-section .info-grid { border-color: var(--fault-red); }
+        .info-card { background: var(--fault-yellow-bg); padding: 15px; border-radius: 8px; border-left: 4px solid #ffd700; }
+        .isolation-section .info-card { background: var(--fault-red-light); border-left: 4px solid var(--fault-red); }
+        .full-row { grid-column: 1 / -1; }
+        .info-title { font-weight: 700; display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+        .highlight-red { color: var(--fault-red); font-weight: bold; }
+        
+        /* Lamp Styles */
+        .lamp-list { list-style: none; padding: 0; margin: 0; }
+        .lamp-item { display: flex; align-items: center; margin-bottom: 12px; font-weight: 500; background: rgba(255,255,255,0.5); padding: 8px 12px; border-radius: 50px; border: 1px solid rgba(0,0,0,0.05); }
+        .lamp-indicator { width: 25px; height: 25px; border-radius: 50%; display: inline-block; margin-right: 15px; border: 2px solid rgba(0,0,0,0.1); }
+        .lamp-red-on { background-color: var(--lamp-red-on); box-shadow: 0 0 10px var(--lamp-red-on); border: 2px solid #fff; }
+        .lamp-bright-yellow { background-color: var(--lamp-yellow-bright); box-shadow: 0 0 10px var(--lamp-yellow-bright); border: 2px solid #fff; }
+        .lamp-bright-orange { background-color: var(--lamp-orange-bright); box-shadow: 0 0 10px var(--lamp-orange-bright); border: 2px solid #fff; }
+        .text-red-bold { color: var(--lamp-red-on); font-weight: bold; }
+        .text-yellow-bold { color: #d4a000; font-weight: bold; }
+        .text-orange-bold { color: #d35400; font-weight: bold; }
+        .blink-anim { animation: blink 0.5s infinite alternate; }
+        @keyframes blink { 0% { opacity: 0.4; transform: scale(0.95); } 100% { opacity: 1; transform: scale(1.05); box-shadow: 0 0 15px var(--lamp-yellow-bright); } }
+
+        /* Action */
+        .action-section { background: linear-gradient(to bottom, var(--action-purple), #f3f0fa); padding: 25px; border-radius: 15px; border-left: 5px solid var(--action-purple-dark); margin-top: 15px; }
+        .action-title { font-size: 1.4rem; color: var(--action-purple-dark); margin-bottom: 20px; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+        .step-card { background: white; border-radius: 10px; padding: 15px 15px 15px 60px; margin-bottom: 10px; position: relative; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .step-number { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); background: var(--action-purple-dark); color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; }
+        
+        footer { text-align: center; padding: 30px; color: #666; font-size: 0.9rem; margin-top: 40px; border-top: 1px solid #ddd; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="fault-section">
+            <div class="alert-header fault-green">Fault : F0102P1</div>
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="info-title"><i class="fa-solid fa-circle-info"></i> Fault Message</div>
+                    <div>SS 01 : Main Power<br><span class="highlight-red">VCB STUCK IN OFF POSITION</span><br>Try to close VCB again.</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-title"><i class="fa-regular fa-lightbulb"></i> Lamp Status</div>
+                    <ul class="lamp-list">
+                        <li class="lamp-item"><span class="lamp-indicator lamp-red-on"></span><div><strong>LSDJ</strong><br><span class="text-red-bold">जलेगी (On)</span></div></li>
+                        <li class="lamp-item"><span class="lamp-indicator lamp-bright-yellow blink-anim"></span><div><strong>LSFI</strong><br><span class="text-yellow-bold">Blinking करेगी</span></div></li>
+                        <li class="lamp-item"><span class="lamp-indicator lamp-bright-orange"></span><div><strong>BPFA</strong><br><span class="text-orange-bold">जलेगी (On)</span></div></li>
+                    </ul>
+                </div>
+                <div class="info-card full-row">
+                    <div class="info-title"><i class="fa-solid fa-gears"></i> Effect</div>
+                    <div>VCB का control अतिरिक्त processor से होने लगेगा</div>
+                </div>
+            </div>
+            <div class="action-section">
+                <div class="action-title"><i class="fa-solid fa-screwdriver-wrench"></i> कार्यवाही</div>
+                <div class="step-card"><div class="step-number">1</div>थ्रोटल को ‘0’ पर करें। BPFA दबाकर फाल्ट एक्नालेजे करें।</div>
+                <div class="step-card"><div class="step-number">2</div>BLDJ से VCB बंद करें।</div>
+                <div class="step-card"><div class="step-number">3</div>यदि VCB बंद हो जाता है नॉर्मल ट्रैक्शन चालू करें।</div>
+                <div class="step-card"><div class="step-number">4</div>यदि सफलता न मिले तो कोस्टिंग करते हुए ब्लॉक सेक्शन क्लियर करें और गाड़ी खड़ी करें।</div>
+                <div class="step-card"><div class="step-number">5</div>MCE ऑफ करके एक बार पुनः ‘ऑन’ करें।</div>
+                <div class="step-card"><div class="step-number">6</div>पेंटो उठाएं और VCB बंद करें तथा नॉर्मल ट्रैक्शन चालू करें।</div>
+                <div class="step-card"><div class="step-number">7</div>यदि सफलता न मिले तो पिछली कैब से कोशिश करें।</div>
+            </div>
+        </div>
+
+        <div class="isolation-section">
+            <div class="alert-header isolation-red">Isolation Message : F0102P1</div>
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="info-title"><i class="fa-solid fa-ban"></i> Fault Message</div>
+                    <div>SS 01 : Main Power<br><span class="highlight-red">MAIN POWER ISOLATED</span><br>VCB inhibited<br>Loco is dead.</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-title"><i class="fa-regular fa-lightbulb"></i> Lamp Status</div>
+                    <ul class="lamp-list">
+                        <li class="lamp-item"><span class="lamp-indicator lamp-red-on"></span><span class="lamp-indicator lamp-bright-yellow" style="margin-left: -10px;"></span><div><strong>LSDJ तथा LSFI</strong><br><span class="text-red-bold">जलती रहेगी (Both On)</span></div></li>
+                    </ul>
+                </div>
+                <div class="info-card full-row">
+                    <div class="info-title"><i class="fa-solid fa-lock"></i> Effect</div>
+                    <div>VCB बंद नहीं होगा</div>
+                </div>
+            </div>
+            <div class="action-section" style="background:#fff5f5; border-color:#dc3545;">
+                <div class="action-title" style="color:#dc3545;"><i class="fa-solid fa-hand-paper"></i> कार्यवाही</div>
+                <div class="step-card"><div class="step-number" style="background:#dc3545;">1</div>MCE को एक बार ऑफ कर फिर ऑन करें, नॉर्मल ट्रैक्शन चालू करें। यदि सफलता नहीं मिलती है तो</div>
+                <div class="step-card"><div class="step-number" style="background:#dc3545;">2</div>10 मिनट के अन्दर सहायता इंजन की मांग करें।</div>
+            </div>
+        </div>
+    </div>
+
+<footer>
+  <p>© 2026 NWR Chalak Mitra AI. All Rights Reserved.</p>
+  <p class="small">Indian Railways - Serving the Nation</p>
+</footer>
+
+</script>
+
+</body>
+</html>
+

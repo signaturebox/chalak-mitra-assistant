@@ -1,0 +1,492 @@
+[
+  {
+    "subsystemCode": "SS03",
+    "subsystemNameHI": "ट्रैक्शन बोगी-2",
+    "subsystemNameEN": "TRACTION BOGIE 2",
+    "faults": [
+      {
+        "faultCode": "F0301P1",
+        "titleHI": "कन्वर्टर-2 में डिस्टर्बेंस",
+        "titleEN": "DISTURBANCE IN CONVERTER 2",
+        "messageHI": "VCB पुनः बंद करने का प्रयास करें",
+        "messageEN": "Try to close VCB again",
+        "lamps": ["LSDJ जलेगी", "LSFI ब्लिंकिंग", "BPFA जलेगी"],
+        "effectHI": "VCB Open होगी और बोगी-2 ट्रैक्शन प्रभावित होगी",
+        "effectEN": "VCB opens and bogie-2 traction will be affected",
+        "actionHI": [
+          "थ्रॉटल 0 पर रखें और BPFA दबाकर फॉल्ट ACK करें",
+          "MCB 127.1/2 (SB-2) चेक करें, ट्रिप हो तो MCE OFF करके Reset करें",
+          "VCB बंद करने हेतु BLDJ दबाएँ",
+          "यदि fault repeat हो तो Control Electronics OFF करें, 5 मिनट बाद ON करें",
+          "Pantograph उठाएँ और VCB बंद करके traction लें",
+          "यदि bogie-2 auto isolate नहीं होती तो SB-2 पर MCB 127.1/2 एवं 127.11/2 द्वारा bogie-2 isolate करें (MCE OFF करके)",
+          "TLC को सूचित करें और DDS message log book में लिखें"
+        ],
+        "actionEN": [
+          "Bring throttle to 0 and ACK with BPFA",
+          "Check MCB 127.1/2 (SB-2); if tripped reset with MCE OFF",
+          "Press BLDJ to close VCB",
+          "If fault repeats, switch OFF control electronics and ON after 5 minutes",
+          "Raise pantograph and close VCB to take traction",
+          "If bogie-2 not auto isolated then isolate using MCB 127.1/2 & 127.11/2 (with MCE OFF)",
+          "Inform TLC and note DDS message in log book"
+        ],
+        "isolation": {
+          "required": true,
+          "titleHI": "BOGIE 2 ISOLATED",
+          "titleEN": "BOGIE 2 ISOLATED",
+          "effectHI": "केवल Half traction तथा electrical braking power उपलब्ध होगी",
+          "effectEN": "Only half traction and electrical braking power will be available",
+          "stepsHI": [
+            "DDS पर 'BOGIE 2 ISOLATED' आने पर ENTER दबाकर ACK करें",
+            "Reduced power के साथ operation जारी रखें",
+            "TLC को सूचित करें"
+          ],
+          "stepsEN": [
+            "Press ENTER to ACK when DDS shows 'BOGIE 2 ISOLATED'",
+            "Continue operation with reduced power",
+            "Inform TLC"
+          ]
+        }
+      },
+
+      {
+        "faultCode": "F0302P1",
+        "titleHI": "कन्वर्टर कॉन्टैक्टर OFF में फँसा हुआ",
+        "titleEN": "CONVERTER CONTACTOR STUCK OFF",
+        "messageHI": "VCB पुनः बंद करने का प्रयास करें",
+        "messageEN": "Try to close VCB again",
+        "lamps": ["LSDJ जलेगी", "LSFI ब्लिंकिंग", "BPFA जलेगी"],
+        "effectHI": "VCB Open होगी और कन्वर्टर कॉन्टैक्टर close नहीं होगा",
+        "effectEN": "VCB opens and converter contactor will not close",
+        "actionHI": [
+          "थ्रॉटल 0 पर रखें और BPFA ACK करें",
+          "CCB-2 में MR और FP प्रेशर जांचें (कम हो तो MPJ 0 पर रखें)",
+          "VCB बंद करने हेतु BLDJ दबाएँ",
+          "SR-2 में pneumatic leakage / fault check करें",
+          "Fault repeat हो तो bogie-2 isolate करें (Switch 154 या MCB isolation)"
+        ],
+        "actionEN": [
+          "Bring throttle to 0 and ACK with BPFA",
+          "Check MR and FP pressure in CCB-2 (if low keep MPJ at 0)",
+          "Press BLDJ to close VCB",
+          "Check pneumatic leakage/fault in SR-2",
+          "If repeats isolate bogie-2 (Switch 154 or MCB isolation)"
+        ],
+        "isolation": {
+          "required": true,
+          "titleHI": "BOGIE 2 ISOLATED",
+          "titleEN": "BOGIE 2 ISOLATED",
+          "effectHI": "Half TE/BE available",
+          "effectEN": "Half TE/BE available",
+          "stepsHI": ["DDS isolation आने पर ENTER दबाएँ", "TLC को सूचित करें"],
+          "stepsEN": ["Press ENTER on DDS isolation", "Inform TLC"]
+        }
+      },
+
+      {
+        "faultCode": "F0303P1",
+        "titleHI": "Gate Unit Supply OFF में फँसा हुआ",
+        "titleEN": "GATE UNIT SUPPLY STUCK OFF",
+        "messageHI": "VCB पुनः बंद करने का प्रयास करें",
+        "messageEN": "Try to close VCB again",
+        "lamps": ["LSDJ जलेगी", "LSFI ब्लिंकिंग", "BPFA जलेगी"],
+        "effectHI": "VCB Open होगी, bogie-2 isolate हो सकती है",
+        "effectEN": "VCB opens, bogie-2 may isolate",
+        "actionHI": [
+          "थ्रॉटल 0 पर रखें और BPFA ACK करें",
+          "SB-2 पर MCB 127.11/2 check करें, ट्रिप हो तो MCE OFF करके reset करें",
+          "VCB बंद करने हेतु BLDJ दबाएँ",
+          "Fault repeat होने पर bogie-2 isolate करें और TLC को सूचित करें"
+        ],
+        "actionEN": [
+          "Bring throttle to 0 and ACK with BPFA",
+          "Check MCB 127.11/2 on SB-2; reset with MCE OFF if tripped",
+          "Press BLDJ to close VCB",
+          "If repeats isolate bogie-2 and inform TLC"
+        ],
+        "isolation": {
+          "required": true,
+          "titleHI": "BOGIE 2 ISOLATED",
+          "titleEN": "BOGIE 2 ISOLATED",
+          "effectHI": "Half TE/BE available",
+          "effectEN": "Half TE/BE available",
+          "stepsHI": ["ENTER दबाकर ACK करें", "Reduced power पर चलाएँ"],
+          "stepsEN": ["Press ENTER to ACK", "Proceed with reduced power"]
+        }
+      },
+
+      {
+        "faultCode": "F0305P1",
+        "titleHI": "कन्वर्टर-2 का तापमान बहुत अधिक",
+        "titleEN": "CONVERTER 2 OIL TEMPERATURE TOO HIGH",
+        "messageHI": "VCB पुनः बंद करने का प्रयास करें",
+        "messageEN": "Try to close VCB again",
+        "lamps": ["LSDJ जलेगी", "LSFI ब्लिंकिंग", "BPFA जलेगी"],
+        "effectHI": "कन्वर्टर-2 ब्लॉक/ट्रिप होकर bogie-2 isolate हो सकती है",
+        "effectEN": "Converter-2 may block/trip and bogie-2 may isolate",
+        "actionHI": [
+          "थ्रॉटल 0 रखें और BPFA ACK करें",
+          "कन्वर्टर पंप यूनिट-2 (OCB-2) की running check करें",
+          "HB-2 पर MCB 59.1/2 एवं 63.1/2 ट्रिप हो तो VCB खोलकर reset करें",
+          "VCB बंद करने हेतु BLDJ दबाएँ",
+          "यदि repeat हो तो bogie-2 isolate करें"
+        ],
+        "actionEN": [
+          "Bring throttle to 0 and ACK with BPFA",
+          "Check converter pump unit-2 (OCB-2) running",
+          "If HB-2 MCB 59.1/2 & 63.1/2 tripped, open VCB and reset",
+          "Press BLDJ to close VCB",
+          "If repeats isolate bogie-2"
+        ],
+        "isolation": {
+          "required": true,
+          "titleHI": "BOGIE 2 ISOLATED",
+          "titleEN": "BOGIE 2 ISOLATED",
+          "effectHI": "Half TE/BE available",
+          "effectEN": "Half TE/BE available",
+          "stepsHI": ["DDS isolation पर ENTER दबाएँ", "TLC को सूचित करें"],
+          "stepsEN": ["Press ENTER on DDS isolation", "Inform TLC"]
+        }
+      },
+
+      {
+        "faultCode": "F0306P1",
+        "titleHI": "कन्वर्टर-2 ऑयल प्रेशर सही नहीं / ऑयल लेवल चेक करें",
+        "titleEN": "TRACTION BOGIE 2 OIL PRESSURE NOT OK / CHECK OIL LEVEL",
+        "messageHI": "VCB पुनः बंद करने का प्रयास करें",
+        "messageEN": "Try to close VCB again",
+        "lamps": ["LSDJ जलेगी", "LSFI ब्लिंकिंग", "BPFA जलेगी"],
+        "effectHI": "ऑयल लेवल/प्रेशर समस्या होने पर bogie-2 isolate हो सकती है",
+        "effectEN": "Low oil level/pressure may lead to bogie-2 isolation",
+        "actionHI": [
+          "थ्रॉटल 0 रखें और BPFA ACK करें",
+          "कन्वर्टर क्यूबिकल में ऑयल लेवल check करें",
+          "यदि ऑयल लेवल कम हो तो SR-2 में Switch 154 को '2' पर रखकर bogie-2 isolate करें",
+          "यदि ऑयल normal हो तो HB-2 पर MCB 63.1/2 check करें (ट्रिप हो तो VCB open करके reset करें)",
+          "बार-बार reset न करें, जरूरत हो तो bogie-2 isolate रखें",
+          "TLC को सूचित करें"
+        ],
+        "actionEN": [
+          "Bring throttle to 0 and ACK with BPFA",
+          "Check oil level in converter cubicle",
+          "If oil low isolate bogie-2 by setting switch 154 to '2' in SR-2",
+          "If oil normal check HB-2 MCB 63.1/2 (reset after opening VCB if tripped)",
+          "Do not reset repeatedly, isolate bogie-2 if needed",
+          "Inform TLC"
+        ],
+        "isolation": {
+          "required": true,
+          "titleHI": "BOGIE-2 Isolation (Switch 154)",
+          "titleEN": "BOGIE-2 Isolation (Switch 154)",
+          "effectHI": "Half TE/BE available",
+          "effectEN": "Half TE/BE available",
+          "stepsHI": ["VCB open करें", "Switch 154 '2' पर करें", "VCB close कर ENTER से ACK करें"],
+          "stepsEN": ["Open VCB", "Set switch 154 to '2'", "Close VCB and ACK with ENTER"]
+        }
+      },
+
+      {
+        "faultCode": "F0307P1",
+        "titleHI": "ट्रैक्शन मोटर तापमान बहुत अधिक (Converter-2 Blocked)",
+        "titleEN": "TRACTION MOTOR TEMPERATURE TOO HIGH (CONVERTER 2 BLOCKED)",
+        "messageHI": "कन्वर्टर-2 ब्लॉक हो सकती है",
+        "messageEN": "Converter-2 may get blocked",
+        "lamps": ["LSFI ब्लिंकिंग"],
+        "effectHI": "TE/BE reduce होगी और bogie-2 isolate हो सकती है",
+        "effectEN": "TE/BE reduced and bogie-2 may isolate",
+        "actionHI": [
+          "BPFA दबाकर ACK करें",
+          "HB-2 पर MCB 63.1/2 चेक करें (ट्रिप हो तो reset करें)",
+          "BUR-2 का कार्य check करें",
+          "Fault repeat होने पर bogie-2 isolate करें और TLC को सूचित करें"
+        ],
+        "actionEN": [
+          "ACK with BPFA",
+          "Check HB-2 MCB 63.1/2 (reset if tripped)",
+          "Check BUR-2 operation",
+          "If repeats isolate bogie-2 and inform TLC"
+        ],
+        "isolation": {
+          "required": true,
+          "titleHI": "BOGIE 2 ISOLATED",
+          "titleEN": "BOGIE 2 ISOLATED",
+          "effectHI": "Half TE/BE available",
+          "effectEN": "Half TE/BE available",
+          "stepsHI": ["ENTER दबाकर ACK करें", "Reduced power पर चलाएँ"],
+          "stepsEN": ["Press ENTER to ACK", "Proceed with reduced power"]
+        }
+      },
+
+      {
+        "faultCode": "F0301P2",
+        "titleHI": "कन्वर्टर-2 में अर्थ फॉल्ट",
+        "titleEN": "EARTH FAULT IN CONVERTER 2",
+        "messageHI": "नॉर्मल ऑपरेशन जारी रख सकते हैं",
+        "messageEN": "Normal operation can continue",
+        "lamps": ["BPFA जलेगी"],
+        "effectHI": "मेंटेनेंस में जांच आवश्यक",
+        "effectEN": "To be checked during maintenance",
+        "actionHI": ["BPFA ACK करें", "TLC को सूचित करें"],
+        "actionEN": ["ACK with BPFA", "Inform TLC"],
+        "isolation": { "required": false, "titleHI": "", "titleEN": "", "effectHI": "", "effectEN": "", "stepsHI": [], "stepsEN": [] }
+      },
+
+      {
+        "faultCode": "F0302P2",
+        "titleHI": "ट्रैक्शन मोटर ओवरस्पीड (स्पीड कम करें)",
+        "titleEN": "TRACTION MOTOR OVER SPEED (REDUCE LOCO SPEED)",
+        "messageHI": "गति कम करें",
+        "messageEN": "Reduce loco speed",
+        "lamps": ["BPFA जलेगी"],
+        "effectHI": "TE reduce होगी",
+        "effectEN": "TE will reduce",
+        "actionHI": ["BPFA ACK करें", "स्पीड कम करें"],
+        "actionEN": ["ACK with BPFA", "Reduce speed"],
+        "isolation": {
+          "required": true,
+          "titleHI": "BOGIE-2 Isolation (If required)",
+          "titleEN": "BOGIE-2 Isolation (If required)",
+          "effectHI": "Half TE/BE available",
+          "effectEN": "Half TE/BE available",
+          "stepsHI": ["Switch 154 '2' पर करें", "ENTER से ACK करें"],
+          "stepsEN": ["Set switch 154 to '2'", "ACK with ENTER"]
+        }
+      },
+
+      {
+        "faultCode": "F0303P2",
+        "titleHI": "MUB रेसिस्टेंस बहुत गर्म (30 सेकंड प्रतीक्षा करें)",
+        "titleEN": "MUB RESISTANCE TOO HOT (WAIT 30 SECONDS)",
+        "messageHI": "30 सेकंड प्रतीक्षा करें",
+        "messageEN": "Wait for 30 seconds",
+        "lamps": ["LSDJ जलेगी", "LSFI ब्लिंकिंग", "BPFA जलेगी"],
+        "effectHI": "VCB बंद करने से पहले 30 सेकंड wait जरूरी",
+        "effectEN": "Wait 30 seconds before closing VCB",
+        "actionHI": ["30 सेकंड wait करें", "BPFA ACK करें", "BLDJ दबाकर VCB बंद करें"],
+        "actionEN": ["Wait 30 seconds", "ACK with BPFA", "Press BLDJ to close VCB"],
+        "isolation": { "required": false, "titleHI": "", "titleEN": "", "effectHI": "", "effectEN": "", "stepsHI": [], "stepsEN": [] }
+      },
+
+      {
+        "faultCode": "F0304P2",
+        "titleHI": "मोटर तापमान सेंसर खराब",
+        "titleEN": "FAULTY MOTOR TEMPERATURE SENSOR",
+        "messageHI": "Normal operation जारी रख सकते हैं",
+        "messageEN": "Normal operation can continue",
+        "lamps": ["BPFA जलेगी"],
+        "effectHI": "मेंटेनेंस में जांचें",
+        "effectEN": "Check during maintenance",
+        "actionHI": ["BPFA ACK करें", "TLC को सूचित करें"],
+        "actionEN": ["ACK with BPFA", "Inform TLC"],
+        "isolation": { "required": false, "titleHI": "", "titleEN": "", "effectHI": "", "effectEN": "", "stepsHI": [], "stepsEN": [] }
+      },
+
+      {
+        "faultCode": "F0305P2",
+        "titleHI": "Equipment Temperature High (TE/BE reduce)",
+        "titleEN": "EQUIPMENT TEMPERATURE HIGH (TE/BE REDUCED)",
+        "messageHI": "TE/BE घटाई जा रही है",
+        "messageEN": "TE/BE is being reduced",
+        "lamps": ["BPFA जलेगी"],
+        "effectHI": "तापमान normal होने तक TE/BE reduce रहेगी",
+        "effectEN": "TE/BE reduced until temperature normal",
+        "actionHI": [
+          "BPFA ACK करें, थ्रॉटल 0 रखें",
+          "लगभग 10 मिनट wait करें",
+          "HB/SB MCB check करें",
+          "Issue बना रहे तो bogie-2 isolate करें",
+          "TLC को सूचित करें"
+        ],
+        "actionEN": [
+          "ACK with BPFA, keep throttle 0",
+          "Wait around 10 minutes",
+          "Check HB/SB MCBs",
+          "If issue persists isolate bogie-2",
+          "Inform TLC"
+        ],
+        "isolation": {
+          "required": true,
+          "titleHI": "BOGIE-2 Isolation",
+          "titleEN": "BOGIE-2 Isolation",
+          "effectHI": "Half TE/BE available",
+          "effectEN": "Half TE/BE available",
+          "stepsHI": ["Switch 154 '2' पर करें", "ENTER से ACK करें"],
+          "stepsEN": ["Set switch 154 to '2'", "ACK with ENTER"]
+        }
+      },
+
+      {
+        "faultCode": "F0306P2",
+        "titleHI": "DC Link Capacitors Pressure Not OK",
+        "titleEN": "DC LINK CAPACITORS PRESSURE NOT OK",
+        "messageHI": "Normal operation जारी रख सकते हैं",
+        "messageEN": "Normal operation can continue",
+        "lamps": ["BPFA जलेगी"],
+        "effectHI": "मेंटेनेंस में जांचें",
+        "effectEN": "Check during maintenance",
+        "actionHI": ["BPFA ACK करें", "TLC को सूचित करें"],
+        "actionEN": ["ACK with BPFA", "Inform TLC"],
+        "isolation": { "required": false, "titleHI": "", "titleEN": "", "effectHI": "", "effectEN": "", "stepsHI": [], "stepsEN": [] }
+      },
+
+      {
+        "faultCode": "F0307P2",
+        "titleHI": "Wheel Skidding (Bogie-2) – BE कम करें",
+        "titleEN": "WHEEL SKIDDING (BOGIE 2) – REDUCE BE",
+        "messageHI": "BE कम करें",
+        "messageEN": "Reduce BE",
+        "lamps": ["BPFA जलेगी"],
+        "effectHI": "Braking jerk / skidding issue हो सकता है",
+        "effectEN": "Braking jerk / skidding may occur",
+        "actionHI": [
+          "BPFA ACK करें",
+          "DPC में Free Movement check करें",
+          "BPCS और Regenerative braking का उपयोग न करें",
+          "जरूरत होने पर bogie-2 isolate करें और TLC को सूचित करें"
+        ],
+        "actionEN": [
+          "ACK with BPFA",
+          "Check free movement in DPC",
+          "Do not use BPCS and regenerative braking",
+          "If required isolate bogie-2 and inform TLC"
+        ],
+        "isolation": {
+          "required": true,
+          "titleHI": "BOGIE-2 Isolation (If required)",
+          "titleEN": "BOGIE-2 Isolation (If required)",
+          "effectHI": "Half TE/BE available",
+          "effectEN": "Half TE/BE available",
+          "stepsHI": ["Switch 154 '2' पर करें", "ENTER से ACK करें"],
+          "stepsEN": ["Set switch 154 to '2'", "ACK with ENTER"]
+        }
+      },
+
+      {
+        "faultCode": "F0307P2BT",
+        "titleHI": "BT IGBT: Line Converter Isolated (Bogie-2)",
+        "titleEN": "BT IGBT: LINE CONVERTER ISOLATED (BOGIE 2)",
+        "messageHI": "Reduced traction/braking effort",
+        "messageEN": "Reduced traction/braking effort",
+        "lamps": ["LSFI ब्लिंकिंग", "BPFA will glow"],
+        "effectHI": "बोगी-2 में TE/BE reduce",
+        "effectEN": "TE/BE reduced in bogie-2",
+        "actionHI": ["BPFA ACK करें", "TLC को सूचित करें"],
+        "actionEN": ["ACK with BPFA", "Inform TLC"],
+        "isolation": { "required": false, "titleHI": "", "titleEN": "", "effectHI": "", "effectEN": "", "stepsHI": [], "stepsEN": [] }
+      },
+
+      {
+        "faultCode": "F0308P2",
+        "titleHI": "Motor 1 Isolated (Bogie-2)",
+        "titleEN": "MOTOR 1 ISOLATED (BOGIE 2)",
+        "messageHI": "Reduced traction/braking effort",
+        "messageEN": "Reduced traction/braking effort",
+        "lamps": ["LSFI ब्लिंकिंग", "BPFA will glow"],
+        "effectHI": "5/6th TE/BE power उपलब्ध",
+        "effectEN": "5/6th TE/BE power available",
+        "actionHI": ["BPFA ACK करें", "Normal operation जारी रखें"],
+        "actionEN": ["ACK with BPFA", "Continue normal operation"],
+        "isolation": { "required": false, "titleHI": "", "titleEN": "", "effectHI": "", "effectEN": "", "stepsHI": [], "stepsEN": [] }
+      },
+
+      {
+        "faultCode": "F0309P2",
+        "titleHI": "Motor 2 Isolated (Bogie-2)",
+        "titleEN": "MOTOR 2 ISOLATED (BOGIE 2)",
+        "messageHI": "Reduced traction/braking effort",
+        "messageEN": "Reduced traction/braking effort",
+        "lamps": ["LSFI ब्लिंकिंग", "BPFA will glow"],
+        "effectHI": "5/6th TE/BE power उपलब्ध",
+        "effectEN": "5/6th TE/BE power available",
+        "actionHI": ["BPFA ACK करें", "Normal operation जारी रखें"],
+        "actionEN": ["ACK with BPFA", "Continue normal operation"],
+        "isolation": { "required": false, "titleHI": "", "titleEN": "", "effectHI": "", "effectEN": "", "stepsHI": [], "stepsEN": [] }
+      },
+
+      {
+        "faultCode": "F0310P2",
+        "titleHI": "Motor 3 Isolated (Bogie-2)",
+        "titleEN": "MOTOR 3 ISOLATED (BOGIE 2)",
+        "messageHI": "Reduced traction/braking effort",
+        "messageEN": "Reduced traction/braking effort",
+        "lamps": ["LSFI ब्लिंकिंग", "BPFA will glow"],
+        "effectHI": "5/6th TE/BE power उपलब्ध",
+        "effectEN": "5/6th TE/BE power available",
+        "actionHI": ["BPFA ACK करें", "Normal operation जारी रखें"],
+        "actionEN": ["ACK with BPFA", "Continue normal operation"],
+        "isolation": { "required": false, "titleHI": "", "titleEN": "", "effectHI": "", "effectEN": "", "stepsHI": [], "stepsEN": [] }
+      },
+
+      {
+        "faultCode": "F0311P2",
+        "titleHI": "TM-1 Isolated (BHEL IGBT) Bogie-2",
+        "titleEN": "TM-1 ISOLATED (BHEL IGBT) BOGIE 2",
+        "messageHI": "1/6th TE/BE कम",
+        "messageEN": "1/6th TE/BE reduced",
+        "lamps": ["LSFI ब्लिंकिंग", "BPFA will glow"],
+        "effectHI": "1/6th TE/BE power कम होगी",
+        "effectEN": "1/6th TE/BE power reduction",
+        "actionHI": ["BPFA ACK करें", "Normal operation जारी रखें"],
+        "actionEN": ["ACK with BPFA", "Continue normal operation"],
+        "isolation": { "required": false, "titleHI": "", "titleEN": "", "effectHI": "", "effectEN": "", "stepsHI": [], "stepsEN": [] }
+      },
+
+      {
+        "faultCode": "F0312P2",
+        "titleHI": "TM-2 Isolated (BHEL IGBT) Bogie-2",
+        "titleEN": "TM-2 ISOLATED (BHEL IGBT) BOGIE 2",
+        "messageHI": "1/6th TE/BE कम",
+        "messageEN": "1/6th TE/BE reduced",
+        "lamps": ["LSFI ब्लिंकिंग", "BPFA will glow"],
+        "effectHI": "1/6th TE/BE power कम होगी",
+        "effectEN": "1/6th TE/BE power reduction",
+        "actionHI": ["BPFA ACK करें", "Normal operation जारी रखें"],
+        "actionEN": ["ACK with BPFA", "Continue normal operation"],
+        "isolation": { "required": false, "titleHI": "", "titleEN": "", "effectHI": "", "effectEN": "", "stepsHI": [], "stepsEN": [] }
+      },
+
+      {
+        "faultCode": "F0313P2",
+        "titleHI": "TM-3 Isolated (BHEL IGBT) Bogie-2",
+        "titleEN": "TM-3 ISOLATED (BHEL IGBT) BOGIE 2",
+        "messageHI": "1/6th TE/BE कम",
+        "messageEN": "1/6th TE/BE reduced",
+        "lamps": ["LSFI ब्लिंकING", "BPFA will glow"],
+        "effectHI": "1/6th TE/BE power कम होगी",
+        "effectEN": "1/6th TE/BE power reduction",
+        "actionHI": ["BPFA ACK करें", "Normal operation जारी रखें"],
+        "actionEN": ["ACK with BPFA", "Continue normal operation"],
+        "isolation": { "required": false, "titleHI": "", "titleEN": "", "effectHI": "", "effectEN": "", "stepsHI": [], "stepsEN": [] }
+      },
+
+      {
+        "faultCode": "F0314P2",
+        "titleHI": "Line Converter-1 Isolated (Bogie-2)",
+        "titleEN": "LINE CONVERTER 1 ISOLATED (BOGIE 2)",
+        "messageHI": "1/4th TE/BE कम",
+        "messageEN": "1/4th TE/BE reduced",
+        "lamps": ["LSFI ब्लिंकING", "BPFA will glow"],
+        "effectHI": "1/4th TE/BE power कम होगी",
+        "effectEN": "1/4th TE/BE power reduction",
+        "actionHI": ["BPFA ACK करें", "Normal operation जारी रखें"],
+        "actionEN": ["ACK with BPFA", "Continue normal operation"],
+        "isolation": { "required": false, "titleHI": "", "titleEN": "", "effectHI": "", "effectEN": "", "stepsHI": [], "stepsEN": [] }
+      },
+
+      {
+        "faultCode": "F0315P2",
+        "titleHI": "Line Converter-2 Isolated (Bogie-2)",
+        "titleEN": "LINE CONVERTER 2 ISOLATED (BOGIE 2)",
+        "messageHI": "1/4th TE/BE कम",
+        "messageEN": "1/4th TE/BE reduced",
+        "lamps": ["LSFI ब्लिंकING", "BPFA will glow"],
+        "effectHI": "1/4th TE/BE power कम होगी",
+        "effectEN": "1/4th TE/BE power reduction",
+        "actionHI": ["BPFA ACK करें", "Normal operation जारी रखें"],
+        "actionEN": ["ACK with BPFA", "Continue normal operation"],
+        "isolation": { "required": false, "titleHI": "", "titleEN": "", "effectHI": "", "effectEN": "", "stepsHI": [], "stepsEN": [] }
+      }
+    ]
+  }
+]

@@ -1,0 +1,156 @@
+[
+  {
+    "subsystemCode": "SS01",
+    "subsystemNameHI": "मेन पावर",
+    "subsystemNameEN": "Main Power",
+    "faults": [
+      {
+        "faultCode": "F0101P1",
+        "titleHI": "मेन पावर वीसीबी ऑन स्थिति में फंसा",
+        "titleEN": "Main Power VCB STUCK IN ON POSITION",
+        "messageHI": "Loco XXXXXX SS01: Main Power VCB STUCK IN ON POSITION Loco will be shut down",
+        "messageEN": "Loco XXXXXX SS01: Main Power VCB STUCK IN ON POSITION Loco will be shut down",
+        "lamps": ["LSDJ नहीं जलेगी", "LSFI ब्लिंकिंग", "BPFA जलेगी"],
+        "effectHI": "SR1 और SR2 का कान्टैक्टर खुल जायेगा, पेंटो लोअर हो जायेगा, VCB बंद नहीं होगा।",
+        "effectEN": "SR1 & SR2 contactors will open (Hotel & Traction converter), Panto will lower, VCB will not close.",
+        "actionHI": [
+          "थ्रॉटल को '0' पर करें। BPFA दबाकर फाल्ट एक्नालेज करे।",
+          "कोस्टिंग करते हुए ब्लॉक सेक्शन साफ करें। गाड़ी को खड़ी करें।",
+          "MCE को ऑफ करके ऑन करें। यदि LSDJ जल जाय तो ZPT से पेंटों उठाये और VCB बंद करें।",
+          "यदि सफलता न मिले तो पिछली कैब से कोशिश करें।"
+        ],
+        "actionEN": [
+          "Set throttle to '0'. Acknowledge fault by pressing BPFA.",
+          "Clear block section while coasting. Stop the train.",
+          "Switch MCE OFF and then ON. If LSDJ glows, raise Panto via ZPT and close VCB.",
+          "If unsuccessful, try from the rear cab."
+        ]
+      },
+      {
+        "faultCode": "F0102P1",
+        "titleHI": "मेन पावर वीसीबी ऑफ स्थिति में फंसा",
+        "titleEN": "Main Power VCB STUCK IN OFF POSITION",
+        "messageHI": "Loco XXXXX SS01: Main Power VCB STUCK IN OFF POSITION Try to close VCB again",
+        "messageEN": "Loco XXXXX SS01: Main Power VCB STUCK IN OFF POSITION Try to close VCB again",
+        "lamps": ["LSDJ जलेगी", "LSFI ब्लिंकिंग", "BPFA जलेगी"],
+        "effectHI": "VCB का कंट्रोल अतिरिक्त प्रोसेसर से होने लगेगा।",
+        "effectEN": "VCB control will switch to redundant processor.",
+        "actionHI": [
+          "थ्राटल को '0' पोजीशन पर करें। BPFA दबाकर फाल्ट एक्नालेज करें।",
+          "BLDJ से VCB बंद करें। यदि VCB बन्द हो जाता है तो नॉर्मल ट्रैक्शन चालू करें।",
+          "सफलता न मिले तो कोस्टिंग करते हुए ब्लॉक सेक्शन क्लियर करें।"
+        ],
+        "actionEN": [
+          "Set throttle to '0'. Acknowledge fault via BPFA.",
+          "Close VCB using BLDJ. If successful, resume normal traction.",
+          "If unsuccessful, clear block section by coasting."
+        ]
+      },
+      {
+        "faultCode": "F0103P1",
+        "titleHI": "पेंटो लो प्रेशर / खराब पेंटो",
+        "titleEN": "LOW PRESSURE PANTO / FAULTY PANTO",
+        "messageHI": "SS01: Main Power LOW PRESSURE PANTO/FAULTY PANTO Check Isolating Cock",
+        "messageEN": "SS01: Main Power LOW PRESSURE PANTO/FAULTY PANTO Check Isolating Cock",
+        "lamps": ["LSDJ जलेगी", "LSFI ब्लिंकिंग", "BPFA जलेगी"],
+        "effectHI": "पेंटोग्रॉफ नही उठेगा।",
+        "effectEN": "Pantograph will not raise.",
+        "actionHI": [
+          "न्यूमेटिक पैनल पर IG-38 चाबी की जाँच करें (E70 में हॉरिजेन्टल, CCB में वर्टिकल)।",
+          "ऑक्जिलरी कम्प्रेशर (MCB 48.1 SB-2) के कार्य की जांच करे।",
+          "प्रेशर स्विच 26 को धीरे से टैप करें। ऑक्जलरी रिजर्वायर गेज में 5.2 kg/cm2 प्रेशर चेक करें।",
+          "पेंटो आइसोलेटिंग कॉक और VCB कॉक के खुले होने की जाँच करें।",
+          "पेंटो सेलेक्टर स्विच '85' से दूसरे पेंटोग्राफ को उठाने की कोशिश करें।"
+        ],
+        "actionEN": [
+          "Check IG-38 key on pneumatic panel (Horizontal for E70, Vertical for CCB).",
+          "Check Auxiliary Compressor (MCB 48.1 in SB-2).",
+          "Tap pressure switch 26 gently. Check for 5.2 kg/cm2 in Aux Reservoir gauge.",
+          "Check if Panto and VCB isolating cocks are open.",
+          "Try raising the other panto using Selector Switch '85'."
+        ]
+      }
+    ]
+  },
+  {
+    "subsystemCode": "SS02",
+    "subsystemNameHI": "ट्रैक्शन बोगी 1",
+    "subsystemNameEN": "Traction Bogie 1",
+    "faults": [
+      {
+        "faultCode": "F0201P1",
+        "titleHI": "कनवर्टर 1 में गड़बड़ी",
+        "titleEN": "DISTURBANCE IN CONVERTER 1",
+        "messageHI": "Loco xxxxx SS02: Traction Bogie 1 DISTURBANCE IN CONVERTER 1",
+        "messageEN": "Loco xxxxx SS02: Traction Bogie 1 DISTURBANCE IN CONVERTER 1",
+        "lamps": ["LSDJ जलेगी", "LSFI ब्लिंकिंग", "BPFA जलेगी"],
+        "effectHI": "बोगी-1 काम से अलग हो जाएगी। आधी ट्रैक्शन उपलब्ध रहेगी।",
+        "effectEN": "Bogie-1 isolated. Only half traction/braking available.",
+        "actionHI": [
+          "थ्राटल को '0' पर लायें। BPFA से एक्नालेज करें।",
+          "MCB 127.1/1 की जाँच करें। यदि ट्रिप है तो MCE OFF करके रिसेट करें।",
+          "यदि मैसेज बना रहता है, तो स्विच 154 (SB-1) से बोगी-1 को आइसोलेट करें।"
+        ],
+        "actionEN": [
+          "Set throttle to '0'. Acknowledge via BPFA.",
+          "Check MCB 127.1/1. If tripped, switch MCE OFF and reset.",
+          "If fault persists, isolate Bogie-1 via Switch 154 in SB-1."
+        ]
+      }
+    ]
+  },
+  {
+    "subsystemCode": "SS03",
+    "subsystemNameHI": "ट्रैक्शन बोगी 2",
+    "subsystemNameEN": "Traction Bogie 2",
+    "faults": [
+      {
+        "faultCode": "F0301P1",
+        "titleHI": "कनवर्टर 2 में गड़बड़ी",
+        "titleEN": "DISTURBANCE IN CONVERTER 2",
+        "messageHI": "Loco xxxxx SS03: Traction Bogie 2 DISTURBANCE IN CONVERTER 2",
+        "messageEN": "Loco xxxxx SS03: Traction Bogie 2 DISTURBANCE IN CONVERTER 2",
+        "lamps": ["LSDJ जलेगी", "LSFI ब्लिंकिंग", "BPFA जलेगी"],
+        "effectHI": "बोगी-2 काम से अलग हो जाएगी। आधी ट्रैक्शन पावर रहेगी।",
+        "effectEN": "Bogie-2 isolated. Only half traction/braking available.",
+        "actionHI": [
+          "थ्राटल को '0' पर लायें। BPFA दबाकर फाल्ट एक्नालेज करें।",
+          "MCB 127.1/2 (SB-2) की जाँच करें।",
+          "यदि समस्या बनी रहती है, तो स्विच 154 से बोगी-2 को आइसोलेट करें।"
+        ],
+        "actionEN": [
+          "Bring throttle to '0'. Acknowledge fault via BPFA.",
+          "Check MCB 127.1/2 in SB-2.",
+          "If problem persists, isolate Bogie-2 using Switch 154."
+        ]
+      }
+    ]
+  },
+  {
+    "subsystemCode": "SS04",
+    "subsystemNameHI": "हारमोनिक फिल्टर",
+    "subsystemNameEN": "Harmonic Filter",
+    "faults": [
+      {
+        "faultCode": "F0401P1",
+        "titleHI": "हारमोनिक फिल्टर करंट बहुत अधिक",
+        "titleEN": "HARMONIC FILTER CURRENT TOO HIGH",
+        "messageHI": "Loco XXXXX SS04: Harmonic filter HARMONIC FILTER CURRENT TOO HIGH",
+        "messageEN": "Loco XXXXX SS04: Harmonic filter HARMONIC FILTER CURRENT TOO HIGH",
+        "lamps": ["LSDJ जलेगी", "LSFI ब्लिंकिंग", "BPFA जलेगी"],
+        "effectHI": "VCB खुल जायेगा। आइसोलेट होने पर स्पीड 40 किमी/घंटा तक सीमित।",
+        "effectEN": "VCB will open. If isolated, max speed restricted to 40 kmph.",
+        "actionHI": [
+          "थ्रॉटल को '0' पर लाएं। BPFA दबाकर एक्नालेज करें। BLDJ से VCB बंद करें।",
+          "यदि मैसेज बना रहता है, तो MCE को ऑफ/ऑन करें।",
+          "आइसोलेट होने पर अधिकतम 40 किमी/घंटा से गाड़ी चलाएं।"
+        ],
+        "actionEN": [
+          "Set throttle to '0'. Acknowledge via BPFA. Close VCB via BLDJ.",
+          "If message persists, recycle MCE OFF/ON.",
+          "If isolated, proceed with a maximum speed of 40 kmph."
+        ]
+      }
+    ]
+  }
+]

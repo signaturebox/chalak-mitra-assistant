@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug URL Issue</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .info-box {
+            background-color: #e7f3ff;
+            border: 1px solid #b3d9ff;
+            border-radius: 4px;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        .error-box {
+            background-color: #ffebee;
+            border: 1px solid #ffcdd2;
+            border-radius: 4px;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        .success-box {
+            background-color: #e8f5e9;
+            border: 1px solid #c8e6c9;
+            border-radius: 4px;
+            padding: 10px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Debug URL Construction</h1>
+        
+        <div class="info-box">
+            <h3>Current Location Information:</h3>
+            <p><strong>Window Location:</strong> <span id="locationHref"></span></p>
+            <p><strong>Pathname:</strong> <span id="pathname"></span></p>
+            <p><strong>Path Parts:</strong> <span id="pathParts"></span></p>
+        </div>
+        
+        <div class="info-box">
+            <h3>Testing getBaseUrl() Method:</h3>
+            <button onclick="testBaseUrl()">Test getBaseUrl()</button>
+            <div id="baseUrlResult"></div>
+        </div>
+        
+        <div class="info-box">
+            <h3>Test File Upload Endpoint:</h3>
+            <button onclick="testEndpoint()">Test Endpoint Construction</button>
+            <div id="endpointResult"></div>
+        </div>
+        
+        <div class="info-box">
+            <h3>Instructions:</h3>
+            <p>If the URL contains "null", clear your browser cache completely:</p>
+            <ol>
+                <li>Press Ctrl+Shift+Delete (or Cmd+Shift+Delete on Mac)</li>
+                <li>Select "All time" or "Everything" as time range</li>
+                <li>Check "Cached images and files" and all other options</li>
+                <li>Clear data</li>
+                <li>Restart your browser</li>
+                <li>Reload this page</li>
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        // Display current location information
+        document.getElementById('locationHref').textContent = window.location.href;
+        document.getElementById('pathname').textContent = window.location.pathname;
+        
+        const pathParts = window.location.pathname.split('/').filter(part => part);
+        document.getElementById('pathParts').textContent = JSON.stringify(pathParts);
+        
+        async function testBaseUrl() {
+            try {
+                // Dynamically import the API service
+                const module = await import('./js/services/apiService.v2.js?v=2');
+                const Api = module.default;
+                
+                const result = document.getElementById('baseUrlResult');
+                result.innerHTML = '<p>Testing getBaseUrl() method...</p>';
+                
+                const baseUrl = Api.getBaseUrl();
+                result.innerHTML += `<p><strong>Base URL:</strong> ${baseUrl}</p>`;
+                
+                if (baseUrl.includes('null')) {
+                    result.classList.add('error-box');
+                    result.innerHTML += '<p style="color: red;"><strong>ERROR:</strong> Base URL contains "null" - this is the issue!</p>';
+                } else {
+                    result.classList.add('success-box');
+                    result.innerHTML += '<p style="color: green;"><strong>SUCCESS:</strong> Base URL looks correct!</p>';
+                }
+            } catch (error) {
+                document.getElementById('baseUrlResult').innerHTML = 
+                    `<p style="color: red;">Error loading API service: ${error.message}</p>`;
+            }
+        }
+        
+        async function testEndpoint() {
+            try {
+                // Dynamically import the API service
+                const module = await import('./js/services/apiService.v2.js?v=2');
+                const Api = module.default;
+                
+                const result = document.getElementById('endpointResult');
+                result.innerHTML = '<p>Testing endpoint construction...</p>';
+                
+                const baseUrl = Api.getBaseUrl();
+                const fullEndpoint = `${baseUrl}/files/file_upload`;
+                
+                result.innerHTML += `<p><strong>Full Endpoint:</strong> ${fullEndpoint}</p>`;
+                
+                if (fullEndpoint.includes('null')) {
+                    result.classList.add('error-box');
+                    result.innerHTML += '<p style="color: red;"><strong>ERROR:</strong> Endpoint contains "null"!</p>';
+                } else {
+                    result.classList.add('success-box');
+                    result.innerHTML += '<p style="color: green;"><strong>SUCCESS:</strong> Endpoint looks correct!</p>';
+                }
+            } catch (error) {
+                document.getElementById('endpointResult').innerHTML = 
+                    `<p style="color: red;">Error testing endpoint: ${error.message}</p>`;
+            }
+        }
+    </script>
+</body>
+</html>

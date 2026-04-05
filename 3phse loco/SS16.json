@@ -1,0 +1,104 @@
+[
+  {
+    "subsystemCode": "SS16",
+    "subsystemNameHI": "स्पीडोमीटर",
+    "subsystemNameEN": "SPEEDOMETER",
+    "faults": [
+      {
+        "faultCode": "F1601P1",
+        "titleHI": "स्पीड लिमिट से अधिक गति",
+        "titleEN": "SPEED LIMIT EXCEEDED",
+        "messageHI": "Emergency brakes, TE/BE Throttle to 0",
+        "messageEN": "Emergency brakes, TE/BE Throttle to 0",
+        "lamps": ["LSFI ब्लिंकिंग करेगी", "BPFA प्रकाशित होगा", "बजर बजेगा"],
+        "effectHI": "आपातकालीन ब्रेक लग जाएगी और गति कम होने तक लगी रहेगी",
+        "effectEN": "Emergency brake will apply and remain applied until speed reduces",
+        "actionHI": [
+          "लोको की गति कम करने के लिए थ्रॉटल को '0' पर रखें",
+          "BPFA दबाकर फॉल्ट ACK करें",
+          "जैसे ही गति सीमा के अंदर आ जाती है तो सामान्य ट्रैक्शन चालू करें",
+          "यदि स्पीडोमीटर में गति सीमा के अंदर नहीं आ रही है, लेकिन वास्तविक गति कम हो गई है तो इसका मतलब स्पीडोमीटर खराब हो गया है",
+          "SB-2 में लगे स्पीडोमीटर के MCB 127.92 को ट्रिप करें",
+          "अब स्पीडोमीटर आइसोलेट हो जाएगा, इसलिए सावधानीपूर्वक गाड़ी चलाएँ तथा सिम्युलेशन मोड में गति को देखें",
+          "TLC को सूचित करें और आदेशानुसार कार्य करें, लॉगबुक में दर्ज करें"
+        ],
+        "actionEN": [
+          "Keep traction throttle at '0' to reduce speed",
+          "ACK fault using BPFA",
+          "When speed comes within limit, resume normal traction",
+          "If speedometer does not show speed within limit but actual speed is reduced, speedometer is defective",
+          "Trip speedometer MCB 127.92 in SB-2",
+          "Speedometer will be isolated; drive carefully and observe speed in simulation mode",
+          "Inform TLC, follow instructions and make logbook entry"
+        ],
+        "isolation": {
+          "required": true,
+          "titleHI": "स्पीडोमीटर आइसोलेट",
+          "titleEN": "SPEEDOMETER ISOLATED",
+          "effectHI": "स्पीडोमीटर डिस्प्ले उपलब्ध नहीं होगा, सिम्युलेशन मोड में गति देखनी होगी",
+          "effectEN": "Speed display will not be available; speed must be monitored in simulation mode",
+          "stepsHI": [
+            "SB-2 में MCB 127.92 ट्रिप करें",
+            "सावधानीपूर्वक गाड़ी चलाएँ",
+            "सिम्युलेशन मोड में गति देख कर ऑपरेशन करें",
+            "TLC को सूचित करें और लॉगबुक में दर्ज करें"
+          ],
+          "stepsEN": [
+            "Trip MCB 127.92 in SB-2",
+            "Drive carefully",
+            "Monitor speed using simulation mode",
+            "Inform TLC and make logbook entry"
+          ]
+        }
+      },
+
+      {
+        "faultCode": "F1601P2",
+        "titleHI": "स्पीडोमीटर में खराबी (कैब में गति डिस्प्ले नहीं)",
+        "titleEN": "FAULT IN SPEEDOMETER (NO SPEED DISPLAY IN CAB)",
+        "messageHI": "सावधानीपूर्वक चलाएँ, डायग्नोस्टिक स्क्रीन का उपयोग करें",
+        "messageEN": "Drive carefully, use diagn screen",
+        "lamps": [],
+        "effectHI": "कैब में गति डिस्प्ले उपलब्ध नहीं रहेगा",
+        "effectEN": "Speed display will not be available in cab",
+        "actionHI": [
+          "थ्रॉटल को '0' पर रखें",
+          "SB-2 में लगे स्पीडोमीटर के MCB (127.92) को चेक करें, यदि ट्रिप है तो एक बार reset करें",
+          "BPFA दबाकर फॉल्ट ACK करें, यदि लोको सामान्य हो जाए तो सामान्य ऑपरेशन चालू करें",
+          "यदि फॉल्ट बना रहता है तो SB-2 में लगे MCB (127.92) को ट्रिप करके स्पीडोमीटर को आइसोलेट करें",
+          "अब स्पीडोमीटर आइसोलेट हो जाएगा, इसलिए सावधानीपूर्वक गाड़ी चलाएँ तथा सिम्युलेशन मोड में गति को देखें",
+          "TLC को सूचित करें और लॉगबुक में दर्ज करें",
+          "TLC के आदेशानुसार सामान्य ट्रैक्शन चालू करें"
+        ],
+        "actionEN": [
+          "Keep throttle at '0'",
+          "Check speedometer MCB 127.92 in SB-2; if tripped, reset once",
+          "ACK fault with BPFA; if loco becomes normal continue normal operation",
+          "If fault persists trip MCB 127.92 in SB-2 to isolate speedometer",
+          "Speedometer will be isolated; drive carefully and monitor speed in simulation mode",
+          "Inform TLC and make logbook entry",
+          "Proceed with normal traction as per TLC instructions"
+        ],
+        "isolation": {
+          "required": true,
+          "titleHI": "स्पीडोमीटर आइसोलेट",
+          "titleEN": "SPEEDOMETER ISOLATED",
+          "effectHI": "स्पीड डिस्प्ले नहीं मिलेगा, सिम्युलेशन मोड में गति देखें",
+          "effectEN": "No speed display; monitor speed in simulation mode",
+          "stepsHI": [
+            "SB-2 में MCB 127.92 ट्रिप करें",
+            "सावधानीपूर्वक गाड़ी चलाएँ",
+            "सिम्युलेशन मोड में गति चेक करें",
+            "TLC को सूचित करें और लॉगबुक में दर्ज करें"
+          ],
+          "stepsEN": [
+            "Trip MCB 127.92 in SB-2",
+            "Drive carefully",
+            "Check speed in simulation mode",
+            "Inform TLC and make logbook entry"
+          ]
+        }
+      }
+    ]
+  }
+]

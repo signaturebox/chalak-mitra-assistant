@@ -1,0 +1,60 @@
+[
+  {
+    "subsystemCode": "SS19",
+    "subsystemNameHI": "ट्रेन बस",
+    "subsystemNameEN": "TRAIN BUS",
+    "faults": [
+      {
+        "faultCode": "F1901P1",
+        "titleHI": "ट्रेन बस कम्युनिकेशन डिस्टर्बेंस",
+        "titleEN": "TRAIN BUS COMMUNICATION DISTURBANCE",
+        "messageHI": "VCB पुनः बंद करने का प्रयास करें, मल्टीपल ऑपरेशन संभव नहीं",
+        "messageEN": "Try to close the VCB again, Multiple operation not possible",
+        "lamps": [],
+        "effectHI": "मल्टीपल ऑपरेशन संभव नहीं रहेगा, ट्रेन बस isolate हो सकती है",
+        "effectEN": "Multiple operation not possible, train bus may get isolated",
+        "actionHI": [
+          "थ्रॉटल को '0' पर रखें और BPFA दबाकर फॉल्ट ACK करें",
+          "VCB क्लोज करने हेतु BLDJ प्रेस करें",
+          "मल्टीपल ऑपरेशन के लिए जंप केबल को चेक करें",
+          "TLC को सूचित करें और लॉगबुक में दर्ज करें"
+        ],
+        "actionEN": [
+          "Keep throttle at '0' and ACK fault using BPFA",
+          "Press BLDJ to close VCB",
+          "Check jump cable for multiple operation",
+          "Inform TLC and make logbook entry"
+        ],
+        "isolation": {
+          "required": true,
+          "titleHI": "ट्रेन बस आइसोलेट",
+          "titleEN": "TRAIN BUS ISOLATED",
+          "effectHI": "Multiple operation संभव नहीं रहेगा",
+          "effectEN": "Multiple operation not possible",
+          "stepsHI": [
+            "यदि कैब-1 में संदेश आता है तो: ट्रेन लोकों चेक करें, यदि कोई लोको shutdown हो गया है तो उस लोको की जांच करें",
+            "सभी कुछ सामान्य मिलने पर उस लोको के कंट्रोल इलेक्ट्रॉनिक्स OFF करके ON करें और सामान्य ऑपरेशन चालू करें",
+            "मास्टर लोको में जाकर कंट्रोल इलेक्ट्रॉनिक्स OFF करके ON करें और सामान्य ऑपरेशन चालू करें",
+            "यदि दोबारा फॉल्ट आता है तो पीछे वाले लोको को हेड (कट) कराएँ",
+            "यदि कैब-1 में संदेश ड्रॉप नहीं होता तो: मल्टीपल ऑपरेशन उपलब्ध नहीं रहेगा",
+            "TLC को सूचित करें और लॉगबुक में दर्ज करें",
+            "सामान्य ऑपरेशन चालू रखें और LSFI लगातार प्रकाशित होगा",
+            "विभागीय स्तर पर गाड़ी खड़ी कर मास्टर लोको में कंट्रोल इलेक्ट्रॉनिक्स OFF करके ON करें; यदि सफलता मिले तो सामान्य ऑपरेशन चालू करें",
+            "यदि फिर भी फॉल्ट आए तो पीछे वाले लोको को हेड कराएँ"
+          ],
+          "stepsEN": [
+            "If message appears in Cab-1: check train locos; if any loco is shutdown then check that loco",
+            "If everything normal, switch control electronics OFF/ON of that loco and continue normal operation",
+            "Go to master loco, switch control electronics OFF/ON and continue normal operation",
+            "If fault repeats, ask for cut-out / head-out of the rear loco",
+            "If message does not drop in Cab-1: multiple operation will not be available",
+            "Inform TLC and make logbook entry",
+            "Continue normal operation (LSFI will remain continuously ON)",
+            "At station level stop the train and switch control electronics OFF/ON in master loco; if successful continue operation",
+            "If fault repeats, cut-out / head-out the rear loco"
+          ]
+        }
+      }
+    ]
+  }
+]

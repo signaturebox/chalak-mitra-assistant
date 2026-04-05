@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Preview Feature</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        .feature-box {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .highlight {
+            background: rgba(255, 255, 255, 0.3);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #fff;
+        }
+        .emoji-list {
+            list-style: none;
+            padding: 0;
+        }
+        .emoji-list li {
+            margin: 10px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+        .emoji-list li:before {
+            content: "✨";
+            position: absolute;
+            left: 0;
+        }
+        .button {
+            display: inline-block;
+            padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        .button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        ul {
+            padding-left: 20px;
+        }
+        li {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎉 Preview Feature Test</h1>
+        
+        <div class="feature-box">
+            <h2>✅ Success!</h2>
+            <p>This HTML file demonstrates the new preview functionality:</p>
+            
+            <div class="highlight">
+                <h3>📋 Features Implemented:</h3>
+                <ul class="emoji-list">
+                    <li>HTML files now show in a centered preview box without borders</li>
+                    <li>PDF files display directly in modal without opening new windows</li>
+                    <li>Images show in clean preview containers with download options</li>
+                    <li>All previews have consistent styling and user-friendly controls</li>
+                    <li>Responsive design works on all device sizes</li>
+                </ul>
+            </div>
+            
+            <div class="highlight">
+                <h3>🚀 How It Works:</h3>
+                <ul>
+                    <li>When you upload an HTML file and click "View", it opens in a clean preview box</li>
+                    <li>PDFs and images are displayed directly in the modal with download/open options</li>
+                    <li>No more pop-up windows - everything stays within the application</li>
+                    <li>Professional styling with consistent UI elements</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 30px;">
+            <a href="#" class="button" onclick="alert('This would navigate back to the file manager')">← Back to Files</a>
+        </div>
+    </div>
+</body>
+</html>

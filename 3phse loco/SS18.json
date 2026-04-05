@@ -1,0 +1,168 @@
+[
+  {
+    "subsystemCode": "SS18",
+    "subsystemNameHI": "FLG2 / ICP2 / MCC2 / DMC2",
+    "subsystemNameEN": "FLG2 / ICP2 / MCC2 / DMC2",
+    "faults": [
+
+      {
+        "faultCode": "F1801P1",
+        "titleHI": "प्रोसेसर FLG2 में डिस्टर्बेंस",
+        "titleEN": "DISTURBANCE IN PROCESSOR FLG2",
+        "messageHI": "FLG-2 आइसोलेट हो जाएगा",
+        "messageEN": "FLG 2 will be isolated",
+        "lamps": ["LSFI ब्लिंकिंग", "BPFA प्रकाशित"],
+        "effectHI": "FLG-2 isolate हो जाएगा",
+        "effectEN": "FLG-2 will be isolated",
+        "actionHI": [
+          "थ्रॉटल 0 पर रखें और BPFA दबाकर फॉल्ट ACK करें",
+          "Control Electronics OFF करके पुनः ON करें",
+          "सामान्य ट्रैक्शन चालू करें",
+          "TLC को सूचित करें और लॉगबुक में दर्ज करें"
+        ],
+        "actionEN": [
+          "Keep throttle at 0 and ACK using BPFA",
+          "Switch Control Electronics OFF and ON",
+          "Resume normal traction",
+          "Inform TLC and make logbook entry"
+        ],
+        "isolation": {
+          "required": true,
+          "titleHI": "FLG-2 ISOLATED",
+          "titleEN": "FLG-2 ISOLATED",
+          "effectHI": "मल्टीपल ऑपरेशन संभव नहीं",
+          "effectEN": "Multiple operation not possible",
+          "stepsHI": [
+            "DDS पर isolation संदेश आने पर ENTER दबाएँ",
+            "सामान्य ट्रैक्शन जारी रखें",
+            "TLC को सूचित करें"
+          ],
+          "stepsEN": [
+            "Press ENTER to ACK isolation on DDS",
+            "Continue normal traction",
+            "Inform TLC"
+          ]
+        }
+      },
+
+      {
+        "faultCode": "F1802P1",
+        "titleHI": "सॉफ्टवेयर मिसमैच (WAP-5 / WAG-9)",
+        "titleEN": "SOFTWARE MISMATCHED (WAP-5 / WAG-9)",
+        "messageHI": "पैंटो नहीं उठेगा",
+        "messageEN": "Pantograph will not raise",
+        "lamps": ["LSFI ब्लिंकिंग", "BPFA प्रकाशित"],
+        "effectHI": "लोको ट्रैक्शन के लिए तैयार नहीं होगी",
+        "effectEN": "Loco will not be ready for traction",
+        "actionHI": [
+          "थ्रॉटल 0 पर रखें और BPFA से ACK करें",
+          "TLC को सूचित करें और लॉगबुक में दर्ज करें",
+          "सहायता इंजन की मांग करें"
+        ],
+        "actionEN": [
+          "Keep throttle at 0 and ACK using BPFA",
+          "Inform TLC and make logbook entry",
+          "Ask for assistance engine"
+        ],
+        "isolation": { "required": false, "titleHI": "", "titleEN": "", "effectHI": "", "effectEN": "", "stepsHI": [], "stepsEN": [] }
+      },
+
+      {
+        "faultCode": "F1803P1",
+        "titleHI": "थ्रॉटल एंगल ट्रांसमीटर में फॉल्ट",
+        "titleEN": "FAULT IN ANGLE TRANSMITTER OF THROTTLE",
+        "messageHI": "TE/BE थ्रॉटल 0 पर रखें",
+        "messageEN": "Bring TE/BE throttle to zero",
+        "lamps": ["LSFI ब्लिंकिंग", "BPFA प्रकाशित"],
+        "effectHI": "थ्रॉटल सिग्नल सही नहीं",
+        "effectEN": "Throttle signal incorrect",
+        "actionHI": [
+          "थ्रॉटल 0 पर रखें और BPFA से ACK करें",
+          "VCB ओपन करें",
+          "SB-1 पर स्विच 152 को 0 से 1 कर failure mode में चलाएँ",
+          "यदि सफलता न मिले तो स्विच 152 को 2–3 बार ऑपरेट करें",
+          "Control Electronics OFF/ON करें",
+          "पिछली कैब से प्रयास करें",
+          "TLC को सूचित करें और लॉगबुक में दर्ज करें"
+        ],
+        "actionEN": [
+          "Keep throttle at 0 and ACK using BPFA",
+          "Open VCB",
+          "Operate switch 152 (SB-1) from 0 to 1 and run in failure mode",
+          "If not successful operate switch 152 two to three times",
+          "Switch Control Electronics OFF/ON",
+          "Try from rear cab",
+          "Inform TLC and make logbook entry"
+        ],
+        "isolation": { "required": false, "titleHI": "", "titleEN": "", "effectHI": "", "effectEN": "", "stepsHI": [], "stepsEN": [] }
+      },
+
+      {
+        "faultCode": "F1804P1",
+        "titleHI": "सिमुलेशन स्विच पोजीशन मेल नहीं खा रही",
+        "titleEN": "SIMULATION SWITCH POSITION NOT MATCHING",
+        "messageHI": "मास्टर / स्लेव सिमुलेशन की जाँच करें",
+        "messageEN": "Check simulation key on master / slave",
+        "lamps": ["LSFI ब्लिंकिंग", "BPFA प्रकाशित"],
+        "effectHI": "सामान्य ऑपरेशन प्रभावित",
+        "effectEN": "Normal operation affected",
+        "actionHI": [
+          "थ्रॉटल 0 पर रखें",
+          "Control Electronics OFF करें",
+          "SB-1 पैनल पर सिमुलेशन की 179 की पोजीशन 0 पर सुनिश्चित करें",
+          "यदि सही न हो तो 1 से 0 पर लाएँ",
+          "Control Electronics ON करें और सामान्य ट्रैक्शन चालू करें",
+          "TLC को सूचित करें और लॉगबुक में दर्ज करें"
+        ],
+        "actionEN": [
+          "Keep throttle at 0",
+          "Switch Control Electronics OFF",
+          "Ensure simulation key 179 on SB-1 is at 0 position",
+          "If not correct, set from 1 to 0",
+          "Switch Control Electronics ON and resume traction",
+          "Inform TLC and make logbook entry"
+        ],
+        "isolation": { "required": false, "titleHI": "", "titleEN": "", "effectHI": "", "effectEN": "", "stepsHI": [], "stepsEN": [] }
+      },
+
+      {
+        "faultCode": "F1801P2",
+        "titleHI": "प्रोसेसर DIA1 / DMC2 में डिस्टर्बेंस",
+        "titleEN": "DISTURBANCE IN PROCESSOR DIA1 / DMC2",
+        "messageHI": "DDS में फॉल्ट स्टोर नहीं होगा",
+        "messageEN": "No fault data will be stored in DDS",
+        "lamps": ["BPFA प्रकाशित"],
+        "effectHI": "DMC2 isolate हो जाएगा",
+        "effectEN": "DMC2 will be isolated",
+        "actionHI": [
+          "DDS पर फॉल्ट स्टोर नहीं होंगे, सभी फॉल्ट लॉगबुक में दर्ज करें",
+          "BPFA से ACK करें",
+          "TLC को सूचित करें"
+        ],
+        "actionEN": [
+          "Faults will not be stored in DDS; record all faults in logbook",
+          "ACK using BPFA",
+          "Inform TLC"
+        ],
+        "isolation": {
+          "required": true,
+          "titleHI": "DMC2 ISOLATED",
+          "titleEN": "DMC2 ISOLATED",
+          "effectHI": "DDS स्टोरेज उपलब्ध नहीं",
+          "effectEN": "DDS storage not available",
+          "stepsHI": [
+            "ENTER दबाकर isolation ACK करें",
+            "सामान्य ऑपरेशन जारी रखें",
+            "TLC को सूचित करें"
+          ],
+          "stepsEN": [
+            "Press ENTER to ACK isolation",
+            "Continue normal operation",
+            "Inform TLC"
+          ]
+        }
+      }
+
+    ]
+  }
+]

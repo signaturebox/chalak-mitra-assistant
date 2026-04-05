@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Results Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .container { max-width: 800px; margin: 0 auto; }
+        .test-section { margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px; }
+        .success { background-color: #d4edda; border-color: #c3e6cb; }
+        .error { background-color: #f8d7da; border-color: #f5c6cb; }
+        .info { background-color: #d1ecf1; border-color: #bee5eb; }
+        button { padding: 10px 15px; margin: 5px; cursor: pointer; }
+        pre { background: #f5f5f5; padding: 10px; border-radius: 3px; overflow-x: auto; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Quiz Results System Test</h1>
+        
+        <div class="test-section info">
+            <h3>Test Controls</h3>
+            <button onclick="checkStorage()">Check Local Storage</button>
+            <button onclick="createTestData()">Create Test Data</button>
+            <button onclick="clearTestData()">Clear Test Data</button>
+            <button onclick="testQuizResultsService()">Test QuizResultsService</button>
+        </div>
+
+        <div class="test-section" id="results">
+            <h3>Test Results</h3>
+            <div id="output"></div>
+        </div>
+    </div>
+
+    <script>
+        function log(message, type = 'info') {
+            const output = document.getElementById('output');
+            const div = document.createElement('div');
+            div.className = `test-result ${type}`;
+            div.innerHTML = `<strong>[${new Date().toLocaleTimeString()}]</strong> ${message}`;
+            output.appendChild(div);
+            console.log(message);
+        }
+
+        function checkStorage() {
+            log('=== Checking Local Storage ===', 'info');
+            
+            try {
+                const quizResults = localStorage.getItem('quizResults');
+                if (quizResults) {
+                    const parsed = JSON.parse(quizResults);
+                    log(`Found quizResults: ${parsed.length} records`, 'success');
+                    log(`<pre>${JSON.stringify(parsed, null, 2)}</pre>`, 'info');
+                } else {
+                    log('No quizResults found in localStorage', 'error');
+                }
+                
+                const quizAttempts = localStorage.getItem('nwr_quiz_attempts');
+                if (quizAttempts) {
+                    const parsed = JSON.parse(quizAttempts);
+                    log(`Found nwr_quiz_attempts: ${Object.keys(parsed).length} users`, 'success');
+                } else {
+                    log('No nwr_quiz_attempts found in localStorage', 'error');
+                }
+            } catch (error) {
+                log(`Error checking storage: ${error.message}`, 'error');
+            }
+        }
+
+        function createTestData() {
+            log('=== Creating Test Data ===', 'info');
+            
+            const testData = [
+                {
+                    id: 'quiz_' + Date.now() + '_1',
+                    cmsId: 'TEST001',
+                    crewName: 'Test Crew Member 1',
+                    divisionId: 'jaipur',
+                    divisionName: 'JAIPUR',
+                    lobbyId: 'hq1',
+                    lobbyName: 'HQ Jaipur',
+                    score: 8,
+                    total: 10,
+                    percentage: '80.0',
+                    category: 'mixed',
+                    answers: [1, 2, 3, 4, 1, 2, 3, 4, 1, 2],
+                    timestamp: new Date().toISOString(),
+                    date: new Date().toLocaleDateString('en-GB')
+                },
+                {
+                    id: 'quiz_' + Date.now() + '_2',
+                    cmsId: 'TEST002',
+                    crewName: 'Test Crew Member 2',
+                    divisionId: 'ajmer',
+                    divisionName: 'AJMER',
+                    lobbyId: 'hq2',
+                    lobbyName: 'HQ Ajmer',
+                    score: 6,
+                    total: 10,
+                    percentage: '60.0',
+                    category: 'spad',
+                    answers: [2, 3, 1, 4, 2, 3, 1, 4, 2, 3],
+                    timestamp: new Date(Date.now() - 3600000).toISOString(), // 1 hour ago
+                    date: new Date(Date.now() - 3600000).toLocaleDateString('en-GB')
+                }
+            ];
+
+            try {
+                localStorage.setItem('quizResults', JSON.stringify(testData));
+                log(`Created ${testData.length} test quiz results`, 'success');
+                
+                // Also create some legacy format data
+                const legacyData = {
+                    'TEST001': [{
+                        score: 8,
+                        total: 10,
+                        topic: 'mixed',
+                        date: new Date().toISOString(),
+                        answers: [1, 2, 3, 4, 1, 2, 3, 4, 1, 2]
+                    }],
+                    'TEST002': [{
+                        score: 6,
+                        total: 10,
+                        topic: 'spad',
+                        date: new Date(Date.now() - 3600000).toISOString(),
+                        answers: [2, 3, 1, 4, 2, 3, 1, 4, 2, 3]
+                    }]
+                };
+                
+                localStorage.setItem('nwr_quiz_attempts', JSON.stringify(legacyData));
+                log('Created legacy format test data', 'success');
+                
+            } catch (error) {
+                log(`Error creating test data: ${error.message}`, 'error');
+            }
+        }
+
+        function clearTestData() {
+            log('=== Clearing Test Data ===', 'info');
+            
+            try {
+                localStorage.removeItem('quizResults');
+                localStorage.removeItem('nwr_quiz_attempts');
+                log('Cleared all quiz test data', 'success');
+            } catch (error) {
+                log(`Error clearing test data: ${error.message}`, 'error');
+            }
+        }
+
+        function testQuizResultsService() {
+            log('=== Testing QuizResultsService ===', 'info');
+            
+            // Mock the service if it doesn't exist
+            if (typeof QuizResultsService === 'undefined') {
+                window.QuizResultsService = {
+                    getAllResults: function() {
+                        const results = localStorage.getItem('quizResults');
+                        return results ? JSON.parse(results) : [];
+                    },
+                    getResultsForUser: function(role, userData) {
+                        const allResults = this.getAllResults();
+                        log(`Getting results for role: ${role}`, 'info');
+                        return allResults; // Simplified for test
+                    },
+                    saveResult: function(quizData) {
+                        const results = this.getAllResults();
+                        const newResult = {
+                            id: 'quiz_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9),
+                            ...quizData,
+                            timestamp: new Date().toISOString(),
+                            date: new Date().toLocaleDateString('en-GB')
+                        };
+                        results.push(newResult);
+                        localStorage.setItem('quizResults', JSON.stringify(results));
+                        return newResult;
+                    }
+                };
+                log('Created mock QuizResultsService', 'success');
+            }
+            
+            try {
+                const results = QuizResultsService.getAllResults();
+                log(`QuizResultsService returned ${results.length} results`, 'success');
+                
+                const superResults = QuizResultsService.getResultsForUser('super', {});
+                log(`Super admin would see ${superResults.length} results`, 'info');
+                
+                // Test saving a result
+                const testSave = QuizResultsService.saveResult({
+                    cmsId: 'TESTSAVE',
+                    crewName: 'Test Save User',
+                    divisionId: 'test',
+                    divisionName: 'TEST',
+                    lobbyId: 'test',
+                    lobbyName: 'Test Lobby',
+                    score: 7,
+                    total: 10,
+                    category: 'mixed',
+                    answers: []
+                });
+                log(`Successfully saved test result with ID: ${testSave.id}`, 'success');
+                
+            } catch (error) {
+                log(`Error testing QuizResultsService: ${error.message}`, 'error');
+            }
+        }
+
+        // Auto-run checks on page load
+        window.addEventListener('load', () => {
+            log('Page loaded - running initial checks...', 'info');
+            setTimeout(checkStorage, 1000);
+        });
+    </script>
+</body>
+</html>

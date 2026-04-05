@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kavach 4.0 Operational Guide</title>
+    <style>
+        :root {
+            --primary: #003366;
+            --secondary: #d32f2f;
+            --accent: #ffc107;
+            --bg: #f0f2f5;
+            --white: #ffffff;
+            --text: #212121;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+
+        body { background-color: var(--bg); color: var(--text); line-height: 1.6; }
+
+        header {
+            background: linear-gradient(135deg, var(--primary), #00509d);
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-gray);
+            color: var(--text-dark);
+            line-height: 1.6;
+            padding-bottom: 50px;
+        }
+
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 0 15px;
+        }
+
+        .card {
+            background: var(--card-white);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            border-left: 6px solid var(--primary-blue);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        h1 { font-size: 2rem; margin-bottom: 5px; }
+        h2 { color: var(--primary-blue); border-bottom: 2px solid #eee; padding-bottom: 10px; margin-bottom: 20px; font-size: 1.5rem; }
+        h3 { color: var(--rail-red); margin: 20px 0 10px 0; font-size: 1.25rem; }
+
+        .image-box {
+            width: 100%;
+            border-radius: 8px;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            min-height: 250px;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .image-box img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+        }
+
+        .instruction-item {
+            margin-bottom: 15px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .instruction-item::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--rail-red);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .sub-list {
+            margin-left: 30px;
+            list-style-type: lower-roman;
+        }
+
+        .note-box {
+            background: #fff3cd;
+            border: 1px solid #ffeeba;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-weight: bold;
+            color: #856404;
+        }
+
+        .highlight {
+            color: var(--rail-red);
+            font-weight: bold;
+        }
+		
+		 .container { max-width: 900px; margin: 20px auto; padding: 0 15px; }
+		
+		/* Accordion Styles */
+        .accordion-item {
+            background: var(--white);
+            margin-bottom: 15px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-left: 6px solid var(--primary);
+        }
+
+        .accordion-header {
+            background: var(--white);
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--primary);
+            transition: background 0.3s;
+        }
+
+        .accordion-header:hover { background: #f8f9fa; }
+
+        .accordion-header::after {
+            content: '+';
+            font-size: 1.8rem;
+            color: var(--secondary);
+            transition: transform 0.3s;
+        }
+
+        .accordion-item.active .accordion-header::after {
+            content: '-';
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, padding 0.3s ease;
+            padding: 0 20px;
+            background: white;
+        }
+
+        .accordion-item.active .accordion-content {
+            max-height: 5000px; /* Large enough to fit all text */
+            padding: 20px;
+            border-top: 1px solid #eee;
+        }
+		
+		        /* Content UI */
+        .img-placeholder {
+            width: 100%;
+            min-height: 200px;          
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 15px 0;
+            border-radius: 8px;
+            padding: 10px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 { font-size: 1.6rem; }
+            h2 { font-size: 1.3rem; }
+            .card { padding: 15px; }
+            .image-box { min-height: 180px; }
+        }
+		@media (max-width: 600px) {
+            .accordion-header { font-size: 1.1rem; padding: 15px; }
+            header h1 { font-size: 1.5rem; }
+        }
+
+        /* Animation */
+        .fade-in {
+            animation: fadeIn 0.8s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Kavach 4.0</h1>
+    <p>LP और ALP के लिए कवच ऑपरेशन से संबंधित आवश्यक निर्देश</p>
+</header>
+
+<div class="container">
+
+    <div class="accordion-item">
+        <div class="accordion-header">1. लोको पायलट आपरेशनल कम इन्डिकेशन पैनल (LPOCIP/DMI)</div>
+        <div class="accordion-content">
+        <div class="image-box">
+			<img src="/assets/htmlimg/kvc-1.png" alt="[DMI Image-1 Placeholder]">           
+        </div>
+    </div>
+	</div>
+
+    <div class="accordion-item">
+        <div class="accordion-header">2. लोको इनरजाइज करके कवच को चालू करना</div>
+        <div class="accordion-content">
+        <div class="instruction-item"><strong>a.</strong> लोको में लगी कवच की मेन MCB को आन करे और DMI बूटिंग पूर्ण होने तक प्रतीक्षा करें।</div>
+        <div class="instruction-item"><strong>b. ब्रेक सिस्टम सेटिंग्स:</strong>
+            <ul class="sub-list">
+                <li><strong>IRAB ब्रेक सिस्टम में:</strong> (KERNEX & HBL MAKE) MR और EM दोनों कॉक को ओपन करें और (Medha Make) कवच में MR और EM दोनों कॉक को ओपन करके KAVACH के BP कॉक को क्लोज़ करें।</li>
+                <li><strong>E-70 ब्रेक सिस्टम में:</strong> EM कॉक ओपन करें और IRU स्विच को सर्विस पर होना सुनिश्चित करें।</li>
+                <li><strong>CCB ब्रेक सिस्टम में:</strong> कैब 1 में लगे EM कॉक ओपन (0 से 1) करें।</li>
+            </ul>
+        </div>
+        <div class="instruction-item"><strong>c.</strong> BIU स्विच को आइसोलेसन से सर्विस मोड में करें।</div>
+        <div class="instruction-item"><strong>d.</strong> DMI पर लगे लीडिंग / नानलीडिंग स्विच को लोको पोजीशन के अनुसार लीडिंग या नानलीडिंग पर सेट करें।</div>
+        <div class="instruction-item"><strong>e.</strong> कवच स्टैण्ड बाइ मोड पर आ जायगा और MR (7.5 kg./cm2) और BP (5.0 kg/cm2) होने का इंतजार करेगा।</div>
+        <div class="instruction-item"><strong>f.</strong> BP (5.0kg/cm2) होने पर कवच चार प्रकार के ब्रेक टेस्ट करेगा <strong>(NSB, FSB EB और LE)</strong> ब्रेकिंग के अनुसार BP ड्रॉप होकर पुनः BP पूरा हो जाएगा और "Brake Test Successful" का मैसेज आ जायेगा।</div>
+        
+        <div class="note-box">नोट- ब्रेक टेस्टिंग के समय संबंधित ब्रेक रिलीज होना चाहिए।</div>
+
+        <div class="instruction-item"><strong>g.</strong> "Select Train Configuration Press Config Button" का मैसेज आने पर CONFIG सॉफ्ट की प्रेस करें फिर CNFM KEY प्रेस करें और अप डाउन ऐरो की द्वारा ट्रेन टाइप सेलेक्ट करें और इंटर प्रेस करें ट्रेन टाइप की लिस्ट खुल जायेगी।</div>
+        
+        <div class="image-box">
+            <img src="/assets/htmlimg/kvc-2.png" alt="[DMI Image-1 Placeholder]"> 
+        </div>
+
+        <h3>A. लाइट इंजन का चयन कैसे करें -</h3>
+        <ul class="sub-list">
+            <li>Config मेनू में Train Type के विकल्पों में UP और DOWN ऐरो की से लाइट इंजन सेलेक्ट कर Enter प्रेस करें।</li>
+            <li>पुनः पुष्टि के लिए confirm करें ताकि यह सुनिश्चित हो सके कि यह सही हैं।</li>
+            <li>चयन की पुष्टि के लिए CNFM की दबाएँ।</li>
+        </ul>
+
+        <h3>B. यात्री गाड़ी का चयन -</h3>
+        <ul class="sub-list">
+            <li>Config मेनू में कोच के अनुसार Passenger Train LHB या Passenger Train ICF सेलेक्ट करके Enter (E) की दबाएँ।</li>
+            <li>कोचों का विवरण दर्ज करने के लिए एक विंडो पॉप अप होगी।</li>
+            <li>UP और DOWN Key द्वारा Passenger Coaches पर ले जाकर Enter (E) की दबाएँ।</li>
+        </ul>
+
+        <div class="image-box">
+            <img src="/assets/htmlimg/kvc-3.png" alt="[DMI Image-1 Placeholder]"> 
+        </div>
+
+        <ul class="sub-list">
+            <li>(+,++) या (-, - -) सॉफ्ट की द्वारा कोचों की संख्या इंटर करें।</li>
+            <li>अपनी चयन की पुष्टि करने के लिए confirm करें।</li>
+            <li>Brake efficiency के विकल्प पर जाएं और (+, ++) या (-, - -) सॉफ्ट की से brake efficiency दर्ज करें और इंटर की दबाएं पुष्टि करने के लिए Confirm प्रेस करें।</li>
+            <li>चयन की पुनः पुष्टि करने के लिए CNFM की दबाएँ।</li>
+        </ul>
+        <div class="note-box">नोट- (+ से 1, ++ से 5 अंक बढ़ेंगे। इसी प्रकार, - से 1, -- से 5 अंक घटेंगे।)</div>
+
+        <h3>C. मालगाड़ी का चयन कैसे करें -</h3>
+        <div class="image-box">
+            <img src="/assets/htmlimg/kvc-4.png" alt="[DMI Image-1 Placeholder]"> 
+        </div>
+        <ul class="sub-list">
+            <li>CONFIG मेनू में UP और DOWN एरो से गुड्स/फ्रेट ट्रेन सेलेक्ट करके Enter (E) की दबाएँ।</li>
+            <li>अगली विंडो में वैगन के प्रकार का चयन करें और Enter (E) की दबाएँ।</li>
+            <li>वैगन का विवरण दर्ज करने के लिए अगली विंडो पॉप अप होगी।</li>
+            <li>कर्सर को वैगन की संख्या के विकल्प पर ले जाकर Enter (E) की दबाएँ (+, ++) या (-, --) सॉफ्ट की द्वारा वैगन की संख्या Enter करें।</li>
+            <li>कर्सर को Empty/Loaded के विकल्प पर ले जायें (+,++) या (-, - -) द्वारा Empty या Loaded का चयन करें।</li>
+            <li>ट्रेन की लम्बाई और वजन की स्वचालित गणना प्रदर्शित होगी।</li>
+            <li>Brake efficiency के विकल्प पर जाएं Enter की प्रेस करें (+, + +) या (-, --) सॉफ्ट की से brake efficiency सेलेक्ट करें और इंटर की दबाएं।</li>
+            <li>चयन की पुष्टि के लिए Confirm करें।</li>
+            <li>चयन की पुनः पुष्टि करने के लिए CNFM की दबाएँ।</li>
+        </ul>
+
+        <h3>D. EMU या ट्रेनसेट का चयन -</h3>
+        <p>सिस्टम self-propelled ट्रेनों 2/2 3 configuration करता हैं लोको पायलट को सिर्फ ऑपरेशन के लिए सही मोड का चयन करना हैं।</p>
+        <p>Brake testing और train configuration पूर्ण होने पर कवच SR मोड या शन्ट मोड सेलेक्ट करने का msg देगा, अगर शटिंग करना हो तो शन्ट मोड का चयन करे यदि ट्रेन वर्क करना है तो SR मोड का चयन करें।</p>
+
+        <div class="image-box">
+            <img src="/assets/htmlimg/kvc-5.png" alt="[DMI Image-1 Placeholder]"> 
+        </div>
+
+        <p>DMI पर पर्मिसिबल स्पीड हरे रंग से दिखनें लगेगी। अब कवच ऐक्टिवेट हो गया है आप गाड़ी चला सकते है। दो RFID टैग रीड होने पर कवच स्वयं ऑन साइट मोड में चल जाएगा और ऑन साइट मोड में एक सिगनल ऑफ पोजिशन में पास होने पर कवच फुल सुपरविजन (FS) मोड में आ जाएगा। FS मोड में कवच पूरी तरह से ट्रेन सुपरविजन करने लगता है।</p>
+        
+        <div class="note-box" style="background-color: #d1ecf1; border-color: #bee5eb; color: #0c5460;">
+            नोट- लोको पायलट को हमेशा सही ट्रेन कॉन्फिगरेशन करना चाहिए। यदि यात्रा के दौरान ट्रेन की संरचना में परिवर्तन होता है, या कैब चेंज करने पर लोको पायलट को चलने से पहले ट्रेन कॉन्फिगरेशन करना आवश्यक है। यह प्रक्रिया ट्रेन संचालन की निरंतर सुरक्षा और दक्षता सुनिश्चित करने के लिए अत्यंत महत्वपूर्ण है।
+        </div>
+    </div>
+	</div>
+
+    <div class="accordion-item">
+        <div class="accordion-header">3. विभिन्न परिस्थितियों में कार्यवाही</div>
+        <div class="accordion-content">
+        <div class="instruction-item"><strong>i. ब्लाक सेक्शन में खड़े होने पर-</strong> यदि किसी कारणवश ट्रेन ब्लॉक सेक्शन में रूकती है जिसमें नियमित स्टापेज भी शामिल है, और वह अन्य लाइनों को अवरोधित नहीं कर रही है, तो लोको पायलट को निर्धारित समय के अन्दर ACK बटन प्रेस करना होगा ताकि SOS संदेश उत्पन्न न हो।</div>
+        <div class="instruction-item"><strong>ii. SOS जनरेट करना-</strong> यदि लोको पायलट को कुछ असमान्य मिलता है जिससे की एक्सीडेंट हो सकता है तो वह SOS और COMMON पुश बटन को एक साथ प्रेस और होल्ड करके SOS जनरेट कर सकता है DMI पर "SOS Self Loco (manual)" का msg आ जाएगा।</div>
+        <div class="instruction-item"><strong>iii. SOS कैंसिल करना-</strong> यदि स्थिति सामान्य हो जाती है और लोको पायलट SOS को कैंसिल करना चाहता है तो cancel और common पुश बटन को एक साथ प्रेस और होल्ड करने पर SOS cancel हो जाएगा।</div>
+        <div class="instruction-item"><strong>iv. SOS msg आने पर कार्यवाही-</strong>
+            <ul style="margin: 10px 0 10px 40px;">
+                <li>1. SOS-From Loco xxxxx (manual)</li>
+                <li>2. SOS -From Loco xxxxx (stopped in block section)</li>
+                <li>3. SOS-From station xxxxx (sos to this loco)</li>
+                <li>4. SOS-From station xxxxx (sos to All Locos)</li>
+            </ul>
+            इस प्रकार का कोई SOS msg आने पर इमरजेन्सी ब्रेकिंग होगी। और गाड़ी खड़ी हो जाएगी लोको पायलट ACK बटन प्रेस करके परमिटेड स्पीड (30KMPH) से सावधानी पूर्वक आगे बढ़ेगा जब तक की DMI पर परमिटेड स्पीड 30KMPH से अधिक न दिखने लगे।
+        </div>
+        
+        <div class="instruction-item"><strong>v. खराब सिग्नल मिलने पर (ओवर राइड मोड) -</strong>
+            <ul class="sub-list" style="list-style: (alphabetic);">
+                <li>(a) लोको पायलट लाल सिग्नल (अंतिम रोक सिग्नल LSS और IBS को छोड़कर) के पहले अपनी गाड़ी को इस प्रकार खड़ी करेगा की DMI पर मूवमेंट अथारिटी 200 मीटर से कम हो। प्रापर अथॉरिटी मिलने के बाद लोको पायलट OVRD के बाद CNFM सॉफ्ट की प्रेस करके ओवर राइड मोड सेलेक्ट करेगा और इस प्रकार आगे बढ़ेगा की 240 सेकंड के अंदर उसका लोको लाल सिग्नल पास कर लें इस स्थिति में उसकी अधिकतम परमिटेड गति अगले सिग्नल या गेट सिग्नल के आगे 250 मीटर तक 15kmph रहेगी।</li>
+                <li>(b) यदि 240 सेकंड में इंजन, लाल सिग्नल नहीं पास कर पाता है तो पुनः गाड़ी खडी करके ओवर राइड मोड सेलेक्ट करना होगा।</li>
+                <li>(c) LSS और IBS सिग्नल के लिए यदि एडवान्स अथॉरिटी मिली है तो लाल सिग्नल पर गाड़ी खड़ी करना आवश्यक नहीं है अपितु चलती गाड़ी में ओवरराइड मोड सेलेक्ट करें। स्टेशनरी कवच से ऑनसाइट मूवमेंट अथॉरिटी मिलते ही कवच onsight मोड में आ जाएगा और बिना किसी गति प्रतिबंध के गाड़ी लाल सिग्नल पास करके चलती रहेगी।</li>
+                <li>(d) आटोमेटिक सिग्नल को लाल की हालत में पास करने के लिए GR 9.02 के अनुसार दिन में 1 मिनट और रात में 2 मिनट रूककर ओवरराइड मोड सेलेक्ट करके अगले सिगनल तक (max 10 kmph) से पास किया जाएगा।</li>
+            </ul>
+            <div class="note-box">नोट - ओवर राइड मोड में ब्लॉक सेक्शन जाम हो सकता है अतः LP अत्यंत सावधानी से आगे बढ़े।</div>
+        </div>
+
+        <div class="instruction-item"><strong>vi. मोड चेंज होने पर -</strong> कवच सामान्यता फुल सुपरविजन (FS) मोड में रहता है जब भी कम्यूनिकेशन फेल हो जाए या RFID टैग (तीन या अधिक) मिसिंग हो तो कवच FS मोड से LS या SR मोड में आ जाता है तब लोको पायलट को 8 सेकंड के अंदर ACK बटन प्रेस करना होगा अन्यथा कवच सर्विस ब्रेक अप्लाइ कर देगा परन्तु किसी अन्य मोड से जब कवच FS मोड पर जाएगा तो ACK प्रेस करने की आवश्यकता नहीं है।</div>
+        <div class="instruction-item"><strong>vii. EXIT MSG:</strong> "KAVACH TERRITORY EXIT" MSG आने पर कार्यवाही- जब लोको कवच टेरिटोरी से बाहर आयेगा तो कवच SR मोड में आ जायेगा लोको पायलट को 8 सेकेण्ड के अन्दर ACK बटन प्रेस करना होगा।</div>
+        <div class="instruction-item"><strong>viii. इनवैलिड रूट:</strong> अप्रत्याशित RFID टैग मिलने पर इनवैलिड रूट डिटेक्ट होगा तो कवच सर्विस ब्रेक अप्लाइ कर देगा और SR मोड में आ जायेगा तब ACK बटन प्रेस करना होगा। अब लोको पायलट की पूर्णतः Responsibility पर गाड़ी चलाई जाएगी।</div>
+        <div class="instruction-item"><strong>ix. आटोमेटिक व्हिसलिंग-</strong> LC गेट पर कवच आटोमेटिक सीटी बजाएगा जिसे लोको पायलट ACK प्रेस करके बंद कर सकता है।</div>
+        <div class="instruction-item"><strong>x. आइसोलेशन:</strong> Tempoeary Single Line (TSL) working, ब्लाक सेक्शन में शर्टिंग करने पर या सिस्टम फेलियर का मैसेज आने पर कवच को आइसोलेट करना होगा।</div>
+        <div class="instruction-item"><strong>xi. रिवर्स मोड-</strong> REV के बाद CNFM साफ्ट की प्रेस करके रिवर्स मोड सेलेक्ट में Max. 25 kmph से 500 मीटर या 5 मिनट तक गाड़ी बैंक की जा सकती है।</div>
+        <div class="instruction-item"><strong>xii. शंट मोड-</strong> SHNT के बाद CNFM साफ्ट की प्रेस करके शंट मोड में स्टेशन सेक्शन में Max 15 kmph गति से शटिंग की जा सकती है शन्ट मोड में कवच किसी भी सिग्नल की निगरानी नहीं करता अतः लोको पायलट सिग्नल का पूर्णतः ध्यान रखें।</div>
+    </div>
+	</div>
+	
+
+    <div class="accordion-item">
+        <div class="accordion-header">4. कवच को आइसलेट या स्विच ऑफ करना</div>
+        <div class="accordion-content">
+        <div class="instruction-item"><strong>(a)</strong> BIU स्विच को सर्विस से आइसोलेसन मोड में करें।</div>
+        <div class="instruction-item"><strong>(b) ब्रेक कॉक की स्थिति:</strong>
+            <ul class="sub-list">
+                <li><strong>i. IRAB ब्रेक सिस्टम में:</strong> (KERNEX & HBL make) MR और EM दोनों कॉक को क्लोज करें। (Medha make) के लिए MR और EM दोनों कॉक को क्लोज करें साथ ही BP कॉक को ओपन करें।</li>
+                <li><strong>ii. E-70 ब्रेक सिस्टम में:</strong> दोनों कैब के EM कॉक को बंद करें।</li>
+                <li><strong>iii. CCB ब्रेक सिस्टम में:</strong> कैब 1 में लगे EM कॉक को क्लोज (1 से 0) करें।</li>
+            </ul>
+        </div>
+        <div class="instruction-item"><strong>स्विच ऑफ प्रक्रिया:</strong> कवच की Main MCB (TCAS और BIU) को ट्रिप करें।</div>
+
+        <div class="image-box">
+            <img src="/assets/htmlimg/kvc-6.png" alt="[DMI Image-1 Placeholder]"> 
+        </div>
+
+        <div class="note-box" style="background-color: #f8d7da; border-color: #f5c6cb; color: #721c24;">
+            नोट- a. डीजल लोको में डीएमआर (डेड मैन्स रिले) एमसीबी को ट्रिप रखा जाएगा। यदि थ्रॉटल नहीं आता है, तो DMR MCB को On कर लें।<br>
+            b. कवच आइसोलेट होने पर यदि निरंतर हॉर्न बज रहा हो तो हॉर्न-बाईपास कॉक को बंद कर दें।
+        </div>
+		</div>
+    </div>
+
+</div>
+
+<script>
+	    // Accordion Logic
+    document.querySelectorAll('.accordion-header').forEach(button => {
+        button.addEventListener('click', () => {
+            const accordionItem = button.parentElement;
+            
+            // Close other items (optional - remove if you want multiple open)
+            document.querySelectorAll('.accordion-item').forEach(item => {
+                if (item !== accordionItem) item.classList.remove('active');
+            });
+
+            accordionItem.classList.toggle('active');
+        });
+    });
+	
+    // Smooth fade-in animation as user scrolls
+    const cards = document.querySelectorAll('.card');
+    const observerOptions = {
+        threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('fade-in');
+                entry.target.style.opacity = '1';
+            }
+        });
+    }, observerOptions);
+
+    cards.forEach(card => {
+        card.style.opacity = '0';
+        observer.observe(card);
+    });
+</script>
+
+</body>
+</html>

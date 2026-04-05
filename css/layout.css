@@ -1,0 +1,367 @@
+/* Layout Styles */
+
+/* App Shell */
+.app-shell {
+  width: 100%;
+  /* max-width: 1280px; */
+  /* margin: 0 auto; */
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  height: 100dvh;
+  /* Dynamic viewport height for mobile browsers */
+  background: var(--bg-card);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  /* Ensure shell doesn't overflow */
+}
+
+/* Top Bar Redesign */
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: calc(12px + env(safe-area-inset-top)) 20px 12px;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  color: var(--text-white);
+  position: sticky;
+  top: 0;
+  z-index: var(--z-header);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+
+.brand-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-logo {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.brand-logo img {
+  height: 100%;
+  width: auto;
+  border-radius: 4px;
+}
+
+.brand-title-main {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 800;
+  font-size: 19px;
+  letter-spacing: -0.5px;
+  background: linear-gradient(to right, #ffffff, #94a3b8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+}
+
+.brand-title-sub {
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--sidebar-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+
+.top-bar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.zone-badge {
+  background: rgba(255, 255, 255, 0.12);
+  padding: 6px 10px;
+  border-radius: var(--radius-full);
+  font-size: 12px;
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+
+/* Main Layout */
+.main-layout {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  background: var(--bg-main);
+}
+
+/* Sidebar Redesign - Ultra Premium Theme */
+.sidebar {
+  width: 260px;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  padding: var(--spacing-xl) var(--spacing-lg);
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  background: var(--sidebar-bg);
+  /* User defined #261CC1 */
+  position: relative;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+  transition: all var(--transition-slow);
+  font-family: 'Outfit', sans-serif;
+}
+
+/* Decorative background elements */
+.sidebar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at top right, rgba(255, 255, 255, 0.05), transparent 60%);
+  pointer-events: none;
+}
+
+.sidebar::-webkit-scrollbar {
+  width: 5px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+}
+
+.sidebar-header {
+  font-size: 10px;
+  text-transform: uppercase;
+  color: var(--sidebar-text-muted);
+  /* rgba(255, 255, 255, 0.7) */
+  font-weight: 800;
+  letter-spacing: 2px;
+  margin: var(--spacing-xl) 0 var(--spacing-sm) 8px;
+}
+
+.nav-item {
+  border-radius: 14px;
+  padding: 12px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--sidebar-text);
+  /* White */
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  margin-bottom: 4px;
+  position: relative;
+  z-index: 1;
+}
+
+.nav-item:hover {
+  background: var(--sidebar-item-hover);
+  /* User defined #3A9AFF */
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: translateX(6px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.nav-item.active {
+  background: var(--sidebar-item-active);
+  /* User defined #FFC50F */
+  color: #000000;
+  /* Dark text for contrast on yellow */
+  border-color: #D97706;
+  /* Stronger yellow border */
+  font-weight: 700;
+  box-shadow: 0 6px 20px rgba(255, 197, 15, 0.4);
+}
+
+.nav-item.active .nav-icon-text {
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.nav-item .nav-icon-text {
+  font-size: 20px;
+  min-width: 28px;
+  transition: all 0.3s ease;
+  display: flex;
+  justify-content: center;
+}
+
+.nav-item:hover .nav-icon-text {
+  transform: scale(1.1) rotate(5deg);
+}
+
+
+
+.nav-item .nav-icon-text img {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.nav-item:hover .nav-icon-text {
+  transform: scale(1.15) rotate(5deg);
+}
+
+
+/* Page Indicator for Nav Badge */
+.nav-badge {
+  margin-left: auto !important;
+  box-shadow: 0 4px 8px rgba(255, 71, 87, 0.3);
+}
+
+/* Hide Sidebar Header for first item */
+.sidebar-header:first-child {
+  margin-top: 0;
+}
+
+
+/* Main Content */
+.main-content {
+  flex: 1;
+  min-width: 0;
+  padding: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.content-scroll {
+  flex: 1;
+  overflow-y: auto;
+  padding-bottom: 120px;
+  -webkit-overflow-scrolling: touch;
+  /* Smooth scrolling for iOS Safari */
+  overscroll-behavior-y: contain;
+  /* Prevent accidental pull-to-refresh pull-through */
+}
+
+/* Pages */
+.page {
+  display: none;
+  animation: fadeIn 0.3s ease;
+}
+
+.page.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Bottom Navigation */
+.bottom-nav {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: calc(8px + env(safe-area-inset-bottom));
+  width: min(480px, calc(100% - 16px));
+  border-radius: var(--radius-full);
+  background: rgba(15, 23, 42, 0.98);
+  backdrop-filter: blur(10px);
+  color: #e5e7eb;
+  padding: 6px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: var(--z-bottom-nav);
+  box-shadow: 0 8px 32px rgba(15, 23, 42, 0.3);
+}
+
+/* 
+ * SPECIAL FIX: WebView Natural Scrolling Support
+ * 
+ * In Android WebViews, SwipeRefreshLayout only works correctly if the 
+ * document body itself is scrolling. If we use nested scrolling (div overflow),
+ * the native side thinks we are always at scrollTop=0 and triggers refresh even
+ * when we are at the bottom of the content.
+ */
+html.is-webview,
+html.is-webview body {
+  height: auto !important;
+  overflow: auto !important;
+  overflow-x: hidden !important;
+}
+
+html.is-webview .app-shell {
+  height: auto !important;
+  min-height: 100vh;
+  overflow: visible !important;
+}
+
+html.is-webview .main-layout,
+html.is-webview .main-content {
+  height: auto !important;
+  overflow: visible !important;
+  display: block !important;
+  /* Switch from flex to block for natural flow */
+}
+
+html.is-webview .content-scroll {
+  overflow: visible !important;
+  height: auto !important;
+  flex: none !important;
+  padding-bottom: 150px;
+  /* Extra space for bottom nav */
+}
+
+/* Ensure top bar stays sticky when body scrolls */
+html.is-webview .top-bar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.bottom-nav-item {
+  flex: 1;
+  border-radius: var(--radius-full);
+  padding: 6px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  font-size: 10px;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: all var(--transition-normal);
+}
+
+.bottom-nav-item.active {
+  background: rgba(37, 99, 235, 0.9);
+  color: #e5f0ff;
+  opacity: 1;
+}

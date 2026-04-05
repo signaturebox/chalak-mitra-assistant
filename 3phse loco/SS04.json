@@ -1,0 +1,256 @@
+[
+  {
+    "subsystemCode": "SS04",
+    "subsystemNameHI": "हार्मोनिक फ़िल्टर",
+    "subsystemNameEN": "HARMONIC FILTER",
+    "faults": [
+      {
+        "faultCode": "F0401P1",
+        "titleHI": "हार्मोनिक फ़िल्टर करंट बहुत अधिक",
+        "titleEN": "HARMONIC FILTER CURRENT TOO HIGH",
+        "messageHI": "VCB बंद करने का पुनः प्रयास करें",
+        "messageEN": "Try to close VCB again",
+        "lamps": ["LSDJ जलेगी", "LSFI ब्लिंकिंग करेगी", "BPFA जलेगी"],
+        "effectHI": "VCB ओपन हो जाएगा",
+        "effectEN": "VCB will open",
+        "actionHI": [
+          "थ्रॉटल को '0' पर रखें और BPFA दबाकर फॉल्ट ACK करें",
+          "VCB क्लोज करने के लिए BLDJ दबाएँ",
+          "यदि फॉल्ट बना रहे तो Control Electronics OFF करें और फिर ON करें",
+          "पैंटो उठाएँ, VCB क्लोज करें तथा ट्रैक्शन चालू करें"
+        ],
+        "actionEN": [
+          "Keep throttle at '0' and press BPFA to ACK fault",
+          "Press BLDJ to close VCB",
+          "If fault persists, switch OFF and ON Control Electronics",
+          "Raise pantograph, close VCB and take traction"
+        ],
+        "isolation": {
+          "required": true,
+          "titleHI": "HARMONIC FILTER ISOLATED",
+          "titleEN": "HARMONIC FILTER ISOLATED",
+          "effectHI": "हार्मोनिक फ़िल्टर आइसोलेट होगा, अधिकतम अनुमत गति 40 kmph होगी",
+          "effectEN": "Harmonic filter will be isolated, max permitted speed will be 40 kmph",
+          "stepsHI": [
+            "DDS पर 'HARMONIC FILTER ISOLATED' आने पर ENTER दबाकर ACK करें",
+            "TLC को सूचित करें और 40 kmph की गति से चलाएँ",
+            "एक-दो सेक्शन पास होने के बाद Control Electronics OFF/ON करके retry करें",
+            "यदि सर्विस में वापस आ जाता है तो सामान्य गति से चलाएँ और TLC को सूचित करें",
+            "यदि सफल न हों तो 40 kmph पर दोनों ट्रैक्शन कन्वर्टर के साथ चलाएँ या TLC निर्देश अनुसार Bogie-1 को Switch 154 से isolate करें",
+            "लॉग बुक में दर्ज करें"
+          ],
+          "stepsEN": [
+            "Press ENTER to ACK when DDS shows 'HARMONIC FILTER ISOLATED'",
+            "Inform TLC and run with speed limit 40 kmph",
+            "After passing 1-2 sections, switch OFF/ON control electronics and retry",
+            "If returns to service, run normal speed and inform TLC",
+            "If not successful, run at 40 kmph with both traction converters OR isolate Bogie-1 using Switch 154 as per TLC instructions",
+            "Make logbook entry"
+          ]
+        }
+      },
+
+      {
+        "faultCode": "F0402P1",
+        "titleHI": "हार्मोनिक फ़िल्टर कॉन्टैक्टर फँसा (OFF/ON)",
+        "titleEN": "HARMONIC FILTER CONTACTOR(S) STUCK OFF/ON",
+        "messageHI": "हार्मोनिक फ़िल्टर आइसोलेट होगा, TLC को सूचित करें",
+        "messageEN": "Harmonic filter will be isolated, speak to TLC",
+        "lamps": ["LSDJ जलेगी", "LSFI ब्लिंकिंग करेगी", "BPFA जलेगी"],
+        "effectHI": "हार्मोनिक फ़िल्टर आइसोलेट होगा, अधिकतम गति 40 kmph होगी",
+        "effectEN": "Harmonic filter isolated, max speed 40 kmph",
+        "actionHI": [
+          "थ्रॉटल '0' पर रखें और BPFA दबाकर फॉल्ट ACK करें",
+          "VCB क्लोज करने के लिए BLDJ दबाएँ",
+          "यदि फॉल्ट बना रहे तो Control Electronics OFF/ON करें",
+          "पैंटो उठाएँ, VCB क्लोज करें तथा ट्रैक्शन चालू करें"
+        ],
+        "actionEN": [
+          "Keep throttle at '0' and ACK with BPFA",
+          "Press BLDJ to close VCB",
+          "If fault persists, switch OFF/ON control electronics",
+          "Raise pantograph, close VCB and take traction"
+        ],
+        "isolation": {
+          "required": true,
+          "titleHI": "HARMONIC FILTER ISOLATED (40 kmph limit)",
+          "titleEN": "HARMONIC FILTER ISOLATED (40 kmph limit)",
+          "effectHI": "अधिकतम अनुमत गति 40 kmph होगी",
+          "effectEN": "Max permitted speed 40 kmph",
+          "stepsHI": [
+            "ENTER दबाकर isolation message ACK करें",
+            "TLC को सूचित करें और 40 kmph की गति से चलाएँ",
+            "Control Electronics OFF/ON करके retry करें",
+            "लॉगबुक में दर्ज करें"
+          ],
+          "stepsEN": [
+            "ACK isolation message using ENTER",
+            "Inform TLC and run with 40 kmph limit",
+            "Retry after switching OFF/ON control electronics",
+            "Make logbook entry"
+          ]
+        }
+      },
+
+      {
+        "faultCode": "F0404P1",
+        "titleHI": "हार्मोनिक फ़िल्टर रेसिस्टर बहुत गर्म",
+        "titleEN": "HARMONIC FILTER RESISTOR TOO HOT",
+        "messageHI": "VCB inhibit रहेगा (फिल्टर डिस्चार्ज साइकल अधिक)",
+        "messageEN": "VCB will remain inhibited (filter discharge cycles exceeded)",
+        "lamps": ["LSDJ जलेगी", "LSFI ब्लिंकिंग करेगी", "BPFA जलेगी"],
+        "effectHI": "हार्मोनिक फ़िल्टर आइसोलेट होगा, अधिकतम गति 40 kmph होगी",
+        "effectEN": "Harmonic filter isolated, max speed 40 kmph",
+        "actionHI": [
+          "थ्रॉटल '0' पर रखें और BPFA ACK करें",
+          "15 मिनट प्रतीक्षा करें, फिर BLDJ दबाकर VCB क्लोज का प्रयास करें",
+          "यदि फॉल्ट बना रहे तो Control Electronics OFF/ON करें",
+          "पैंटो उठाएँ, VCB क्लोज करें तथा ट्रैक्शन चालू करें",
+          "TLC को सूचित करें और लॉगबुक में दर्ज करें"
+        ],
+        "actionEN": [
+          "Keep throttle at '0' and ACK with BPFA",
+          "Wait 15 minutes then press BLDJ and try to close VCB",
+          "If fault persists switch OFF/ON control electronics",
+          "Raise pantograph, close VCB and take traction",
+          "Inform TLC and make logbook entry"
+        ],
+        "isolation": {
+          "required": true,
+          "titleHI": "HARMONIC FILTER ISOLATED",
+          "titleEN": "HARMONIC FILTER ISOLATED",
+          "effectHI": "40 kmph स्पीड लिमिट के साथ संचालन",
+          "effectEN": "Operate with 40 kmph speed limit",
+          "stepsHI": ["ENTER दबाकर ACK करें", "40 kmph पर चलाएँ", "TLC को सूचित करें"],
+          "stepsEN": ["ACK with ENTER", "Run at 40 kmph", "Inform TLC"]
+        }
+      },
+
+      {
+        "faultCode": "F0401P2",
+        "titleHI": "फ़िल्टर कॉन्टैक्टर 8.1 ON में फँसा हुआ",
+        "titleEN": "FILTER CONTACTOR 8.1 STUCK ON",
+        "messageHI": "VCB ओपन होने पर फिर से क्लोज नहीं होगा",
+        "messageEN": "If VCB opens, it will not close again",
+        "lamps": ["BPFA जलेगी"],
+        "effectHI": "VCB क्लोज नहीं होगा / लोको डेड हो सकती है",
+        "effectEN": "VCB will not close / loco may become dead",
+        "actionHI": [
+          "VCB ओपन होने पर BLDJ दबाने से VCB क्लोज नहीं होगा",
+          "BPFA दबाकर फॉल्ट ACK करें",
+          "यदि VCB ओपन हो तो सेक्शन क्लियर करके गाड़ी खड़ी करें",
+          "Control Electronics OFF करें और फिर ON करें, पैंटो उठाएँ, VCB क्लोज करें तथा ट्रैक्शन चालू करें",
+          "यदि VCB क्लोज नहीं होता तो 20 मिनट में सहायता इंजन मांगें"
+        ],
+        "actionEN": [
+          "If VCB opens, pressing BLDJ will not close VCB",
+          "ACK fault using BPFA",
+          "If VCB opens, clear section and stop the train",
+          "Switch OFF/ON control electronics, raise pantograph, close VCB and take traction",
+          "If VCB does not close, ask for assistance engine within 20 minutes"
+        ],
+        "isolation": {
+          "required": true,
+          "titleHI": "MAIN POWER ISOLATED Risk",
+          "titleEN": "MAIN POWER ISOLATED Risk",
+          "effectHI": "VCB inhibit होने पर संचालन संभव नहीं",
+          "effectEN": "Operation not possible if VCB inhibited",
+          "stepsHI": ["Control Electronics OFF/ON करके retry करें", "सफल न हो तो सहायता इंजन मांगें"],
+          "stepsEN": ["Retry after control electronics OFF/ON", "If not successful ask for assistance engine"]
+        }
+      },
+
+      {
+        "faultCode": "F0402P2",
+        "titleHI": "हार्मोनिक फ़िल्टर सर्किट में अर्थ फॉल्ट",
+        "titleEN": "EARTH FAULT HARMONIC FILTER CIRCUIT",
+        "messageHI": "सामान्य ऑपरेशन जारी रख सकते हैं (मेंटेनेंस में जांच)",
+        "messageEN": "Normal operation can continue (to be checked during maintenance)",
+        "lamps": ["BPFA जलेगी"],
+        "effectHI": "मेंटेनेंस में जांच आवश्यक",
+        "effectEN": "Maintenance check required",
+        "actionHI": ["BPFA द्वारा फॉल्ट ACK करें", "TLC को सूचित करें और लॉगबुक में दर्ज करें"],
+        "actionEN": ["ACK fault using BPFA", "Inform TLC and make logbook entry"],
+        "isolation": {
+          "required": false,
+          "titleHI": "",
+          "titleEN": "",
+          "effectHI": "",
+          "effectEN": "",
+          "stepsHI": [],
+          "stepsEN": []
+        }
+      },
+
+      {
+        "faultCode": "F0403P2",
+        "titleHI": "TM1 (Bogie-1) Isolated – Harmonic Filter",
+        "titleEN": "TM1 BOGIE 1 ISOLATED – HARMONIC FILTER",
+        "messageHI": "केवल 5/6th TE/BE power उपलब्ध",
+        "messageEN": "Only 5/6th TE/BE power available",
+        "lamps": ["LSFI ब्लिंकिंग करेगी", "BPFA जलेगी"],
+        "effectHI": "TM-1 isolate होने पर 1/6th TE/BE power कम होगी",
+        "effectEN": "After TM-1 isolation, 1/6th TE/BE power reduced",
+        "actionHI": ["BPFA द्वारा फॉल्ट ACK करें और सामान्य ऑपरेशन चालू रखें", "TLC को सूचित करें और लॉगबुक में दर्ज करें"],
+        "actionEN": ["ACK fault using BPFA and continue normal operation", "Inform TLC and make logbook entry"],
+        "isolation": { "required": false, "titleHI": "", "titleEN": "", "effectHI": "", "effectEN": "", "stepsHI": [], "stepsEN": [] }
+      },
+
+      {
+        "faultCode": "F0404P2",
+        "titleHI": "TM2 (Bogie-1) Isolated – Harmonic Filter",
+        "titleEN": "TM2 BOGIE 1 ISOLATED – HARMONIC FILTER",
+        "messageHI": "केवल 5/6th TE/BE power उपलब्ध",
+        "messageEN": "Only 5/6th TE/BE power available",
+        "lamps": ["LSFI ब्लिंकिंग करेगी", "BPFA जलेगी"],
+        "effectHI": "TM-2 isolate होने पर 1/6th TE/BE power कम होगी",
+        "effectEN": "After TM-2 isolation, 1/6th TE/BE power reduced",
+        "actionHI": ["BPFA ACK करें और normal run करें", "TLC को सूचित करें"],
+        "actionEN": ["ACK with BPFA and continue normal run", "Inform TLC"],
+        "isolation": { "required": false, "titleHI": "", "titleEN": "", "effectHI": "", "effectEN": "", "stepsHI": [], "stepsEN": [] }
+      },
+
+      {
+        "faultCode": "F0405P2",
+        "titleHI": "TM3 (Bogie-1) Isolated – Harmonic Filter",
+        "titleEN": "TM3 BOGIE 1 ISOLATED – HARMONIC FILTER",
+        "messageHI": "केवल 5/6th TE/BE power उपलब्ध",
+        "messageEN": "Only 5/6th TE/BE power available",
+        "lamps": ["LSFI ब्लिंकिंग करेगी", "BPFA जलेगी"],
+        "effectHI": "TM-3 isolate होने पर 1/6th TE/BE power कम होगी",
+        "effectEN": "After TM-3 isolation, 1/6th TE/BE power reduced",
+        "actionHI": ["BPFA ACK करें और normal operation जारी रखें", "TLC को सूचित करें"],
+        "actionEN": ["ACK with BPFA and continue normal operation", "Inform TLC"],
+        "isolation": { "required": false, "titleHI": "", "titleEN": "", "effectHI": "", "effectEN": "", "stepsHI": [], "stepsEN": [] }
+      },
+
+      {
+        "faultCode": "F0406P2",
+        "titleHI": "Line Converter-1 (Bogie-1) Isolated – Harmonic Filter",
+        "titleEN": "LINE CONVERTER 1 BOGIE 1 ISOLATED – HARMONIC FILTER",
+        "messageHI": "केवल 3/4th TE/BE power उपलब्ध",
+        "messageEN": "Only 3/4th TE/BE power available",
+        "lamps": ["LSFI ब्लिंकिंग करेगी", "BPFA जलेगी"],
+        "effectHI": "LC-1 isolate होने पर 1/4th TE/BE power कम होगी",
+        "effectEN": "After LC-1 isolation, 1/4th TE/BE power reduced",
+        "actionHI": ["BPFA ACK करें और normal run करें", "TLC को सूचित करें"],
+        "actionEN": ["ACK with BPFA and continue normal run", "Inform TLC"],
+        "isolation": { "required": false, "titleHI": "", "titleEN": "", "effectHI": "", "effectEN": "", "stepsHI": [], "stepsEN": [] }
+      },
+
+      {
+        "faultCode": "F0407P2",
+        "titleHI": "Line Converter-2 (Bogie-1) Isolated – Harmonic Filter",
+        "titleEN": "LINE CONVERTER 2 BOGIE 1 ISOLATED – HARMONIC FILTER",
+        "messageHI": "केवल 3/4th TE/BE power उपलब्ध",
+        "messageEN": "Only 3/4th TE/BE power available",
+        "lamps": ["LSFI ब्लिंकिंग करेगी", "BPFA जलेगी"],
+        "effectHI": "LC-2 isolate होने पर 1/4th TE/BE power कम होगी",
+        "effectEN": "After LC-2 isolation, 1/4th TE/BE power reduced",
+        "actionHI": ["BPFA ACK करें और normal operation जारी रखें", "TLC को सूचित करें"],
+        "actionEN": ["ACK with BPFA and continue normal operation", "Inform TLC"],
+        "isolation": { "required": false, "titleHI": "", "titleEN": "", "effectHI": "", "effectEN": "", "stepsHI": [], "stepsEN": [] }
+      }
+    ]
+  }
+]

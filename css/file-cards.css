@@ -1,0 +1,23 @@
+/* File Card Responsive Styles */
+
+/* Desktop Layout (768px and above) */
+@media (min-width: 768px) {
+  .file-card-desktop {
+    display: grid !important;
+  }
+  
+  .file-card-mobile {
+    display: none !important;
+  }
+}
+
+/* Mobile Layout (below 768px) */
+@media (max-width: 767px) {
+  .file-card-desktop {
+    display: none !important;
+  }
+  
+  .file-card-mobile {
+    display: block !important;
+  }
+}

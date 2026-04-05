@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Force Cache Clear - File Upload Fix</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .success-box {
+            background-color: #e8f5e9;
+            border: 1px solid #c8e6c9;
+            border-radius: 4px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .error-box {
+            background-color: #ffebee;
+            border: 1px solid #ffcdd2;
+            border-radius: 4px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .info-box {
+            background-color: #e3f2fd;
+            border: 1px solid #bbdefb;
+            border-radius: 4px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔧 File Upload Fix - Cache Clear Required</h1>
+        
+        <div class="info-box">
+            <h3>Current Status:</h3>
+            <p>Your browser is still using cached JavaScript files with the old buggy code.</p>
+            <p><strong>Error:</strong> <code>POST http://localhost/nwr_chalak_mitra/null/files/file_upload 404 (Not Found)</code></p>
+        </div>
+        
+        <div class="error-box">
+            <h3>🚨 Critical Action Required:</h3>
+            <p>You <strong>MUST</strong> clear your browser cache completely for the fix to work.</p>
+        </div>
+        
+        <div class="info-box">
+            <h3>Step-by-Step Instructions:</h3>
+            <ol>
+                <li><strong>Close all browser windows/tabs</strong> for this website</li>
+                <li><strong>Press Ctrl+Shift+Delete</strong> (or Cmd+Shift+Delete on Mac)</li>
+                <li>In the dialog that appears:
+                    <ul>
+                        <li>Select <strong>"All time"</strong> or <strong>"Everything"</strong> as time range</li>
+                        <li><strong>Check all boxes</strong> (especially "Cached images and files")</li>
+                        <li>Click <strong>"Clear data"</strong></li>
+                    </ul>
+                </li>
+                <li><strong>Restart your browser completely</strong></li>
+                <li><strong>Open a new incognito/private window</strong></li>
+                <li><strong>Navigate to your application</strong></li>
+            </ol>
+        </div>
+        
+        <div class="success-box">
+            <h3>✅ What This Fix Does:</h3>
+            <ul>
+                <li>Files will now upload to the <strong>server</strong> instead of localStorage</li>
+                <li>Uploaded files will be <strong>accessible from any device</strong></li>
+                <li>PDF, images, and Excel files are stored securely on the server</li>
+                <li>URL-based content continues to work as before</li>
+            </ul>
+        </div>
+        
+        <div style="text-align: center; margin: 20px 0;">
+            <button onclick="testFreshLoad()">🧪 Test Fresh Load</button>
+            <button onclick="forceRefresh()">🔄 Force Refresh</button>
+        </div>
+        
+        <div id="testResult"></div>
+    </div>
+
+    <script>
+        function forceRefresh() {
+            // Try to force refresh
+            if ('caches' in window) {
+                caches.keys().then(function(names) {
+                    for (let name of names) {
+                        caches.delete(name);
+                    }
+                });
+            }
+            location.reload(true);
+        }
+        
+        async function testFreshLoad() {
+            const result = document.getElementById('testResult');
+            result.innerHTML = '<p>Testing fresh load...</p>';
+            
+            try {
+                // Try to load the new API service
+                const module = await import('./js/services/apiService.v2.js?v=2');
+                const Api = module.default;
+                
+                const baseUrl = Api.getBaseUrl();
+                result.innerHTML = `
+                    <div class="success-box">
+                        <h4>✅ Success!</h4>
+                        <p><strong>Base URL:</strong> ${baseUrl}</p>
+                        <p>${baseUrl.includes('null') ? 
+                            '<span style="color: red;">❌ Still contains "null" - cache not cleared</span>' : 
+                            '<span style="color: green;">✅ No "null" found - fix working!</span>'}</p>
+                    </div>
+                `;
+            } catch (error) {
+                result.innerHTML = `
+                    <div class="error-box">
+                        <h4>❌ Error Loading New Files</h4>
+                        <p>${error.message}</p>
+                        <p>This confirms the browser is still using cached files.</p>
+                    </div>
+                `;
+            }
+        }
+        
+        // Auto-test on page load
+        window.addEventListener('load', function() {
+            setTimeout(testFreshLoad, 1000);
+        });
+    </script>
+</body>
+</html>

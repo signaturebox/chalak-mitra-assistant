@@ -1,0 +1,357 @@
+/**
+ * Notification Badge Styles
+ * Hierarchical counter badges for Division -> Lobby -> Tab
+ */
+
+/* Counter Badge Base Styles */
+.counter-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  background: linear-gradient(135deg, #ff4757 0%, #ff6b81 100%);
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(255, 71, 87, 0.3);
+  transition: all 0.3s ease;
+  margin-left: 8px;
+}
+
+.counter-badge:empty,
+.counter-badge[data-count="0"] {
+  display: none;
+}
+
+/* Pulse Animation for New Counters */
+@keyframes counterPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 2px 4px rgba(255, 71, 87, 0.3);
+  }
+  50% {
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(255, 71, 87, 0.5);
+  }
+}
+
+.counter-pulse {
+  animation: counterPulse 2s infinite;
+}
+
+/* Division Counter Badge */
+#divisionCounter {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: linear-gradient(135deg, #ff4757 0%, #ff6b81 100%);
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+  min-width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 0 6px;
+  box-shadow: 0 2px 8px rgba(255, 71, 87, 0.4);
+  z-index: 10;
+}
+
+/* Lobby Counter Badge */
+#lobbyCounter {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+  min-width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 0 6px;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.4);
+  z-index: 10;
+}
+
+/* Tab Counter Badge */
+.tab-counter {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+  min-width: 18px;
+  height: 18px;
+  border-radius: 9px;
+  padding: 0 5px;
+  margin-left: 8px;
+  box-shadow: 0 2px 6px rgba(16, 185, 129, 0.3);
+  transition: all 0.3s ease;
+}
+
+.tab-counter.show {
+  display: inline-flex;
+}
+
+/* Hierarchical Counter Display in Navigation */
+.hierarchical-counter {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.hierarchical-counter .level {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.hierarchical-counter .level:not(:last-child)::after {
+  content: '→';
+  color: #9ca3af;
+  margin: 0 4px;
+}
+
+/* "New" Badge for Files */
+.new-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: linear-gradient(135deg, #ff4757 0%, #ff6b81 100%);
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 8px rgba(255, 71, 87, 0.3);
+  animation: newBadgePulse 2s infinite;
+}
+
+.new-badge::before {
+  content: '●';
+  font-size: 8px;
+  animation: dotPulse 1.5s infinite;
+}
+
+@keyframes newBadgePulse {
+  0%, 100% {
+    box-shadow: 0 2px 8px rgba(255, 71, 87, 0.3);
+  }
+  50% {
+    box-shadow: 0 4px 16px rgba(255, 71, 87, 0.5);
+  }
+}
+
+@keyframes dotPulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* File Card with New Badge */
+.file-card-new {
+  position: relative;
+  border: 2px solid rgba(255, 71, 87, 0.3) !important;
+  background: linear-gradient(135deg, rgba(255, 71, 87, 0.05) 0%, rgba(255, 255, 255, 1) 100%) !important;
+}
+
+.file-card-new::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #ff4757, #ff6b81);
+  border-radius: 3px 3px 0 0;
+}
+
+/* Notification Bell with Badge */
+.notification-bell {
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.notification-bell:hover {
+  transform: scale(1.1);
+}
+
+.notification-bell.has-notifications {
+  animation: bellShake 2s infinite;
+}
+
+@keyframes bellShake {
+  0%, 100% { transform: rotate(0); }
+  5% { transform: rotate(10deg); }
+  10% { transform: rotate(-10deg); }
+  15% { transform: rotate(5deg); }
+  20% { transform: rotate(-5deg); }
+  25% { transform: rotate(0); }
+}
+
+#notificationBadge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: linear-gradient(135deg, #ff4757 0%, #ff6b81 100%);
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+  min-width: 18px;
+  height: 18px;
+  border-radius: 9px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 0 5px;
+  box-shadow: 0 2px 8px rgba(255, 71, 87, 0.4);
+}
+
+/* Counter Summary Panel */
+.counter-summary {
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 20px;
+}
+
+.counter-summary-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.counter-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 12px;
+}
+
+.counter-summary-item {
+  background: white;
+  border-radius: 8px;
+  padding: 12px;
+  text-align: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.counter-summary-item:hover {
+  transform: translateY(-2px);
+}
+
+.counter-summary-item .count {
+  font-size: 24px;
+  font-weight: 700;
+  color: #ff4757;
+}
+
+.counter-summary-item .label {
+  font-size: 12px;
+  color: #6b7280;
+  margin-top: 4px;
+}
+
+/* Toast Notification for Real-time Updates */
+.toast-notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: white;
+  border-radius: 12px;
+  padding: 16px 20px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  max-width: 400px;
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.toast-notification.success {
+  border-left: 4px solid #10b981;
+}
+
+.toast-notification.info {
+  border-left: 4px solid #3b82f6;
+}
+
+.toast-notification.warning {
+  border-left: 4px solid #f59e0b;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .counter-badge {
+    min-width: 18px;
+    height: 18px;
+    font-size: 10px;
+    padding: 0 5px;
+  }
+  
+  .tab-counter {
+    min-width: 16px;
+    height: 16px;
+    font-size: 9px;
+    padding: 0 4px;
+  }
+  
+  .new-badge {
+    font-size: 9px;
+    padding: 2px 8px;
+  }
+  
+  .counter-summary-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  .counter-summary {
+    background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+  }
+  
+  .counter-summary-item {
+    background: #374151;
+  }
+  
+  .counter-summary-item .label {
+    color: #9ca3af;
+  }
+}

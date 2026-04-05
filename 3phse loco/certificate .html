@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NWR WAG-9 Edition Certificate</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@300;400;700&family=Orbitron:wght@500&display=swap');
+
+        :root {
+            --wag9-green: #004d26; 
+            --wag9-silver: #bdc3c7;
+            --nwr-blue: #003399;
+            --gold-accent: #C5A059;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #121212;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .outer-frame {
+            padding: 15px;
+            background: linear-gradient(135deg, var(--wag9-green) 0%, #002b15 100%);
+            border-radius: 10px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.6);
+            border: 2px solid var(--wag9-silver);
+        }
+
+        .certificate-container {
+            width: 880px;
+            background: white;
+            position: relative;
+            overflow: hidden;
+            border: 4px solid var(--wag9-silver);
+        }
+
+        /* Bold Blue Header */
+        .header-section {
+            background-color: var(--nwr-blue);
+            color: white;
+            padding: 35px 20px;
+            text-align: center;
+            border-bottom: 8px solid var(--wag9-green);
+            position: relative;
+            z-index: 2;
+        }
+
+        .railway-logo {
+            width: 85px;
+            margin-bottom: 12px;
+        }
+
+        .header-section h1 {
+            font-family: 'Playfair Display', serif;
+            margin: 0;
+            font-size: 44px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .header-info {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 14px;
+            letter-spacing: 4px;
+            margin-top: 10px;
+            color: var(--wag9-silver);
+        }
+
+        /* Vande Bharat Background Image */
+        .vande-bharat-bg {
+            position: absolute;
+            bottom: 30px;
+            right: -40px;
+            width: 550px;
+            opacity: 0.18;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .body-content {
+            padding: 50px 60px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cert-type {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 11px;
+            color: var(--wag9-green);
+            letter-spacing: 5px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .recipient-name {
+            font-size: 50px;
+            font-weight: 800;
+            color: #1a1a1a;
+            margin: 10px 0;
+            text-transform: uppercase;
+            border-bottom: 3px solid var(--wag9-green);
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        .achievement-text {
+            font-size: 19px;
+            color: #333;
+            margin: 25px auto;
+            line-height: 1.6;
+        }
+
+        /* WAG-9 Themed Data Grid */
+        .data-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin: 35px 0;
+        }
+
+        .data-box {
+            background: #f4f7f6;
+            padding: 15px;
+            border-radius: 5px;
+            border-top: 4px solid var(--wag9-green);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .label {
+            display: block;
+            font-size: 10px;
+            color: #7f8c8d;
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .value {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--wag9-green);
+        }
+
+        .footer-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            padding: 0 60px 40px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .qr-section {
+            text-align: center;
+            font-size: 9px;
+            color: #666;
+            font-weight: 700;
+        }
+
+        .qr-section img {
+            border: 1px solid #ccc;
+            padding: 4px;
+            background: white;
+            margin-bottom: 5px;
+        }
+
+        .signature-block {
+            text-align: center;
+            width: 220px;
+        }
+
+        .sig-line {
+            border-top: 2px solid #333;
+            margin-bottom: 10px;
+        }
+
+        .wag9-stripe {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 12px;
+            background: repeating-linear-gradient(
+                45deg,
+                var(--wag9-green),
+                var(--wag9-green) 10px,
+                var(--wag9-silver) 10px,
+                var(--wag9-silver) 20px
+            );
+        }
+    </style>
+</head>
+<body>
+
+<div class="outer-frame">
+    <div class="certificate-container">
+        <img src="https://static.wixstatic.com/media/db4e60_eeee9d0b122948a580914955dfe79839~mv2.png/v1/fill/w_560,h_374,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Vande%20Bharat%20Vision%20w%20DS.png" class="vande-bharat-bg" alt="Train Background">
+        
+        <div class="header-section">
+            <img src="https://mcf.indianrailways.gov.in/uploads/IR_logo_Red_1024.png" alt="IR Logo" class="railway-logo">
+            <h1>North Western Railway</h1>
+            <div class="header-info">BIKANER DIVISION | HMH LOBBY</div>
+        </div>
+
+        <div class="body-content">
+            <div class="cert-type">CERTIFICATE OF COMPLETION</div>
+            <p style="font-size: 13px; color: #7f8c8d; letter-spacing: 2px;">AWARDED TO</p>
+            
+            <div class="recipient-name">PRADEEP KUMAR MEENA</div>
+            
+            <p class="achievement-text">
+                For successfully clearing the <strong>CLI Counseling & Quiz</strong><br>
+                under the NWR Chalak Mitra Digital Competency Framework.
+            </p>
+
+            <div class="data-grid">
+                <div class="data-box">
+                    <span class="label">CMS ID</span>
+                    <span class="value">HMH1816</span>
+                </div>
+                <div class="data-box">
+                    <span class="label">Quiz Score</span>
+                    <span class="value">06 / 10</span>
+                </div>
+                <div class="data-box">
+                    <span class="label">Result</span>
+                    <span class="value" style="color: #27ae60;">QUALIFIED</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-section">
+            <div class="qr-section">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=85x85&data=NWR-CM-32677272" alt="Verify QR">
+                <br>SCAN TO VALIDATE
+            </div>
+
+            <div style="text-align: center; font-size: 12px; color: #888;">
+                <strong>Cert ID:</strong> NWR-CM-32677272<br>
+                <strong>Issued:</strong> 25 Jan 2026<br>
+                <em>Bikaner Division, NWR</em>
+            </div>
+
+            <div class="signature-block">
+                <div class="sig-line"></div>
+                <div style="font-weight: 700; font-size: 14px; color: #1a1a1a;">CLI / Lobby Admin</div>
+                <div style="font-size: 11px; color: #7f8c8d;">Digital Signature Authorized</div>
+            </div>
+        </div>
+
+        <div class="wag9-stripe"></div>
+    </div>
+</div>
+
+</body>
+</html>

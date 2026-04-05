@@ -1,0 +1,339 @@
+[
+  {
+    "subsystemCode": "SS01",
+    "subsystemNameHI": "मेन पावर",
+    "subsystemNameEN": "Main Power",
+    "faults": [
+      {
+        "faultCode": "F0101P1",
+        "titleHI": "वीसीबी ऑन स्थिति में फंसा",
+        "titleEN": "VCB STUCK IN ON POSITION",
+        "messageHI": "Loco XXXXXX SS01: Main Power VCB STUCK IN ON POSITION Loco will be shut down",
+        "messageEN": "Loco XXXXXX SS01: Main Power VCB STUCK IN ON POSITION Loco will be shut down",
+        "lamps": ["LSDJ (OFF)", "LSFI (Blinking)", "BPFA (ON)"],
+        "effectHI": "SR1 & SR2 कान्टैक्टर खुल जायेगा, पेंटो लोअर हो जायेगा, VCB बंद नहीं होगा।",
+        "effectEN": "SR1 & SR2 contactors will open, Panto will lower, VCB will not close.",
+        "actionHI": [
+          "थ्रॉटल को '0' पर करें। BPFA दबाकर फाल्ट एक्नालेज करे। [cite: 1030]",
+          "कोस्टिंग करते हुए ब्लॉक सेक्शन साफ करें। गाड़ी को खड़ी करें। [cite: 1030]",
+          "MCE को ऑफ करके ऑन करें। यदि LSDJ जल जाय तो ZPT से पेंटों उठाये और VCB बंद करें। [cite: 1030]",
+          "सफलता न मिले तो पिछली कैब से कोशिश करें। [cite: 1030]"
+        ],
+        "actionEN": [
+          "Set throttle to '0'. Acknowledge fault by pressing BPFA. [cite: 1030]",
+          "Clear block section while coasting. Stop the train. [cite: 1030]",
+          "Switch MCE OFF and then ON. If LSDJ glows, raise Panto via ZPT and close VCB. [cite: 1030]",
+          "If unsuccessful, try from the rear cab. [cite: 1030]"
+        ],
+        "isolation": {
+          "procedureHI": "MCE को एक बार ऑफ कर फिर ऑन करें। [cite: 1030]",
+          "procedureEN": "Switch MCE OFF and then ON once. [cite: 1030]",
+          "conditionHI": "10 मिनट के अन्दर सफलता न मिलने पर सहायता इंजन की माँग करें। [cite: 1030]",
+          "conditionEN": "Request relief engine if unsuccessful within 10 minutes. [cite: 1030]"
+        }
+      },
+      {
+        "faultCode": "F0102P1",
+        "titleHI": "वीसीबी ऑफ स्थिति में फंसा",
+        "titleEN": "VCB STUCK IN OFF POSITION",
+        "messageHI": "Loco XXXXX SS01: Main Power VCB STUCK IN OFF POSITION Try to close VCB again",
+        "messageEN": "Loco XXXXX SS01: Main Power VCB STUCK IN OFF POSITION Try to close VCB again",
+        "lamps": ["LSDJ (ON)", "LSFI (Blinking)", "BPFA (ON)"],
+        "effectHI": "VCB का कंट्रोल अतिरिक्त प्रोसेसर से होने लगेगा। [cite: 1030]",
+        "effectEN": "VCB control will switch to redundant processor. [cite: 1030]",
+        "actionHI": [
+          "थ्राटल को '0' पोजीशन पर करें। BPFA दबाकर फाल्ट एक्नालेज करें। [cite: 1030]",
+          "BLDJ से VCB बंद करें। [cite: 1030]",
+          "यदि VCB बन्द हो जाता है तो नॉर्मल ट्रैक्शन चालू करें। [cite: 1030]"
+        ],
+        "actionEN": [
+          "Set throttle to '0'. Acknowledge fault via BPFA. [cite: 1030]",
+          "Close VCB using BLDJ. [cite: 1030]",
+          "If VCB closes, resume normal traction. [cite: 1030]"
+        ],
+        "isolation": {
+          "procedureHI": "कोस्टिंग करते हुए ब्लॉक सेक्शन क्लियर करें और गाड़ी खड़ी करें। MCE ऑफ करके पुनः ऑन करें। [cite: 1030, 1033]",
+          "procedureEN": "Clear block section via coasting and stop. Recycle MCE OFF/ON. [cite: 1030, 1033]"
+        }
+      },
+      {
+        "faultCode": "F0103P1",
+        "titleHI": "पेंटो लो प्रेशर / खराब पेंटो",
+        "titleEN": "LOW PRESSURE PANTO / FAULTY PANTO",
+        "messageHI": "SS01: Main Power LOW PRESSURE PANTO/FAULTY PANTO Check Isolating Cock",
+        "messageEN": "SS01: Main Power LOW PRESSURE PANTO/FAULTY PANTO Check Isolating Cock",
+        "lamps": ["LSDJ (ON)", "LSFI (Blinking)", "BPFA (ON)"],
+        "effectHI": "पेंटोग्रॉफ नही उठेगा। [cite: 1033]",
+        "effectEN": "Pantograph will not raise. [cite: 1033]",
+        "actionHI": [
+          "न्यूमेटिक पैनल पर IG-38 चाबी की जाँच करें। [cite: 1033]",
+          "ऑक्जिलरी कम्प्रेशर के कार्य की जांच करें। [cite: 1033]",
+          "MCB 48.1 (SB-2) की जाँच करें। प्रेशर स्विच 26 को धीरे से टैप करें। [cite: 1033]",
+          "पेंटो सेलेक्टर स्विच '85' से दूसरे पेंटोग्राफ को उठाने की कोशिश करें। [cite: 1038]"
+        ],
+        "actionEN": [
+          "Check IG-38 key on pneumatic panel. [cite: 1033]",
+          "Check operation of auxiliary compressor. [cite: 1033]",
+          "Check MCB 48.1 (SB-2). Tap pressure switch 26 gently. [cite: 1033]",
+          "Try raising the other panto using Selector Switch '85'. [cite: 1038]"
+        ],
+        "isolation": {
+          "procedureHI": "पेन्टो आइसोलेटिंग कॉक तथा VCB कॉक के खुले होने की जाँच करें। [cite: 1038]",
+          "procedureEN": "Check if Panto and VCB isolating cocks are open. [cite: 1038]"
+        }
+      },
+      {
+        "faultCode": "F0104P1",
+        "titleHI": "कैटनरी वोल्टेज सीमा से बाहर",
+        "titleEN": "CATENARY VOLTAGE OUT OF LIMIT",
+        "messageHI": "SS01: Main Power CATENARY VOLTAGE OUT OF LIMIT Watch Catenary Voltmeter",
+        "messageEN": "SS01: Main Power CATENARY VOLTAGE OUT OF LIMIT Watch Catenary Voltmeter",
+        "lamps": ["LSDJ (ON)", "LSFI (Blinking)", "BPFA (ON)"],
+        "effectHI": "वोल्टेज 17.5 KV से 30 KV के बीच न होने पर VCB ऑफ रहेगा। [cite: 1046]",
+        "effectEN": "VCB remains OFF if voltage is outside 17.5 KV to 30 KV. [cite: 1046]",
+        "actionHI": [
+          "थ्रॉटल को '0' पर करें। BPFA दबाकर फाल्ट एक्नालेज करें। [cite: 1046]",
+          "SB-1 में लगे 2 Amp के PT फ्यूज की जाँच करें। [cite: 1046]",
+          "OHE वोल्टेज सीमा में आने का इंतजार करें। [cite: 1046]"
+        ],
+        "actionEN": [
+          "Set throttle to '0'. Acknowledge fault via BPFA. [cite: 1046]",
+          "Check 2 Amp PT fuse in SB-1. [cite: 1046]",
+          "Wait for OHE voltage to return within limits. [cite: 1046]"
+        ],
+        "isolation": {
+          "procedureHI": "DDS मैसेज के अनुसार SR-1 (MCB 127.1/1) या SR-2 (MCB 127.1/2) को आइसोलेट करें। [cite: 1046, 1052]",
+          "procedureEN": "Isolate SR-1 (MCB 127.1/1) or SR-2 (MCB 127.1/2) based on DDS messages. [cite: 1046, 1052]"
+        }
+      },
+      {
+        "faultCode": "F0105P1",
+        "titleHI": "ट्रांसफार्मर तेल तापमान या दबाव ठीक नहीं",
+        "titleEN": "TRANSFORMER OIL TEMPERATURE OR PRESSURE NOT OK",
+        "messageHI": "Loco XXXXX SS01: Main Power TRANSFORMER OIL TEMPERATURE OR PRESSURE NOT OK",
+        "messageEN": "Loco XXXXX SS01: Main Power TRANSFORMER OIL TEMPERATURE OR PRESSURE NOT OK",
+        "lamps": ["LSFI (Blinking)", "BPFA (ON)"],
+        "effectHI": "TE/BE कम हो सकता है, होटल लोड ऑफ हो जायेगा, VCB ट्रिप होगा। [cite: 1056, 1062]",
+        "effectEN": "TE/BE reduction likely, Hotel Load OFF, VCB trips. [cite: 1056, 1062]",
+        "actionHI": [
+          "HB-1 में MCB 62.1/1 तथा HB-2 में MCB 62.1/2 की जाँच करें। [cite: 1062]",
+          "ट्रांसफार्मर आयल लेवल की जाँच एक्सपैन्सन टैंक में करें। [cite: 1062]",
+          "आयल कूलिंग ब्लोअर (OCB) की जाँच करें (MCB 59.1/1 और 59.1/2)। [cite: 1062]"
+        ],
+        "actionEN": [
+          "Check MCB 62.1/1 in HB-1 and 62.1/2 in HB-2. [cite: 1062]",
+          "Check transformer oil level in expansion tanks. [cite: 1062]",
+          "Check Oil Cooling Blowers (OCB) via MCB 59.1/1 and 59.1/2. [cite: 1062]"
+        ],
+        "isolation": {
+          "procedureHI": "स्विच 154 (SB-1) द्वारा संबंधित बोगी को आइसोलेट करें। [cite: 1069]",
+          "procedureEN": "Isolate the respective bogie via switch 154 in SB-1. [cite: 1069]"
+        }
+      },
+      {
+        "faultCode": "F0108P1",
+        "titleHI": "प्राइमरी ओवर करंट",
+        "titleEN": "PRIMARY OVER CURRENT",
+        "messageHI": "SS01: Main Power PRIMARY OVER CURRENT Close VCB after unlocking relay",
+        "messageEN": "SS01: Main Power PRIMARY OVER CURRENT Close VCB after unlocking relay",
+        "lamps": ["LSDJ (ON)", "LSFI (Blinking)", "BPFA (ON)"],
+        "effectHI": "VCB क्लोजिंग क्वायल की सप्लाई रिले 78 द्वारा बाधित होगी। [cite: 1089]",
+        "effectEN": "VCB closing coil supply interrupted by relay 78. [cite: 1089]",
+        "actionHI": [
+          "ओवर करेंट रिले 78 के टार्गेट (flag) की जाँच करें। [cite: 1089]",
+          "मशीन रूम में तेल बिखराव और ओवरहीटिंग की जाँच करें। [cite: 1089, 1093]",
+          "रिले पर लगे स्क्रू को क्लाक वाइज घुमा कर टार्गेट को रिसेट करें। [cite: 1093]"
+        ],
+        "actionEN": [
+          "Check target (flag) of overcurrent relay 78. [cite: 1089]",
+          "Inspect machine room for oil spillage or overheating. [cite: 1089, 1093]",
+          "Reset target by turning the relay screw clockwise. [cite: 1093]"
+        ],
+        "isolation": {
+          "procedureHI": "यदि तेल बिखराव या अनियमितता दिखे तो लोको को डेड करें। [cite: 1093]",
+          "procedureEN": "If oil leakage or abnormality is found, make the loco dead. [cite: 1093]"
+        }
+      },
+      {
+        "faultCode": "F0110P1",
+        "titleHI": "मेन सर्किट में घातक खराबी",
+        "titleEN": "FATAL ERROR IN MAIN CIRCUIT",
+        "messageHI": "SS01: Main Power FATAL ERROR IN MAIN CIRCUIT Turn OFF the Loco",
+        "messageEN": "SS01: Main Power FATAL ERROR IN MAIN CIRCUIT Turn OFF the Loco",
+        "lamps": ["LSDJ (ON)", "LSFI (Blinking)", "BPFA (ON)"],
+        "effectHI": "VCB खुल जायेगा, पेंटो लोअर हो जायेगा। [cite: 1100]",
+        "effectEN": "VCB will open, Panto will lower. [cite: 1100]",
+        "actionHI": [
+          "HB/SB में लगे MCB चेक करें और ट्रिप मिलने पर रिसेट करें। [cite: 1100]",
+          "MCE ऑफ करके ऑन करें। [cite: 1100]"
+        ],
+        "actionEN": [
+          "Check MCBs in HB/SB and reset if tripped. [cite: 1100]",
+          "Recycle MCE OFF/ON. [cite: 1100]"
+        ],
+        "isolation": {
+          "procedureHI": "स्विच 154 से बोगी नं0 1 या 2 को बारी-बारी आइसोलेट कर हाफ ट्रैक्शन से सेक्शन क्लियर करें। [cite: 1107, 1112]",
+          "procedureEN": "Isolate Bogie 1 or 2 using switch 154 to clear section with half traction. [cite: 1107, 1112]"
+        }
+      },
+      {
+        "faultCode": "F0101P2",
+        "titleHI": "कंट्रोल इलेक्ट्रॉनिक्स ओवर टेम्परेचर",
+        "titleEN": "OVER TEMPERATURE CONTROL ELECTRONICS",
+        "messageHI": "SS01: Main Power OVER TEMPERATURE CONTROL ELECTRONICS Turn off the loco [cite: 88, 104]",
+        "messageEN": "SS01: Main Power OVER TEMPERATURE CONTROL ELECTRONICS Turn off the loco [cite: 88, 104]",
+        "lamps": ["BPFA (जलेगी) [cite: 96]", "LSCE (बुझने का इंतजार करें) [cite: 116]"],
+        "effectHI": "कन्वर्टर के कान्टैक्टर क्लोज नही होंगे [cite: 105, 107]",
+        "effectEN": "Converter contactors will not close [cite: 105, 107]",
+        "actionHI": [
+          "स्टेशन मास्टर को सूचित करें कि 10-15 मिनट का समय लोको कूलिंग के लिये चाहिए [cite: 110]",
+          "A-9 को इमरजेन्सी पर रखें [cite: 113]",
+          "MCE ऑफ करे [cite: 115]",
+          "बीएल चाबी को पोजीशन C पर रखे, ZPT से पेंटो उठाएं और VCB बंद करे [cite: 115]",
+          "मशीन रूम ब्लोअर और स्कैवेन्ज ब्लोअर का चलना सुनिश्चित करे [cite: 116]"
+        ],
+        "actionEN": [
+          "Inform Station Master that 10-15 mins needed for cooling [cite: 110]",
+          "Keep A-9 in Emergency position [cite: 113]",
+          "Switch MCE OFF [cite: 115]",
+          "Keep BL key in position C, raise Panto and close VCB [cite: 115]",
+          "Ensure Machine Room Blowers and Scavenge Blowers are running [cite: 116]"
+        ],
+        "isolation": {
+          "procedureHI": "लोको कूलिंग मोड में आ जायेगा, LSCE के बुझने का इंतजार करें [cite: 116]",
+          "procedureEN": "Loco enters cooling mode; wait for LSCE to extinguish [cite: 116]"
+        }
+      },
+      {
+        "faultCode": "F0102P2",
+        "titleHI": "ट्रांसफार्मर तेल दबाव ठीक नहीं",
+        "titleEN": "TRANSFORMER OIL PRESSURE NOT OK",
+        "messageHI": "SS01: Main Power TRANSFORMER OIL PRESSURE NOT OK oil pump circuit not working [cite: 121]",
+        "messageEN": "SS01: Main Power TRANSFORMER OIL PRESSURE NOT OK oil pump circuit not working [cite: 121]",
+        "lamps": ["BPFA (जलेगी) [cite: 121]"],
+        "effectHI": "TE/BE के कम होने की संभावना [cite: 121]",
+        "effectEN": "Probability of TE/BE reduction [cite: 121]",
+        "actionHI": [
+          "थ्राटल को '0' पोजीशन पर लायें [cite: 121]",
+          "BPFA दबाकर फाल्ट एक्नालेज करें [cite: 121]",
+          "HB-1 पैनल मे लगी MCB 62.1/1 तथा HB-2 पैनल मे लगी MCB 62.1/2 की जॉच करें [cite: 121]"
+        ],
+        "actionEN": [
+          "Bring throttle to '0' position [cite: 121]",
+          "Acknowledge fault via BPFA [cite: 121]",
+          "Check MCB 62.1/1 in HB-1 and MCB 62.1/2 in HB-2 [cite: 121]"
+        ],
+        "isolation": {
+          "procedureHI": "MCB ट्रिप होने पर VCB को ओपेन करे और MCB को रिसेट करें [cite: 121]",
+          "procedureEN": "Open VCB and reset MCB if tripped [cite: 121]"
+        }
+      },
+      {
+        "faultCode": "F0103P2",
+        "titleHI": "अर्थ फाल्ट ऑक्जीलरी वाइंडिंग सर्किट",
+        "titleEN": "EARTH FAULT AUX. WINDING CIRCUIT",
+        "messageHI": "SS01: Main Power EARTH FAULT AUX. WINDING CIRCUIT [cite: 121]",
+        "messageEN": "SS01: Main Power EARTH FAULT AUX. WINDING CIRCUIT [cite: 121]",
+        "lamps": ["BPFA (जलेगी) [cite: 121]"],
+        "effectHI": "VCB ट्रिप हो जायेगा [cite: 121]",
+        "effectEN": "VCB will trip [cite: 121]",
+        "actionHI": [
+          "मशीन रूम की जाँच करें (जलने की गंध या धुँआ) [cite: 121]",
+          "सम्बन्धित MCB को ऑफ करें [cite: 121]",
+          "TLC को सूचित करें और लॉग बुक मे नोट करें [cite: 127]"
+        ],
+        "actionEN": [
+          "Inspect machine room for burning smell or smoke [cite: 121]",
+          "Switch OFF the relevant MCB [cite: 121]",
+          "Inform TLC and note in log book [cite: 127]"
+        ],
+        "isolation": {
+          "procedureHI": "SS01 के अन्त में दिये गये अतिरिक्त निर्देश (Trouble shooting for Repeated Tripping) के अनुसार कार्य करें [cite: 127, 684]",
+          "procedureEN": "Follow additional instructions for repeated MCB tripping at the end of SS01 [cite: 127, 684]"
+        }
+      },
+      {
+        "faultCode": "F0104P2",
+        "titleHI": "कम कैटेनरी फ्रीक्वेंसी",
+        "titleEN": "LOW FREQUENCY CATENARY VOLTAGE",
+        "messageHI": "SS01: Main Power LOW FREQUENCY CATENARY VOLTAGE Wait for 1 minute [cite: 127]",
+        "messageEN": "SS01: Main Power LOW FREQUENCY CATENARY VOLTAGE Wait for 1 minute [cite: 127]",
+        "lamps": ["BPFA (जलेगी) [cite: 127]"],
+        "effectHI": "ट्रैक्शन चालू तब होगा जब फ्रीक्वेंसी 45 हर्टज से ऊपर हो जायेंगी [cite: 127]",
+        "effectEN": "Traction resumes only when frequency exceeds 45 Hz [cite: 127]",
+        "actionHI": [
+          "ब्लॉक सेक्शन क्लीयर करने के लिए कोस्टिंग मे गाड़ी चलाएं [cite: 127]",
+          "BPFA दबाकर फाल्ट एक्नालेज करें [cite: 127]",
+          "TLC को सूचित करें और लॉग बुक में नोट करे [cite: 127]"
+        ],
+        "actionEN": [
+          "Drive in coasting to clear block section [cite: 127]",
+          "Acknowledge fault via BPFA [cite: 127]",
+          "Inform TLC and note in log book [cite: 127]"
+        ]
+      },
+      {
+        "faultCode": "F0105P2",
+        "titleHI": "कैटेनरी फ्रीक्वेंसी बहुत अधिक",
+        "titleEN": "CATENARY FREQUENCY IS HIGH",
+        "messageHI": "SS01 Main Power CATENARY FREQUENCY IS HIGH Bring throttle to zero [cite: 127]",
+        "messageEN": "SS01 Main Power CATENARY FREQUENCY IS HIGH Bring throttle to zero [cite: 127]",
+        "lamps": ["BPFA (जलेगी) [cite: 127]"],
+        "effectHI": "ट्रैक्शन चालू तब तक नहीं होगा जब तक फ्रीक्वेन्सी 55 हर्टज से नीचे न आ जाये [cite: 127]",
+        "effectEN": "Traction inhibited until frequency drops below 55 Hz [cite: 127]",
+        "actionHI": [
+          "कोस्टिंग में गाड़ी चलाएं [cite: 127]",
+          "BPFA दबाकर फाल्ट एक्नालेज करें [cite: 127]",
+          "TLC को सूचित करें [cite: 127]"
+        ],
+        "actionEN": [
+          "Drive in coasting [cite: 127]",
+          "Acknowledge fault via BPFA [cite: 127]",
+          "Inform TLC [cite: 127]"
+        ]
+      },
+      {
+        "faultCode": "F0106P2",
+        "titleHI": "ऑक्जिलरी कैपेसिटर मशीन रूम ब्लोअर ऑफ नहीं",
+        "titleEN": "AUXILIARY CAPACITOR MACHINE ROOM BLOWER NOT OFF",
+        "messageHI": "SS01: Main Power AUXILIARY CAPACITOR MACHINE ROOM BLOWER NOT OFF [cite: 127]",
+        "messageEN": "SS01: Main Power AUXILIARY CAPACITOR MACHINE ROOM BLOWER NOT OFF [cite: 127]",
+        "lamps": ["BPFA (जलेगी) [cite: 127]"],
+        "effectHI": "नॉर्मल ट्रैक्शन चालू रखें [cite: 127]",
+        "effectEN": "Continue normal traction [cite: 127]",
+        "actionHI": [
+          "मशीन रूम ब्लोअर 1 और 2 के कार्य की जाँच करें [cite: 127]",
+          "BPFA दबाकर फाल्ट एक्नालेज करें [cite: 127]"
+        ],
+        "actionEN": [
+          "Check operation of Machine Room Blowers 1 and 2 [cite: 127]",
+          "Acknowledge fault via BPFA [cite: 127]"
+        ]
+      },
+      {
+        "faultCode": "F0107P2",
+        "titleHI": "निर्धारित गति प्राप्त नहीं की जा सकती",
+        "titleEN": "DEMANDED SPEED CAN NOT BE ACHIEVED",
+        "messageHI": "SS01: Main Power DEMANDED SPEED CAN NOT BE ACHIEVED [cite: 130]",
+        "messageEN": "SS01: Main Power DEMANDED SPEED CAN NOT BE ACHIEVED [cite: 130]",
+        "lamps": ["BPFA (जलेगी) [cite: 130]"],
+        "effectHI": "लोको की गति 1 कि.मी./घं. से अधिक नही बढ़ती है और जर्क के साथ चलता है [cite: 130]",
+        "effectEN": "Loco speed won't exceed 1 kmph and runs with jerks [cite: 130]",
+        "actionHI": [
+          "DDS में बैक ग्राउण्ड मैसेज के अनुसार कार्यवाही करें [cite: 130]",
+          "यदि मेसेज ASC-1/2 ERROR TECHOGENERATOR है तो संबंधित SR को आइसोलेट करें [cite: 130]",
+          "एक बोगी से गाड़ी कार्य करें [cite: 130]"
+        ],
+        "actionEN": [
+          "Act according to DDS background messages [cite: 130]",
+          "If message is ASC-1/2 ERROR TECHOGENERATOR, isolate relevant SR [cite: 130]",
+          "Work train with a single bogie [cite: 130]"
+        ],
+        "isolation": {
+          "procedureHI": "MCE ऑफ करें और संबंधित SR (MCB 127.1/1 या 127.1/2) को आइसोलेट करें [cite: 130]",
+          "procedureEN": "Switch MCE OFF and isolate respective SR via MCB 127.1/1 or 127.1/2 [cite: 130]"
+        }
+      }
+    ]
+  }
+]

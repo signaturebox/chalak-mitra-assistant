@@ -1,0 +1,258 @@
+[
+  {
+    "subsystemCode": "SS14",
+    "subsystemNameHI": "कैब-2",
+    "subsystemNameEN": "CAB 2",
+    "faults": [
+
+      {
+        "faultCode": "F1401P1",
+        "titleHI": "प्रोसेसर HBB-2 में डिस्टर्बेंस",
+        "titleEN": "DISTURBANCE IN PROCESSOR HBB-2",
+        "messageHI": "Cab-2 isolate हो सकती है, Cab-1 से ड्राइव करें",
+        "messageEN": "Cab 2 may get isolated, drive from Cab 1",
+        "lamps": ["LSFI ब्लिंकिंग", "BPFA प्रकाशित"],
+        "effectHI": "कैब-2 isolate हो सकती है",
+        "effectEN": "Cab-2 may get isolated",
+        "actionHI": [
+          "थ्रॉटल 0 पर रखें और BPFA दबाकर ACK करें",
+          "SB-2 के सभी MCB चेक करें, ट्रिप हों तो Control Electronics OFF करके reset करें",
+          "Control Electronics OFF/ON करें, पैंटो उठाएँ, VCB क्लोज करें",
+          "यदि फॉल्ट बना रहे तो Cab-1 से ऑपरेशन करें",
+          "TLC को सूचित करें और लॉग बुक में दर्ज करें"
+        ],
+        "actionEN": [
+          "Keep throttle at 0 and ACK using BPFA",
+          "Check all MCBs in SB-2, reset tripped MCBs with Control Electronics OFF",
+          "Switch Control Electronics OFF/ON, raise pantograph and close VCB",
+          "If fault persists operate from Cab-1",
+          "Inform TLC and make logbook entry"
+        ],
+        "isolation": {
+          "required": true,
+          "titleHI": "CAB-2 ISOLATED",
+          "titleEN": "CAB 2 ISOLATED",
+          "effectHI": "Cab-1 से ड्राइविंग संभव",
+          "effectEN": "Driving possible from Cab-1",
+          "stepsHI": ["ENTER दबाकर isolation ACK करें", "Cab-1 से ऑपरेशन करें"],
+          "stepsEN": ["Press ENTER to ACK isolation", "Operate from Cab-1"]
+        }
+      },
+
+      {
+        "faultCode": "F1402P1",
+        "titleHI": "प्रोसेसर STB-2 में डिस्टर्बेंस",
+        "titleEN": "DISTURBANCE IN PROCESSOR STB-2",
+        "messageHI": "Cab-2 isolate हो सकती है, Cab-1 से ड्राइव करें",
+        "messageEN": "Cab 2 may get isolated, drive from Cab 1",
+        "lamps": ["LSFI ब्लिंकिंग", "BPFA प्रकाशित"],
+        "effectHI": "कैब-2 isolate हो सकती है",
+        "effectEN": "Cab-2 may get isolated",
+        "actionHI": [
+          "थ्रॉटल 0 पर रखें और BPFA से ACK करें",
+          "SB-2 के MCB चेक करें, Control Electronics OFF करके reset करें",
+          "Control Electronics OFF/ON करें",
+          "यदि फॉल्ट बना रहे तो Cab-1 से ऑपरेशन करें",
+          "TLC को सूचित करें"
+        ],
+        "actionEN": [
+          "Keep throttle at 0 and ACK with BPFA",
+          "Check SB-2 MCBs, reset with Control Electronics OFF",
+          "Switch Control Electronics OFF/ON",
+          "If fault persists operate from Cab-1",
+          "Inform TLC"
+        ],
+        "isolation": {
+          "required": true,
+          "titleHI": "CAB-2 ISOLATED",
+          "titleEN": "CAB 2 ISOLATED",
+          "effectHI": "Cab-1 से ड्राइविंग संभव",
+          "effectEN": "Driving possible from Cab-1",
+          "stepsHI": ["ENTER दबाकर ACK करें", "Cab-1 से चलाएँ"],
+          "stepsEN": ["Press ENTER to ACK", "Drive from Cab-1"]
+        }
+      },
+
+      {
+        "faultCode": "F1403P1",
+        "titleHI": "रिवर्सर खराब",
+        "titleEN": "REVERSER DEFECTIVE",
+        "messageHI": "Cab-1 से ड्राइव करें",
+        "messageEN": "Drive from Cab 1",
+        "lamps": ["LSFI ब्लिंकिंग", "BPFA प्रकाशित"],
+        "effectHI": "Cab-2 से ट्रैक्शन संभव नहीं",
+        "effectEN": "Traction not possible from Cab-2",
+        "actionHI": [
+          "थ्रॉटल 0 पर रखें और BPFA से ACK करें",
+          "रिवर्सर 2-3 बार ऑपरेट करें",
+          "Control Electronics OFF/ON करें",
+          "यदि फॉल्ट बना रहे तो Cab-1 से ऑपरेशन करें",
+          "TLC को सूचित करें"
+        ],
+        "actionEN": [
+          "Keep throttle at 0 and ACK with BPFA",
+          "Operate reverser 2–3 times",
+          "Switch Control Electronics OFF/ON",
+          "If fault persists operate from Cab-1",
+          "Inform TLC"
+        ],
+        "isolation": {
+          "required": true,
+          "titleHI": "CAB-2 ISOLATED",
+          "titleEN": "CAB 2 ISOLATED",
+          "effectHI": "Cab-1 से ड्राइविंग",
+          "effectEN": "Driving from Cab-1",
+          "stepsHI": ["Cab-1 से सेलेक्शन करें"],
+          "stepsEN": ["Select Cab-1"]
+        }
+      },
+
+      {
+        "faultCode": "F1404P1",
+        "titleHI": "RBU-3 RIOM एक्सटेंशन फॉल्ट",
+        "titleEN": "RBU-3 RIOM EXTENSION FAULT",
+        "messageHI": "Driving still possible",
+        "messageEN": "Driving still possible",
+        "lamps": ["LSFI ब्लिंकिंग", "BPFA प्रकाशित"],
+        "effectHI": "Cab-2 से गाड़ी चल सकती है",
+        "effectEN": "Driving possible from Cab-2",
+        "actionHI": [
+          "Control Electronics OFF/ON करें",
+          "VCB क्लोज कर गाड़ी चलाएँ",
+          "DDS पर faulty RIOM पहचानें",
+          "TLC को सूचित करें"
+        ],
+        "actionEN": [
+          "Switch Control Electronics OFF/ON",
+          "Close VCB and continue running",
+          "Identify faulty RIOM on DDS",
+          "Inform TLC"
+        ],
+        "isolation": { "required": false, "titleHI": "", "titleEN": "", "effectHI": "", "effectEN": "", "stepsHI": [], "stepsEN": [] }
+      },
+
+      {
+        "faultCode": "F1405P1",
+        "titleHI": "RBU-4 RIOM एक्सटेंशन फॉल्ट",
+        "titleEN": "RBU-4 RIOM EXTENSION FAULT",
+        "messageHI": "Driving still possible",
+        "messageEN": "Driving still possible",
+        "lamps": ["LSFI ब्लिंकिंग", "BPFA प्रकाशित"],
+        "effectHI": "Cab-2 से गाड़ी चल सकती है",
+        "effectEN": "Driving possible from Cab-2",
+        "actionHI": [
+          "Control Electronics OFF/ON करें",
+          "VCB क्लोज करें",
+          "DDS से faulty RIOM पहचानें",
+          "TLC को सूचित करें"
+        ],
+        "actionEN": [
+          "Switch Control Electronics OFF/ON",
+          "Close VCB",
+          "Identify faulty RIOM on DDS",
+          "Inform TLC"
+        ],
+        "isolation": { "required": false, "titleHI": "", "titleEN": "", "effectHI": "", "effectEN": "", "stepsHI": [], "stepsEN": [] }
+      },
+
+      {
+        "faultCode": "F1401P2",
+        "titleHI": "VCU2-DIP1 प्रोसेसर में डिस्टर्बेंस",
+        "titleEN": "DISTURBANCE IN PROCESSOR VCU2-DIP1",
+        "messageHI": "लॉग बुक में दर्ज करें",
+        "messageEN": "Make logbook entry",
+        "lamps": ["BPFA प्रकाशित"],
+        "effectHI": "CSC और PVEP Cab-2 से कार्य नहीं करेंगे",
+        "effectEN": "CSC and PVEP will not work from Cab-2",
+        "actionHI": ["लॉग बुक में दर्ज करें और सामान्य ऑपरेशन चलाएँ"],
+        "actionEN": ["Make logbook entry and continue normal operation"],
+        "isolation": { "required": false, "titleHI": "", "titleEN": "", "effectHI": "", "effectEN": "", "stepsHI": [], "stepsEN": [] }
+      },
+
+      {
+        "faultCode": "F1402P2",
+        "titleHI": "VCU2-DIP2 प्रोसेसर में डिस्टर्बेंस",
+        "titleEN": "DISTURBANCE IN PROCESSOR VCU2-DIP2",
+        "messageHI": "लॉग बुक में दर्ज करें",
+        "messageEN": "Make logbook entry",
+        "lamps": ["BPFA प्रकाशित"],
+        "effectHI": "MCB 53.1/2, 55.1/2, 56.1/2 detect नहीं होंगे",
+        "effectEN": "MCB 53.1/2, 55.1/2, 56.1/2 trips not detected",
+        "actionHI": ["लॉग बुक में दर्ज करें और सामान्य ऑपरेशन चलाएँ"],
+        "actionEN": ["Make logbook entry and continue normal operation"],
+        "isolation": { "required": false, "titleHI": "", "titleEN": "", "effectHI": "", "effectEN": "", "stepsHI": [], "stepsEN": [] }
+      },
+
+      {
+        "faultCode": "F1403P2",
+        "titleHI": "VCU2-DIP3 प्रोसेसर में डिस्टर्बेंस",
+        "titleEN": "DISTURBANCE IN PROCESSOR VCU2-DIP3",
+        "messageHI": "लॉग बुक में दर्ज करें",
+        "messageEN": "Make logbook entry",
+        "lamps": ["BPFA प्रकाशित"],
+        "effectHI": "स्मोक वार्निंग और MCB 62.1/2, 63.1/2 detect नहीं होंगे",
+        "effectEN": "Smoke warning and MCB 62.1/2, 63.1/2 not detected",
+        "actionHI": ["लॉग बुक में दर्ज करें"],
+        "actionEN": ["Make logbook entry"],
+        "isolation": { "required": false, "titleHI": "", "titleEN": "", "effectHI": "", "effectEN": "", "stepsHI": [], "stepsEN": [] }
+      },
+
+      {
+        "faultCode": "F1404P2",
+        "titleHI": "VCU2-DIP4 प्रोसेसर में डिस्टर्बेंस",
+        "titleEN": "DISTURBANCE IN PROCESSOR VCU2-DIP4",
+        "messageHI": "लॉग बुक में दर्ज करें",
+        "messageEN": "Make logbook entry",
+        "lamps": ["BPFA प्रकाशित"],
+        "effectHI": "कुछ इंडिकेशन कार्य नहीं करेंगे",
+        "effectEN": "Some indications will not work",
+        "actionHI": ["लॉग बुक में दर्ज करें"],
+        "actionEN": ["Make logbook entry"],
+        "isolation": { "required": false, "titleHI": "", "titleEN": "", "effectHI": "", "effectEN": "", "stepsHI": [], "stepsEN": [] }
+      },
+
+      {
+        "faultCode": "F1405P2",
+        "titleHI": "VCU2-DOP1 प्रोसेसर में डिस्टर्बेंस",
+        "titleEN": "DISTURBANCE IN PROCESSOR VCU2-DOP1",
+        "messageHI": "लॉग बुक में दर्ज करें",
+        "messageEN": "Make logbook entry",
+        "lamps": ["BPFA प्रकाशित"],
+        "effectHI": "लैम्प इंडिकेशन कार्य नहीं करेंगे",
+        "effectEN": "Lamp indications will not work",
+        "actionHI": ["लॉग बुक में दर्ज करें"],
+        "actionEN": ["Make logbook entry"],
+        "isolation": { "required": false, "titleHI": "", "titleEN": "", "effectHI": "", "effectEN": "", "stepsHI": [], "stepsEN": [] }
+      },
+
+      {
+        "faultCode": "F1406P2",
+        "titleHI": "VCU2-DOP2 प्रोसेसर में डिस्टर्बेंस",
+        "titleEN": "DISTURBANCE IN PROCESSOR VCU2-DOP2",
+        "messageHI": "लॉग बुक में दर्ज करें",
+        "messageEN": "Make logbook entry",
+        "lamps": ["BPFA प्रकाशित"],
+        "effectHI": "साउंड इंडिकेशन कार्य नहीं करेगा",
+        "effectEN": "Sound indication will not work",
+        "actionHI": ["लॉग बुक में दर्ज करें"],
+        "actionEN": ["Make logbook entry"],
+        "isolation": { "required": false, "titleHI": "", "titleEN": "", "effectHI": "", "effectEN": "", "stepsHI": [], "stepsEN": [] }
+      },
+
+      {
+        "faultCode": "F1407P2",
+        "titleHI": "VCU2-DOP3 प्रोसेसर में डिस्टर्बेंस",
+        "titleEN": "DISTURBANCE IN PROCESSOR VCU2-DOP3",
+        "messageHI": "लॉग बुक में दर्ज करें",
+        "messageEN": "Make logbook entry",
+        "lamps": ["BPFA प्रकाशित"],
+        "effectHI": "फायर डिटेक्शन इंडिकेशन कार्य नहीं करेगा",
+        "effectEN": "Fire detection indication will not work",
+        "actionHI": ["लॉग बुक में दर्ज करें"],
+        "actionEN": ["Make logbook entry"],
+        "isolation": { "required": false, "titleHI": "", "titleEN": "", "effectHI": "", "effectEN": "", "stepsHI": [], "stepsEN": [] }
+      }
+
+    ]
+  }
+]
