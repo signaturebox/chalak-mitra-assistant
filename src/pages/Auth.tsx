@@ -1,16 +1,72 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Train, Eye, EyeOff, ArrowRight } from "lucide-react";
+import { Train, Eye, EyeOff, ArrowRight, Info } from "lucide-react";
+import { toast } from "sonner";
+
+const DEMO_CREDENTIALS = {
+  id: "demo123",
+  password: "demo@1234",
+  name: "Rajesh Kumar",
+  cms: "12345678",
+  designation: "LP (Goods)",
+  division: "Jodhpur",
+  lobby: "Abu Road",
+};
 
 export default function Auth() {
   const navigate = useNavigate();
   const [isLogin, setIsLogin] = useState(true);
   const [showPw, setShowPw] = useState(false);
+  const [identifier, setIdentifier] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  const fillDemo = () => {
+    setIdentifier(DEMO_CREDENTIALS.id);
+    setPassword(DEMO_CREDENTIALS.password);
+    setError("");
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    navigate("/");
+    setError("");
+
+    if (!identifier.trim() || !password.trim()) {
+      setError("Please fill in all fields");
+      return;
+    }
+
+    if (isLogin) {
+      setLoading(true);
+      // Simulate login check
+      setTimeout(() => {
+        if (
+          (identifier === DEMO_CREDENTIALS.id || identifier === "demo@nwr.in") &&
+          password === DEMO_CREDENTIALS.password
+        ) {
+          localStorage.setItem("nwr_user", JSON.stringify(DEMO_CREDENTIALS));
+          toast.success(`Welcome, ${DEMO_CREDENTIALS.name}!`);
+          navigate("/");
+        } else {
+          setError("Invalid CMS ID or Password. Try demo credentials.");
+        }
+        setLoading(false);
+      }, 800);
+    } else {
+      if (!name.trim()) {
+        setError("Please enter your full name");
+        return;
+      }
+      setLoading(true);
+      setTimeout(() => {
+        toast.success("Account created! Please sign in.");
+        setIsLogin(true);
+        setLoading(false);
+      }, 800);
+    }
   };
 
   return (
@@ -29,12 +85,12 @@ export default function Auth() {
           className="w-full max-w-sm"
         >
           {/* Logo */}
-          <div className="text-center mb-10">
+          <div className="text-center mb-8">
             <motion.div
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
-              className="w-18 h-18 mx-auto bg-white/15 backdrop-blur-xl rounded-3xl flex items-center justify-center mb-4 border border-white/20"
+              className="mx-auto bg-white/15 backdrop-blur-xl rounded-3xl flex items-center justify-center mb-4 border border-white/20"
               style={{ width: 72, height: 72 }}
             >
               <Train size={34} className="text-white" />
@@ -57,6 +113,8 @@ export default function Auth() {
                 <div>
                   <label className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider mb-1.5 block">Full Name</label>
                   <input
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
                     placeholder="Enter your full name"
                     className="w-full px-4 py-3 bg-muted rounded-xl text-[13px] font-medium border border-border outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all text-foreground placeholder:text-muted-foreground"
                   />
@@ -67,6 +125,8 @@ export default function Auth() {
                   {isLogin ? "CMS ID or Email" : "CMS ID"}
                 </label>
                 <input
+                  value={identifier}
+                  onChange={(e) => { setIdentifier(e.target.value); setError(""); }}
                   placeholder={isLogin ? "Enter CMS ID or email" : "Enter your CMS ID"}
                   className="w-full px-4 py-3 bg-muted rounded-xl text-[13px] font-medium border border-border outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all text-foreground placeholder:text-muted-foreground"
                 />
@@ -75,6 +135,8 @@ export default function Auth() {
                 <label className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider mb-1.5 block">Password</label>
                 <div className="relative">
                   <input
+                    value={password}
+                    onChange={(e) => { setPassword(e.target.value); setError(""); }}
                     type={showPw ? "text" : "password"}
                     placeholder="Enter password"
                     className="w-full px-4 py-3 bg-muted rounded-xl text-[13px] font-medium border border-border outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all pr-11 text-foreground placeholder:text-muted-foreground"
@@ -89,6 +151,17 @@ export default function Auth() {
                 </div>
               </div>
 
+              {/* Error */}
+              {error && (
+                <motion.p
+                  initial={{ opacity: 0, y: -4 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="text-[11px] text-destructive font-semibold bg-destructive/10 px-3 py-2 rounded-lg"
+                >
+                  {error}
+                </motion.p>
+              )}
+
               {isLogin && (
                 <div className="text-right">
                   <button type="button" className="text-[11px] text-primary font-semibold">Forgot Password?</button>
@@ -97,16 +170,37 @@ export default function Auth() {
 
               <button
                 type="submit"
-                className="w-full bg-primary text-primary-foreground py-3.5 rounded-xl font-bold text-[13px] press-effect flex items-center justify-center gap-2 shadow-lg shadow-primary/20"
+                disabled={loading}
+                className="w-full bg-primary text-primary-foreground py-3.5 rounded-xl font-bold text-[13px] press-effect flex items-center justify-center gap-2 shadow-lg shadow-primary/20 disabled:opacity-60"
               >
-                {isLogin ? "Sign In" : "Create Account"}
-                <ArrowRight size={16} />
+                {loading ? (
+                  <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                ) : (
+                  <>
+                    {isLogin ? "Sign In" : "Create Account"}
+                    <ArrowRight size={16} />
+                  </>
+                )}
               </button>
             </form>
 
-            <p className="text-center text-[11px] text-muted-foreground mt-5">
+            {/* Demo Login */}
+            {isLogin && (
+              <motion.button
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.5 }}
+                onClick={fillDemo}
+                className="w-full mt-3 flex items-center justify-center gap-2 py-2.5 rounded-xl border border-dashed border-primary/30 text-primary text-[11px] font-bold press-effect bg-primary/5"
+              >
+                <Info size={14} />
+                Use Demo Login (demo123 / demo@1234)
+              </motion.button>
+            )}
+
+            <p className="text-center text-[11px] text-muted-foreground mt-4">
               {isLogin ? "Don't have an account?" : "Already have an account?"}{" "}
-              <button onClick={() => setIsLogin(!isLogin)} className="text-primary font-bold">
+              <button onClick={() => { setIsLogin(!isLogin); setError(""); }} className="text-primary font-bold">
                 {isLogin ? "Sign Up" : "Sign In"}
               </button>
             </p>
