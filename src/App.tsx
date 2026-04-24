@@ -10,6 +10,7 @@ import Profile from "./pages/Profile";
 import Auth from "./pages/Auth";
 import GMMessages from "./pages/GMMessages";
 import FilesPage from "./pages/FilesPage";
+import AdminUploadCenter from "./pages/AdminUploadCenter";
 
 const queryClient = new QueryClient();
 
@@ -29,6 +30,7 @@ function App() {
             <Route path="/pcee-messages" element={<GMMessages />} />
             <Route path="/nwr-notices" element={<GMMessages />} />
             <Route path="/files/:category" element={<FilesPage />} />
+            <Route path="/admin/uploads" element={<AdminUploadCenter />} />
           </Route>
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
