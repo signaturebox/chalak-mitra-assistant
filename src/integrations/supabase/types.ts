@@ -585,6 +585,50 @@ export type Database = {
           },
         ]
       }
+      push_logs: {
+        Row: {
+          created_at: string
+          error: string | null
+          filters: Json | null
+          http_status: number | null
+          id: string
+          notification_id: string | null
+          onesignal_id: string | null
+          raw_response: Json | null
+          recipients: number | null
+        }
+        Insert: {
+          created_at?: string
+          error?: string | null
+          filters?: Json | null
+          http_status?: number | null
+          id?: string
+          notification_id?: string | null
+          onesignal_id?: string | null
+          raw_response?: Json | null
+          recipients?: number | null
+        }
+        Update: {
+          created_at?: string
+          error?: string | null
+          filters?: Json | null
+          http_status?: number | null
+          id?: string
+          notification_id?: string | null
+          onesignal_id?: string | null
+          raw_response?: Json | null
+          recipients?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "push_logs_notification_id_fkey"
+            columns: ["notification_id"]
+            isOneToOne: false
+            referencedRelation: "notifications"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       rule_books: {
         Row: {
           category: string
