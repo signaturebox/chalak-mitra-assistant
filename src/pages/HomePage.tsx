@@ -3,8 +3,9 @@ import { motion } from "framer-motion";
 import {
   Search, BookOpen, Mic, MessageSquare, Zap, FileText,
   Train, Fuel, Shield, BookMarked, Wrench, Cable,
-  RailSymbol, AlertTriangle, Info, Bell, ChevronRight
+  RailSymbol, AlertTriangle, Info, ChevronRight
 } from "lucide-react";
+import NotificationBell from "@/components/NotificationBell";
 
 const quickActions = [
   { icon: Search, label: "Fault Search", desc: "Find & fix faults", path: "/search", gradient: "from-blue-500 to-blue-600" },
@@ -55,12 +56,7 @@ export default function HomePage() {
               <p className="text-[10px] font-medium opacity-70 tracking-wide">North Western Railway • चालक मित्र</p>
             </div>
           </div>
-          <button
-            onClick={() => navigate("/profile")}
-            className="w-10 h-10 rounded-full bg-white/15 backdrop-blur-sm flex items-center justify-center border border-white/20 press-effect"
-          >
-            <Bell size={18} />
-          </button>
+          <NotificationBell />
         </div>
 
         {/* Greeting */}

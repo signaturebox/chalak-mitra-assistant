@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "sonner";
@@ -11,10 +12,33 @@ import Auth from "./pages/Auth";
 import GMMessages from "./pages/GMMessages";
 import FilesPage from "./pages/FilesPage";
 import AdminUploadCenter from "./pages/AdminUploadCenter";
+import AdminBroadcast from "./pages/AdminBroadcast";
+import { supabase } from "./integrations/supabase/client";
+import { initPushNotifications, syncUserTagsToOneSignal, logoutPushNotifications } from "./services/pushNotifications";
 
 const queryClient = new QueryClient();
 
 function App() {
+  useEffect(() => {
+    // Init OneSignal once on app boot (safe even if user not logged in)
+    initPushNotifications();
+
+    // Sync tags whenever auth state changes
+    supabase.auth.getSession().then(({ data }) => {
+      if (data.session?.user.id) {
+        syncUserTagsToOneSignal(data.session.user.id);
+      }
+    });
+    const { data: sub } = supabase.auth.onAuthStateChange((event, session) => {
+      if (event === "SIGNED_IN" && session?.user.id) {
+        syncUserTagsToOneSignal(session.user.id);
+      } else if (event === "SIGNED_OUT") {
+        logoutPushNotifications();
+      }
+    });
+    return () => sub.subscription.unsubscribe();
+  }, []);
+
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
@@ -31,6 +55,7 @@ function App() {
             <Route path="/nwr-notices" element={<GMMessages />} />
             <Route path="/files/:category" element={<FilesPage />} />
             <Route path="/admin/uploads" element={<AdminUploadCenter />} />
+            <Route path="/admin/broadcast" element={<AdminBroadcast />} />
           </Route>
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
