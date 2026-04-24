@@ -12,6 +12,20 @@ export default function Profile() {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState<"info" | "activity" | "settings">("info");
   const [isDark, setIsDark] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  useEffect(() => {
+    (async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) return;
+      const { data: roles } = await supabase
+        .from("user_roles")
+        .select("role")
+        .eq("user_id", session.user.id);
+      const adminRoles = ["super_admin", "zone_admin", "division_admin", "lobby_admin"];
+      setIsAdmin((roles ?? []).some((r) => adminRoles.includes(r.role)));
+    })();
+  }, []);
 
   const stats = [
     { icon: BookOpen, value: "12", label: "Quizzes", color: "text-blue-500" },
