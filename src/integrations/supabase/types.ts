@@ -14,6 +14,86 @@ export type Database = {
   }
   public: {
     Tables: {
+      admin_documents: {
+        Row: {
+          category: string
+          created_at: string
+          description: string | null
+          division_id: string | null
+          document_type: string | null
+          file_name: string | null
+          file_size: number | null
+          file_type: string | null
+          file_url: string
+          id: string
+          is_active: boolean
+          is_latest: boolean
+          lobby_id: string | null
+          parent_document_id: string | null
+          tags: string[] | null
+          title: string
+          updated_at: string
+          uploaded_by: string
+          version: number
+          version_notes: string | null
+          zone_id: string | null
+        }
+        Insert: {
+          category: string
+          created_at?: string
+          description?: string | null
+          division_id?: string | null
+          document_type?: string | null
+          file_name?: string | null
+          file_size?: number | null
+          file_type?: string | null
+          file_url: string
+          id?: string
+          is_active?: boolean
+          is_latest?: boolean
+          lobby_id?: string | null
+          parent_document_id?: string | null
+          tags?: string[] | null
+          title: string
+          updated_at?: string
+          uploaded_by: string
+          version?: number
+          version_notes?: string | null
+          zone_id?: string | null
+        }
+        Update: {
+          category?: string
+          created_at?: string
+          description?: string | null
+          division_id?: string | null
+          document_type?: string | null
+          file_name?: string | null
+          file_size?: number | null
+          file_type?: string | null
+          file_url?: string
+          id?: string
+          is_active?: boolean
+          is_latest?: boolean
+          lobby_id?: string | null
+          parent_document_id?: string | null
+          tags?: string[] | null
+          title?: string
+          updated_at?: string
+          uploaded_by?: string
+          version?: number
+          version_notes?: string | null
+          zone_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "admin_documents_parent_document_id_fkey"
+            columns: ["parent_document_id"]
+            isOneToOne: false
+            referencedRelation: "admin_documents"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       bookmarks: {
         Row: {
           created_at: string

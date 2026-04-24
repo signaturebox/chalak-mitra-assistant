@@ -1,16 +1,31 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowLeft, User as UserIcon, Settings, ChevronRight, LogOut, Bell,
   Moon, Sun, Shield, HelpCircle, Award, BookOpen, Bookmark,
-  FileText, Clock, Star, Edit3
+  FileText, Clock, Star, Edit3, Upload
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { supabase } from "@/integrations/supabase/client";
 
 export default function Profile() {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState<"info" | "activity" | "settings">("info");
   const [isDark, setIsDark] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  useEffect(() => {
+    (async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) return;
+      const { data: roles } = await supabase
+        .from("user_roles")
+        .select("role")
+        .eq("user_id", session.user.id);
+      const adminRoles = ["super_admin", "zone_admin", "division_admin", "lobby_admin"];
+      setIsAdmin((roles ?? []).some((r) => adminRoles.includes(r.role)));
+    })();
+  }, []);
 
   const stats = [
     { icon: BookOpen, value: "12", label: "Quizzes", color: "text-blue-500" },
@@ -187,6 +202,24 @@ export default function Profile() {
                   />
                 </div>
               </button>
+
+              {isAdmin && (
+                <button
+                  onClick={() => navigate("/admin/uploads")}
+                  className="w-full flex items-center justify-between p-3.5 bg-card rounded-xl border border-primary/30 press-effect"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="w-9 h-9 rounded-xl bg-primary/15 flex items-center justify-center">
+                      <Upload size={16} className="text-primary" />
+                    </div>
+                    <div className="text-left">
+                      <p className="text-[12px] font-bold text-foreground">Upload Center</p>
+                      <p className="text-[10px] text-muted-foreground">Manage manuals, circulars & rules</p>
+                    </div>
+                  </div>
+                  <ChevronRight size={16} className="text-primary" />
+                </button>
+              )}
 
               {settingsItems.map((si) => (
                 <button
