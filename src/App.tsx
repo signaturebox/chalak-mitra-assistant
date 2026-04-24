@@ -13,6 +13,7 @@ import GMMessages from "./pages/GMMessages";
 import FilesPage from "./pages/FilesPage";
 import AdminUploadCenter from "./pages/AdminUploadCenter";
 import AdminBroadcast from "./pages/AdminBroadcast";
+import AdminPushLogs from "./pages/AdminPushLogs";
 import { supabase } from "./integrations/supabase/client";
 import { initPushNotifications, syncUserTagsToOneSignal, logoutPushNotifications } from "./services/pushNotifications";
 
