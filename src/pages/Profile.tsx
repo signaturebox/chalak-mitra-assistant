@@ -1,11 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowLeft, User as UserIcon, Settings, ChevronRight, LogOut, Bell,
   Moon, Sun, Shield, HelpCircle, Award, BookOpen, Bookmark,
-  FileText, Clock, Star, Edit3
+  FileText, Clock, Star, Edit3, Upload
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { supabase } from "@/integrations/supabase/client";
 
 export default function Profile() {
   const navigate = useNavigate();
@@ -187,6 +188,24 @@ export default function Profile() {
                   />
                 </div>
               </button>
+
+              {isAdmin && (
+                <button
+                  onClick={() => navigate("/admin/uploads")}
+                  className="w-full flex items-center justify-between p-3.5 bg-card rounded-xl border border-primary/30 press-effect"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="w-9 h-9 rounded-xl bg-primary/15 flex items-center justify-center">
+                      <Upload size={16} className="text-primary" />
+                    </div>
+                    <div className="text-left">
+                      <p className="text-[12px] font-bold text-foreground">Upload Center</p>
+                      <p className="text-[10px] text-muted-foreground">Manage manuals, circulars & rules</p>
+                    </div>
+                  </div>
+                  <ChevronRight size={16} className="text-primary" />
+                </button>
+              )}
 
               {settingsItems.map((si) => (
                 <button
