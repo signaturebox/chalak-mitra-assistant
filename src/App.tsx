@@ -57,6 +57,7 @@ function App() {
             <Route path="/files/:category" element={<FilesPage />} />
             <Route path="/admin/uploads" element={<AdminUploadCenter />} />
             <Route path="/admin/broadcast" element={<AdminBroadcast />} />
+            <Route path="/admin/push-logs" element={<AdminPushLogs />} />
           </Route>
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
