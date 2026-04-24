@@ -138,7 +138,12 @@ export default function AdminBroadcast() {
           </h1>
           <p className="text-xs text-muted-foreground">Targeted push to crew & admins</p>
         </div>
-      </div>
+        <button
+          onClick={() => navigate("/admin/push-logs")}
+          className="text-[11px] font-bold px-2.5 py-1.5 rounded-lg bg-muted text-foreground press-effect border border-border"
+        >
+          Logs
+        </button>
 
       <div className="p-5 space-y-4">
         {/* Type */}
