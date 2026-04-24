@@ -144,6 +144,7 @@ export default function AdminBroadcast() {
         >
           Logs
         </button>
+      </div>
 
       <div className="p-5 space-y-4">
         {/* Type */}
