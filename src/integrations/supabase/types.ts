@@ -470,6 +470,7 @@ export type Database = {
           target_zone_id: string | null
           title: string
           type: string
+          urgency: string
         }
         Insert: {
           created_at?: string
@@ -482,6 +483,7 @@ export type Database = {
           target_zone_id?: string | null
           title: string
           type: string
+          urgency?: string
         }
         Update: {
           created_at?: string
@@ -494,6 +496,7 @@ export type Database = {
           target_zone_id?: string | null
           title?: string
           type?: string
+          urgency?: string
         }
         Relationships: [
           {
@@ -522,6 +525,7 @@ export type Database = {
           full_name: string
           id: string
           lobby_id: string | null
+          onesignal_player_id: string | null
           phone: string | null
           updated_at: string
           user_id: string
@@ -536,6 +540,7 @@ export type Database = {
           full_name?: string
           id?: string
           lobby_id?: string | null
+          onesignal_player_id?: string | null
           phone?: string | null
           updated_at?: string
           user_id: string
@@ -550,6 +555,7 @@ export type Database = {
           full_name?: string
           id?: string
           lobby_id?: string | null
+          onesignal_player_id?: string | null
           phone?: string | null
           updated_at?: string
           user_id?: string
